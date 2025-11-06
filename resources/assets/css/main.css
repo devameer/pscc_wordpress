@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme base tweaks */
+@layer base {
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        @apply antialiased bg-slate-50 text-slate-900;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+}
+
+/* Example component class */
+@layer components {
+    .btn {
+        @apply inline-flex items-center gap-2 rounded-md bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600;
+    }
+
+    .hero-slider {
+        @apply overflow-hidden;
+    }
+
+    .hero-slider-pagination {
+        @apply absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3;
+    }
+
+    .hero-slider-pagination .swiper-pagination-bullet {
+        @apply h-1 w-12 rounded-full bg-white/30 opacity-100 transition-all duration-300;
+    }
+
+    .hero-slider-pagination .swiper-pagination-bullet-active {
+        @apply bg-white;
+    }
+
+    .hero-slider-nav {
+        @apply absolute top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white/15 p-3 text-white shadow-lg transition hover:bg-white/25 md:flex z-10;
+    }
+
+    .hero-slider-nav i {
+        @apply text-base;
+    }
+
+    .hero-slider-nav.hero-slider-prev {
+        @apply left-4 md:left-6 lg:left-10;
+    }
+
+    .hero-slider-nav.hero-slider-next {
+        @apply right-4 md:right-6 lg:right-10;
+    }
+
+    .hero-slider-nav::after {
+        content: none !important;
+    }
+}
