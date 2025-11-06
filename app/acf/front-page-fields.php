@@ -88,7 +88,7 @@ acf_add_local_field_group(
             ],
             [
                 'key'        => 'field_front_programs',
-                'label'      => __('Programs', 'beit'),
+                'label'      => __('Programs & Projects', 'beit'),
                 'name'       => 'front_programs',
                 'type'       => 'group',
                 'sub_fields' => [
@@ -113,7 +113,7 @@ acf_add_local_field_group(
                     ],
                     [
                         'key'          => 'field_front_programs_items',
-                        'label'        => __('Programs', 'beit'),
+                        'label'        => __('Programs & Projects', 'beit'),
                         'name'         => 'items',
                         'type'         => 'repeater',
                         'layout'       => 'row',

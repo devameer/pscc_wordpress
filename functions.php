@@ -13,6 +13,7 @@ define('BEIT_THEME_DIR', get_template_directory());
 define('BEIT_THEME_URI', get_template_directory_uri());
 
 $beit_theme_includes = [
+    'app/helpers.php',
     'app/setup.php',
     'app/assets.php',
     'app/widgets.php',

@@ -77,5 +77,13 @@ function beit_theme_enqueue_assets(): void
         beit_theme_asset_version('resources/assets/js/theme.js'),
         true
     );
+
+    wp_enqueue_script(
+        'fslightbox',
+        'https://cdn.jsdelivr.net/npm/fslightbox/index.js',
+        [],
+        '3.4.1',
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'beit_theme_enqueue_assets');

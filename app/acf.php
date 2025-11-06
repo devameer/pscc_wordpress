@@ -65,6 +65,10 @@ $acf_field_files = [
     BEIT_THEME_DIR . '/app/acf/theme-options-fields.php',
     BEIT_THEME_DIR . '/app/acf/hero-slide-fields.php',
     BEIT_THEME_DIR . '/app/acf/front-page-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-contact-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-donate-fields.php',
+    BEIT_THEME_DIR . '/app/acf/voice-fields.php',
+    BEIT_THEME_DIR . '/app/acf/program-fields.php',
 ];
 
 foreach ($acf_field_files as $acf_field_file) {

@@ -181,6 +181,7 @@ if ($voices_query->have_posts()) {
         $voices_query->the_post();
 
         $voices['items'][] = [
+            'id'      => get_the_ID(),
             'title'   => get_the_title(),
             'excerpt' => get_the_excerpt(),
             'image'   => get_post_thumbnail_id() ?: '',
@@ -252,7 +253,8 @@ $display_news     = $news_posts;
             'resources/views/sections/voices',
             null,
             [
-                'voices' => $voices,
+                'voices'      => $voices,
+                'lightbox_id' => 'home-voices-lightbox',
             ]
         );
     }

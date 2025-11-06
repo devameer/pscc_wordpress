@@ -106,7 +106,7 @@ function beit_front_default_programs(): array
         'title'    => __('Programs & Initiatives', 'beit'),
         'subtitle' => __('Comprehensive development programs empowering communities with lasting change.', 'beit'),
         'cta'      => [
-            'title'  => __('View All Programs →', 'beit'),
+            'title'  => __('View All Programs & Projects →', 'beit'),
             'url'    => '#',
             'target' => '_self',
         ],

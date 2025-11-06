@@ -15,6 +15,8 @@ $voices = wp_parse_args(
     ]
 );
 
+$lightbox_id = $args['lightbox_id'] ?? 'voices-lightbox';
+
 $items = $voices['items'];
 
 if (empty($items)) {
@@ -36,8 +38,13 @@ if (empty($items)) {
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <?php foreach ($items as $index => $item) :
-                $image = $item['image'] ?? '';
-                if (!$image) {
+                $media = isset($item['media']) ? $item['media'] : beit_get_voice_media_data($item['id'] ?? 0, $item['image'] ?? null);
+                $thumb_url = $media['thumbnail_url'];
+                $lightbox_src = $media['src'];
+                $lightbox_type = $media['type'];
+                $caption = $media['caption'] ?? ($item['title'] ?? '');
+
+                if (!$thumb_url) {
                     continue;
                 }
 
@@ -49,12 +56,20 @@ if (empty($items)) {
                 }
                 ?>
                 <div class="<?php echo esc_attr($wrapper_classes); ?>">
-                    <a href="<?php echo esc_url($item['link'] ?? '#'); ?>" class="block">
-                        <?php if (is_numeric($image)) : ?>
-                            <?php echo wp_get_attachment_image((int) $image, 'large', false, ['class' => $classes]); ?>
-                        <?php else : ?>
-                            <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url((string) $image); ?>" alt="">
-                        <?php endif; ?>
+                    <a
+                        class="group relative block w-full"
+                        data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
+                        data-type="<?php echo esc_attr($lightbox_type); ?>"
+                        data-caption="<?php echo esc_attr($caption); ?>"
+                        href="<?php echo esc_url($lightbox_src); ?>"
+                        aria-label="<?php esc_attr_e('Open media', 'beit'); ?>"
+                    >
+                        <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
+                                <i class="fa-solid <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
+                            </span>
+                        </span>
+                        <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($item['title'] ?? ''); ?>">
                     </a>
                 </div>
             <?php endforeach; ?>
