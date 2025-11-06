@@ -58,7 +58,7 @@ get_template_part(
         'title'       => $hero_title,
         'description' => $hero_description,
         'eyebrow'     => __('Media Center', 'beit'),
-        'background_classes' => 'bg-slate-950',
+        'background_classes' => 'bg-gradient-to-br from-slate-950 via-slate-800 to-red-900',
     ]
 );
 

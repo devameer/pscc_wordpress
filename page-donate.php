@@ -24,13 +24,6 @@ while (have_posts()) {
     $hero_title       = $hero_data['title'] ?? get_the_title();
     $hero_subtitle    = $hero_data['subtitle'] ?? __('Empowering hope and resilience across Gaza.', 'beit');
     $hero_background  = $hero_data['background'] ?? '';
-    if ($hero_background && is_numeric($hero_background)) {
-        $hero_background = wp_get_attachment_image_url((int) $hero_background, 'full') ?: '';
-    }
-
-    $gradient_layer = 'linear-gradient(135deg, rgba(139,0,0,0.9), rgba(220,20,60,0.7), rgba(0,0,0,0.8))';
-    $default_pattern = "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"400\"%3E%3Cdefs%3E%3CradialGradient id=\"grad\"%3E%3Cstop offset=\"0%25\" style=\"stop-color:rgb(139,0,0);stop-opacity:0.8\"/%3E%3Cstop offset=\"100%25\" style=\"stop-color:rgb(0,0,0);stop-opacity:1\"/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width=\"1200\" height=\"400\" fill=\"url(%23grad)\"/%3E%3C/svg%3E')";
-    $hero_background_style = $hero_background ? $gradient_layer . ', url(' . esc_url($hero_background) . ')' : $gradient_layer . ', ' . $default_pattern;
 
     $bank_accounts   = $has_acf ? (get_field('donation_accounts') ?: []) : [];
     $impact_title    = $has_acf ? (get_field('donation_story_title') ?: __('Why Your Donation Matters', 'beit')) : __('Why Your Donation Matters', 'beit');
@@ -38,23 +31,21 @@ while (have_posts()) {
     $highlight_cards = $has_acf ? (get_field('donation_highlight_cards') ?: []) : [];
     $callout_data    = $has_acf ? (get_field('donation_callout') ?: []) : [];
 
+    get_template_part(
+        'resources/views/components/page-hero',
+        null,
+        [
+            'title'            => $hero_title,
+            'description'      => $hero_subtitle,
+            'eyebrow'          => $hero_eyebrow,
+            'background_image' => $hero_background,
+            'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
+            'height'           => 'py-24',
+            'overlay_gradients' => true,
+        ]
+    );
 ?>
 
-    <section class="hero-bar relative overflow-hidden bg-cover bg-center py-20 text-white"
-        style="background-image: <?php echo esc_attr($hero_background_style); ?>;">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl space-y-4">
-                <span
-                    class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-                    <?php echo esc_html($hero_eyebrow); ?>
-                </span>
-                <h1 class="text-4xl font-bold md:text-6xl"><?php echo esc_html($hero_title); ?></h1>
-                <?php if ($hero_subtitle) : ?>
-                    <p class="text-lg font-light text-white/90 md:text-xl"><?php echo esc_html($hero_subtitle); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
 
     <main class="bg-white text-slate-900">
         <div class="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

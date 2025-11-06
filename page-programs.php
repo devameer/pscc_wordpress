@@ -14,6 +14,24 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
+while (have_posts()) {
+    the_post();
+
+    $hero_title = get_the_title();
+    $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
+
+    get_template_part(
+        'resources/views/components/page-hero',
+        null,
+        [
+            'title'       => $hero_title,
+            'description' => $hero_description,
+            'eyebrow'     => __('Programs & Projects', 'beit'),
+            'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
+        ]
+    );
+}
+
 $programs_query = new WP_Query(
     [
         'post_type'      => 'beit_program',

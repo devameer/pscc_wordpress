@@ -62,7 +62,7 @@ get_template_part(
         'title'       => $hero_title,
         'description' => $hero_description,
         'eyebrow'     => __('News & Activities', 'beit'),
-        'background_classes' => 'bg-slate-950',
+        'background_classes' => 'bg-gradient-to-br from-slate-900 via-red-800 to-slate-950',
     ]
 );
 

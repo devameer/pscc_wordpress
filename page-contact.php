@@ -23,14 +23,6 @@ while (have_posts()) {
     $hero_subtitle   = $hero_data['subtitle'] ?? __('TOGETHER, We Make Change Happen.', 'beit');
     $hero_background = $hero_data['background'] ?? '';
 
-    if ($hero_background && is_numeric($hero_background)) {
-        $hero_background = wp_get_attachment_image_url((int) $hero_background, 'full') ?: '';
-    }
-
-    $hero_overlay = "linear-gradient(rgba(0,0,0,0.6), rgba(60,0,0,0.7))";
-    $default_pattern = "url('data:image/svg+xml,%3Csvg width=\"1200\" height=\"400\" xmlns=\"http://www.w3.org/2000/svg\" %3E%3Cdefs%3E%3CradialGradient id=\"grad\" %3E%3Cstop offset=\"0%25\" style=\"stop-color:rgb(139,0,0);stop-opacity:0.8\" /%3E%3Cstop offset=\"100%25\" style=\"stop-color:rgb(0,0,0);stop-opacity:1\" /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width=\"1200\" height=\"400\" fill=\"url(%23grad)\" /%3E%3C/svg%3E')";
-    $hero_background_style = $hero_background ? $hero_overlay . ', url(' . esc_url($hero_background) . ')' : $hero_overlay . ', ' . $default_pattern;
-
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
     $social_links    = $has_acf ? (get_field('contact_social_links') ?: []) : [];
     $offices         = $has_acf ? (get_field('contact_offices') ?: []) : [];
@@ -41,19 +33,22 @@ while (have_posts()) {
     $phone   = $contact_details['phone'] ?? '';
     $address = $contact_details['address'] ?? '';
     $hours   = $contact_details['hours'] ?? '';
+
+    get_template_part(
+        'resources/views/components/page-hero',
+        null,
+        [
+            'title'            => get_the_title(),
+            'description'      => $hero_subtitle,
+            'eyebrow'          => __('Contact Us', 'beit'),
+            'background_image' => $hero_background,
+            'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
+            'height'           => 'py-24',
+            'overlay_gradients' => true,
+        ]
+    );
 ?>
 
-    <section class="relative h-96 bg-cover bg-center"
-        style="background-image: <?php echo esc_attr($hero_background_style); ?>;">
-        <div class="container mx-auto flex h-full items-center px-4">
-            <div class="max-w-2xl text-white">
-                <h1 class="text-4xl font-bold md:text-6xl"><?php the_title(); ?></h1>
-                <?php if ($hero_subtitle) : ?>
-                    <p class="mt-4 text-xl font-light md:text-2xl"><?php echo esc_html($hero_subtitle); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
 
     <main class="bg-gray-50 text-slate-900">
         <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">

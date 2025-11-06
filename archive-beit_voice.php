@@ -24,7 +24,7 @@ get_template_part(
         'title'       => $archive_title,
         'description' => $archive_description,
         'eyebrow'     => __('Stories & Gallery', 'beit'),
-        'background_classes' => 'bg-slate-900',
+        'background_classes' => 'bg-gradient-to-br from-amber-900 via-red-900 to-slate-950',
     ]
 );
 

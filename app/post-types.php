@@ -41,7 +41,7 @@ function beit_register_post_types(): void
             'menu_icon'          => 'dashicons-images-alt2',
             'has_archive'        => false,
             'rewrite'            => ['slug' => 'hero-slide'],
-            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'],
+            'supports'           => ['title', 'thumbnail', 'page-attributes'],
             'show_in_rest'       => true,
         ]
     );
