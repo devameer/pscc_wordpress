@@ -20,23 +20,12 @@ acf_add_local_field_group(
         'title'    => __('Hero Slide Details', 'beit'),
         'fields'   => [
             [
-                'key'   => 'field_hero_slide_title_prefix',
+                'key'   => 'field_hero_slide_title',
                 'label' => __('Title Prefix', 'beit'),
-                'name'  => 'hero_slide_title_prefix',
-                'type'  => 'text',
+                'name'  => 'hero_slide_title',
+                'type'  => 'wysiwyg',
             ],
-            [
-                'key'   => 'field_hero_slide_title_highlight',
-                'label' => __('Title Highlight', 'beit'),
-                'name'  => 'hero_slide_title_highlight',
-                'type'  => 'text',
-            ],
-            [
-                'key'   => 'field_hero_slide_title_suffix',
-                'label' => __('Title Suffix', 'beit'),
-                'name'  => 'hero_slide_title_suffix',
-                'type'  => 'text',
-            ],
+            
             [
                 'key'   => 'field_hero_slide_description',
                 'label' => __('Short Description', 'beit'),

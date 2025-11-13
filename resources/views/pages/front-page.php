@@ -55,9 +55,7 @@ if ($hero_query->have_posts()) {
         $hero_query->the_post();
 
         $slide_id = get_the_ID();
-        $title_prefix = $has_acf ? (string) get_field('hero_slide_title_prefix', $slide_id) : '';
-        $title_highlight = $has_acf ? (string) get_field('hero_slide_title_highlight', $slide_id) : '';
-        $title_suffix = $has_acf ? (string) get_field('hero_slide_title_suffix', $slide_id) : '';
+        $title = $has_acf ? (string) get_field('hero_slide_title', $slide_id) : '';
         $description = $has_acf ? (string) get_field('hero_slide_description', $slide_id) : '';
         $background_image = get_the_post_thumbnail_url($slide_id, 'full') ?: '';
         $video_url = $has_acf ? (string) get_field('hero_slide_video_url', $slide_id) : '';
@@ -71,14 +69,9 @@ if ($hero_query->have_posts()) {
             $description = has_excerpt($slide_id) ? get_the_excerpt() : wp_strip_all_tags(get_the_content(null, false, $slide_id));
         }
 
-        if ('' === $title_prefix && '' === $title_highlight && '' === $title_suffix) {
-            $title_highlight = get_the_title($slide_id);
-        }
-
         $hero_slides[] = [
-            'title_prefix'     => $title_prefix,
-            'title_highlight'  => $title_highlight,
-            'title_suffix'     => $title_suffix,
+            'title'     => $title,
+           
             'description'      => $description,
             'background_image' => $background_image,
             'video_url'        => $video_url,

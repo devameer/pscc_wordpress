@@ -19,9 +19,7 @@ function beit_front_default_hero(): array
         'show_pagination'  => true,
         'slides'           => [
             [
-                'title_prefix'     => 'Because Every',
-                'title_highlight'  => 'CHILD',
-                'title_suffix'     => 'Matters.',
+                'title'     => 'Because Every',
                 'description'      => __('Child Protection and Education show significant humanitarian needs. Many families struggle to meet children and youths’ needs education.', 'beit'),
                 'primary_button'   => [
                     'title'  => __('DONATE', 'beit'),

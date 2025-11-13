@@ -19,7 +19,7 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                sans: ['"Cairo"', ...defaultTheme.fontFamily.sans],
+                sans: ['"Montserrat"', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: {

@@ -65,23 +65,14 @@ if (empty($slides)) {
 
                         <div class="relative z-10 container mx-auto px-4 py-20 md:px-6">
                             <div class="max-w-2xl space-y-6 text-white <?php echo esc_attr($content_alignment); ?>">
-                                <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-                                    <?php esc_html_e('Because Every Child Matters', 'beit'); ?>
-                                </div>
+                             
 
-                                <?php if (!empty($slide['title_prefix']) || !empty($slide['title_highlight']) || !empty($slide['title_suffix'])) : ?>
+                                <?php if (!empty($slide['title'])) : ?>
                                     <h1 class="space-y-2 text-3xl font-bold leading-tight md:text-5xl">
-                                        <?php if (!empty($slide['title_prefix'])) : ?>
-                                            <span class="block font-light text-white/80"><?php echo esc_html($slide['title_prefix']); ?></span>
+                                        <?php if (!empty($slide['title'])) : ?>
+                                            <span class="block font-light text-white/80"><?php echo wp_kses_post($slide['title']); ?></span>
                                         <?php endif; ?>
-                                        <?php if (!empty($slide['title_highlight'])) : ?>
-                                            <span class="block text-4xl font-black text-red-500 md:text-6xl">
-                                                <?php echo esc_html($slide['title_highlight']); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        <?php if (!empty($slide['title_suffix'])) : ?>
-                                            <span class="block font-semibold text-white/90"><?php echo esc_html($slide['title_suffix']); ?></span>
-                                        <?php endif; ?>
+                                       
                                     </h1>
                                 <?php endif; ?>
 
@@ -95,7 +86,7 @@ if (empty($slides)) {
                                     <div class="flex flex-wrap items-center gap-4">
                                         <?php if (!empty($primary_button['title'])) : ?>
                                             <a
-                                                class="inline-flex items-center rounded-full bg-red-600 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                                                class="inline-flex items-center rounded-md bg-red-600 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                                                 href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener"
@@ -105,14 +96,14 @@ if (empty($slides)) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($secondary_button['title'])) : ?>
+                                            <span>OR</span>           
                                             <a
-                                                class="inline-flex items-center gap-2 rounded-full border border-white/40 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white hover:text-white"
+                                                class="inline-flex items-center gap-2 underline text-sm  uppercase tracking-wide text-white transition hover:border-white hover:text-white"
                                                 href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($secondary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener"
                                             >
-                                                <i class="fa-solid fa-play text-xs"></i>
-                                                <?php echo esc_html($secondary_button['title']); ?>
+                                     <?php echo esc_html($secondary_button['title']); ?>
                                             </a>
                                         <?php endif; ?>
                                     </div>

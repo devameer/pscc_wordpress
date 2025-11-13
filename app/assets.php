@@ -37,9 +37,16 @@ function beit_theme_enqueue_assets(): void
     );
 
     wp_enqueue_style(
+        'beit-fonts',
+        BEIT_THEME_URI . '/public/css/fonts.css',
+        [],
+        beit_theme_asset_version('public/css/fonts.css')
+    );
+
+    wp_enqueue_style(
         'beit-base',
         get_stylesheet_uri(),
-        [],
+        ['beit-fonts'],
         beit_theme_asset_version('style.css')
     );
 
