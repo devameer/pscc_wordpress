@@ -27,7 +27,7 @@ if (empty($items)) {
 
 <section class="bg-slate-100 py-20">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-12 space-y-3 text-center">
+        <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($voices['title'])) : ?>
                 <h2 class="text-3xl font-bold text-slate-900 md:text-4xl"><?php echo esc_html($voices['title']); ?></h2>
             <?php endif; ?>
@@ -37,7 +37,9 @@ if (empty($items)) {
         </div>
 
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <?php foreach ($items as $index => $item) :
+            <?php
+            $voice_anim_index = 0;
+            foreach ($items as $index => $item) :
                 $media = isset($item['media']) ? $item['media'] : beit_get_voice_media_data($item['id'] ?? 0, $item['image'] ?? null);
                 $thumb_url = $media['thumbnail_url'];
                 $lightbox_src = $media['src'];
@@ -54,8 +56,9 @@ if (empty($items)) {
                 if (($item['span'] ?? '') === 'double' && 0 === $index) {
                     $wrapper_classes .= ' lg:col-span-2 lg:row-span-2';
                 }
+                $voice_delay = 100 + ($voice_anim_index * 100);
             ?>
-                <div class="<?php echo esc_attr($wrapper_classes); ?>">
+                <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
                     <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
                         data-type="<?php echo esc_attr($lightbox_type); ?>" data-caption="<?php echo esc_attr($caption); ?>"
                         href="<?php echo esc_url($lightbox_src); ?>"
@@ -72,7 +75,9 @@ if (empty($items)) {
                             alt="<?php echo esc_attr($item['title'] ?? ''); ?>">
                     </a>
                 </div>
-            <?php endforeach; ?>
+            <?php
+                $voice_anim_index++;
+            endforeach; ?>
         </div>
 
         <?php $archive_link = get_post_type_archive_link('beit_voice'); ?>

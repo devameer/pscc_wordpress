@@ -57,6 +57,13 @@ function beit_theme_enqueue_assets(): void
         '6.5.1'
     );
 
+    wp_enqueue_style(
+        'aos',
+        'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css',
+        [],
+        '2.3.4'
+    );
+
     $compiled_css = 'public/css/app.css';
     $compiled_css_path = BEIT_THEME_DIR . '/' . $compiled_css;
 
@@ -91,6 +98,19 @@ function beit_theme_enqueue_assets(): void
         [],
         '3.4.1',
         true
+    );
+
+    wp_enqueue_script(
+        'aos',
+        'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js',
+        [],
+        '2.3.4',
+        true
+    );
+
+    wp_add_inline_script(
+        'aos',
+        'document.addEventListener("DOMContentLoaded", function() { AOS.init({ duration: 800, easing: "ease-in-out", once: true, offset: 50, disable: false }); });'
     );
 }
 add_action('wp_enqueue_scripts', 'beit_theme_enqueue_assets');

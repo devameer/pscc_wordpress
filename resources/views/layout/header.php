@@ -50,11 +50,10 @@ $donate_target = $donate_link['target'] ?? '_self';
     <?php wp_body_open(); ?>
     <div class="min-h-screen flex flex-col">
         <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) : ?>
-            <div class="bg-[#4E4E4E] text-slate-200 text-xs">
-                <div
-                    class="container mx-auto flex flex-col gap-2 px-4 py-2 md:flex-row md:items-center md:justify-between md:px-6">
+            <div class="bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs">
+                <div class="container mx-auto flex flex-col sm:flex-row gap-2 sm:gap-3 px-3 py-1.5 sm:py-2 md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
                     <?php if (!empty($topbar_socials)) : ?>
-                        <div class="flex flex-wrap items-center gap-3 text-sm">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 md:gap-3">
                             <?php foreach ($topbar_socials as $social) :
                                 $network = $social['network'] ?? '';
                                 $url     = $social['url'] ?? '';
@@ -83,76 +82,78 @@ $donate_target = $donate_link['target'] ?? '_self';
                                         break;
                                 }
                             ?>
-                                <a class="flex items-center justify-center  p-2 text-white transition hover:bg-red-600"
+                                <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-red-600 rounded"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
-                                    <i class="<?php echo esc_attr($icon_class); ?> text-sm"></i>
+                                    <i class="<?php echo esc_attr($icon_class); ?> text-[10px] sm:text-xs md:text-sm"></i>
                                 </a>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
-                    <div class="flex flex-wrap items-center gap-4 md:gap-6">
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-2 transition hover:text-red-400  "
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
-                                <i class="fa-solid fa-envelope text-sm"></i>
-                                <span><?php echo esc_html($topbar_email); ?></span>
+                                <i class="fa-solid fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
                             </a>
                         <?php endif; ?>
 
                         <?php if ($topbar_phone) :
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                         ?>
-                            <a class="flex items-center gap-2 transition hover:text-red-400"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
-                                <i class="fa-solid fa-phone text-sm"></i>
-                                <span><?php echo esc_html($topbar_phone); ?></span>
+                                <i class="fa-solid fa-phone text-[10px] sm:text-xs md:text-sm"></i>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
                     </div>
-                    <div class="flex items-center ml-auto">
-                        <a class="hidden items-center gap-2  border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-red-500 hover:text-red-400 md:inline-flex"
+                    
+                    <div class="hidden lg:flex items-center gap-2">
+                        <a class="inline-flex items-center gap-2 border border-white/20 rounded px-3 py-1.5 lg:px-4 lg:py-2 text-xs font-semibold text-white transition hover:border-red-500 hover:text-red-400"
                             href="<?php echo esc_url(home_url('/?s=')); ?>">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="hidden  bg-red-600 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700 md:inline-flex"
+                        <a class="inline-flex bg-red-600 rounded px-4 py-1.5 lg:px-5 lg:py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                             href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                             rel="noopener">
                             <?php echo esc_html($donate_label); ?>
                         </a>
-
-                        <button
-                            class="inline-flex items-center justify-center rounded-md border border-white/20 p-2 text-white transition hover:border-red-500 md:hidden"
-                            type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
-                            <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16m-16 6h16"></path>
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
         <?php endif; ?>
 
-        <header class="fixed top-10 z-50 w-full text-white transition-all duration-300 ease-in-out" data-scroll-header
+        <header class="fixed top-12 sm:top-8 md:top-10 z-50 w-full text-white transition-all duration-300 ease-in-out" data-scroll-header
             data-scroll-threshold="48">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="flex items-center justify-between py-4">
-                    <div class="flex items-center gap-3">
+            <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
+                <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
+                    <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
                         <?php if (has_custom_logo()) : ?>
-                            <div class="w-24">
+                            <div class="w-14 sm:w-16 md:w-20 lg:w-24">
                                 <?php the_custom_logo(); ?>
                             </div>
                         <?php else : ?>
                             <div
-                                class="flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-2xl font-bold">
+                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
                             </div>
                         <?php endif; ?>
+
+                        <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
+                        <button
+                            class="ml-auto inline-flex items-center justify-center rounded-md border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
+                            type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
+                            <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
+                            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16m-16 6h16"></path>
+                            </svg>
+                        </button>
 
                         <!-- <div class="hidden text-right md:block">
                             <a href="<?php echo esc_url(home_url('/')); ?>" class="text-lg font-semibold tracking-wide text-white transition hover:text-red-400">
@@ -167,46 +168,60 @@ $donate_target = $donate_link['target'] ?? '_self';
                         </div> -->
                     </div>
 
-                    <nav class="hidden items-center md:flex">
+                    <nav class="hidden lg:flex items-center">
                         <?php
                         wp_nav_menu(
                             [
                                 'theme_location' => 'primary',
                                 'menu_id'        => 'primary-menu',
-                                'menu_class'     => 'flex items-center gap-2 lg:gap-4 text-sm uppercase tracking-wide text-white',
+                                'menu_class'     => 'flex items-center gap-3 lg:gap-4 xl:gap-5 text-xs lg:text-sm uppercase tracking-wide text-white',
                                 'container'      => false,
                                 'fallback_cb'    => false,
                                 'depth'          => 1,
                             ]
                         );
                         ?>
-
                     </nav>
 
+                    <!-- Desktop Actions (Hidden on mobile) -->
+                    <div class="hidden lg:flex items-center gap-3">
+                        <a class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs lg:text-sm font-semibold text-white transition hover:border-red-500 hover:text-red-400"
+                            href="<?php echo esc_url(home_url('/?s=')); ?>">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            <span class="hidden xl:inline"><?php echo esc_html($topbar_search_label); ?></span>
+                        </a>
+
+                        <a class="inline-flex rounded-full bg-red-600 px-5 py-2 text-xs lg:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                            href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
+                            rel="noopener">
+                            <?php echo esc_html($donate_label); ?>
+                        </a>
+                    </div>
 
                 </div>
             </div>
 
-            <div id="mobile-navigation" class="hidden border-t border-white/10 bg-slate-950/95 md:hidden">
+            <div id="mobile-navigation" class="hidden border-t border-white/10 bg-slate-950/98 backdrop-blur-md lg:hidden">
                 <?php
                 wp_nav_menu(
                     [
                         'theme_location' => 'primary',
                         'menu_id'        => 'mobile-menu',
-                        'menu_class'     => 'flex flex-col gap-2 px-4 py-4 text-sm font-semibold uppercase tracking-wide text-white',
+                        'menu_class'     => 'flex flex-col gap-1 px-3 py-3 sm:px-4 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white',
                         'container'      => false,
                         'fallback_cb'    => false,
                         'depth'          => 1,
                     ]
                 );
                 ?>
-                <a class="mx-4 mb-3 flex items-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
-                    href="<?php echo esc_url(home_url('/?s=')); ?>">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span><?php echo esc_html($topbar_search_label); ?></span>
-                </a>
-                <div class="flex flex-col gap-3 px-4 pb-4">
-                    <a class="flex items-center justify-center rounded-full bg-red-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2">
+                    <a class="flex items-center gap-2 rounded-lg border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
+                        href="<?php echo esc_url(home_url('/?s=')); ?>">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        <span><?php echo esc_html($topbar_search_label); ?></span>
+                    </a>
+                    
+                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                         href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                         rel="noopener">
                         <?php echo esc_html($donate_label); ?>

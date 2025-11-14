@@ -45,18 +45,18 @@ while (have_posts()) {
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
             <div class="space-y-10">
                 <?php if ($thumbnail) : ?>
-                    <figure class="overflow-hidden rounded-3xl shadow-lg">
+                    <figure class="overflow-hidden rounded-3xl shadow-lg" data-aos="zoom-in" data-aos-duration="1000">
                         <?php echo wp_get_attachment_image($thumbnail, 'full', false, ['class' => 'w-full object-cover']); ?>
                     </figure>
                 <?php endif; ?>
 
-                <div class="prose max-w-none prose-slate prose-headings:font-semibold prose-a:text-red-600 hover:prose-a:text-red-700">
+                <div class="prose max-w-none prose-slate prose-headings:font-semibold prose-a:text-red-600 hover:prose-a:text-red-700" data-aos="fade-up" data-aos-delay="100">
                     <?php the_content(); ?>
                 </div>
 
                 <?php wp_link_pages(['before' => '<div class="text-sm text-slate-500">' . esc_html__('Pages:', 'beit'), 'after' => '</div>']); ?>
 
-                <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+                <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500" data-aos="fade-up" data-aos-delay="200">
                     <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-700">
                         <i class="fa-solid fa-calendar"></i>
                         <?php echo esc_html(get_the_date()); ?>
@@ -69,7 +69,7 @@ while (have_posts()) {
                     <?php endif; ?>
                 </div>
 
-                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-semibold text-red-600">
+                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-semibold text-red-600" data-aos="fade-up" data-aos-delay="300">
                     <span>
                         <?php previous_post_link('%link', '<i class="fa-solid ' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html__('Previous', 'beit')); ?>
                     </span>
@@ -79,9 +79,9 @@ while (have_posts()) {
                 </nav>
             </div>
 
-            <aside class="space-y-8">
+            <aside class="space-y-8" data-aos="fade-left" data-aos-delay="200">
                 <?php if (!empty($categories)) : ?>
-                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="300">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
                             <?php esc_html_e('Categories', 'beit'); ?>
                         </h2>
@@ -110,7 +110,7 @@ while (have_posts()) {
 
                 if ($recent->have_posts()) :
                     ?>
-                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
                             <?php esc_html_e('Recent News', 'beit'); ?>
                         </h2>

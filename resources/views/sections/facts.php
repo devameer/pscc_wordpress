@@ -26,9 +26,9 @@ if (empty($facts['items'])) {
 
 ?>
 
-<section class="bg-[#7F7F7F] py-20 text-white">
+<section class="bg-[#7F7F7F] py-12 md:py-16 lg:py-20 text-white">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-12 space-y-4 text-center">
+        <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 text-center" data-aos="fade-up">
             <?php if (!empty($facts['title'])) : ?>
             <h2 class="text-3xl font-bold md:text-4xl"><?php echo esc_html($facts['title']); ?></h2>
             <?php endif; ?>
@@ -38,7 +38,7 @@ if (empty($facts['items'])) {
         </div>
 
         <?php if (!empty($facts['filters']) && is_array($facts['filters'])) : ?>
-        <div class="mb-12 flex flex-wrap items-center justify-center gap-3">
+        <div class="mb-8 md:mb-12 flex flex-wrap items-center justify-center gap-2 md:gap-3" data-aos="fade-up" data-aos-delay="100">
             <?php foreach ($facts['filters'] as $filter) :
                     $label       = $filter['label'] ?? '';
                     $highlighted = !empty($filter['highlighted']);
@@ -47,7 +47,7 @@ if (empty($facts['items'])) {
                     }
                 ?>
             <button type="button"
-                class="rounded-md px-6 py-2 text-sm font-semibold transition <?php echo $highlighted ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
+                class="rounded-md px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-semibold transition <?php echo $highlighted ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
                 <?php echo esc_html($label); ?>
             </button>
             <?php endforeach; ?>
@@ -55,25 +55,30 @@ if (empty($facts['items'])) {
         <?php endif; ?>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <?php foreach ($facts['items'] as $fact) :
+            <?php
+            $fact_index = 0;
+            foreach ($facts['items'] as $fact) :
                 $value = $fact['value'] ?? '';
                 $label = $fact['label'] ?? '';
                 if (!$value && !$label) {
                     continue;
                 }
+                $fact_delay = 200 + ($fact_index * 100);
             ?>
             <div
-                class="rounded-md bg-[#A4A4A4] p-8 text-center shadow-lg h-60 flex flex-col justify-center items-center gap-4">
+                class="rounded-md bg-[#A4A4A4] p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
                 <?php if ($value) : ?>
-                <div class="text-4xl font-extrabold md:text-6xl"><?php echo esc_html($value); ?></div>
+                <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold"><?php echo esc_html($value); ?></div>
                 <?php endif; ?>
                 <?php if ($label) : ?>
-                <div class="mt-3 text-xs font-semibold uppercase tracking-widest text-white/70">
+                <div class="mt-2 md:mt-3 text-xs md:text-sm font-semibold uppercase tracking-widest text-white/70">
                     <?php echo esc_html($label); ?>
                 </div>
                 <?php endif; ?>
             </div>
-            <?php endforeach; ?>
+            <?php
+                $fact_index++;
+            endforeach; ?>
         </div>
     </div>
 </section>

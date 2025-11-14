@@ -33,7 +33,7 @@ if (empty($items)) {
 
 <section class="bg-[#F9F9F9] py-20">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-12 space-y-3 text-center">
+        <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($partners['title'])) : ?>
                 <h2 class="text-3xl font-bold text-slate-900 md:text-4xl"><?php echo esc_html($partners['title']); ?></h2>
             <?php endif; ?>
@@ -42,7 +42,7 @@ if (empty($items)) {
             <?php endif; ?>
         </div>
 
-        <div class="relative">
+        <div class="relative" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper partners-slider" data-slider="partners">
                 <div class="swiper-wrapper items-center">
                     <?php foreach ($items as $partner) :

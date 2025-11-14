@@ -71,26 +71,26 @@ $section_classes[] = $height;
         <div class="max-w-3xl space-y-4">
             <?php if ($eyebrow) : ?>
                 <?php if ($overlay_style === 'donate') : ?>
-                    <span class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
+                    <span class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70" data-aos="fade-down">
                         <?php echo esc_html($eyebrow); ?>
                     </span>
                 <?php else : ?>
-                    <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
+                    <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70" data-aos="fade-down">
                         <?php echo esc_html($eyebrow); ?>
                     </div>
                 <?php endif; ?>
             <?php endif; ?>
 
-            <h1 class="text-3xl font-bold leading-tight md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>">
+            <h1 class="text-3xl font-bold leading-tight md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>" data-aos="fade-up" data-aos-delay="100">
                 <?php echo esc_html($title); ?>
             </h1>
 
             <?php if ($subtitle) : ?>
-                <p class="mt-4 text-xl font-light text-white/90 md:text-2xl"><?php echo esc_html($subtitle); ?></p>
+                <p class="mt-4 text-xl font-light text-white/90 md:text-2xl" data-aos="fade-up" data-aos-delay="200"><?php echo esc_html($subtitle); ?></p>
             <?php endif; ?>
 
             <?php if ($description) : ?>
-                <div class="text-base text-white/75 md:text-lg<?php echo $overlay_style === 'donate' ? ' text-lg font-light text-white/90 md:text-xl' : ''; ?>">
+                <div class="text-base text-white/75 md:text-lg<?php echo $overlay_style === 'donate' ? ' text-lg font-light text-white/90 md:text-xl' : ''; ?>" data-aos="fade-up" data-aos-delay="300">
                     <?php echo wp_kses_post($description); ?>
                 </div>
             <?php endif; ?>

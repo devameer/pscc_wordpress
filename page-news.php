@@ -83,7 +83,7 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
     <section class="container mx-auto grid gap-10 px-4 py-16 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] md:px-6">
         <div class="space-y-10">
             <?php if ($featured_post) : ?>
-                <article class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl">
+                <article class="overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl" data-aos="fade-up" data-aos-duration="1000">
                     <a class="relative block" href="<?php echo esc_url(get_permalink($featured_post)); ?>">
                         <?php if ($featured_image) : ?>
                             <div class="absolute inset-0">
@@ -113,7 +113,7 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
 
             <?php if (!empty($grid_posts)) : ?>
                 <section class="space-y-5">
-                    <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center justify-between gap-4" data-aos="fade-up" data-aos-delay="100">
                         <h2 class="text-xl font-semibold text-slate-900 md:text-2xl"><?php esc_html_e('Latest Updates', 'beit'); ?></h2>
                         <?php $news_archive = get_post_type_archive_link('beit_news'); ?>
                         <?php if ($news_archive) : ?>
@@ -124,10 +124,13 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
                     </div>
 
                     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        <?php foreach ($grid_posts as $post_obj) :
+                        <?php
+                        $card_index = 0;
+                        foreach ($grid_posts as $post_obj) :
                             $thumb_id = get_post_thumbnail_id($post_obj);
+                            $card_delay = 200 + ($card_index * 100);
                             ?>
-                            <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                            <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($card_delay); ?>">
                                 <?php if ($thumb_id) : ?>
                                     <a href="<?php echo esc_url(get_permalink($post_obj)); ?>" class="block overflow-hidden">
                                         <?php echo wp_get_attachment_image($thumb_id, 'large', false, ['class' => 'h-56 w-full object-cover']); ?>
@@ -143,22 +146,27 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
                                             <?php echo esc_html(get_the_title($post_obj)); ?>
                                         </a>
                                     </h3>
-                                  
+
                                 </div>
                             </article>
-                        <?php endforeach; ?>
+                        <?php
+                            $card_index++;
+                        endforeach; ?>
                     </div>
                 </section>
             <?php endif; ?>
 
             <?php if (!empty($highlight_posts)) : ?>
                 <section class="space-y-5">
-                    <h2 class="text-xl font-semibold text-slate-900 md:text-2xl"><?php esc_html_e('Highlighted Stories', 'beit'); ?></h2>
+                    <h2 class="text-xl font-semibold text-slate-900 md:text-2xl" data-aos="fade-up"><?php esc_html_e('Highlighted Stories', 'beit'); ?></h2>
                     <div class="grid gap-6 md:grid-cols-3">
-                        <?php foreach ($highlight_posts as $post_obj) :
+                        <?php
+                        $highlight_index = 0;
+                        foreach ($highlight_posts as $post_obj) :
                             $thumb_id = get_post_thumbnail_id($post_obj);
+                            $highlight_delay = 100 + ($highlight_index * 150);
                             ?>
-                            <article class="overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                            <article class="overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($highlight_delay); ?>">
                                 <?php if ($thumb_id) : ?>
                                     <a href="<?php echo esc_url(get_permalink($post_obj)); ?>" class="block overflow-hidden">
                                         <?php echo wp_get_attachment_image($thumb_id, 'medium_large', false, ['class' => 'h-48 w-full object-cover']); ?>
@@ -176,7 +184,9 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
                                     <p class="text-sm text-slate-600"><?php echo esc_html(wp_trim_words(get_the_excerpt($post_obj), 18, '…')); ?></p>
                                 </div>
                             </article>
-                        <?php endforeach; ?>
+                        <?php
+                            $highlight_index++;
+                        endforeach; ?>
                     </div>
                 </section>
             <?php endif; ?>

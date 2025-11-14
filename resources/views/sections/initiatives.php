@@ -29,9 +29,9 @@ if (empty($items)) {
 
 ?>
 
-<section class="bg-[#282828]  py-20 text-white">
+<section class="bg-[#282828] py-12 md:py-16 lg:py-20 text-white">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-12 space-y-4 <?php echo esc_attr($heading_alignment); ?>">
+        <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 <?php echo esc_attr($heading_alignment); ?>" data-aos="fade-up">
             <?php if (!empty($data['title'])) : ?>
                 <h2 class="text-3xl font-light md:text-4xl"><?php echo wp_kses_post($data['title']); ?></h2>
             <?php endif; ?>
@@ -43,7 +43,7 @@ if (empty($items)) {
             <?php endif; ?>
         </div>
 
-        <div class="relative">
+        <div class="relative" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper initiatives-slider" data-slider="initiatives">
                 <div class="swiper-wrapper">
                     <?php foreach ($items as $item) : ?>
