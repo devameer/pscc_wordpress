@@ -1,5 +1,37 @@
-node_modules/
-npm-debug.log*
-public/css/app.css.map
+# WordPress
 .DS_Store
+Thumbs.db
 
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+vendor/
+
+# Compiled files
+*.min.css
+*.min.js
+*.map
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+
+# Build files
+/dist/
+/build/
+
+# Cache
+.cache/
+*.cache
