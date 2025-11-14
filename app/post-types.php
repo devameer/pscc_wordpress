@@ -161,6 +161,7 @@ function beit_register_post_types(): void
         [
             'labels'             => $program_labels,
             'public'             => true,
+            'publicly_queryable' => true,
             'show_in_menu'       => true,
             'menu_position'      => 25,
             'menu_icon'          => 'dashicons-clipboard',

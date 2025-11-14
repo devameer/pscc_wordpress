@@ -28,3 +28,11 @@ foreach ($beit_theme_includes as $relative_path) {
         require_once $path;
     }
 }
+
+// Temporary: Flush rewrite rules on theme activation/update
+// Remove this after permalinks are working
+add_action('after_switch_theme', 'beit_flush_rewrite_rules');
+function beit_flush_rewrite_rules() {
+    beit_register_post_types();
+    flush_rewrite_rules();
+}

@@ -37,7 +37,7 @@ $programs_query = new WP_Query(
         'post_type'      => 'beit_program',
         'post_status'    => 'publish',
         'posts_per_page' => -1,
-        'orderby'        => ['menu_order' => 'ASC', 'date' => 'DESC'],
+        'orderby'        => ['menu_order' => 'ASC', 'date' => 'ASC'],
     ]
 );
 
@@ -79,9 +79,18 @@ if (!$programs_query->have_posts()) {
             }
             $content_html .= '<h2 class="text-4xl font-normal leading-tight">' . ($heading ? wp_kses_post($heading) : esc_html(get_the_title())) . '</h2>';
             $content_html .= '<p class="text-gray-700 leading-relaxed">' . esc_html($description ?: get_the_excerpt()) . '</p>';
+
+            // Read More button (links to single program page)
+            $content_html .= sprintf(
+                '<a class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded self-start transition inline-block" href="%s">%s</a>',
+                esc_url(get_permalink()),
+                esc_html__('Read More', 'beit')
+            );
+
+            // Keep custom button if exists (optional additional button)
             if (!empty($button['title']) && !empty($button['url'])) {
                 $content_html .= sprintf(
-                    '<a class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded self-start transition" href="%s" target="%s" rel="noopener">%s</a>',
+                    '<a class="bg-slate-600 hover:bg-slate-700 text-white px-8 py-3 rounded self-start transition inline-block ml-3" href="%s" target="%s" rel="noopener">%s</a>',
                     esc_url($button['url']),
                     esc_attr($button['target'] ?? '_self'),
                     esc_html($button['title'])

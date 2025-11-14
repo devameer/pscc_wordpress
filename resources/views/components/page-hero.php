@@ -44,25 +44,13 @@ if (!$title) {
 
 // Build background style
 $background_style = '';
-if ($background_image) {
+            $image_path = get_template_directory_uri() . '/resources/assets/images/page-hero.png';
+
+            if ($background_image) {
     $overlay = '';
-    switch ($overlay_style) {
-        case 'contact':
-            $overlay = "linear-gradient(rgba(0,0,0,0.6), rgba(60,0,0,0.7))";
-            $background_style = $overlay . ', url(' . esc_url($background_image) . ')';
-            break;
-        case 'donate':
-            $overlay = 'linear-gradient(135deg, rgba(139,0,0,0.9), rgba(220,20,60,0.7), rgba(0,0,0,0.8))';
-            $background_style = $overlay . ', url(' . esc_url($background_image) . ')';
-            break;
-        case 'none':
-            $background_style = 'url(' . esc_url($background_image) . ')';
-            break;
-        default:
-            $overlay = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7))';
-            $background_style = $overlay . ', url(' . esc_url($background_image) . ')';
-            break;
-    }
+    $background_style = 'url(' . $image_path . ')';
+
+  
 }
 
 // Determine section classes
@@ -76,15 +64,8 @@ if ($background_image) {
 $section_classes[] = $height;
 
 ?>
+<section class="<?php echo esc_attr(implode(' ', $section_classes)); ?>" style="background-size:cover; background-image: url(<?php echo esc_attr($image_path); ?>);">
 
-<section class="<?php echo esc_attr(implode(' ', $section_classes)); ?>"<?php if ($background_style) : ?> style="background-image: <?php echo esc_attr($background_style); ?>;"<?php endif; ?>>
-    <?php if ($overlay_gradients && !$background_image) : ?>
-        <div class="absolute inset-0">
-            <span class="absolute inset-0 bg-gradient-to-r from-red-700/60 via-slate-900/80 to-slate-950"></span>
-            <span class="absolute left-[-10%] top-[-20%] h-72 w-72 rounded-full bg-red-500/40 blur-3xl"></span>
-            <span class="absolute right-[-15%] bottom-[-30%] h-96 w-96 rounded-full bg-amber-400/30 blur-3xl"></span>
-        </div>
-    <?php endif; ?>
 
     <div class="relative z-10 container mx-auto px-4 md:px-6<?php echo $height === 'h-96' ? ' flex h-full items-center' : ''; ?>">
         <div class="max-w-3xl space-y-4">

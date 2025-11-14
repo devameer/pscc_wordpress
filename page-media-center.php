@@ -75,7 +75,7 @@ get_template_part(
                     $lightbox_type = $media['type'];
                     $caption = $media['caption'] ?: $item['title'];
                     ?>
-                    <article class="overflow-hidden rounded-3xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                    <article class="overflow-hidden rounded-md bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                         <?php if ($thumb) : ?>
                             <a
                                 class="group relative block w-full"
@@ -94,11 +94,7 @@ get_template_part(
                             </a>
                         <?php endif; ?>
 
-                        <div class="space-y-3 p-6">
-                            <span class="text-xs font-semibold uppercase tracking-widest text-red-500"><?php echo esc_html($item['date']); ?></span>
-                            <h3 class="text-lg font-semibold text-slate-900"><?php echo esc_html($item['title']); ?></h3>
-                            <p class="text-sm text-slate-600"><?php echo esc_html(wp_trim_words($item['excerpt'], 20, '…')); ?></p>
-                        </div>
+                      
                     </article>
                 <?php endforeach; ?>
             </div>

@@ -94,7 +94,7 @@ $donate_target = $donate_link['target'] ?? '_self';
 
                     <div class="flex flex-wrap items-center gap-4 md:gap-6">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-2 transition hover:text-red-400 border border-white/20"
+                            <a class="flex items-center gap-2 transition hover:text-red-400  "
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa-solid fa-envelope text-sm"></i>
                                 <span><?php echo esc_html($topbar_email); ?></span>
@@ -113,7 +113,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                     </div>
                     <div class="flex items-center ml-auto">
                         <a class="hidden items-center gap-2  border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-red-500 hover:text-red-400 md:inline-flex"
-                            href="<?php echo esc_url(get_search_link()); ?>">
+                            href="<?php echo esc_url(home_url('/?s=')); ?>">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
@@ -201,7 +201,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                 );
                 ?>
                 <a class="mx-4 mb-3 flex items-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
-                    href="<?php echo esc_url(get_search_link()); ?>">
+                    href="<?php echo esc_url(home_url('/?s=')); ?>">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span><?php echo esc_html($topbar_search_label); ?></span>
                 </a>
