@@ -1284,6 +1284,10 @@ h1,
   border-radius: 0.375rem;
 }
 
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .rounded-br-xl {
   border-bottom-right-radius: 0.75rem;
 }
@@ -2458,6 +2462,14 @@ h1,
 
   .md\:top-10 {
     top: 2.5rem;
+  }
+
+  .md\:left-8 {
+    left: 2rem;
+  }
+
+  .md\:right-8 {
+    right: 2rem;
   }
 
   .md\:mx-4 {
