@@ -29,14 +29,15 @@ if (empty($items)) {
 
 ?>
 
-<section class="bg-slate-900 py-20 text-white">
+<section class="bg-[#282828]  py-20 text-white">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-4 <?php echo esc_attr($heading_alignment); ?>">
             <?php if (!empty($data['title'])) : ?>
-                <h2 class="text-3xl font-bold md:text-4xl"><?php echo wp_kses_post($data['title']); ?></h2>
+                <h2 class="text-3xl font-light md:text-4xl"><?php echo wp_kses_post($data['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($data['subtitle'])) : ?>
-                <p class="text-base text-white/70 md:text-lg">
+                <p class="text-base font-regular text-white md:text-lg">
+
                     <?php echo esc_html($data['subtitle']); ?>
                 </p>
             <?php endif; ?>
@@ -52,17 +53,15 @@ if (empty($items)) {
                                     <?php if (is_numeric($item['image'])) : ?>
                                         <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105']); ?>
                                     <?php else : ?>
-                                        <img
-                                            class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                            src="<?php echo esc_url((string) $item['image']); ?>"
-                                            alt=""
-                                        >
+                                        <img class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                            src="<?php echo esc_url((string) $item['image']); ?>" alt="">
                                     <?php endif; ?>
                                 <?php else : ?>
                                     <div class="h-64 w-full bg-gradient-to-br from-red-500/40 to-red-700/40"></div>
                                 <?php endif; ?>
 
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                </div>
 
                                 <div class="absolute inset-0 flex flex-col justify-end p-6">
                                     <?php
@@ -90,7 +89,7 @@ if (empty($items)) {
                                     }
 
                                     if ($icon_output) {
-                                        echo '<span class="mb-3 inline-flex">' . $icon_output . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo '<span class="mb-3 inline-flex" style="filter:invert(100%) sepia(0%) saturate(7469%) hue-rotate(13deg) brightness(112%) contrast(112%)">' . $icon_output . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     }
                                     ?>
 
@@ -107,10 +106,14 @@ if (empty($items)) {
             </div>
 
             <div class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2">
-                <button class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 initiatives-button-prev" type="button" aria-label="<?php esc_attr_e('Previous initiatives', 'beit'); ?>">
+                <button
+                    class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 initiatives-button-prev"
+                    type="button" aria-label="<?php esc_attr_e('Previous initiatives', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_prev_icon); ?>"></i>
                 </button>
-                <button class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 initiatives-button-next" type="button" aria-label="<?php esc_attr_e('Next initiatives', 'beit'); ?>">
+                <button
+                    class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 initiatives-button-next"
+                    type="button" aria-label="<?php esc_attr_e('Next initiatives', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_next_icon); ?>"></i>
                 </button>
             </div>
@@ -118,12 +121,9 @@ if (empty($items)) {
 
         <?php if (!empty($data['cta']['title'])) : ?>
             <div class="mt-10 text-center">
-                <a
-                    class="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                <a class="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                     href="<?php echo esc_url($data['cta']['url']); ?>"
-                    target="<?php echo esc_attr($data['cta']['target'] ?? '_self'); ?>"
-                    rel="noopener"
-                >
+                    target="<?php echo esc_attr($data['cta']['target'] ?? '_self'); ?>" rel="noopener">
                     <?php echo esc_html($data['cta']['title']); ?>
                 </a>
             </div>

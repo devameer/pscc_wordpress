@@ -41,41 +41,36 @@ $empty_message = $args['empty_message'];
         <?php if (!empty($items)) : ?>
             <div class="grid gap-8 md:grid-cols-3">
                 <?php foreach ($items as $item) :
-                $item_title   = $item['title'] ?? '';
-                $item_excerpt = $item['excerpt'] ?? '';
-                $item_link    = $item['link'] ?? '#';
-                $item_image   = $item['image'] ?? '';
+                    $item_title   = $item['title'] ?? '';
+                    $item_excerpt = $item['excerpt'] ?? '';
+                    $item_link    = $item['link'] ?? '#';
+                    $item_image   = $item['image'] ?? '';
                 ?>
-                <article class="overflow-hidden rounded-2xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-                    <?php if ($item_image) : ?>
-                        <div class="h-48 w-full overflow-hidden">
-                            <?php if (is_numeric($item_image)) : ?>
-                                <?php echo wp_get_attachment_image((int) $item_image, 'large', false, ['class' => 'h-full w-full object-cover']); ?>
-                            <?php else : ?>
-                                <img class="h-full w-full object-cover" src="<?php echo esc_url((string) $item_image); ?>" alt="">
+                    <article class="overflow-hidden  transition hover:-translate-y-1 ">
+                        <?php if ($item_image) : ?>
+                            <div class="h-80 w-full overflow-hidden">
+                                <?php if (is_numeric($item_image)) : ?>
+                                    <?php echo wp_get_attachment_image((int) $item_image, 'large', false, ['class' => 'h-full w-full object-cover']); ?>
+                                <?php else : ?>
+                                    <img class="h-full w-full object-cover" src="<?php echo esc_url((string) $item_image); ?>" alt="">
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="py-4">
+                            <?php if ($item_title) : ?>
+                                <a href="<?php echo esc_url($item_link); ?>">
+                                <h3 class="text-lg  text-slate-900">
+                                    <?php echo esc_html($item_title); ?>
+                                </h3>
+                                </a>
                             <?php endif; ?>
+
+
+
+
                         </div>
-                    <?php endif; ?>
-
-                    <div class="p-6">
-                        <?php if ($item_title) : ?>
-                            <h3 class="text-lg font-semibold text-slate-900">
-                                <?php echo esc_html($item_title); ?>
-                            </h3>
-                        <?php endif; ?>
-
-                        <?php if ($item_excerpt) : ?>
-                            <p class="mt-3 text-sm text-slate-600">
-                                <?php echo esc_html(wp_trim_words($item_excerpt, 24, '…')); ?>
-                            </p>
-                        <?php endif; ?>
-
-                        <a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700" href="<?php echo esc_url($item_link); ?>">
-                            <?php esc_html_e('Read More', 'beit'); ?>
-                            <i class="fa-solid fa-arrow-<?php echo $is_rtl ? 'left' : 'right'; ?> text-xs"></i>
-                        </a>
-                    </div>
-                </article>
+                    </article>
                 <?php endforeach; ?>
             </div>
         <?php elseif ($empty_message) : ?>
@@ -86,7 +81,8 @@ $empty_message = $args['empty_message'];
 
         <?php if (!empty($heading['cta']['title']) && !empty($heading['cta']['url'])) : ?>
             <div class="mt-10 text-center">
-                <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700" href="<?php echo esc_url($heading['cta']['url']); ?>">
+                <a class="inline-flex items-center gap-2 rounded-md  bg-red-600 px-6 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                    href="<?php echo esc_url($heading['cta']['url']); ?>">
                     <?php echo esc_html($heading['cta']['title']); ?>
                     <i class="fa-solid fa-arrow-<?php echo $is_rtl ? 'left' : 'right'; ?> text-xs"></i>
                 </a>

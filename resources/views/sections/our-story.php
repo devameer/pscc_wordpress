@@ -21,10 +21,10 @@ $content_alignment = $args['content_alignment'] ?? '';
 
 ?>
 
-<section class="bg-slate-800 py-20 text-white">
-    <div class="container mx-auto px-4 md:px-6">
+<section class="bg-[#282828]  text-white">
+    <div class="">
         <div class="grid gap-12 md:grid-cols-2 md:items-center">
-            <div>
+            <div class="relative">
                 <?php if (!empty($data['image'])) : ?>
                     <?php if (is_numeric($data['image'])) : ?>
                         <?php echo wp_get_attachment_image((int) $data['image'], 'large', false, ['class' => 'w-full rounded-2xl object-cover']); ?>
@@ -34,9 +34,9 @@ $content_alignment = $args['content_alignment'] ?? '';
                 <?php endif; ?>
 
                 <?php if (!empty($data['tagline'])) : ?>
-                    <div class="mt-6">
-                        <h3 class="text-3xl font-bold leading-tight">
-                            <?php echo wp_kses($data['tagline'], ['br' => []]); ?>
+                    <div class=" absolute bottom-0 right-10  px-4 py-2 rounded-tr-xl rounded-br-xl w-80">
+                        <h3 class="text-3xl font-light leading-tight">
+                            <?php echo wp_kses_post($data['tagline']); ?>
                         </h3>
                     </div>
                 <?php endif; ?>

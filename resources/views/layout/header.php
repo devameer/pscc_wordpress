@@ -50,8 +50,9 @@ $donate_target = $donate_link['target'] ?? '_self';
     <?php wp_body_open(); ?>
     <div class="min-h-screen flex flex-col">
         <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) : ?>
-            <div class="bg-slate-900 text-slate-200 text-xs">
-                <div class="container mx-auto flex flex-col gap-2 px-4 py-2 md:flex-row md:items-center md:justify-between md:px-6">
+            <div class="bg-[#4E4E4E] text-slate-200 text-xs">
+                <div
+                    class="container mx-auto flex flex-col gap-2 px-4 py-2 md:flex-row md:items-center md:justify-between md:px-6">
                     <?php if (!empty($topbar_socials)) : ?>
                         <div class="flex flex-wrap items-center gap-3 text-sm">
                             <?php foreach ($topbar_socials as $social) :
@@ -82,7 +83,8 @@ $donate_target = $donate_link['target'] ?? '_self';
                                         break;
                                 }
                             ?>
-                                <a class="flex items-center justify-center  p-2 text-white transition hover:bg-red-600" href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
+                                <a class="flex items-center justify-center  p-2 text-white transition hover:bg-red-600"
+                                    href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
                                     <i class="<?php echo esc_attr($icon_class); ?> text-sm"></i>
                                 </a>
@@ -92,7 +94,8 @@ $donate_target = $donate_link['target'] ?? '_self';
 
                     <div class="flex flex-wrap items-center gap-4 md:gap-6">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-2 transition hover:text-red-400 border border-white/20" href="mailto:<?php echo esc_attr($topbar_email); ?>">
+                            <a class="flex items-center gap-2 transition hover:text-red-400 border border-white/20"
+                                href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa-solid fa-envelope text-sm"></i>
                                 <span><?php echo esc_html($topbar_email); ?></span>
                             </a>
@@ -101,19 +104,23 @@ $donate_target = $donate_link['target'] ?? '_self';
                         <?php if ($topbar_phone) :
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                         ?>
-                            <a class="flex items-center gap-2 transition hover:text-red-400" href="tel:<?php echo esc_attr($clean_phone); ?>">
+                            <a class="flex items-center gap-2 transition hover:text-red-400"
+                                href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa-solid fa-phone text-sm"></i>
                                 <span><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
                     </div>
                     <div class="flex items-center ml-auto">
-                        <a class="hidden items-center gap-2  border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-red-500 hover:text-red-400 md:inline-flex" href="<?php echo esc_url(get_search_link()); ?>">
+                        <a class="hidden items-center gap-2  border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-red-500 hover:text-red-400 md:inline-flex"
+                            href="<?php echo esc_url(get_search_link()); ?>">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="hidden  bg-red-600 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700 md:inline-flex" href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>" rel="noopener">
+                        <a class="hidden  bg-red-600 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700 md:inline-flex"
+                            href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
+                            rel="noopener">
                             <?php echo esc_html($donate_label); ?>
                         </a>
 
@@ -122,7 +129,8 @@ $donate_target = $donate_link['target'] ?? '_self';
                             type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
                             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16m-16 6h16"></path>
                             </svg>
                         </button>
                     </div>
@@ -130,9 +138,7 @@ $donate_target = $donate_link['target'] ?? '_self';
             </div>
         <?php endif; ?>
 
-        <header
-            class="fixed top-10 z-50 w-full text-white transition-all duration-300 ease-in-out"
-            data-scroll-header
+        <header class="fixed top-10 z-50 w-full text-white transition-all duration-300 ease-in-out" data-scroll-header
             data-scroll-threshold="48">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="flex items-center justify-between py-4">
@@ -142,7 +148,8 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <?php the_custom_logo(); ?>
                             </div>
                         <?php else : ?>
-                            <div class="flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-2xl font-bold">
+                            <div
+                                class="flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-2xl font-bold">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
                             </div>
                         <?php endif; ?>
@@ -173,7 +180,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                             ]
                         );
                         ?>
-                        
+
                     </nav>
 
 
@@ -193,12 +200,15 @@ $donate_target = $donate_link['target'] ?? '_self';
                     ]
                 );
                 ?>
-                <a class="mx-4 mb-3 flex items-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5" href="<?php echo esc_url(get_search_link()); ?>">
+                <a class="mx-4 mb-3 flex items-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
+                    href="<?php echo esc_url(get_search_link()); ?>">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span><?php echo esc_html($topbar_search_label); ?></span>
                 </a>
                 <div class="flex flex-col gap-3 px-4 pb-4">
-                    <a class="flex items-center justify-center rounded-full bg-red-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700" href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>" rel="noopener">
+                    <a class="flex items-center justify-center rounded-full bg-red-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                        href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
+                        rel="noopener">
                         <?php echo esc_html($donate_label); ?>
                     </a>
                 </div>

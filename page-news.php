@@ -105,14 +105,7 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
 
                             <h2 class="text-3xl font-bold md:text-4xl"><?php echo esc_html(get_the_title($featured_post)); ?></h2>
 
-                            <p class="max-w-2xl text-sm text-white/80 md:text-base">
-                                <?php echo esc_html(wp_trim_words(get_the_excerpt($featured_post), 32, '…')); ?>
-                            </p>
-
-                            <span class="inline-flex items-center gap-2 text-sm font-semibold text-red-200">
-                                <?php esc_html_e('Read Story', 'beit'); ?>
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
-                            </span>
+                         
                         </div>
                     </a>
                 </article>
@@ -150,13 +143,7 @@ $featured_image     = $featured_thumbnail ? wp_get_attachment_image_url($feature
                                             <?php echo esc_html(get_the_title($post_obj)); ?>
                                         </a>
                                     </h3>
-                                    <p class="flex-1 text-sm text-slate-600">
-                                        <?php echo esc_html(wp_trim_words(get_the_excerpt($post_obj), 26, '…')); ?>
-                                    </p>
-                                    <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700" href="<?php echo esc_url(get_permalink($post_obj)); ?>">
-                                        <?php esc_html_e('Read More', 'beit'); ?>
-                                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                                    </a>
+                                  
                                 </div>
                             </article>
                         <?php endforeach; ?>

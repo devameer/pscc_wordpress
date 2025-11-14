@@ -31,7 +31,7 @@ if (empty($items)) {
 
 ?>
 
-<section class="bg-white py-20">
+<section class="bg-[#F9F9F9] py-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center">
             <?php if (!empty($partners['title'])) : ?>
@@ -50,9 +50,9 @@ if (empty($items)) {
                         if (!$logo) {
                             continue;
                         }
-                        ?>
+                    ?>
                         <div class="swiper-slide">
-                            <div class="flex h-24 items-center justify-center rounded-2xl bg-slate-100 p-4 transition hover:bg-slate-200">
+                            <div class="flex h-56 items-center justify-center rounded-2xl bg-white p-4 transition hover:bg-slate-200">
                                 <?php if (is_numeric($logo)) : ?>
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'max-h-16 object-contain']); ?>
                                 <?php else : ?>

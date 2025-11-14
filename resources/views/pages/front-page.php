@@ -23,7 +23,6 @@ $our_story_defaults   = beit_front_default_our_story();
 $has_acf = function_exists('get_field');
 $is_rtl  = is_rtl();
 
-$heading_alignment     = $is_rtl ? 'text-center md:text-right' : 'text-center md:text-left';
 $content_alignment     = $is_rtl ? 'md:text-right' : 'md:text-left';
 $video_button_position = $is_rtl ? 'bottom-16 right-12' : 'bottom-16 left-12';
 $hero_prev_icon        = $is_rtl ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
@@ -71,7 +70,7 @@ if ($hero_query->have_posts()) {
 
         $hero_slides[] = [
             'title'     => $title,
-           
+
             'description'      => $description,
             'background_image' => $background_image,
             'video_url'        => $video_url,
@@ -219,7 +218,6 @@ $display_news     = $news_posts;
             null,
             [
                 'data'              => $initiatives,
-                'heading_alignment' => $heading_alignment,
                 'hero_prev_icon'    => $hero_prev_icon,
                 'hero_next_icon'    => $hero_next_icon,
             ]

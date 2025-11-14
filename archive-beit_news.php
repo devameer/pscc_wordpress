@@ -46,38 +46,22 @@ $archive_description = get_the_archive_description();
                         $thumbnail_id   = get_post_thumbnail_id();
                         $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover']) : '';
                         ?>
-                        <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                        <article class="flex h-full flex-col overflow-hidden    bg-white  transition hover:-translate-y-1">
                             <?php if ($thumbnail_html) : ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
                                     <?php echo $thumbnail_html; ?>
                                 </a>
                             <?php endif; ?>
 
-                            <div class="flex flex-1 flex-col gap-4 p-6">
-                                <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-red-500">
-                                    <span><?php echo esc_html(get_the_date()); ?></span>
-                                    <?php
-                                    $terms = get_the_terms(get_the_ID(), 'category');
-                                    if (!is_wp_error($terms) && !empty($terms)) {
-                                        echo '<span class="text-slate-300">•</span><span class="text-slate-500">' . esc_html($terms[0]->name) . '</span>';
-                                    }
-                                    ?>
-                                </div>
-
+                            <div class="flex flex-1 flex-col gap-4 py-4">
+                            
                                 <h2 class="text-lg font-semibold text-slate-900">
                                     <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
 
-                                <p class="flex-1 text-sm text-slate-600">
-                                    <?php echo esc_html(wp_trim_words(get_the_excerpt(), 26, '…')); ?>
-                                </p>
+                          
 
-                                <div class="mt-auto">
-                                    <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:text-red-700" href="<?php the_permalink(); ?>">
-                                        <?php esc_html_e('Read More', 'beit'); ?>
-                                        <i class="fa-solid <?php echo esc_attr($arrow_icon); ?> text-xs"></i>
-                                    </a>
-                                </div>
+                              
                             </div>
                         </article>
                     <?php endwhile; ?>
