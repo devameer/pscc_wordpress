@@ -29,7 +29,7 @@ $content_alignment = $args['content_alignment'] ?? '';
                     <?php if (is_numeric($data['image'])) : ?>
                         <?php echo wp_get_attachment_image((int) $data['image'], 'large', false, ['class' => 'w-full md:rounded-2xl object-cover']); ?>
                     <?php else : ?>
-                        <img class="w-full md:rounded-2xl object-cover" src="<?php echo esc_url((string) $data['image']); ?>" alt="">
+                        <img class="w-full md:rounded-2xl object-cover" src="<?php echo esc_url((string) $data['image']); ?>" alt="" loading="lazy" decoding="async">
                     <?php endif; ?>
                 <?php endif; ?>
 

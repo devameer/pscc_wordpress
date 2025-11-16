@@ -101,7 +101,7 @@ if (!$programs_query->have_posts()) {
             $image_html = '';
             if ($image_url) {
                 $image_html .= '<div class="relative h-[300px] md:h-[400px] overflow-hidden">';
-                $image_html .= '<img class="w-full h-full object-cover" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '">';
+                $image_html .= '<img class="w-full h-full object-cover" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
                 $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>';
                 $image_html .= '<div class="absolute bottom-0 left-0 p-4 md:p-6 lg:p-8 text-white">';
                 if ($overlay_heading) {

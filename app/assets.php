@@ -114,3 +114,86 @@ function beit_theme_enqueue_assets(): void
     );
 }
 add_action('wp_enqueue_scripts', 'beit_theme_enqueue_assets');
+
+/**
+ * Add defer attribute to non-critical scripts for better performance.
+ */
+function beit_defer_scripts($tag, $handle, $src): string
+{
+    // List of script handles that should be deferred
+    $defer_scripts = [
+        'swiper',
+        'fslightbox',
+        'aos',
+        'beit-theme',
+    ];
+
+    if (in_array($handle, $defer_scripts, true)) {
+        return str_replace(' src', ' defer src', $tag);
+    }
+
+    return $tag;
+}
+add_filter('script_loader_tag', 'beit_defer_scripts', 10, 3);
+
+/**
+ * Add preconnect and dns-prefetch for external resources.
+ */
+function beit_add_resource_hints($urls, $relation_type): array
+{
+    if ('preconnect' === $relation_type) {
+        $urls[] = [
+            'href' => 'https://cdn.jsdelivr.net',
+            'crossorigin' => 'anonymous',
+        ];
+        $urls[] = [
+            'href' => 'https://cdnjs.cloudflare.com',
+            'crossorigin' => 'anonymous',
+        ];
+        $urls[] = [
+            'href' => 'https://fonts.googleapis.com',
+        ];
+        $urls[] = [
+            'href' => 'https://fonts.gstatic.com',
+            'crossorigin' => 'anonymous',
+        ];
+    }
+
+    if ('dns-prefetch' === $relation_type) {
+        $urls[] = 'https://cdn.jsdelivr.net';
+        $urls[] = 'https://cdnjs.cloudflare.com';
+        $urls[] = 'https://fonts.googleapis.com';
+        $urls[] = 'https://fonts.gstatic.com';
+    }
+
+    return $urls;
+}
+add_filter('wp_resource_hints', 'beit_add_resource_hints', 10, 2);
+
+/**
+ * Optimize WordPress emoji scripts and remove unnecessary scripts.
+ */
+function beit_disable_emojis(): void
+{
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+}
+add_action('init', 'beit_disable_emojis');
+
+/**
+ * Remove query strings from static resources for better caching.
+ */
+function beit_remove_script_version($src): string
+{
+    if ($src && strpos($src, 'ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('script_loader_src', 'beit_remove_script_version', 15, 1);
+add_filter('style_loader_src', 'beit_remove_script_version', 15, 1);

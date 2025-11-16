@@ -56,7 +56,7 @@ if (empty($items)) {
                                 <?php if (is_numeric($logo)) : ?>
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'max-h-16 object-contain']); ?>
                                 <?php else : ?>
-                                    <img class="max-h-16 object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>">
+                                    <img class="max-h-16 object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
                                 <?php endif; ?>
                             </div>
                         </div>

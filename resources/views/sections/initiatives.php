@@ -54,7 +54,7 @@ if (empty($items)) {
                                         <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105']); ?>
                                     <?php else : ?>
                                         <img class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                            src="<?php echo esc_url((string) $item['image']); ?>" alt="">
+                                            src="<?php echo esc_url((string) $item['image']); ?>" alt="" loading="lazy" decoding="async">
                                     <?php endif; ?>
                                 <?php else : ?>
                                     <div class="h-64 w-full bg-gradient-to-br from-red-500/40 to-red-700/40"></div>
@@ -81,7 +81,7 @@ if (empty($items)) {
 
                                             if ($icon_url) {
                                                 $icon_output = sprintf(
-                                                    '<img src="%s" class="h-12 w-12 object-contain" alt="" aria-hidden="true" />',
+                                                    '<img src="%s" class="h-12 w-12 object-contain" alt="" aria-hidden="true" loading="lazy" decoding="async" />',
                                                     esc_url($icon_url)
                                                 );
                                             }

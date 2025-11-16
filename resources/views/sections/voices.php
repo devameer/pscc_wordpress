@@ -72,7 +72,7 @@ if (empty($items)) {
                             </span>
                         </span>
                         <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
-                            alt="<?php echo esc_attr($item['title'] ?? ''); ?>">
+                            alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
                     </a>
                 </div>
             <?php

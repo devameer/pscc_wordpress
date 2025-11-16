@@ -55,7 +55,7 @@ $empty_message = $args['empty_message'];
                                 <?php if (is_numeric($item_image)) : ?>
                                     <?php echo wp_get_attachment_image((int) $item_image, 'large', false, ['class' => 'h-full w-full object-cover']); ?>
                                 <?php else : ?>
-                                    <img class="h-full w-full object-cover" src="<?php echo esc_url((string) $item_image); ?>" alt="">
+                                    <img class="h-full w-full object-cover" src="<?php echo esc_url((string) $item_image); ?>" alt="" loading="lazy" decoding="async">
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
