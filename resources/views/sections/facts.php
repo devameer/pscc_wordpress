@@ -30,7 +30,7 @@ if (empty($facts['items'])) {
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 text-center" data-aos="fade-up">
             <?php if (!empty($facts['title'])) : ?>
-            <h2 class="text-3xl font-bold md:text-4xl"><?php echo esc_html($facts['title']); ?></h2>
+            <h2 class="text-3xl font-light md:text-5xl"><?php echo wp_kses_post($facts['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($facts['subtitle'])) : ?>
             <p class="text-base text-white/70 md:text-lg"><?php echo esc_html($facts['subtitle']); ?></p>
@@ -47,7 +47,7 @@ if (empty($facts['items'])) {
                     }
                 ?>
             <button type="button"
-                class="rounded-md px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-semibold transition <?php echo $highlighted ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
+                class="rounded-xs px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-semibold transition <?php echo $highlighted ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
                 <?php echo esc_html($label); ?>
             </button>
             <?php endforeach; ?>

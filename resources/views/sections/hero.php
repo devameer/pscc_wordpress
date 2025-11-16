@@ -37,8 +37,7 @@ if (empty($slides)) {
         data-autoplay="<?php echo esc_attr($settings['autoplay'] ?? 0); ?>"
         data-loop="<?php echo !empty($settings['loop']) ? 'true' : 'false'; ?>"
         data-has-navigation="<?php echo !empty($settings['show_navigation']) ? 'true' : 'false'; ?>"
-        data-has-pagination="<?php echo !empty($settings['show_pagination']) ? 'true' : 'false'; ?>"
-    >
+        data-has-pagination="<?php echo !empty($settings['show_pagination']) ? 'true' : 'false'; ?>">
         <div class="swiper-wrapper">
             <?php foreach ($slides as $slide) :
                 $background_image = $slide['background_image'] ?? '';
@@ -50,29 +49,28 @@ if (empty($slides)) {
                     : '';
                 $primary_button   = is_array($slide['primary_button'] ?? null) ? $slide['primary_button'] : [];
                 $secondary_button = is_array($slide['secondary_button'] ?? null) ? $slide['secondary_button'] : [];
-                ?>
+            ?>
                 <div class="swiper-slide">
                     <div
                         class="relative flex min-h-[80vh] items-center justify-center overflow-hidden"
                         <?php if ($background_style) : ?>
-                            style="<?php echo esc_attr($background_style); ?>"
-                        <?php endif; ?>
-                    >
+                        style="<?php echo esc_attr($background_style); ?>"
+                        <?php endif; ?>>
                         <div class="absolute inset-0">
-                            <span class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></span>
+                            <!-- <span class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></span> -->
                             <span class="absolute inset-0 bg-black/35 mix-blend-multiply"></span>
                         </div>
 
                         <div class="relative z-10 container mx-auto px-4 py-20 md:px-6">
                             <div class="max-w-2xl space-y-6 text-white <?php echo esc_attr($content_alignment); ?>">
-                             
+
 
                                 <?php if (!empty($slide['title'])) : ?>
                                     <h1 class="space-y-2 text-3xl font-bold leading-tight md:text-5xl">
                                         <?php if (!empty($slide['title'])) : ?>
                                             <span class="block font-light text-white/80"><?php echo wp_kses_post($slide['title']); ?></span>
                                         <?php endif; ?>
-                                       
+
                                     </h1>
                                 <?php endif; ?>
 
@@ -86,24 +84,22 @@ if (empty($slides)) {
                                     <div class="flex flex-wrap items-center gap-4">
                                         <?php if (!empty($primary_button['title'])) : ?>
                                             <a
-                                                class="inline-flex items-center rounded-md bg-red-600 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                                                class="inline-flex items-center rounded-xs bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                                                 href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
-                                                rel="noopener"
-                                            >
+                                                rel="noopener">
                                                 <?php echo esc_html($primary_button['title']); ?>
                                             </a>
                                         <?php endif; ?>
 
                                         <?php if (!empty($secondary_button['title'])) : ?>
-                                            <span>OR</span>           
+                                            <span>OR</span>
                                             <a
                                                 class="inline-flex items-center gap-2 underline text-sm  uppercase tracking-wide text-white transition hover:border-white hover:text-white"
                                                 href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($secondary_button['target'] ?? '_self'); ?>"
-                                                rel="noopener"
-                                            >
-                                     <?php echo esc_html($secondary_button['title']); ?>
+                                                rel="noopener">
+                                                <?php echo esc_html($secondary_button['title']); ?>
                                             </a>
                                         <?php endif; ?>
                                     </div>
@@ -113,15 +109,14 @@ if (empty($slides)) {
 
                         <?php if (!empty($slide['video_url']) && '#' !== $slide['video_url']) : ?>
                             <a
-                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3 rounded-full bg-white/15 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25 md:flex"
-                                href="<?php echo esc_url($slide['video_url']); ?>"
-                            >
-                                <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/40">
+                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3   px-5 py-3 text-sm font-semibold text-white  transition  md:flex"
+                                href="<?php echo esc_url($slide['video_url']); ?>">
+                                <span class="flex h-14 w-14 items-center justify-center rounded-xs text-2xl  bg-white/40">
                                     <i class="fa-solid fa-play"></i>
                                 </span>
-                                <span class="leading-tight">
-                                    <span class="block text-xs uppercase tracking-wide text-white/60"><?php esc_html_e('See the change', 'beit'); ?></span>
-                                    <span class="block text-sm font-semibold"><?php esc_html_e('Watch the story', 'beit'); ?></span>
+                                <span class="leading-tight text-white text-2xl font-light border-l border-white/55 pl-4">
+                                    <span class="block  capitalize tracking-wide  "><?php esc_html_e('See the change', 'beit'); ?></span>
+                                    <span class="block  capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
                                 </span>
                             </a>
                         <?php endif; ?>

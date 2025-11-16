@@ -317,6 +317,56 @@ acf_add_local_field_group(
                 ],
             ],
             [
+                'key'        => 'field_front_voices',
+                'label'      => __('Voices', 'beit'),
+                'name'       => 'front_voices',
+                'type'       => 'group',
+                'layout'     => 'block',
+                'sub_fields' => [
+                    [
+                        'key'   => 'field_front_voices_title',
+                        'label' => __('Title', 'beit'),
+                        'name'  => 'title',
+                        'type'  => 'textarea',
+                        'rows'  => 2,
+                    ],
+                    [
+                        'key'   => 'field_front_voices_subtitle',
+                        'label' => __('Subtitle', 'beit'),
+                        'name'  => 'subtitle',
+                        'type'  => 'textarea',
+                        'rows'  => 3,
+                    ],
+                ],
+            ],
+            [
+                'key'        => 'field_front_news',
+                'label'      => __('Latest News', 'beit'),
+                'name'       => 'front_news',
+                'type'       => 'group',
+                'sub_fields' => [
+                    [
+                        'key'   => 'field_front_news_title',
+                        'label' => __('Title', 'beit'),
+                        'name'  => 'title',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'key'   => 'field_front_news_subtitle',
+                        'label' => __('Subtitle', 'beit'),
+                        'name'  => 'subtitle',
+                        'type'  => 'textarea',
+                        'rows'  => 3,
+                    ],
+                    [
+                        'key'   => 'field_front_news_cta',
+                        'label' => __('CTA Link', 'beit'),
+                        'name'  => 'cta',
+                        'type'  => 'link',
+                    ],
+                ],
+            ],
+            [
                 'key'        => 'field_front_newsletter',
                 'label'      => __('Newsletter', 'beit'),
                 'name'       => 'front_newsletter',

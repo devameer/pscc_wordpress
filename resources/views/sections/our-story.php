@@ -42,21 +42,21 @@ $content_alignment = $args['content_alignment'] ?? '';
                 <?php endif; ?>
             </div>
 
-            <div class="space-y-4 md:space-y-6 <?php echo esc_attr($content_alignment); ?>" data-aos="fade-left" data-aos-delay="200">
+            <div class="space-y-4 md:space-y-6 <?php echo esc_attr($content_alignment); ?> max-w-lg mx-auto" data-aos="fade-left" data-aos-delay="200">
                 <?php if (!empty($data['title'])) : ?>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">
-                        <?php echo esc_html($data['title']); ?>
+                    <h2 class="text-2xl md:text-3xl lg:text-6xl font-light">
+                        <?php echo wp_kses_post($data['title']); ?>
                     </h2>
                 <?php endif; ?>
 
                 <?php if (!empty($data['description'])) : ?>
-                    <p class="text-sm md:text-base lg:text-lg text-white/70">
+                    <p class="text-sm md:text-base lg:text-lg text-white/90">
                         <?php echo esc_html($data['description']); ?>
                     </p>
                 <?php endif; ?>
 
                 <?php if (!empty($data['button']['title'])) : ?>
-                    <a class="inline-flex items-center gap-2 rounded-full bg-red-600 px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700" href="<?php echo esc_url($data['button']['url'] ?? '#'); ?>" target="<?php echo esc_attr($data['button']['target'] ?? '_self'); ?>" rel="noopener">
+                    <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700" href="<?php echo esc_url($data['button']['url'] ?? '#'); ?>" target="<?php echo esc_attr($data['button']['target'] ?? '_self'); ?>" rel="noopener">
                         <?php echo esc_html($data['button']['title']); ?>
                     </a>
                 <?php endif; ?>

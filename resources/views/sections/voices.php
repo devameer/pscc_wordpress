@@ -25,14 +25,14 @@ if (empty($items)) {
 
 ?>
 
-<section class="bg-slate-100 py-20">
+<section class="pb-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($voices['title'])) : ?>
-                <h2 class="text-3xl font-bold text-slate-900 md:text-4xl"><?php echo esc_html($voices['title']); ?></h2>
+                <h2 class="text-3xl font-light text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($voices['subtitle'])) : ?>
-                <p class="text-base text-slate-600 md:text-lg"><?php echo esc_html($voices['subtitle']); ?></p>
+                <p class="text-base text-black md:text-lg"><?php echo wp_kses_post($voices['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
@@ -50,7 +50,7 @@ if (empty($items)) {
                     continue;
                 }
 
-                $classes = 'rounded-2xl object-cover w-full h-full';
+                $classes = 'rounded-md object-cover w-full h-full';
                 $wrapper_classes = 'overflow-hidden';
 
                 if (($item['span'] ?? '') === 'double' && 0 === $index) {
@@ -80,15 +80,6 @@ if (empty($items)) {
             endforeach; ?>
         </div>
 
-        <?php $archive_link = get_post_type_archive_link('beit_voice'); ?>
-        <?php if ($archive_link) : ?>
-            <div class="mt-10 text-center">
-                <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:text-red-700"
-                    href="<?php echo esc_url($archive_link); ?>">
-                    <?php esc_html_e('View All Voices', 'beit'); ?>
-                    <i class="fa-solid fa-arrow-<?php echo is_rtl() ? 'left' : 'right'; ?> text-xs"></i>
-                </a>
-            </div>
-        <?php endif; ?>
+   
     </div>
 </section>

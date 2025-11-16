@@ -31,10 +31,10 @@ $empty_message = $args['empty_message'];
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-8 md:mb-12 space-y-2 md:space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($heading['title'])) : ?>
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900"><?php echo esc_html($heading['title']); ?></h2>
+                <h2 class="text-2xl md:text-3xl lg:text-5xl font-light text-slate-900"><?php echo wp_kses_post($heading['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($heading['subtitle'])) : ?>
-                <p class="text-sm md:text-base lg:text-lg text-slate-600"><?php echo esc_html($heading['subtitle']); ?></p>
+                <p class="text-sm md:text-base lg:text-lg font-light max-w-sm mx-auto"><?php echo wp_kses_post($heading['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
@@ -86,7 +86,7 @@ $empty_message = $args['empty_message'];
 
         <?php if (!empty($heading['cta']['title']) && !empty($heading['cta']['url'])) : ?>
             <div class="mt-8 md:mt-10 text-center" data-aos="fade-up" data-aos-delay="500">
-                <a class="inline-flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 md:px-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 md:px-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                     href="<?php echo esc_url($heading['cta']['url']); ?>">
                     <?php echo esc_html($heading['cta']['title']); ?>
                     <i class="fa-solid fa-arrow-<?php echo $is_rtl ? 'left' : 'right'; ?> text-xs"></i>

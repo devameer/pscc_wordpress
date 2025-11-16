@@ -24,7 +24,7 @@ $has_acf = function_exists('get_field');
 $is_rtl  = is_rtl();
 
 $content_alignment     = $is_rtl ? 'md:text-right' : 'md:text-left';
-$video_button_position = $is_rtl ? 'bottom-16 right-12' : 'bottom-16 left-12';
+$video_button_position = $is_rtl ? 'bottom-16 left-12' : 'bottom-16 right-12';
 $hero_prev_icon        = $is_rtl ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
 $hero_next_icon        = $is_rtl ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right';
 
@@ -96,6 +96,11 @@ if (is_array($initiatives_field)) {
 }
 
 $news = $news_defaults;
+$news_field = $has_acf ? get_field('front_news') : null;
+if (is_array($news_field)) {
+    $news = array_merge($news, array_filter($news_field));
+}
+
 $news_posts = [];
 
 if (post_type_exists('beit_news')) {
@@ -156,6 +161,11 @@ $voices = [
     'subtitle' => $voices_defaults['subtitle'] ?? '',
     'items'    => [],
 ];
+
+$voices_field = $has_acf ? get_field('front_voices') : null;
+if (is_array($voices_field)) {
+    $voices = array_merge($voices, array_filter($voices_field));
+}
 
 $voices_query = new WP_Query(
     [

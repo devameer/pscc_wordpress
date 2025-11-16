@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* Theme base tweaks */
+:root{
+    --main-color:#CB0B29;
+}
 @layer base {
     body {
         font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
@@ -30,7 +33,8 @@
     }
 
     .hero-slider-pagination {
-        @apply absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3;
+        @apply flex justify-center absolute !bottom-8 !left-1/2 z-10 flex -translate-x-1/2 items-center gap-3;
+          
     }
 
     .hero-slider-pagination .swiper-pagination-bullet {
@@ -42,7 +46,7 @@
     }
 
     .hero-slider-nav {
-        @apply absolute top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white/15 p-3 text-white shadow-lg transition hover:bg-white/25 md:flex z-10;
+        @apply absolute top-1/2 hidden -translate-y-1/2 items-center justify-center  bg-white/15 p-3 text-white shadow-lg transition hover:bg-white/25 md:flex z-10  w-14 h-14 ;
     }
 
     .hero-slider-nav i {
@@ -50,14 +54,45 @@
     }
 
     .hero-slider-nav.hero-slider-prev {
-        @apply left-4 md:left-6 lg:left-10;
+        @apply left-0 ;
     }
 
     .hero-slider-nav.hero-slider-next {
-        @apply right-4 md:right-6 lg:right-10;
+        @apply right-0  ;
     }
 
     .hero-slider-nav::after {
         content: none !important;
     }
+
+    .form-field {
+        @apply w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600;
+    }
+    .button-form{
+        @apply rounded bg-red-600 px-12 py-3 font-semibold text-white transition hover:bg-red-700;
+    }
+}
+
+#primary-menu li a {
+  position: relative;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+#primary-menu li  a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  bottom: -10px;
+  left: 0;
+  right:0;
+  background-color: var(--main-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index:-1
+}
+#primary-menu li.current_page_item  a::after{
+    transform: scaleX(1);
+
 }

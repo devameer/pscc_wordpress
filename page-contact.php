@@ -43,7 +43,6 @@ while (have_posts()) {
             'eyebrow'          => __('Contact Us', 'beit'),
             'background_image' => $hero_background,
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
-            'height'           => 'py-24',
             'overlay_gradients' => true,
         ]
     );
@@ -66,18 +65,17 @@ while (have_posts()) {
                         <form class="space-y-4">
                             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <input type="text" placeholder="<?php esc_attr_e('Your name', 'beit'); ?>"
-                                    class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    class="form-field"
                                     required>
                                 <input type="email" placeholder="<?php esc_attr_e('Your email', 'beit'); ?>"
-                                    class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    class="form-field"
                                     required>
                             </div>
 
                             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <input type="text" placeholder="<?php esc_attr_e('Subject', 'beit'); ?>"
-                                    class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600">
-                                <select
-                                    class="w-full rounded border border-gray-300 px-4 py-3 text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600">
+                                    class="form-field">
+                                <select class="form-field text-gray-500">
                                     <option value="">
                                         <?php esc_html_e('Reason', 'beit'); ?>
                                     </option>
@@ -88,11 +86,11 @@ while (have_posts()) {
                             </div>
 
                             <textarea placeholder="<?php esc_attr_e('Your message here...', 'beit'); ?>" rows="6"
-                                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"></textarea>
+                                class="form-field"></textarea>
 
                             <div class="flex flex-wrap items-center gap-4">
                                 <button type="submit"
-                                    class="rounded bg-red-600 px-12 py-3 font-semibold text-white transition hover:bg-red-700">
+                                    class="button-form">
                                     <?php esc_html_e('Send', 'beit'); ?>
                                 </button>
                                 <span class="text-gray-500"><?php esc_html_e('or', 'beit'); ?></span>
