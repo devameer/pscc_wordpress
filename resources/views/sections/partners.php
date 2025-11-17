@@ -35,7 +35,7 @@ if (empty($items)) {
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($partners['title'])) : ?>
-                <h2 class="text-3xl font-bold text-slate-900 md:text-4xl"><?php echo esc_html($partners['title']); ?></h2>
+                <h2 class="text-3xl font-bold text-slate-900 md:text-4xl"><?php echo wp_kses_post($partners['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($partners['subtitle'])) : ?>
                 <p class="text-base text-slate-600 md:text-lg"><?php echo esc_html($partners['subtitle']); ?></p>
@@ -54,7 +54,7 @@ if (empty($items)) {
                         <div class="swiper-slide">
                             <div class="flex h-56 items-center justify-center border border-gray-200 bg-white p-4 transition hover:bg-slate-200">
                                 <?php if (is_numeric($logo)) : ?>
-                                    <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'max-h-16 object-contain']); ?>
+                                    <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'object-contain']); ?>
                                 <?php else : ?>
                                     <img class="object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
                                 <?php endif; ?>
