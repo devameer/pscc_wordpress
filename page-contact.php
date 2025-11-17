@@ -26,8 +26,13 @@ while (have_posts()) {
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
     $social_links    = $has_acf ? (get_field('contact_social_links') ?: []) : [];
     $offices         = $has_acf ? (get_field('contact_offices') ?: []) : [];
-    $map_embed       = $has_acf ? get_field('contact_map_embed') : '';
     $form_shortcode  = $has_acf ? get_field('contact_form_shortcode') : '';
+
+    // Map data
+    $google_maps_api_key = $has_acf ? get_field('contact_google_maps_api_key') : '';
+    $map_default_center  = $has_acf ? (get_field('contact_map_default_center') ?: []) : [];
+    $map_offices         = $has_acf ? (get_field('contact_map_offices') ?: []) : [];
+    $map_warehouses      = $has_acf ? (get_field('contact_map_warehouses') ?: []) : [];
 
     $email   = $contact_details['email'] ?? '';
     $phone   = $contact_details['phone'] ?? '';
@@ -50,7 +55,7 @@ while (have_posts()) {
 
 
     <main class="bg-gray-50 text-slate-900">
-        <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-2">
             <section class="rounded-lg bg-white p-8 shadow-sm">
                 <h2 class="text-2xl font-bold text-gray-800">
                     <?php esc_html_e('Share Your Thoughts Here', 'beit'); ?>
@@ -125,7 +130,7 @@ while (have_posts()) {
                                     <?php if ($map_link) : ?>
                                         <a class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700"
                                             href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
-                                            <i class="fa-solid fa-map"></i>
+                                            <i class="fa fa-map"></i>
                                             <?php esc_html_e('View on Map', 'beit'); ?>
                                         </a>
                                     <?php endif; ?>
@@ -137,23 +142,61 @@ while (have_posts()) {
                     <?php endif; ?>
                 </div>
 
-                <div class="h-64 overflow-hidden rounded-lg bg-gray-200 shadow-sm">
-                    <?php
-                    if ($map_embed) {
-                        echo wp_kses_post($map_embed);
-                    } else {
-                    ?>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.5!2d34.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDMwJzAwLjAiTiAzNMKwMzAnMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890"
-                            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-                    <?php
-                    }
-                    ?>
-                </div>
+                <?php if ($google_maps_api_key && (!empty($map_offices) || !empty($map_warehouses))) : ?>
+                    <div class="rounded-lg bg-white shadow-sm overflow-hidden">
+                        <!-- Map Tabs -->
+                        <div class="flex border-b border-gray-200">
+                            <button
+                                class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
+                                data-tab="offices"
+                                data-active="true">
+                                <i class="fa fa-building mr-2"></i>
+                                <?php esc_html_e('Our Offices', 'beit'); ?>
+                            </button>
+                            <button
+                                class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
+                                data-tab="warehouses">
+                                <i class="fa fa-warehouse mr-2"></i>
+                                <?php esc_html_e('Warehouses', 'beit'); ?>
+                            </button>
+                        </div>
+
+                        <!-- Map Container -->
+                        <div id="contact-map" class="h-96 w-full"></div>
+
+                        <!-- Map Data (Hidden) -->
+                        <script>
+                            window.contactMapData = {
+                                apiKey: <?php echo wp_json_encode($google_maps_api_key); ?>,
+                                defaultCenter: {
+                                    lat: <?php echo floatval($map_default_center['latitude'] ?? 31.9522); ?>,
+                                    lng: <?php echo floatval($map_default_center['longitude'] ?? 35.2332); ?>
+                                },
+                                defaultZoom: <?php echo intval($map_default_center['zoom'] ?? 8); ?>,
+                                offices: <?php echo wp_json_encode(array_map(function($office) {
+                                    return [
+                                        'name' => $office['name'] ?? '',
+                                        'address' => $office['address'] ?? '',
+                                        'lat' => floatval($office['latitude'] ?? 0),
+                                        'lng' => floatval($office['longitude'] ?? 0),
+                                    ];
+                                }, $map_offices)); ?>,
+                                warehouses: <?php echo wp_json_encode(array_map(function($warehouse) {
+                                    return [
+                                        'name' => $warehouse['name'] ?? '',
+                                        'address' => $warehouse['address'] ?? '',
+                                        'lat' => floatval($warehouse['latitude'] ?? 0),
+                                        'lng' => floatval($warehouse['longitude'] ?? 0),
+                                    ];
+                                }, $map_warehouses)); ?>
+                            };
+                        </script>
+                    </div>
+                <?php endif; ?>
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                        <span class="rounded bg-red-600 p-3 text-white"><i class="fa-solid fa-globe text-xl"></i></span>
+                        <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-globe text-xl"></i></span>
                         <div>
                             <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Social', 'beit'); ?></h3>
                             <div class="flex flex-wrap gap-3 text-gray-700">
@@ -173,7 +216,7 @@ while (have_posts()) {
                                 <?php
                                     }
                                 } else {
-                                    $defaults = ['fa-brands fa-facebook-f', 'fa-brands fa-instagram', 'fa-brands fa-x-twitter', 'fa-brands fa-linkedin-in', 'fa-brands fa-youtube'];
+                                    $defaults = ['fa fa-facebook-f', 'fa fa-instagram', 'fa fa-x-twitter', 'fa fa-linkedin-in', 'fa fa-youtube'];
                                     foreach ($defaults as $icon) {
                                         echo '<span class="transition hover:text-red-600"><i class="' . esc_attr($icon) . '"></i></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     }
@@ -185,7 +228,7 @@ while (have_posts()) {
 
                     <?php if ($phone) : ?>
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa-solid fa-phone text-xl"></i></span>
+                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-phone text-xl"></i></span>
                             <div>
                                 <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Phone', 'beit'); ?></h3>
                                 <a class="text-gray-700"
@@ -196,7 +239,7 @@ while (have_posts()) {
 
                     <?php if ($email) : ?>
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa-solid fa-envelope text-xl"></i></span>
+                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-envelope text-xl"></i></span>
                             <div>
                                 <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Email', 'beit'); ?></h3>
                                 <a class="text-gray-700"
@@ -208,7 +251,7 @@ while (have_posts()) {
                     <?php if ($address) : ?>
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
                             <span class="rounded bg-red-600 p-3 text-white"><i
-                                    class="fa-solid fa-map-marker-alt text-xl"></i></span>
+                                    class="fa fa-map-marker-alt text-xl"></i></span>
                             <div>
                                 <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Address', 'beit'); ?></h3>
                                 <p class="text-gray-700"><?php echo esc_html($address); ?></p>
@@ -218,7 +261,7 @@ while (have_posts()) {
 
                     <?php if ($hours) : ?>
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa-solid fa-clock text-xl"></i></span>
+                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-clock text-xl"></i></span>
                             <div>
                                 <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Working Hours', 'beit'); ?></h3>
                                 <p class="text-gray-700"><?php echo esc_html($hours); ?></p>
@@ -231,6 +274,175 @@ while (have_posts()) {
 
 
     </main>
+
+    <?php if ($google_maps_api_key) : ?>
+        <script>
+            // Google Maps initialization callback
+            window.initContactMap = window.initContactMap || function() {
+                const mapContainer = document.getElementById('contact-map');
+
+                if (!mapContainer || !window.contactMapData || !window.google) {
+                    return;
+                }
+
+                const data = window.contactMapData;
+                let map;
+                let officeMarkers = [];
+                let warehouseMarkers = [];
+                let currentTab = 'offices';
+
+                // Initialize the map
+                map = new google.maps.Map(mapContainer, {
+                    center: data.defaultCenter,
+                    zoom: data.defaultZoom,
+                    styles: [
+                        {
+                            featureType: 'poi',
+                            elementType: 'labels',
+                            stylers: [{ visibility: 'off' }]
+                        }
+                    ]
+                });
+
+                // Create custom marker icons - using optimized SVG data URI
+                const createMarkerIcon = (color) => {
+                    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="27" height="43" viewBox="0 0 27 43">
+                        <path fill="${color}" stroke="#FFFFFF" stroke-width="2" d="M13.5,0C6.044,0,0,6.044,0,13.5C0,23.625,13.5,43,13.5,43S27,23.625,27,13.5C27,6.044,20.956,0,13.5,0z M13.5,18.563c-2.794,0-5.063-2.269-5.063-5.063S10.706,8.438,13.5,8.438s5.063,2.269,5.063,5.063S16.294,18.563,13.5,18.563z"/>
+                    </svg>`;
+
+                    return {
+                        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+                        scaledSize: new google.maps.Size(27, 43),
+                        anchor: new google.maps.Point(13.5, 43)
+                    };
+                };
+
+                // Function to create markers for a location type
+                const createMarkers = (locations, type) => {
+                    const markers = [];
+                    const color = type === 'offices' ? '#CB0B29' : '#4E4E4E';
+                    const bounds = new google.maps.LatLngBounds();
+
+                    locations.forEach((location) => {
+                        if (!location.lat || !location.lng) {
+                            return;
+                        }
+
+                        const position = { lat: location.lat, lng: location.lng };
+
+                        // Create marker with map-marker icon
+                        const marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: location.name,
+                            animation: google.maps.Animation.DROP,
+                            icon: createMarkerIcon(color)
+                        });
+
+                        // Create info window
+                        const infoContent = `
+                            <div style="padding: 10px; max-width: 200px;">
+                                <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
+                                    ${location.name || ''}
+                                </h3>
+                                ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
+                            </div>
+                        `;
+
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: infoContent
+                        });
+
+                        marker.addListener('click', () => {
+                            // Close all other info windows
+                            officeMarkers.concat(warehouseMarkers).forEach(m => {
+                                if (m.infoWindow) {
+                                    m.infoWindow.close();
+                                }
+                            });
+                            infoWindow.open(map, marker);
+                        });
+
+                        marker.infoWindow = infoWindow;
+                        marker.locationType = type;
+                        markers.push(marker);
+                        bounds.extend(position);
+                    });
+
+                    return { markers, bounds };
+                };
+
+                // Create all markers
+                const officeResult = createMarkers(data.offices || [], 'offices');
+                const warehouseResult = createMarkers(data.warehouses || [], 'warehouses');
+
+                officeMarkers = officeResult.markers;
+                warehouseMarkers = warehouseResult.markers;
+
+                // Combine bounds
+                const combinedBounds = new google.maps.LatLngBounds();
+                officeMarkers.concat(warehouseMarkers).forEach(marker => {
+                    combinedBounds.extend(marker.getPosition());
+                });
+
+                // Fit map to show all markers
+                if (officeMarkers.length > 0 || warehouseMarkers.length > 0) {
+                    map.fitBounds(combinedBounds);
+                }
+
+                // Function to show/hide markers based on tab
+                const updateMarkerVisibility = (tabName) => {
+                    if (tabName === 'all') {
+                        officeMarkers.forEach(m => m.setVisible(true));
+                        warehouseMarkers.forEach(m => m.setVisible(true));
+                    } else if (tabName === 'offices') {
+                        officeMarkers.forEach(m => m.setVisible(true));
+                        warehouseMarkers.forEach(m => m.setVisible(false));
+                    } else if (tabName === 'warehouses') {
+                        officeMarkers.forEach(m => m.setVisible(false));
+                        warehouseMarkers.forEach(m => m.setVisible(true));
+                    }
+                };
+
+                // Function to switch tabs
+                const switchTab = (tabName) => {
+                    if (currentTab === tabName) {
+                        return;
+                    }
+
+                    currentTab = tabName;
+
+                    // Update tab buttons
+                    document.querySelectorAll('.map-tab-button').forEach(button => {
+                        const isActive = button.dataset.tab === tabName;
+                        button.dataset.active = isActive ? 'true' : 'false';
+
+                        if (isActive) {
+                            button.classList.add('border-red-600', 'text-red-600', 'bg-red-50');
+                            button.classList.remove('border-transparent');
+                        } else {
+                            button.classList.remove('border-red-600', 'text-red-600', 'bg-red-50');
+                            button.classList.add('border-transparent');
+                        }
+                    });
+
+                    // Update marker visibility
+                    updateMarkerVisibility(tabName);
+                };
+
+                // Add click listeners to tab buttons
+                document.querySelectorAll('.map-tab-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        switchTab(button.dataset.tab);
+                    });
+                });
+
+                // Initialize showing offices only
+                switchTab('offices');
+            };
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo esc_attr($google_maps_api_key); ?>&callback=initContactMap" async defer></script>
+    <?php endif; ?>
 <?php
 }
 

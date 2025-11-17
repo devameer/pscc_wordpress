@@ -37,7 +37,7 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
         <?php endif; ?>
         
         <span class="absolute left-5 text-slate-400">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa fa-magnifying-glass"></i>
         </span>
         
         <button

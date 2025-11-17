@@ -87,7 +87,7 @@ get_template_part(
                             >
                                 <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
                                     <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
-                                        <i class="fa-solid <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
+                                        <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
                                     </span>
                                 </span>
                                 <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($item['title']); ?>">

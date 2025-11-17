@@ -89,7 +89,7 @@ $empty_message = $args['empty_message'];
                 <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 md:px-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                     href="<?php echo esc_url($heading['cta']['url']); ?>">
                     <?php echo esc_html($heading['cta']['title']); ?>
-                    <i class="fa-solid fa-arrow-<?php echo $is_rtl ? 'left' : 'right'; ?> text-xs"></i>
+                    
                 </a>
             </div>
         <?php endif; ?>

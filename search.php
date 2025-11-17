@@ -110,7 +110,7 @@ get_template_part(
                                 >
                                     <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
                                         <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
-                                            <i class="fa-solid <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
+                                            <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
                                         </span>
                                     </span>
                                     <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
@@ -171,7 +171,7 @@ get_template_part(
                                             break;
                                     }
                                     ?>
-                                    <i class="fa-solid <?php echo esc_attr($post_type_icon); ?>"></i>
+                                    <i class="fa<?php echo esc_attr($post_type_icon); ?>"></i>
                                     <span><?php echo esc_html($post_type_label); ?></span>
                                     <span class="text-slate-300">•</span>
                                     <span class="text-slate-500"><?php echo esc_html(get_the_date()); ?></span>
@@ -189,7 +189,7 @@ get_template_part(
 
                                 <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:text-red-700" href="<?php the_permalink(); ?>">
                                     <?php esc_html_e('Read More', 'beit'); ?>
-                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    <i class="fa fa-arrow-right text-xs"></i>
                                 </a>
                             </div>
                         </article>
@@ -246,7 +246,7 @@ get_template_part(
 
                 <div class="rounded-3xl bg-slate-50 p-12 shadow-inner">
                     <div class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600">
-                        <i class="fa-solid fa-magnifying-glass text-3xl"></i>
+                        <i class="fa fa-magnifying-glass text-3xl"></i>
                     </div>
 
                     <h2 class="mb-4 text-2xl font-bold text-slate-900">
@@ -273,19 +273,19 @@ get_template_part(
                         </h3>
                         <ul class="mx-auto max-w-md space-y-2 text-left text-sm text-slate-600">
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-red-600 mt-1"></i>
                                 <span><?php esc_html_e('Check your spelling', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-red-600 mt-1"></i>
                                 <span><?php esc_html_e('Try different keywords', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-red-600 mt-1"></i>
                                 <span><?php esc_html_e('Use more general terms', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-red-600 mt-1"></i>
                                 <span><?php esc_html_e('Browse our main sections', 'beit'); ?></span>
                             </li>
                         </ul>

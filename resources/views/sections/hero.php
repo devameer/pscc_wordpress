@@ -13,8 +13,8 @@ $args = wp_parse_args(
         'settings'              => [],
         'content_alignment'     => '',
         'video_button_position' => '',
-        'hero_prev_icon'        => 'fa-solid fa-arrow-left',
-        'hero_next_icon'        => 'fa-solid fa-arrow-right',
+        'hero_prev_icon'        => 'fa fa-arrow-left',
+        'hero_next_icon'        => 'fa fa-arrow-right',
     ]
 );
 
@@ -66,25 +66,25 @@ if (empty($slides)) {
 
 
                                 <?php if (!empty($slide['title'])) : ?>
-                                    <h1 class="space-y-2 text-3xl font-bold leading-tight md:text-5xl">
+                                    <h1 class="space-y-2 text-3xl font-bold leading-tight md:text-5xl hero-title-animate">
                                         <?php if (!empty($slide['title'])) : ?>
-                                            <span class="block font-light text-white/80"><?php echo wp_kses_post($slide['title']); ?></span>
+                                            <span class="block font-light text-white slider-title"><?php echo wp_kses_post($slide['title']); ?></span>
                                         <?php endif; ?>
 
                                     </h1>
                                 <?php endif; ?>
 
                                 <?php if (!empty($slide['description'])) : ?>
-                                    <p class="max-w-xl text-base text-white/80 md:text-lg">
+                                    <p class="max-w-xl text-base text-white md:text-lg font-normal hero-description-animate">
                                         <?php echo esc_html($slide['description']); ?>
                                     </p>
                                 <?php endif; ?>
 
                                 <?php if (!empty($primary_button['title']) || !empty($secondary_button['title'])) : ?>
-                                    <div class="flex flex-wrap items-center gap-4">
+                                    <div class="flex flex-wrap items-center gap-4 hero-buttons-animate">
                                         <?php if (!empty($primary_button['title'])) : ?>
                                             <a
-                                                class="inline-flex items-center rounded-xs bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                                                class="font-normal inline-flex items-center rounded-xs bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-red-700 hover:scale-105 hover:shadow-lg"
                                                 href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener">
@@ -93,9 +93,9 @@ if (empty($slides)) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($secondary_button['title'])) : ?>
-                                            <span>OR</span>
+                                            <span class="hero-or-animate">OR</span>
                                             <a
-                                                class="inline-flex items-center gap-2 underline text-sm  uppercase tracking-wide text-white transition hover:border-white hover:text-white"
+                                                class="font-light inline-flex items-center gap-2 underline text-xl  capitalize tracking-wide text-white transition hover:border-white hover:text-white hover:translate-x-2"
                                                 href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($secondary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener">
@@ -109,12 +109,12 @@ if (empty($slides)) {
 
                         <?php if (!empty($slide['video_url']) && '#' !== $slide['video_url']) : ?>
                             <a
-                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3   px-5 py-3 text-sm font-semibold text-white  transition  md:flex"
+                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3   px-5 py-3 text-sm font-semibold text-white  transition  md:flex hero-video-button group"
                                 href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span class="flex h-14 w-14 items-center justify-center rounded-xs text-2xl  bg-white/40">
-                                    <i class="fa-solid fa-play"></i>
+                                <span class="flex h-14 w-14 items-center justify-center rounded-xs text-2xl  bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                    <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
-                                <span class="leading-tight text-white text-2xl font-light border-l border-white/55 pl-4">
+                                <span class="leading-tight text-white text-2xl font-light border-l border-white/55 pl-4 group-hover:border-primary transition-colors duration-300">
                                     <span class="block  capitalize tracking-wide  "><?php esc_html_e('See the change', 'beit'); ?></span>
                                     <span class="block  capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
                                 </span>

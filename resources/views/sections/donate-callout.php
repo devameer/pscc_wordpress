@@ -25,7 +25,7 @@ $args = wp_parse_args(
             <p class="text-base text-white/90 md:text-lg"><?php echo esc_html($args['description']); ?></p>
             <a class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-red-600 transition hover:bg-white/90" href="<?php echo esc_url($args['button_url']); ?>">
                 <?php echo esc_html($args['button_text']); ?>
-                <i class="fa-solid fa-heart text-xs"></i>
+                <i class="fa fa-heart text-xs"></i>
             </a>
         </div>
     </div>

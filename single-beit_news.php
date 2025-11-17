@@ -58,12 +58,12 @@ while (have_posts()) {
 
                 <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500" data-aos="fade-up" data-aos-delay="200">
                     <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-700">
-                        <i class="fa-solid fa-calendar"></i>
+                        <i class="fa fa-calendar"></i>
                         <?php echo esc_html(get_the_date()); ?>
                     </span>
                     <?php if ($primary_cat) : ?>
                         <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-700">
-                            <i class="fa-solid fa-folder"></i>
+                            <i class="fa fa-folder"></i>
                             <?php echo esc_html($primary_cat); ?>
                         </span>
                     <?php endif; ?>
@@ -71,10 +71,10 @@ while (have_posts()) {
 
                 <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-semibold text-red-600" data-aos="fade-up" data-aos-delay="300">
                     <span>
-                        <?php previous_post_link('%link', '<i class="fa-solid ' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html__('Previous', 'beit')); ?>
+                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html__('Previous', 'beit')); ?>
                     </span>
                     <span>
-                        <?php next_post_link('%link', esc_html__('Next', 'beit') . ' <i class="fa-solid ' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
+                        <?php next_post_link('%link', esc_html__('Next', 'beit') . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
                     </span>
                 </nav>
             </div>

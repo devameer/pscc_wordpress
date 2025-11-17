@@ -645,6 +645,10 @@ h1,
   transition-duration: 300ms;
 }
 
+.menu-other-list.hero-slider-pagination .swiper-pagination-bullet {
+  animation: slideDown 0.3s ease-out;
+}
+
 .hero-slider-pagination .swiper-pagination-bullet-active {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
@@ -761,6 +765,14 @@ h1,
 
 .pointer-events-auto {
   pointer-events: auto;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .static {
@@ -901,6 +913,10 @@ h1,
   margin-left: auto;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-auto {
   margin-right: auto;
 }
@@ -1029,10 +1045,6 @@ h1,
   height: 100%;
 }
 
-.max-h-16 {
-  max-height: 4rem;
-}
-
 .min-h-\[80vh\] {
   min-height: 80vh;
 }
@@ -1115,6 +1127,10 @@ h1,
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-pointer {
@@ -1299,6 +1315,10 @@ h1,
   border-bottom-width: 1px;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .border-l {
   border-left-width: 1px;
 }
@@ -1313,6 +1333,11 @@ h1,
 
 .border-t {
   border-top-width: 1px;
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
 }
 
 .border-red-600 {
@@ -1333,6 +1358,10 @@ h1,
 .border-slate-300 {
   --tw-border-opacity: 1;
   border-color: rgb(203 213 225 / var(--tw-border-opacity, 1));
+}
+
+.border-transparent {
+  border-color: transparent;
 }
 
 .border-white {
@@ -1356,22 +1385,17 @@ h1,
   border-color: rgb(255 255 255 / 0.55);
 }
 
-.border-white\/70 {
-  border-color: rgb(255 255 255 / 0.7);
+.border-white\/60 {
+  border-color: rgb(255 255 255 / 0.6);
 }
 
-.border-white\/80 {
-  border-color: rgb(255 255 255 / 0.8);
+.border-white\/70 {
+  border-color: rgb(255 255 255 / 0.7);
 }
 
 .border-zinc-800 {
   --tw-border-opacity: 1;
   border-color: rgb(39 39 42 / var(--tw-border-opacity, 1));
-}
-
-.border-gray-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#0f1112\] {
@@ -1417,6 +1441,10 @@ h1,
   background-color: rgb(0 0 0 / 0.4);
 }
 
+.bg-black\/60 {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
@@ -1439,6 +1467,11 @@ h1,
 .bg-red-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+
+.bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
 }
 
 .bg-red-600 {
@@ -1495,10 +1528,6 @@ h1,
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity, 1));
-}
-
-.bg-black\/60 {
-  background-color: rgb(0 0 0 / 0.6);
 }
 
 .bg-opacity-90 {
@@ -2098,6 +2127,10 @@ h1,
   opacity: 0;
 }
 
+.opacity-100 {
+  opacity: 1;
+}
+
 .opacity-40 {
   opacity: 0.4;
 }
@@ -2176,6 +2209,12 @@ h1,
   transition-duration: 150ms;
 }
 
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2202,13 +2241,14 @@ h1,
 
 /* Example component class */
 
-#primary-menu li a {
+#primary-menu li.menu-item a {
   position: relative;
   padding: 0 20px;
   white-space: nowrap;
+  font-weight: 500;
 }
 
-#primary-menu li  a::after {
+#primary-menu li.menu-item  a::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -2223,12 +2263,282 @@ h1,
   z-index:-1
 }
 
-#primary-menu li.current_page_item  a::after{
+#primary-menu li.menu-item.current_page_item  a::after{
   transform: scaleX(1);
+}
+
+.slider-title strong{
+  font-weight: bold;
+}
+
+/* Hero Section Animations */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Apply animations to hero elements */
+
+.swiper-slide-active .hero-title-animate {
+  animation: fadeInLeft 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.swiper-slide-active .hero-description-animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.swiper-slide-active .hero-buttons-animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.swiper-slide-active .hero-or-animate {
+  animation: scaleIn 0.5s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.swiper-slide-active .hero-video-button {
+  animation: fadeInRight 0.8s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* Initial state for all animated elements */
+
+.hero-title-animate,
+.hero-description-animate,
+.hero-buttons-animate,
+.hero-or-animate,
+.hero-video-button {
+  opacity: 0;
+}
+
+/* Video button hover animation with pulse effect */
+
+.hero-video-button::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  background: rgba(203, 11, 41, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hero-video-button:hover::before {
+  opacity: 1;
+}
+
+/* Menu "Other" Dropdown Styles */
+
+.menu-other-dropdown {
+  position: relative;
+}
+
+.menu-other-trigger {
+  position: relative;
+  padding: 0 15px;
+  white-space: nowrap;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-left: 1px;
+  border-right: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  font-size: 16px;
+}
+
+.menu-other-list {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 200px;
+  border-radius: 0.375rem;
+  background: #4E4E4E;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 50;
+}
+
+.menu-other-list li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-other-list li:last-child {
+  border-bottom: none;
+}
+
+.menu-other-list li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.menu-other-list li a:hover {
+  background-color: var(--main-color);
+  padding-left: 1.5rem;
+}
+
+/* Animation for dropdown arrow */
+
+.menu-other-trigger i {
+  transition: transform 0.3s ease;
+}
+
+/* Add smooth slide down animation */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-other-list.opacity-100 {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Contact Map Tabs Styles */
+
+.map-tab-button {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.map-tab-button[data-active="true"] {
+  color: #CB0B29;
+  background-color: rgba(203, 11, 41, 0.05);
+  border-bottom-color: #CB0B29;
+}
+
+.map-tab-button:hover {
+  background-color: rgba(243, 244, 246, 0.8);
+}
+
+.map-tab-button[data-active="true"]:hover {
+  background-color: rgba(203, 11, 41, 0.08);
+}
+
+/* Map container */
+
+#contact-map {
+  min-height: 400px;
+}
+
+/* Info window custom styles (injected via JS) */
+
+.gm-style .gm-style-iw-c {
+  border-radius: 8px;
+  padding: 0;
+}
+
+.gm-style .gm-style-iw-d {
+  overflow: auto !important;
+}
+
+/* Marker animation */
+
+@keyframes markerBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.last\:border-0:last-child {
+  border-width: 0px;
 }
 
 .hover\:-translate-y-1:hover {
   --tw-translate-y: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:translate-x-2:hover {
+  --tw-translate-x: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2240,6 +2550,11 @@ h1,
 .hover\:border-white:hover {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-red-600:hover {
@@ -2362,6 +2677,26 @@ h1,
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:scale-110 {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:scale-125 {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:border-primary {
+  border-color: var(--main-color);
+}
+
+.group:hover .group-hover\:bg-primary {
+  background-color: var(--main-color);
 }
 
 .group:hover .group-hover\:opacity-100 {
@@ -2806,6 +3141,10 @@ h1,
 
   .lg\:grid-cols-\[minmax\(0\2c 3fr\)_minmax\(0\2c 2fr\)\] {
     grid-template-columns: minmax(0,3fr) minmax(0,2fr);
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:p-12 {

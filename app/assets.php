@@ -52,9 +52,9 @@ function beit_theme_enqueue_assets(): void
 
     wp_enqueue_style(
         'beit-fontawesome',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
         [],
-        '6.5.1'
+        '4.7.0'
     );
 
     wp_enqueue_style(

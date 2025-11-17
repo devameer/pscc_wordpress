@@ -73,12 +73,13 @@
     }
 }
 
-#primary-menu li a {
+#primary-menu li.menu-item a {
   position: relative;
   padding: 0 20px;
   white-space: nowrap;
+  font-weight: 500;
 }
-#primary-menu li  a::after {
+#primary-menu li.menu-item  a::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -92,7 +93,246 @@
   transition: transform 0.3s ease;
   z-index:-1
 }
-#primary-menu li.current_page_item  a::after{
+#primary-menu li.menu-item.current_page_item  a::after{
     transform: scaleX(1);
 
+}
+
+.slider-title strong{
+    font-weight: bold;
+}
+
+/* Hero Section Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Apply animations to hero elements */
+.swiper-slide-active .hero-title-animate {
+    animation: fadeInLeft 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.swiper-slide-active .hero-description-animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.swiper-slide-active .hero-buttons-animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.swiper-slide-active .hero-or-animate {
+    animation: scaleIn 0.5s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.swiper-slide-active .hero-video-button {
+    animation: fadeInRight 0.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Initial state for all animated elements */
+.hero-title-animate,
+.hero-description-animate,
+.hero-buttons-animate,
+.hero-or-animate,
+.hero-video-button {
+    opacity: 0;
+}
+
+/* Video button hover animation with pulse effect */
+.hero-video-button::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    background: rgba(203, 11, 41, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.hero-video-button:hover::before {
+    opacity: 1;
+}
+
+/* Menu "Other" Dropdown Styles */
+.menu-other-dropdown {
+    position: relative;
+}
+
+.menu-other-trigger {
+    position: relative;
+    padding: 0 15px;
+    white-space: nowrap;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    font-size: 16px;
+}
+
+
+
+.menu-other-list {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 200px;
+    border-radius: 0.375rem;
+    background: #4E4E4E;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 50;
+}
+
+.menu-other-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-other-list li:last-child {
+    border-bottom: none;
+}
+
+.menu-other-list li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: white;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.menu-other-list li a:hover {
+    background-color: var(--main-color);
+    padding-left: 1.5rem;
+}
+
+/* Animation for dropdown arrow */
+.menu-other-trigger i {
+    transition: transform 0.3s ease;
+}
+
+/* Add smooth slide down animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-other-list.opacity-100 {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Contact Map Tabs Styles */
+.map-tab-button {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.map-tab-button[data-active="true"] {
+    color: #CB0B29;
+    background-color: rgba(203, 11, 41, 0.05);
+    border-bottom-color: #CB0B29;
+}
+
+.map-tab-button:hover {
+    background-color: rgba(243, 244, 246, 0.8);
+}
+
+.map-tab-button[data-active="true"]:hover {
+    background-color: rgba(203, 11, 41, 0.08);
+}
+
+/* Map container */
+#contact-map {
+    min-height: 400px;
+}
+
+/* Info window custom styles (injected via JS) */
+.gm-style .gm-style-iw-c {
+    border-radius: 8px;
+    padding: 0;
+}
+
+.gm-style .gm-style-iw-d {
+    overflow: auto !important;
+}
+
+/* Marker animation */
+@keyframes markerBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }

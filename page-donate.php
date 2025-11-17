@@ -122,21 +122,21 @@ while (have_posts()) {
                     <div class="mt-5 space-y-3 text-sm">
                         <?php if (!empty($contact_details['phone'])) : ?>
                             <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-phone"></i>
+                                <i class="fa fa-phone"></i>
                                 <a class="font-semibold text-white"
                                     href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $contact_details['phone'])); ?>"><?php echo esc_html($contact_details['phone']); ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($contact_details['email'])) : ?>
                             <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa fa-envelope"></i>
                                 <a class="font-semibold text-white"
                                     href="mailto:<?php echo esc_attr($contact_details['email']); ?>"><?php echo esc_html($contact_details['email']); ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($contact_details['address'])) : ?>
                             <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-location-dot mt-1"></i>
+                                <i class="fa fa-location-dot mt-1"></i>
                                 <span><?php echo esc_html($contact_details['address']); ?></span>
                             </div>
                         <?php endif; ?>
@@ -146,7 +146,7 @@ while (have_posts()) {
                 <?php if (!empty($highlight_cards)) : ?>
                     <div class="grid gap-4">
                         <?php foreach ($highlight_cards as $card) :
-                            $icon  = $card['icon'] ?? 'fa-solid fa-hand-holding-heart';
+                            $icon  = $card['icon'] ?? 'fa fa-hand-holding-heart';
                             $title = $card['title'] ?? '';
                             $text  = $card['description'] ?? '';
                         ?>

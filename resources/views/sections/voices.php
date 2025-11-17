@@ -32,7 +32,7 @@ if (empty($items)) {
                 <h2 class="text-3xl font-light text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($voices['subtitle'])) : ?>
-                <p class="text-base text-black md:text-lg"><?php echo wp_kses_post($voices['subtitle']); ?></p>
+                <p class="text-base text-black md:text-lg font-light"><?php echo wp_kses_post($voices['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
@@ -68,7 +68,7 @@ if (empty($items)) {
                             <span
                                 class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
                                 <i
-                                    class="fa-solid <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
+                                    class="fa <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-search'); ?>"></i>
                             </span>
                         </span>
                         <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"

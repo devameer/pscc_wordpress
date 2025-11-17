@@ -11,8 +11,8 @@ $args = wp_parse_args(
     [
         'data'              => [],
         'heading_alignment' => 'text-center',
-        'hero_prev_icon'    => 'fa-solid fa-arrow-left',
-        'hero_next_icon'    => 'fa-solid fa-arrow-right',
+        'hero_prev_icon'    => 'fa fa-arrow-left',
+        'hero_next_icon'    => 'fa fa-arrow-right',
     ]
 );
 

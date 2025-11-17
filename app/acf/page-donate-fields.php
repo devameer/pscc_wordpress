@@ -129,7 +129,7 @@ acf_add_local_field_group(
                         'label' => __('Icon class', 'beit'),
                         'name'  => 'icon',
                         'type'  => 'text',
-                        'instructions' => __('Font Awesome class, e.g. "fa-solid fa-hands-holding-heart".', 'beit'),
+                        'instructions' => __('Font Awesome class, e.g. "fa fa-hands-holding-heart".', 'beit'),
                     ],
                     [
                         'key'   => 'field_donation_card_title',
