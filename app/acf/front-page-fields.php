@@ -222,6 +222,16 @@ acf_add_local_field_group(
                         'rows'  => 3,
                     ],
                     [
+                        'key'           => 'field_front_facts_background_image',
+                        'label'         => __('Background Image', 'beit'),
+                        'name'          => 'background_image',
+                        'type'          => 'image',
+                        'instructions'  => __('Background image for the Facts section (a dark overlay will be applied)', 'beit'),
+                        'return_format' => 'url',
+                        'preview_size'  => 'large',
+                        'library'       => 'all',
+                    ],
+                    [
                         'key'          => 'field_front_facts_filters',
                         'label'        => __('Filter Buttons', 'beit'),
                         'name'         => 'filters',

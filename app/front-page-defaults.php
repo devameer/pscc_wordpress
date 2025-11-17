@@ -148,14 +148,15 @@ function beit_front_default_newsletter(): array
 function beit_front_default_facts(): array
 {
     return [
-        'title'    => __('Facts & Figures', 'beit'),
-        'subtitle' => __('Turning data into real community impact—because transparency builds trust.', 'beit'),
-        'filters'  => [
+        'title'            => __('Facts & Figures', 'beit'),
+        'subtitle'         => __('Turning data into real community impact—because transparency builds trust.', 'beit'),
+        'background_image' => '',
+        'filters'          => [
             ['label' => '2025', 'highlighted' => true],
             ['label' => '2024', 'highlighted' => false],
             ['label' => '2023', 'highlighted' => false],
         ],
-        'items'    => [
+        'items'            => [
             [
                 'value' => '240',
                 'label' => __('Projects Reached', 'beit'),

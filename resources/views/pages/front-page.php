@@ -145,6 +145,9 @@ if (is_array($facts_field)) {
     if (!empty($facts_field['items']) && is_array($facts_field['items'])) {
         $facts['items'] = $facts_field['items'];
     }
+    if (!empty($facts_field['background_image'])) {
+        $facts['background_image'] = $facts_field['background_image'];
+    }
 }
 
 $partners = $partners_defaults;

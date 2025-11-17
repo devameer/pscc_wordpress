@@ -52,11 +52,11 @@ if (empty($items)) {
                         }
                     ?>
                         <div class="swiper-slide">
-                            <div class="flex h-56 items-center justify-center rounded-2xl bg-white p-4 transition hover:bg-slate-200">
+                            <div class="flex h-56 items-center justify-center border border-gray-200 bg-white p-4 transition hover:bg-slate-200">
                                 <?php if (is_numeric($logo)) : ?>
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'max-h-16 object-contain']); ?>
                                 <?php else : ?>
-                                    <img class="max-h-16 object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
+                                    <img class="object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
                                 <?php endif; ?>
                             </div>
                         </div>

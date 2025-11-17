@@ -112,13 +112,13 @@ $donate_target = $donate_link['target'] ?? '_self';
                     </div>
 
                     <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/80  px-3 py-1.5 lg:px-4 lg:py-2 text-xs font-semibold text-white transition hover:border-red-500 hover:text-red-400"
+                        <a class="inline-flex items-center gap-2 border-l border-r border-white/80  px-3 py-1.5 lg:px-6 lg:py-3 text-xs font-semibold text-white transition hover:border-red-500 hover:text-red-400"
                             href="<?php echo esc_url(home_url('/?s=')); ?>">
                             <i class="fa-solid fa-magnifying-glass text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="inline-flex bg-primary rounded-xs px-4 py-1.5 lg:px-5 lg:py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                        <a class="inline-flex bg-primary rounded-xs px-4 py-1.5 lg:px-10 lg:py-3 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
                             href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                             rel="noopener">
                             <?php echo esc_html($donate_label); ?>
