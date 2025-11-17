@@ -74,8 +74,8 @@ get_template_part(
                     $lightbox_src = $media['src'];
                     $lightbox_type = $media['type'];
                     $caption = $media['caption'] ?: $item['title'];
-                    ?>
-                    <article class="overflow-hidden rounded-md bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                ?>
+                    <article class="overflow-hidden  transition hover:-translate-y-1 mb-6">
                         <?php if ($thumb) : ?>
                             <a
                                 class="group relative block w-full"
@@ -83,18 +83,27 @@ get_template_part(
                                 data-type="<?php echo esc_attr($lightbox_type); ?>"
                                 data-caption="<?php echo esc_attr($caption); ?>"
                                 href="<?php echo esc_url($lightbox_src); ?>"
-                                aria-label="<?php esc_attr_e('Open media', 'beit'); ?>"
-                            >
-                                <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
-                                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
+                                aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
+                                <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 ">
+                                    <!-- <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
                                         <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
-                                    </span>
+                                    </span> -->
+                                    <?php
+                                    if ('video' === $lightbox_type) : ?>
+                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>">
+                                    <?php else : ?>
+                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>">
+
+                                    <?php endif; ?>
+
                                 </span>
                                 <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($item['title']); ?>">
                             </a>
                         <?php endif; ?>
+                        <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($item['title']); ?></h3>
 
-                      
+
+
                     </article>
                 <?php endforeach; ?>
             </div>
@@ -115,7 +124,7 @@ get_template_part(
         );
 
         if (!empty($pagination_links)) :
-            ?>
+        ?>
             <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('Media pagination', 'beit'); ?>">
                 <ul class="flex items-center gap-2">
                     <?php
@@ -132,11 +141,11 @@ get_template_part(
                             $link,
                             1
                         );
-                        ?>
+                    ?>
                         <li class="inline-flex">
                             <?php echo wp_kses_post($link); ?>
                         </li>
-                        <?php
+                    <?php
                     }
                     ?>
                 </ul>

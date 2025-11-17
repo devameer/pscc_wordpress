@@ -81,7 +81,7 @@ if (empty($facts['items'])) {
             <div
                 class="rounded-md bg-[#A4A4A4] p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
                 <?php if ($value) : ?>
-                <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold"><?php echo esc_html($value); ?></div>
+                <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold" data-counter data-target="<?php echo esc_attr($value); ?>">0</div>
                 <?php endif; ?>
                 <?php if ($label) : ?>
                 <div class="mt-2 md:mt-3 text-xs md:text-sm font-semibold uppercase tracking-widest text-white/70">

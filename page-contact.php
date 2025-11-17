@@ -130,7 +130,7 @@ while (have_posts()) {
                                     <?php if ($map_link) : ?>
                                         <a class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700"
                                             href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
-                                            <i class="fa fa-map"></i>
+                                            <i class="fa fa-map-marker-alt"></i>
                                             <?php esc_html_e('View on Map', 'beit'); ?>
                                         </a>
                                     <?php endif; ?>
@@ -149,8 +149,8 @@ while (have_posts()) {
                             <button
                                 class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
                                 data-tab="offices"
-                                data-active="true">
-                                <i class="fa fa-building mr-2"></i>
+                                data-active="false">
+                                <i class="fa fa-map-marker-alt mr-2"></i>
                                 <?php esc_html_e('Our Offices', 'beit'); ?>
                             </button>
                             <button
@@ -289,7 +289,7 @@ while (have_posts()) {
                 let map;
                 let officeMarkers = [];
                 let warehouseMarkers = [];
-                let currentTab = 'offices';
+                let currentTab = '';
 
                 // Initialize the map
                 map = new google.maps.Map(mapContainer, {
@@ -304,16 +304,16 @@ while (have_posts()) {
                     ]
                 });
 
-                // Create custom marker icons - using optimized SVG data URI
+                // Create custom marker icons
                 const createMarkerIcon = (color) => {
-                    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="27" height="43" viewBox="0 0 27 43">
-                        <path fill="${color}" stroke="#FFFFFF" stroke-width="2" d="M13.5,0C6.044,0,0,6.044,0,13.5C0,23.625,13.5,43,13.5,43S27,23.625,27,13.5C27,6.044,20.956,0,13.5,0z M13.5,18.563c-2.794,0-5.063-2.269-5.063-5.063S10.706,8.438,13.5,8.438s5.063,2.269,5.063,5.063S16.294,18.563,13.5,18.563z"/>
-                    </svg>`;
-
                     return {
-                        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-                        scaledSize: new google.maps.Size(27, 43),
-                        anchor: new google.maps.Point(13.5, 43)
+                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+                        fillColor: color,
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        strokeWeight: 2,
+                        scale: 1.5,
+                        anchor: new google.maps.Point(12, 22)
                     };
                 };
 
@@ -437,8 +437,8 @@ while (have_posts()) {
                     });
                 });
 
-                // Initialize showing offices only
-                switchTab('offices');
+                // Initialize showing all markers
+                switchTab('all');
             };
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo esc_attr($google_maps_api_key); ?>&callback=initContactMap" async defer></script>

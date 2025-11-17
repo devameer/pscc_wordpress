@@ -336,7 +336,7 @@ window.initContactMap = function() {
     const data = window.contactMapData;
     let map;
     let markers = [];
-    let currentTab = 'offices';
+    let currentTab = '';
 
     // Initialize the map
     map = new google.maps.Map(mapContainer, {
@@ -361,65 +361,75 @@ window.initContactMap = function() {
     const showMarkers = (tabName) => {
         clearMarkers();
 
-        const locations = tabName === 'offices' ? data.offices : data.warehouses;
-
-        if (!locations || locations.length === 0) {
-            return;
-        }
-
         const bounds = new google.maps.LatLngBounds();
 
-        locations.forEach((location) => {
-            if (!location.lat || !location.lng) {
+        const addSet = (locations, color) => {
+            if (!locations || locations.length === 0) {
                 return;
             }
 
-            const position = { lat: location.lat, lng: location.lng };
-
-            // Create marker with custom color
-            const marker = new google.maps.Marker({
-                position: position,
-                map: map,
-                title: location.name,
-                animation: google.maps.Animation.DROP,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: tabName === 'offices' ? '#CB0B29' : '#4E4E4E',
-                    fillOpacity: 1,
-                    strokeColor: '#ffffff',
-                    strokeWeight: 2
+            locations.forEach((location) => {
+                if (!location.lat || !location.lng) {
+                    return;
                 }
-            });
 
-            // Create info window
-            const infoContent = `
-                <div style="padding: 10px; max-width: 200px;">
-                    <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
-                        ${location.name || ''}
-                    </h3>
-                    ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
-                </div>
-            `;
+                const position = { lat: location.lat, lng: location.lng };
 
-            const infoWindow = new google.maps.InfoWindow({
-                content: infoContent
-            });
-
-            marker.addListener('click', () => {
-                // Close all other info windows
-                markers.forEach(m => {
-                    if (m.infoWindow) {
-                        m.infoWindow.close();
+                // Create marker with map-marker icon
+                const marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: location.name,
+                    animation: google.maps.Animation.DROP,
+                    icon: {
+                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+                        fillColor: color,
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        strokeWeight: 2,
+                        scale: 1.5,
+                        anchor: new google.maps.Point(12, 22)
                     }
                 });
-                infoWindow.open(map, marker);
-            });
 
-            marker.infoWindow = infoWindow;
-            markers.push(marker);
-            bounds.extend(position);
-        });
+                // Create info window
+                const infoContent = `
+                    <div style="padding: 10px; max-width: 200px;">
+                        <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
+                            ${location.name || ''}
+                        </h3>
+                        ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
+                    </div>
+                `;
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: infoContent
+                });
+
+                marker.addListener('click', () => {
+                    // Close all other info windows
+                    markers.forEach(m => {
+                        if (m.infoWindow) {
+                            m.infoWindow.close();
+                        }
+                    });
+                    infoWindow.open(map, marker);
+                });
+
+                marker.infoWindow = infoWindow;
+                markers.push(marker);
+                bounds.extend(position);
+            });
+        };
+
+        if (tabName === 'all') {
+            addSet(data.offices, '#CB0B29');
+            addSet(data.warehouses, '#4E4E4E');
+        } else if (tabName === 'offices') {
+            addSet(data.offices, '#CB0B29');
+        } else if (tabName === 'warehouses') {
+            addSet(data.warehouses, '#4E4E4E');
+        }
 
         // Fit map to show all markers
         if (markers.length > 0) {
@@ -465,6 +475,59 @@ window.initContactMap = function() {
         });
     });
 
-    // Initialize with the first tab (offices)
-    switchTab('offices');
+    // Initialize with all markers visible
+    switchTab('all');
 };
+
+// Facts counters on scroll
+(() => {
+    const counters = document.querySelectorAll('[data-counter]');
+    if (counters.length === 0) return;
+
+    const animateCounter = (el) => {
+        if (el.dataset.counted === 'true') return;
+        el.dataset.counted = 'true';
+
+        const raw = el.getAttribute('data-target') || el.textContent || '0';
+        const match = raw.match(/[\d,.]+/);
+        const target = match ? parseFloat(match[0].replace(/,/g, '')) : 0;
+
+        // Derive prefix/suffix from raw, keep them in output
+        const numberIndex = raw.indexOf(match ? match[0] : '');
+        const prefix = numberIndex > 0 ? raw.slice(0, numberIndex) : '';
+        const suffix = match ? raw.slice(numberIndex + match[0].length) : '';
+
+        const duration = parseInt(el.getAttribute('data-duration') || '1500', 10);
+        const start = performance.now();
+
+        const format = (n) => `${prefix}${Math.round(n).toLocaleString()}${suffix}`;
+
+        const step = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+            el.textContent = format(target * eased);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = format(target);
+            }
+        };
+
+        // Start from 0
+        el.textContent = format(0);
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.35 });
+
+    counters.forEach((el) => {
+        observer.observe(el);
+    });
+})();
