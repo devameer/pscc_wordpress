@@ -97,7 +97,7 @@ $donate_target = $donate_link['target'] ?? '_self';
 
                     <div class="flex flex-wrap items-center  mr-auto">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-light"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
@@ -107,18 +107,18 @@ $donate_target = $donate_link['target'] ?? '_self';
                         <?php if ($topbar_phone) :
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                         ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-light"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa fa-phone text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-light"
                             href="#">
                             <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
                             <span class="text-[9px] sm:text-[10px] md:text-xs">عربي</span>
                         </a>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-light"
                             href="#">
                             <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
                             <span class="text-[9px] sm:text-[10px] md:text-xs">FAQs</span>
