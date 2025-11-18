@@ -243,7 +243,7 @@ while (have_posts()) {
                                             continue;
                                         }
                                 ?>
-                                        <a class="transition hover:text-red-600 flex justify-center items-center" href="<?php echo esc_url($url); ?>" target="_blank"
+                                        <a class="transition hover:text-red-600 flex justify-center items-center    " href="<?php echo esc_url($url); ?>" target="_blank"
                                             rel="noopener">
                                             <?php if($social['icon'] === 'fa fa-twitter'): ?>
                                                 <?php echo file_get_contents(get_template_directory() . '/resources/assets/images/x.svg'); ?>
@@ -268,7 +268,7 @@ while (have_posts()) {
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
                             <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-phone text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Phone', 'beit'); ?></h3>
+                                <h3 class="mb-2 font-light text-gray-800"><?php esc_html_e('Phone', 'beit'); ?></h3>
                                 <a class="text-gray-700"
                                     href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>"><?php echo esc_html($phone); ?></a>
                             </div>
@@ -279,7 +279,7 @@ while (have_posts()) {
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
                             <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-envelope text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Email', 'beit'); ?></h3>
+                                <h3 class="mb-2 font-light text-gray-800"><?php esc_html_e('Email', 'beit'); ?></h3>
                                 <a class="text-gray-700"
                                     href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
                             </div>
@@ -289,9 +289,9 @@ while (have_posts()) {
                     <?php if ($address) : ?>
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
                             <span class="rounded bg-red-600 p-3 text-white"><i
-                                    class="fa fa-map-marker-alt text-xl"></i></span>
+                                    class="fa fa-map-marker text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Address', 'beit'); ?></h3>
+                                <h3 class="mb-2 font-light text-gray-800"><?php esc_html_e('Address', 'beit'); ?></h3>
                                 <p class="text-gray-700"><?php echo esc_html($address); ?></p>
                             </div>
                         </div>
@@ -301,7 +301,7 @@ while (have_posts()) {
                         <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
                             <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-clock text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Working Hours', 'beit'); ?></h3>
+                                <h3 class="mb-2 font-light text-gray-800"><?php esc_html_e('Working Hours', 'beit'); ?></h3>
                                 <p class="text-gray-700"><?php echo esc_html($hours); ?></p>
                             </div>
                         </div>
