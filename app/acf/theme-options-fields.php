@@ -75,6 +75,15 @@ acf_add_local_field_group(
                 'name'  => 'donate_link',
                 'type'  => 'link',
             ],
+            [
+                'key'           => 'field_footer_logo',
+                'label'         => __('Footer Logo (White)', 'beit'),
+                'name'          => 'footer_logo',
+                'type'          => 'image',
+                'return_format' => 'id',
+                'preview_size'  => 'medium',
+                'library'       => 'all',
+            ],
         ],
         'location' => [
             [

@@ -64,11 +64,11 @@ if (empty($items)) {
                 </div>
             </div>
 
-            <div class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2">
-                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow hover:bg-slate-100 partners-button-prev" type="button" aria-label="<?php esc_attr_e('Previous partners', 'beit'); ?>">
+            <div class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 z-10">
+                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700 partners-button-prev" type="button" aria-label="<?php esc_attr_e('Previous partners', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_prev_icon); ?>"></i>
                 </button>
-                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow hover:bg-slate-100 partners-button-next" type="button" aria-label="<?php esc_attr_e('Next partners', 'beit'); ?>">
+                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700 partners-button-next" type="button" aria-label="<?php esc_attr_e('Next partners', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_next_icon); ?>"></i>
                 </button>
             </div>

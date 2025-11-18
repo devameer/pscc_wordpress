@@ -604,3 +604,13 @@ window.initContactMap = function() {
   const type = url.searchParams.get('post_type') || 'all';
   applyFilter(type);
 })();
+
+// Back-to-top button
+(() => {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();

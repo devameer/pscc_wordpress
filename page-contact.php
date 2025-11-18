@@ -150,13 +150,13 @@ while (have_posts()) {
                                 class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
                                 data-tab="offices"
                                 data-active="false">
-                                <i class="fa fa-map-marker-alt mr-2"></i>
+                                <i class="fa fa-map-marker  mr-2"></i>
                                 <?php esc_html_e('Our Offices', 'beit'); ?>
                             </button>
                             <button
                                 class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
                                 data-tab="warehouses">
-                                <i class="fa fa-warehouse mr-2"></i>
+                                <i class="fa fa-cubes mr-2"></i>
                                 <?php esc_html_e('Warehouses', 'beit'); ?>
                             </button>
                         </div>
@@ -173,22 +173,22 @@ while (have_posts()) {
                                     lng: <?php echo floatval($map_default_center['longitude'] ?? 35.2332); ?>
                                 },
                                 defaultZoom: <?php echo intval($map_default_center['zoom'] ?? 8); ?>,
-                                offices: <?php echo wp_json_encode(array_map(function($office) {
-                                    return [
-                                        'name' => $office['name'] ?? '',
-                                        'address' => $office['address'] ?? '',
-                                        'lat' => floatval($office['latitude'] ?? 0),
-                                        'lng' => floatval($office['longitude'] ?? 0),
-                                    ];
-                                }, $map_offices)); ?>,
-                                warehouses: <?php echo wp_json_encode(array_map(function($warehouse) {
-                                    return [
-                                        'name' => $warehouse['name'] ?? '',
-                                        'address' => $warehouse['address'] ?? '',
-                                        'lat' => floatval($warehouse['latitude'] ?? 0),
-                                        'lng' => floatval($warehouse['longitude'] ?? 0),
-                                    ];
-                                }, $map_warehouses)); ?>
+                                offices: <?php echo wp_json_encode(array_map(function ($office) {
+                                                return [
+                                                    'name' => $office['name'] ?? '',
+                                                    'address' => $office['address'] ?? '',
+                                                    'lat' => floatval($office['latitude'] ?? 0),
+                                                    'lng' => floatval($office['longitude'] ?? 0),
+                                                ];
+                                            }, $map_offices)); ?>,
+                                warehouses: <?php echo wp_json_encode(array_map(function ($warehouse) {
+                                                return [
+                                                    'name' => $warehouse['name'] ?? '',
+                                                    'address' => $warehouse['address'] ?? '',
+                                                    'lat' => floatval($warehouse['latitude'] ?? 0),
+                                                    'lng' => floatval($warehouse['longitude'] ?? 0),
+                                                ];
+                                            }, $map_warehouses)); ?>
                             };
                         </script>
                     </div>
@@ -295,13 +295,13 @@ while (have_posts()) {
                 map = new google.maps.Map(mapContainer, {
                     center: data.defaultCenter,
                     zoom: data.defaultZoom,
-                    styles: [
-                        {
-                            featureType: 'poi',
-                            elementType: 'labels',
-                            stylers: [{ visibility: 'off' }]
-                        }
-                    ]
+                    styles: [{
+                        featureType: 'poi',
+                        elementType: 'labels',
+                        stylers: [{
+                            visibility: 'off'
+                        }]
+                    }]
                 });
 
                 // Create custom marker icons
@@ -328,7 +328,10 @@ while (have_posts()) {
                             return;
                         }
 
-                        const position = { lat: location.lat, lng: location.lng };
+                        const position = {
+                            lat: location.lat,
+                            lng: location.lng
+                        };
 
                         // Create marker with map-marker icon
                         const marker = new google.maps.Marker({
@@ -369,7 +372,10 @@ while (have_posts()) {
                         bounds.extend(position);
                     });
 
-                    return { markers, bounds };
+                    return {
+                        markers,
+                        bounds
+                    };
                 };
 
                 // Create all markers
