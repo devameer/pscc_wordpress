@@ -21,7 +21,7 @@ function beit_theme_asset_version(string $relative_path): string
     //     return (string) filemtime($absolute_path);
     // }
 
-    return BEIT_THEME_VERSION;
+    return '1.2.0';
 }
 
 /**
