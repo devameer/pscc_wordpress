@@ -15,11 +15,11 @@ if (!defined('ABSPATH')) {
  */
 function beit_theme_asset_version(string $relative_path): string
 {
-    $absolute_path = BEIT_THEME_DIR . '/' . ltrim($relative_path, '/');
+    // $absolute_path = BEIT_THEME_DIR . '/' . ltrim($relative_path, '/');
 
-    if (file_exists($absolute_path)) {
-        return (string) filemtime($absolute_path);
-    }
+    // if (file_exists($absolute_path)) {
+    //     return (string) filemtime($absolute_path);
+    // }
 
     return BEIT_THEME_VERSION;
 }
