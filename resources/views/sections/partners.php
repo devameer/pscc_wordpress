@@ -59,7 +59,7 @@ if (empty($items)) {
                                     <img class="object-contain" src="<?php echo esc_url((string) $logo); ?>" alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
                                 <?php endif; ?>
                             </div>
-                        </div>
+                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>

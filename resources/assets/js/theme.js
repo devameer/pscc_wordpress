@@ -235,7 +235,7 @@
         const itemCount = menuItems.length;
 
         // Only proceed if there are more than 3 items
-        if (itemCount <= 3) {
+        if (itemCount <= 4) {
             return;
         }
 
