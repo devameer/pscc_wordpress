@@ -64,7 +64,7 @@ function beit_theme_enqueue_assets(): void
         '2.3.4'
     );
 
-    $compiled_css = 'public/css/apasdp.css';
+    $compiled_css = 'public/css/app.css';
     $compiled_css_path = BEIT_THEME_DIR . '/' . $compiled_css;
 
     if (file_exists($compiled_css_path)) {
@@ -86,7 +86,7 @@ function beit_theme_enqueue_assets(): void
 
     wp_enqueue_script(
         'beit-theme',
-        BEIT_THEME_URI . '/resources/assets/js/theme.js',
+        BEIT_THEME_URI . '/resources/assets/js/theme.js?v=' . beit_theme_asset_version('resources/assets/js/theme.js'),
         ['swiper'],
         beit_theme_asset_version('resources/assets/js/theme.js'),
         true
