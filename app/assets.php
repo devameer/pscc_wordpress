@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
  */
 function beit_theme_asset_version(): string
 {
- 
+    
 
     return rand(111111, 999999);
 }
@@ -36,7 +36,7 @@ function beit_theme_enqueue_assets(): void
         'beit-fonts',
         BEIT_THEME_URI . '/public/css/fonts.css',
         [],
-        []
+    []
     );
 
     wp_enqueue_style(
@@ -82,7 +82,7 @@ function beit_theme_enqueue_assets(): void
 
     wp_enqueue_script(
         'beit-theme',
-        BEIT_THEME_URI . '/resources/assets/js/theme.js?v=' . beit_theme_asset_version(''),
+        BEIT_THEME_URI . '/resources/assets/js/theme.js?v=' . beit_theme_asset_version(),
         ['swiper'],
         [],
         true
