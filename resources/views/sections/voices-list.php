@@ -37,7 +37,7 @@ if (empty($posts)) {
                         echo wp_get_attachment_image((int) $image_id, 'large', false, ['class' => 'h-64 w-full object-cover transition duration-500 group-hover:scale-105']);
                     } else {
                         ?>
-                        <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="<?php echo esc_url((string) $image_id); ?>" alt="">
+                        <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="<?php echo esc_url((string) $image_id); ?>" alt="" loading="lazy" decoding="async">
                         <?php
                     }
                     ?>

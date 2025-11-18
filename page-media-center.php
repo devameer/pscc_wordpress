@@ -90,14 +90,14 @@ get_template_part(
                                     </span> -->
                                     <?php
                                     if ('video' === $lightbox_type) : ?>
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>">
+                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
                                     <?php else : ?>
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>">
+                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
 
                                     <?php endif; ?>
 
                                 </span>
-                                <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                                <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy" decoding="async">
                             </a>
                         <?php endif; ?>
                         <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($item['title']); ?></h3>

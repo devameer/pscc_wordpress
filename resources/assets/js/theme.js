@@ -497,7 +497,7 @@ window.initContactMap = function() {
         const prefix = numberIndex > 0 ? raw.slice(0, numberIndex) : '';
         const suffix = match ? raw.slice(numberIndex + match[0].length) : '';
 
-        const duration = parseInt(el.getAttribute('data-duration') || '1500', 10);
+        const duration = parseInt(el.getAttribute('data-duration') || '5000', 10);
         const start = performance.now();
 
         const format = (n) => `${prefix}${Math.round(n).toLocaleString()}${suffix}`;
@@ -530,4 +530,77 @@ window.initContactMap = function() {
     counters.forEach((el) => {
         observer.observe(el);
     });
+})();
+
+// Lazy background images on scroll
+(() => {
+    const lazyBgElements = document.querySelectorAll('[data-bg]');
+    if (lazyBgElements.length === 0) return;
+
+    const loadBg = (el) => {
+        if (el.dataset.bgLoaded === 'true') return;
+        const src = el.getAttribute('data-bg');
+        if (!src) return;
+        el.dataset.bgLoaded = 'true';
+        const img = new Image();
+        img.onload = () => {
+            el.style.backgroundImage = `url(${src})`;
+            el.classList.add('bg-loaded');
+        };
+        img.src = src;
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                loadBg(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    lazyBgElements.forEach((el) => {
+        observer.observe(el);
+    });
+})();
+
+// Search page client-side filters
+(() => {
+  const container = document.querySelector('section.container');
+  if (!container) return;
+
+  const filterLinks = container.querySelectorAll('[data-filter]');
+  const cards = container.querySelectorAll('[data-type]');
+  if (filterLinks.length === 0 || cards.length === 0) return;
+
+  const setActive = (type) => {
+    filterLinks.forEach((a) => {
+      const current = a.dataset.filter || 'all';
+      const isActive = type === 'all' ? current === 'all' : current === type;
+      a.classList.toggle('bg-red-600', isActive);
+      a.classList.toggle('text-white', isActive);
+      a.classList.toggle('bg-slate-100', !isActive);
+      a.classList.toggle('text-slate-700', !isActive);
+    });
+  };
+
+  const applyFilter = (type) => {
+    cards.forEach((card) => {
+      const show = type === 'all' || (card.dataset.type || '') === type;
+      card.style.display = show ? '' : 'none';
+    });
+    setActive(type);
+  };
+
+  filterLinks.forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const type = a.dataset.filter || 'all';
+      applyFilter(type);
+    });
+  });
+
+  const url = new URL(window.location.href);
+  const type = url.searchParams.get('post_type') || 'all';
+  applyFilter(type);
 })();

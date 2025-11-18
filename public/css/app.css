@@ -581,17 +581,35 @@ h1,
   padding-left: 1rem;
 }
 
+.\!container {
+  width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
     padding-right: 1.25rem;
     padding-left: 1.25rem;
   }
+
+  .\!container {
+    max-width: 640px !important;
+    padding-right: 1.25rem !important;
+    padding-left: 1.25rem !important;
+  }
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
   }
 }
 
@@ -601,6 +619,12 @@ h1,
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
+
+  .\!container {
+    max-width: 1024px !important;
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -609,11 +633,21 @@ h1,
     padding-right: 2rem;
     padding-left: 2rem;
   }
+
+  .\!container {
+    max-width: 1280px !important;
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
 }
 
 @media (min-width: 1536px) {
   .container {
     max-width: 1536px;
+  }
+
+  .\!container {
+    max-width: 1536px !important;
   }
 }
 
@@ -955,6 +989,10 @@ h1,
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-auto {
+  margin-top: auto;
 }
 
 .block {
@@ -1612,6 +1650,12 @@ h1,
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-black\/60 {
+  --tw-gradient-from: rgb(0 0 0 / 0.6) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .via-amber-800 {
   --tw-gradient-to: rgb(146 64 14 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #92400e var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -1835,6 +1879,11 @@ h1,
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-20 {
@@ -2229,6 +2278,12 @@ h1,
 
 .transition-transform {
   transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity {
+  transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }

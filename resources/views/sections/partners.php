@@ -35,10 +35,10 @@ if (empty($items)) {
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($partners['title'])) : ?>
-                <h2 class="text-3xl font-light text-slate-900 md:text-4xl"><?php echo wp_kses_post($partners['title']); ?></h2>
+                <h2 class="text-3xl font-light t md:text-5xl"><?php echo wp_kses_post($partners['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($partners['subtitle'])) : ?>
-                <p class="text-base text-slate-600 md:text-lg"><?php echo esc_html($partners['subtitle']); ?></p>
+                <p class="text-base md:text-lg font-light max-w-sm mx-auto"><?php echo esc_html($partners['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 

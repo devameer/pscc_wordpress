@@ -73,7 +73,7 @@ if (!$programs_query->have_posts()) {
 
             $content_background = 'image-left' === $layout ? 'bg-white' : 'bg-gray-50';
             $content_html = '';
-            $content_html .= '<div class="' . esc_attr($content_background) . ' p-6 md:p-8 lg:p-12 flex flex-col justify-center gap-4 md:gap-6">';
+            $content_html .= '<div class="' . esc_attr($content_background) . ' p-6 md:p-8 lg:p-12 flex flex-col justify-center gap-4 md:gap-6 transition-transform duration-300">';
             if ($eyebrow) {
                 $content_html .= '<span class="text-xs md:text-sm uppercase tracking-[0.4em] text-red-500">' . esc_html($eyebrow) . '</span>';
             }
@@ -100,9 +100,9 @@ if (!$programs_query->have_posts()) {
 
             $image_html = '';
             if ($image_url) {
-                $image_html .= '<div class="relative h-[300px] md:h-[400px] overflow-hidden">';
-                $image_html .= '<img class="w-full h-full object-cover" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
-                $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>';
+                $image_html .= '<div class="relative h-[300px] md:h-[400px] overflow-hidden group">';
+                $image_html .= '<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
+                $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>';
                 $image_html .= '<div class="absolute bottom-0 left-0 p-4 md:p-6 lg:p-8 text-white">';
                 if ($overlay_heading) {
                     $image_html .= '<h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">' . esc_html($overlay_heading) . '</h2>';
@@ -120,7 +120,7 @@ if (!$programs_query->have_posts()) {
             $image_animation = 'image-left' === $layout ? 'fade-left' : 'fade-right';
             $content_animation = 'image-left' === $layout ? 'fade-right' : 'fade-left';
 
-            $row_classes = 'grid md:grid-cols-2 gap-0 mb-0';
+            $row_classes = 'grid md:grid-cols-2 gap-0 mb-0 rounded-2xl overflow-hidden transition hover:-translate-y-1';
             echo '<div class="' . esc_attr($row_classes) . '" data-aos="fade-up" data-aos-delay="' . esc_attr($animation_delay) . '">';
 
             if ('image-left' === $layout) {

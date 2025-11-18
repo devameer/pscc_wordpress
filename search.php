@@ -65,14 +65,14 @@ get_template_part(
                 <a
                     href="<?php echo esc_url(add_query_arg(['s' => $search_query], home_url('/'))); ?>"
                     class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo empty($post_type_filter) ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
-                >
+                    data-filter="all">
                     <?php esc_html_e('All', 'beit'); ?>
                 </a>
                 <?php foreach ($available_post_types as $type => $label) : ?>
                     <a
                         href="<?php echo esc_url(add_query_arg(['s' => $search_query, 'post_type' => $type], home_url('/'))); ?>"
                         class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo $post_type_filter === $type ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
-                    >
+                        data-filter="<?php echo esc_attr($type); ?>">
                         <?php echo esc_html($label); ?>
                     </a>
                 <?php endforeach; ?>
@@ -92,13 +92,15 @@ get_template_part(
 
                     // beit_voice (Media Center style with lightbox)
                     if ('beit_voice' === $post_type) {
+
                         $media = beit_get_voice_media_data(get_the_ID());
                         $thumb = $media['thumbnail_url'];
                         $lightbox_src = $media['src'];
                         $lightbox_type = $media['type'];
                         $caption = $media['caption'] ?: get_the_title();
-                        ?>
-                        <article class="overflow-hidden rounded-md bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                ?>
+                        <article class="overflow-hidden  transition hover:-translate-y-1 mb-6">
+                            
                             <?php if ($thumb) : ?>
                                 <a
                                     class="group relative block w-full"
@@ -106,94 +108,80 @@ get_template_part(
                                     data-type="<?php echo esc_attr($lightbox_type); ?>"
                                     data-caption="<?php echo esc_attr($caption); ?>"
                                     href="<?php echo esc_url($lightbox_src); ?>"
-                                    aria-label="<?php esc_attr_e('Open media', 'beit'); ?>"
-                                >
-                                    <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
-                                        <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
-                                            <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
-                                        </span>
+                                    aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
+                                    <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 ">
+                                        <!-- <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
+                                        <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
+                                    </span> -->
+                                        <?php
+                                        if ('video' === $lightbox_type) : ?>
+                                            <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                        <?php else : ?>
+                                            <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+
+                                        <?php endif; ?>
+
                                     </span>
                                     <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
                                 </a>
                             <?php endif; ?>
+                            <h3 class="text-base font-medium md:text-lg pt-3"><?php echo the_title(); ?></h3>
+
+
+
                         </article>
-                        <?php
+                    <?php
                     }
                     // beit_news (Archive style - simple)
                     elseif ('beit_news' === $post_type) {
-                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover']) : '';
-                        ?>
-                        <article class="flex h-full flex-col overflow-hidden bg-white transition hover:-translate-y-1">
+
+                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
+                    ?>
+                        <article class="flex h-full flex-col overflow-hidden   transition hover:-translate-y-1" data-type="beit_news">
+                            
                             <?php if ($thumbnail_html) : ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
                                     <?php echo $thumbnail_html; ?>
                                 </a>
                             <?php endif; ?>
 
-                            <div class="flex flex-1 flex-col gap-4 py-4">
+                            <div class="flex flex-1 flex-col gap-3 py-6">
+                               
                                 <h2 class="text-lg font-semibold text-slate-900">
                                     <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                             </div>
                         </article>
-                        <?php
+                    <?php
                     }
-                    // Default style for other post types
-                    else {
-                        ?>
-                        <article class="group overflow-hidden rounded-2xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-                            <?php if ($thumbnail_id) : ?>
-                                <a href="<?php the_permalink(); ?>" class="block h-48 w-full overflow-hidden">
-                                    <?php echo wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-full w-full object-cover transition-transform duration-300 group-hover:scale-105']); ?>
+                    // beit_program (Programs style overlay card)
+                    elseif ('beit_program' === $post_type) {
+                        $overlay_heading  = function_exists('get_field') ? get_field('program_overlay_heading') : '';
+                        $overlay_sub      = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
+                        $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+                    ?>
+                        <article class="overflow-hidden  transition hover:-translate-y-1" data-type="beit_program">
+                            
+                            <?php if ($image_url) : ?>
+                                <a href="<?php the_permalink(); ?>" class="relative block overflow-hidden group">
+                                    <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <span class="p-4 md:p-6 lg:p-8 text-black">
+                                        <h3 class="text-lg md:text-xl font-bold"><?php echo esc_html($overlay_heading ?: get_the_title()); ?></h3>
+                                        <?php if ($overlay_sub) : ?>
+                                            <p class="text-sm md:text-base font-light"><?php echo esc_html($overlay_sub); ?></p>
+                                        <?php endif; ?>
+                                    </span>
                                 </a>
                             <?php else : ?>
-                                <div class="h-48 w-full bg-gradient-to-br from-red-500/20 to-slate-900/20"></div>
-                            <?php endif; ?>
-
-                            <div class="p-6">
-                                <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-red-600">
-                                    <?php
-                                    $post_type_icon = 'fa-file';
-                                    $post_type_label = get_post_type_object($post_type)->labels->singular_name ?? $post_type;
-
-                                    switch ($post_type) {
-                                        case 'beit_program':
-                                            $post_type_icon = 'fa-clipboard-list';
-                                            break;
-                                        case 'beit_feature':
-                                            $post_type_icon = 'fa-star';
-                                            break;
-                                        case 'page':
-                                            $post_type_icon = 'fa-file-alt';
-                                            break;
-                                        case 'post':
-                                            $post_type_icon = 'fa-file-text';
-                                            break;
-                                    }
-                                    ?>
-                                    <i class="fa<?php echo esc_attr($post_type_icon); ?>"></i>
-                                    <span><?php echo esc_html($post_type_label); ?></span>
-                                    <span class="text-slate-300">•</span>
-                                    <span class="text-slate-500"><?php echo esc_html(get_the_date()); ?></span>
-                                </div>
-
-                                <h2 class="mb-3 text-lg font-semibold text-slate-900">
-                                    <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>">
-                                        <?php the_title(); ?>
-                                    </a>
-                                </h2>
-
-                                <p class="mb-4 text-sm text-slate-600">
-                                    <?php echo esc_html(wp_trim_words(get_the_excerpt() ?: get_the_content(), 20, '…')); ?>
-                                </p>
-
-                                <a class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:text-red-700" href="<?php the_permalink(); ?>">
-                                    <?php esc_html_e('Read More', 'beit'); ?>
-                                    <i class="fa fa-arrow-right text-xs"></i>
+                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
+                                    <div class="h-56 w-full bg-slate-100 flex items-center justify-center text-slate-500">
+                                        <?php esc_html_e('Add a featured image to display here.', 'beit'); ?>
+                                    </div>
                                 </a>
-                            </div>
+                            <?php endif; ?>
                         </article>
-                        <?php
+                  
+                <?php
                     }
                 }
                 ?>
@@ -210,7 +198,7 @@ get_template_part(
             );
 
             if (!empty($pagination_links)) :
-                ?>
+            ?>
                 <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('Search results pagination', 'beit'); ?>">
                     <ul class="flex items-center gap-2">
                         <?php
@@ -227,11 +215,11 @@ get_template_part(
                                 $link,
                                 1
                             );
-                            ?>
+                        ?>
                             <li class="inline-flex">
                                 <?php echo wp_kses_post($link); ?>
                             </li>
-                            <?php
+                        <?php
                         }
                         ?>
                     </ul>
@@ -298,4 +286,3 @@ get_template_part(
 
 <?php
 get_footer();
-

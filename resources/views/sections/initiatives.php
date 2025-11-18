@@ -36,7 +36,7 @@ if (empty($items)) {
                 <h2 class="text-3xl font-light md:text-5xl"><?php echo wp_kses_post($data['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($data['subtitle'])) : ?>
-                <p class="text-md font-regular text-white md:text-lg max-w-xs md:mx-auto lg:max-w-md">
+                <p class="text-md font-light text-white md:text-lg max-w-xs md:mx-auto lg:max-w-md">
 
                     <?php echo esc_html($data['subtitle']); ?>
                 </p>
@@ -51,7 +51,7 @@ if (empty($items)) {
                             <article class="group relative h-full overflow-hidden rounded-xs bg-slate-800/60">
                                 <?php if (!empty($item['image'])) : ?>
                                     <?php if (is_numeric($item['image'])) : ?>
-                                        <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105']); ?>
+                                        <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105', 'loading' => 'lazy', 'decoding' => 'async']); ?>
                                     <?php else : ?>
                                         <img class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                             src="<?php echo esc_url((string) $item['image']); ?>" alt="" loading="lazy" decoding="async">

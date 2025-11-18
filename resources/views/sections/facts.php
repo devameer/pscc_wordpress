@@ -33,38 +33,38 @@ if (empty($facts['items'])) {
 
 ?>
 
-<section class="relative bg-[#7F7F7F] py-12 md:py-16 lg:py-20 text-white bg-cover bg-center bg-no-repeat" <?php if ($background_style) : ?>style="<?php echo esc_attr($background_style); ?>"<?php endif; ?>>
+<section class="relative bg-[#7F7F7F] py-12 md:py-16 lg:py-20 text-white bg-cover bg-center bg-no-repeat" <?php if ($background_image) : ?>data-bg="<?php echo esc_url($background_image); ?>" <?php endif; ?>>
     <!-- Overlay -->
     <?php if ($background_image) : ?>
-    <div class="absolute inset-0 bg-black/60"></div>
+        <div class="absolute inset-0 bg-black/60"></div>
     <?php endif; ?>
 
     <!-- Content -->
     <div class="container mx-auto px-4 md:px-6 relative z-10">
         <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 text-center" data-aos="fade-up">
             <?php if (!empty($facts['title'])) : ?>
-            <h2 class="text-3xl font-light md:text-5xl"><?php echo wp_kses_post($facts['title']); ?></h2>
+                <h2 class="text-3xl font-light md:text-5xl"><?php echo wp_kses_post($facts['title']); ?></h2>
             <?php endif; ?>
             <?php if (!empty($facts['subtitle'])) : ?>
-            <p class="text-base text-white/70 md:text-lg"><?php echo esc_html($facts['subtitle']); ?></p>
+                <p class="text-base text-white  md:text-lg font-light max-w-sm mx-auto"><?php echo esc_html($facts['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
         <?php if (!empty($facts['filters']) && is_array($facts['filters'])) : ?>
-        <div class="mb-8 md:mb-12 flex flex-wrap items-center justify-center gap-2 md:gap-3" data-aos="fade-up" data-aos-delay="100">
-            <?php foreach ($facts['filters'] as $filter) :
+            <div class="mb-8 md:mb-12 flex flex-wrap items-center justify-center gap-2 md:gap-3" data-aos="fade-up" data-aos-delay="100">
+                <?php foreach ($facts['filters'] as $filter) :
                     $label       = $filter['label'] ?? '';
                     $highlighted = !empty($filter['highlighted']);
                     if (!$label) {
                         continue;
                     }
                 ?>
-            <button type="button"
-                class="rounded-xs px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-semibold transition <?php echo $highlighted ? 'bg-primary text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
-                <?php echo esc_html($label); ?>
-            </button>
-            <?php endforeach; ?>
-        </div>
+                    <button type="button"
+                        class="rounded-xs px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-semibold transition <?php echo $highlighted ? 'bg-primary text-white hover:bg-red-700' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>">
+                        <?php echo esc_html($label); ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -78,17 +78,17 @@ if (empty($facts['items'])) {
                 }
                 $fact_delay = 200 + ($fact_index * 100);
             ?>
-            <div
-                class="rounded-md bg-[#A4A4A4] p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
-                <?php if ($value) : ?>
-                <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold" data-counter data-target="<?php echo esc_attr($value); ?>">0</div>
-                <?php endif; ?>
-                <?php if ($label) : ?>
-                <div class="mt-2 md:mt-3 text-xs md:text-sm font-semibold uppercase tracking-widest text-white/70">
-                    <?php echo esc_html($label); ?>
+                <div
+                    class="rounded-md bg-[#A4A4A4] p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
+                    <?php if ($value) : ?>
+                        <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold" data-counter data-target="<?php echo esc_attr($value); ?>">0</div>
+                    <?php endif; ?>
+                    <?php if ($label) : ?>
+                        <div class="mt-2 md:mt-3 text-xs md:text-sm font-semibold uppercase tracking-widest text-white/70">
+                            <?php echo esc_html($label); ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <?php endif; ?>
-            </div>
             <?php
                 $fact_index++;
             endforeach; ?>
