@@ -240,7 +240,7 @@
         }
 
         // Get the last 3 items
-        const itemsToHide = menuItems.slice(-3);
+        const itemsToHide = menuItems.slice(-4);
 
         // Create "Other" dropdown container
         const otherDropdown = document.createElement('li');
