@@ -13,15 +13,11 @@ if (!defined('ABSPATH')) {
 /**
  * Return file modification time for cache busting.
  */
-function beit_theme_asset_version(string $relative_path): string
+function beit_theme_asset_version(): string
 {
-    // $absolute_path = BEIT_THEME_DIR . '/' . ltrim($relative_path, '/');
+ 
 
-    // if (file_exists($absolute_path)) {
-    //     return (string) filemtime($absolute_path);
-    // }
-
-    return '1.2.0';
+    return rand(111111, 999999);
 }
 
 /**
@@ -40,14 +36,14 @@ function beit_theme_enqueue_assets(): void
         'beit-fonts',
         BEIT_THEME_URI . '/public/css/fonts.css',
         [],
-        beit_theme_asset_version('public/css/fonts.css')
+        []
     );
 
     wp_enqueue_style(
         'beit-base',
         get_stylesheet_uri(),
         ['beit-fonts'],
-        beit_theme_asset_version('style.css')
+        []
     );
 
     wp_enqueue_style(
@@ -64,7 +60,7 @@ function beit_theme_enqueue_assets(): void
         '2.3.4'
     );
 
-    $compiled_css = 'public/css/app.css';
+    $compiled_css = 'public/css/app.css?v=' . beit_theme_asset_version();
     $compiled_css_path = BEIT_THEME_DIR . '/' . $compiled_css;
 
     if (file_exists($compiled_css_path)) {
@@ -72,7 +68,7 @@ function beit_theme_enqueue_assets(): void
             'beit-app',
             BEIT_THEME_URI . '/' . $compiled_css,
             ['beit-base'],
-            beit_theme_asset_version($compiled_css)
+            []
         );
     }
 
@@ -86,9 +82,9 @@ function beit_theme_enqueue_assets(): void
 
     wp_enqueue_script(
         'beit-theme',
-        BEIT_THEME_URI . '/resources/assets/js/theme.js?v=' . beit_theme_asset_version('resources/assets/js/theme.js'),
+        BEIT_THEME_URI . '/resources/assets/js/theme.js?v=' . beit_theme_asset_version(''),
         ['swiper'],
-        beit_theme_asset_version('resources/assets/js/theme.js'),
+        [],
         true
     );
 
