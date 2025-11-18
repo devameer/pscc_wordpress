@@ -64,7 +64,7 @@ function beit_theme_enqueue_assets(): void
         '2.3.4'
     );
 
-    $compiled_css = 'public/css/app.css';
+    $compiled_css = 'public/css/apasdp.css';
     $compiled_css_path = BEIT_THEME_DIR . '/' . $compiled_css;
 
     if (file_exists($compiled_css_path)) {
