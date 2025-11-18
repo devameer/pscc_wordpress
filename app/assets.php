@@ -60,7 +60,7 @@ function beit_theme_enqueue_assets(): void
         '2.3.4'
     );
 
-    $compiled_css = 'public/css/app.css?v=' . beit_theme_asset_version();
+    $compiled_css = 'public/css/app.css';
     $compiled_css_path = BEIT_THEME_DIR . '/' . $compiled_css;
 
     if (file_exists($compiled_css_path)) {
@@ -68,7 +68,7 @@ function beit_theme_enqueue_assets(): void
             'beit-app',
             BEIT_THEME_URI . '/' . $compiled_css,
             ['beit-base'],
-            []
+            beit_theme_asset_version()
         );
     }
 
