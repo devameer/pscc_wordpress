@@ -85,7 +85,11 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-red-600 rounded"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
+                                    <?php if($network === 'twitter'): ?>
+                                                <?php echo file_get_contents(get_template_directory() . '/resources/assets/images/x.svg'); ?>
+                                            <?php else: ?>
                                     <i class="<?php echo esc_attr($icon_class); ?> text-[10px] sm:text-xs md:text-sm"></i>
+                                    <?php endif; ?>
                                 </a>
                             <?php endforeach; ?>
                         </div>

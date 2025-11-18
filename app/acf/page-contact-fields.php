@@ -79,29 +79,7 @@ acf_add_local_field_group(
                     ],
                 ],
             ],
-            [
-                'key'          => 'field_contact_social_links',
-                'label'        => __('Social Links', 'beit'),
-                'name'         => 'contact_social_links',
-                'type'         => 'repeater',
-                'layout'       => 'row',
-                'button_label' => __('Add social link', 'beit'),
-                'sub_fields'   => [
-                    [
-                        'key'   => 'field_contact_social_icon',
-                        'label' => __('Icon class', 'beit'),
-                        'name'  => 'icon',
-                        'type'  => 'text',
-                        'instructions' => __('Font Awesome class, e.g. "fa fa-facebook".', 'beit'),
-                    ],
-                    [
-                        'key'   => 'field_contact_social_url',
-                        'label' => __('Profile URL', 'beit'),
-                        'name'  => 'url',
-                        'type'  => 'url',
-                    ],
-                ],
-            ],
+
             [
                 'key'          => 'field_contact_offices',
                 'label'        => __('Office Locations', 'beit'),

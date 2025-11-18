@@ -24,7 +24,41 @@ while (have_posts()) {
     $hero_background = $hero_data['background'] ?? '';
 
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
-    $social_links    = $has_acf ? (get_field('contact_social_links') ?: []) : [];
+    $social_links    = [];
+    if ($has_acf) {
+        $links_option = get_field('topbar_social_links', 'option') ?: [];
+        foreach ($links_option as $item) {
+            $network = $item['network'] ?? '';
+            $url     = (string) ($item['url'] ?? '');
+            $icon    = 'fa fa-globe';
+            switch ($network) {
+                case 'facebook':
+                    $icon = 'fa fa-facebook';
+                    break;
+                case 'twitter':
+                    $icon = 'fa fa-twitter';
+                    break;
+                case 'instagram':
+                    $icon = 'fa fa-instagram';
+                    break;
+                case 'youtube':
+                    $icon = 'fa fa-youtube';
+                    break;
+                case 'linkedin':
+                    $icon = 'fa fa-linkedin';
+                    break;
+                default:
+                    $icon = 'fa fa-globe';
+                    break;
+            }
+            if ($url) {
+                $social_links[] = [
+                    'icon' => $icon,
+                    'url'  => $url,
+                ];
+            }
+        }
+    }
     $offices         = $has_acf ? (get_field('contact_offices') ?: []) : [];
     $form_shortcode  = $has_acf ? get_field('contact_form_shortcode') : '';
 
@@ -209,9 +243,13 @@ while (have_posts()) {
                                             continue;
                                         }
                                 ?>
-                                        <a class="transition hover:text-red-600" href="<?php echo esc_url($url); ?>" target="_blank"
+                                        <a class="transition hover:text-red-600 flex justify-center items-center" href="<?php echo esc_url($url); ?>" target="_blank"
                                             rel="noopener">
+                                            <?php if($social['icon'] === 'fa fa-twitter'): ?>
+                                                <?php echo file_get_contents(get_template_directory() . '/resources/assets/images/x.svg'); ?>
+                                            <?php else: ?>
                                             <i class="<?php echo esc_attr($icon); ?>"></i>
+                                            <?php endif; ?>
                                         </a>
                                 <?php
                                     }
