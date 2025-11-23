@@ -358,7 +358,7 @@ acf_add_local_field_group(
                         'label'        => __('Voice Items', 'beit'),
                         'name'         => 'items',
                         'type'         => 'repeater',
-                        'layout'       => 'block',
+                        'layout'       => 'row',
                         'button_label' => __('Add voice item', 'beit'),
                         'max'          => 6,
                         'instructions' => __('Add up to 6 voice items. First item will be displayed as double size.', 'beit'),

@@ -24,7 +24,7 @@ acf_add_local_field_group(
                 'label'      => __('Hero Section', 'beit'),
                 'name'       => 'media_center_hero',
                 'type'       => 'group',
-                'layout'     => 'block',
+                'layout'     => 'row',
                 'sub_fields' => [
                     [
                         'key'   => 'field_media_center_hero_custom_title',
