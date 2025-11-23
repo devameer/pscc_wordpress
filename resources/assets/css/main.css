@@ -369,3 +369,36 @@
 .is-scrolled  #primary-menu li.menu-item.current_page_item a::after{
     height: 100% !important;
 }
+/* Map Tab Wrapper */
+.map-tab-wrapper {
+    position: relative;
+}
+
+/* Map Tab Dropdown */
+.map-tab-dropdown {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform-origin: top;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.map-tab-dropdown.hidden {
+    display: none !important;
+}
+
+.map-tab-dropdown:not(.hidden) {
+    display: block;
+}
+
+/* Location Items */
+.map-location-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.map-location-item:hover {
+    transform: translateX(4px);
+}
+
+.map-location-item:active {
+    transform: translateX(2px);
+}

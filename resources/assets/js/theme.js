@@ -89,13 +89,13 @@
               slidesPerView: 1,
               navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
               breakpoints: {
-                400: {
+                500: {
                   slidesPerView: 2,
                 },
                 600: {
                   slidesPerView: 3,
                 },
-                900: {
+                1000: {
                   slidesPerView: 4,
                 },
                 1024: {
@@ -119,7 +119,7 @@
                     loop: true,
                     speed: 500,
                     spaceBetween: 30,
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     autoplay: {
                         delay: 3500,
                         disableOnInteraction: false,
@@ -127,12 +127,15 @@
                     navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
                     breakpoints: {
                         640: {
-                            slidesPerView: 3,
+                            slidesPerView: 2,
                         },
                         768: {
-                            slidesPerView: 4,
+                            slidesPerView: 3,
                         },
                         1024: {
+                            slidesPerView: 4,
+                        },
+                        1280: {
                             slidesPerView: 5,
                         },
                     },
@@ -198,7 +201,6 @@
     const applyState = () => {
         const isScrolled = window.scrollY > threshold;
         const hasClass = header.classList.contains('is-scrolled');
-        const isMobile = window.innerWidth < 1024; // lg breakpoint
 
         if (isScrolled === hasClass) {
             return;
@@ -207,9 +209,8 @@
         header.classList.toggle('is-scrolled', isScrolled);
 
         if (isScrolled) {
-            // On mobile: Only make navbar fixed (not topbar)
-            // On desktop: Make both topbar and navbar fixed
-            if (topbar && !isMobile) {
+            // Make topbar and navbar fixed and sticky
+            if (topbar) {
                 topbar.style.position = 'fixed';
                 topbar.style.top = '0';
                 topbar.style.left = '0';
@@ -217,16 +218,16 @@
                 topbar.style.zIndex = '51';
                 topbar.style.background = 'rgba(17, 19, 21, 0.92)';
             }
-
-            // Adjust navbar position
-            const topbarHeight = topbar && !isMobile ? topbar.offsetHeight : 0;
+            
+            // Adjust navbar position to be below topbar
+            const topbarHeight = topbar ? topbar.offsetHeight : 0;
             header.style.position = 'fixed';
-            header.style.top = isMobile ? '0' : topbarHeight + 'px';
+            header.style.top = topbarHeight + 'px';
             header.style.backgroundColor = 'rgba(17, 19, 21, 0.92)';
             header.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.25)';
             header.style.backdropFilter = 'blur(8px)';
             header.style.webkitBackdropFilter = 'blur(8px)';
-
+            
             // Switch logos using opacity
             if (logoDefault && logoScroll) {
                 logoDefault.style.opacity = '0';
@@ -242,7 +243,7 @@
                 topbar.style.zIndex = '';
                 topbar.style.background = '';
             }
-
+            
             // Reset navbar position to below topbar
             const topbarHeight = topbar ? topbar.offsetHeight : 0;
             header.style.top = topbarHeight + 'px';
@@ -250,7 +251,7 @@
             header.style.boxShadow = '';
             header.style.backdropFilter = '';
             header.style.webkitBackdropFilter = '';
-
+            
             // Switch logos back using opacity
             if (logoDefault && logoScroll) {
                 logoDefault.style.opacity = '1';
@@ -392,7 +393,8 @@ window.initContactMap = function() {
 
     const data = window.contactMapData;
     let map;
-    let markers = [];
+    let officeMarkers = [];
+    let warehouseMarkers = [];
     let currentTab = '';
 
     // Initialize the map
@@ -408,94 +410,109 @@ window.initContactMap = function() {
         ]
     });
 
-    // Function to clear all markers
-    const clearMarkers = () => {
-        markers.forEach(marker => marker.setMap(null));
-        markers = [];
+    // Create custom marker icons
+    const createMarkerIcon = (color) => {
+        return {
+            path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+            fillColor: color,
+            fillOpacity: 1,
+            strokeColor: '#ffffff',
+            strokeWeight: 2,
+            scale: 1.5,
+            anchor: new google.maps.Point(12, 22)
+        };
     };
 
-    // Function to add markers for a specific tab
-    const showMarkers = (tabName) => {
-        clearMarkers();
-
+    // Function to create markers for a location type
+    const createMarkers = (locations, type) => {
+        const markers = [];
+        const color = type === 'offices' ? '#CB0B29' : '#4E4E4E';
         const bounds = new google.maps.LatLngBounds();
 
-        const addSet = (locations, color) => {
-            if (!locations || locations.length === 0) {
+        locations.forEach((location) => {
+            if (!location.lat || !location.lng) {
                 return;
             }
 
-            locations.forEach((location) => {
-                if (!location.lat || !location.lng) {
-                    return;
-                }
+            const position = {
+                lat: location.lat,
+                lng: location.lng
+            };
 
-                const position = { lat: location.lat, lng: location.lng };
+            // Create marker with map-marker icon
+            const marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: location.name,
+                animation: google.maps.Animation.DROP,
+                icon: createMarkerIcon(color)
+            });
 
-                // Create marker with map-marker icon
-                const marker = new google.maps.Marker({
-                    position: position,
-                    map: map,
-                    title: location.name,
-                    animation: google.maps.Animation.DROP,
-                    icon: {
-                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-                        fillColor: color,
-                        fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        strokeWeight: 2,
-                        scale: 1.5,
-                        anchor: new google.maps.Point(12, 22)
+            // Create info window
+            const infoContent = `
+                <div style="padding: 10px; max-width: 200px;">
+                    <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
+                        ${location.name || ''}
+                    </h3>
+                    ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
+                </div>
+            `;
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: infoContent
+            });
+
+            marker.addListener('click', () => {
+                // Close all other info windows
+                officeMarkers.concat(warehouseMarkers).forEach(m => {
+                    if (m.infoWindow) {
+                        m.infoWindow.close();
                     }
                 });
-
-                // Create info window
-                const infoContent = `
-                    <div style="padding: 10px; max-width: 200px;">
-                        <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
-                            ${location.name || ''}
-                        </h3>
-                        ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
-                    </div>
-                `;
-
-                const infoWindow = new google.maps.InfoWindow({
-                    content: infoContent
-                });
-
-                marker.addListener('click', () => {
-                    // Close all other info windows
-                    markers.forEach(m => {
-                        if (m.infoWindow) {
-                            m.infoWindow.close();
-                        }
-                    });
-                    infoWindow.open(map, marker);
-                });
-
-                marker.infoWindow = infoWindow;
-                markers.push(marker);
-                bounds.extend(position);
+                infoWindow.open(map, marker);
             });
+
+            marker.infoWindow = infoWindow;
+            marker.locationType = type;
+            markers.push(marker);
+            bounds.extend(position);
+        });
+
+        return {
+            markers,
+            bounds
         };
+    };
 
+    // Create all markers
+    const officeResult = createMarkers(data.offices || [], 'offices');
+    const warehouseResult = createMarkers(data.warehouses || [], 'warehouses');
+
+    officeMarkers = officeResult.markers;
+    warehouseMarkers = warehouseResult.markers;
+
+    // Combine bounds
+    const combinedBounds = new google.maps.LatLngBounds();
+    officeMarkers.concat(warehouseMarkers).forEach(marker => {
+        combinedBounds.extend(marker.getPosition());
+    });
+
+    // Fit map to show all markers
+    if (officeMarkers.length > 0 || warehouseMarkers.length > 0) {
+        map.fitBounds(combinedBounds);
+    }
+
+    // Function to show/hide markers based on tab
+    const updateMarkerVisibility = (tabName) => {
         if (tabName === 'all') {
-            addSet(data.offices, '#CB0B29');
-            addSet(data.warehouses, '#4E4E4E');
+            officeMarkers.forEach(m => m.setVisible(true));
+            warehouseMarkers.forEach(m => m.setVisible(true));
         } else if (tabName === 'offices') {
-            addSet(data.offices, '#CB0B29');
+            officeMarkers.forEach(m => m.setVisible(true));
+            warehouseMarkers.forEach(m => m.setVisible(false));
         } else if (tabName === 'warehouses') {
-            addSet(data.warehouses, '#4E4E4E');
-        }
-
-        // Fit map to show all markers
-        if (markers.length > 0) {
-            map.fitBounds(bounds);
-
-            // Adjust zoom if there's only one marker
-            if (markers.length === 1) {
-                map.setZoom(14);
-            }
+            officeMarkers.forEach(m => m.setVisible(false));
+            warehouseMarkers.forEach(m => m.setVisible(true));
         }
     };
 
@@ -521,8 +538,8 @@ window.initContactMap = function() {
             }
         });
 
-        // Show markers for the selected tab
-        showMarkers(tabName);
+        // Update marker visibility
+        updateMarkerVisibility(tabName);
     };
 
     // Add click listeners to tab buttons
@@ -532,7 +549,65 @@ window.initContactMap = function() {
         });
     });
 
-    // Initialize with all markers visible
+    // Location item click - highlight on map
+    const locationItems = document.querySelectorAll('.map-location-item');
+    console.log('Found location items:', locationItems.length);
+    
+    locationItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tabName = this.dataset.tab;
+            const locationIndex = parseInt(this.dataset.locationIndex);
+            
+            console.log('Clicked location:', tabName, locationIndex);
+            
+            // Switch to the tab if not already active
+            if (currentTab !== tabName) {
+                switchTab(tabName);
+            }
+            
+            // Get the corresponding marker
+            let targetMarker;
+            if (tabName === 'offices' && officeMarkers[locationIndex]) {
+                targetMarker = officeMarkers[locationIndex];
+            } else if (tabName === 'warehouses' && warehouseMarkers[locationIndex]) {
+                targetMarker = warehouseMarkers[locationIndex];
+            }
+            
+            console.log('Target marker:', targetMarker);
+            
+            if (targetMarker) {
+                // Close all info windows
+                officeMarkers.concat(warehouseMarkers).forEach(m => {
+                    if (m.infoWindow) {
+                        m.infoWindow.close();
+                    }
+                });
+                
+                // Center map on marker
+                map.setCenter(targetMarker.getPosition());
+                map.setZoom(15);
+                
+                // Bounce animation
+                targetMarker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(() => {
+                    targetMarker.setAnimation(null);
+                }, 2000);
+                
+                // Open info window
+                if (targetMarker.infoWindow) {
+                    targetMarker.infoWindow.open(map, targetMarker);
+                }
+            }
+            
+            // Hide dropdown
+            document.querySelectorAll('.map-tab-dropdown').forEach(d => d.classList.add('hidden'));
+        });
+    });
+
+    // Initialize showing all markers
     switchTab('all');
 };
 
@@ -555,7 +630,7 @@ window.initContactMap = function() {
         const prefix = numberIndex > 0 ? raw.slice(0, numberIndex) : '';
         const suffix = match ? raw.slice(numberIndex + match[0].length) : '';
 
-        const duration = parseInt(el.getAttribute('data-duration') || '5000', 10);
+        const duration = parseInt(el.getAttribute('data-duration') || '2500', 10);
         const start = performance.now();
 
         const format = (n) => `${prefix}${Math.round(n).toLocaleString()}${suffix}`;

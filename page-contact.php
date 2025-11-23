@@ -20,9 +20,8 @@ while (have_posts()) {
     $has_acf = function_exists('get_field');
 
     $hero_data       = $has_acf ? (get_field('contact_hero') ?: []) : [];
-    $hero_custom_title = $hero_data['custom_title'] ?? '';
-    $hero_title      = $hero_custom_title ?: get_the_title(); // Use custom title if available, otherwise page title
-    $hero_subtitle   = get_the_content(); // Use page content as subtitle
+    $hero_subtitle_acf   = $hero_data['subtitle'] ?? '';
+    $hero_subtitle   = get_the_content() ; // Use page content first, then ACF field
 
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
     $social_links    = [];
@@ -77,7 +76,7 @@ while (have_posts()) {
         'resources/views/components/page-hero',
         null,
         [
-            'title'            => $hero_title,
+            'title'            => get_the_title(),
             'description'      => $hero_subtitle,
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
             'overlay_gradients' => true,
@@ -175,26 +174,64 @@ while (have_posts()) {
                 </div>
 
                 <?php if ($google_maps_api_key && (!empty($map_offices) || !empty($map_warehouses))) : ?>
-                    <div class="rounded-lg bg-white shadow-sm overflow-hidden">
+                    <div class="rounded-lg bg-white shadow-sm">
                         <!-- Map Tabs -->
-                        <div class="flex border-b border-gray-200">
-                            <button
-                                class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
-                                data-tab="offices"
-                                data-active="false">
-                                <i class="fa fa-map-marker  mr-2"></i>
-                                <?php esc_html_e('Our Offices', 'beit'); ?>
-                            </button>
-                            <button
-                                class="map-tab-button flex-1 px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
-                                data-tab="warehouses">
-                                <i class="fa fa-cubes mr-2"></i>
-                                <?php esc_html_e('Warehouses', 'beit'); ?>
-                            </button>
+                        <div class="flex border-b border-gray-200 relative z-10">
+                            <div class="map-tab-wrapper flex-1 relative">
+                                <button
+                                    class="map-tab-button w-full px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
+                                    data-tab="offices"
+                                    data-active="false">
+                                    <i class="fa fa-map-marker mr-2"></i>
+                                    <?php esc_html_e('Our Offices', 'beit'); ?>
+                                </button>
+                                <!-- Dropdown for Offices -->
+                                <div class="map-tab-dropdown hidden absolute top-full left-0 w-full bg-white shadow-lg border border-gray-200 z-50 max-h-64">
+                                    <?php if (!empty($map_offices)) : ?>
+                                        <?php foreach ($map_offices as $index => $office) : ?>
+                                            <button
+                                                class="map-location-item w-full text-start px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition border-b border-gray-100 last:border-0"
+                                                data-tab="offices"
+                                                data-location-index="<?php echo esc_attr($index); ?>">
+                                                <i class="fa fa-map-marker mr-2 text-red-600"></i>
+                                                <strong><?php echo esc_html($office['name'] ?? ''); ?></strong>
+                                                <?php if (!empty($office['address'])) : ?>
+                                                    <br><span class="text-xs text-gray-500 ml-5"><?php echo esc_html($office['address']); ?></span>
+                                                <?php endif; ?>
+                                            </button>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="map-tab-wrapper flex-1 relative">
+                                <button
+                                    class="map-tab-button w-full px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 border-b-2 border-transparent"
+                                    data-tab="warehouses">
+                                    <i class="fa fa-cubes mr-2"></i>
+                                    <?php esc_html_e('Warehouses', 'beit'); ?>
+                                </button>
+                                <!-- Dropdown for Warehouses -->
+                                <div class="map-tab-dropdown hidden absolute top-full left-0 w-full bg-white shadow-lg border border-gray-200 z-50 max-h-64">
+                                    <?php if (!empty($map_warehouses)) : ?>
+                                        <?php foreach ($map_warehouses as $index => $warehouse) : ?>
+                                            <button
+                                                class="map-location-item w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition border-b border-gray-100 last:border-0"
+                                                data-tab="warehouses"
+                                                data-location-index="<?php echo esc_attr($index); ?>">
+                                                <i class="fa fa-cubes mr-2 text-gray-600"></i>
+                                                <strong><?php echo esc_html($warehouse['name'] ?? ''); ?></strong>
+                                                <?php if (!empty($warehouse['address'])) : ?>
+                                                    <br><span class="text-xs text-gray-500 ml-5"><?php echo esc_html($warehouse['address']); ?></span>
+                                                <?php endif; ?>
+                                            </button>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Map Container -->
-                        <div id="contact-map" class="h-96 w-full"></div>
+                        <div id="contact-map" class="h-96 w-full overflow-hidden"></div>
 
                         <!-- Map Data (Hidden) -->
                         <script>
@@ -305,175 +342,37 @@ while (have_posts()) {
 
     <?php if ($google_maps_api_key) : ?>
         <script>
-            // Google Maps initialization callback
-            window.initContactMap = window.initContactMap || function() {
-                const mapContainer = document.getElementById('contact-map');
-
-                if (!mapContainer || !window.contactMapData || !window.google) {
-                    return;
+            // Tab hover functionality - initialize immediately
+            (function() {
+                const initDropdowns = () => {
+                    document.querySelectorAll('.map-tab-wrapper').forEach(wrapper => {
+                        const button = wrapper.querySelector('.map-tab-button');
+                        const dropdown = wrapper.querySelector('.map-tab-dropdown');
+                        
+                        if (!button || !dropdown) return;
+                        
+                        let hoverTimeout;
+                        
+                        wrapper.addEventListener('mouseenter', () => {
+                            clearTimeout(hoverTimeout);
+                            dropdown.classList.remove('hidden');
+                        });
+                        
+                        wrapper.addEventListener('mouseleave', () => {
+                            hoverTimeout = setTimeout(() => {
+                                dropdown.classList.add('hidden');
+                            }, 200);
+                        });
+                    });
+                };
+                
+                // Run immediately if DOM is ready, otherwise wait
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initDropdowns);
+                } else {
+                    initDropdowns();
                 }
-
-                const data = window.contactMapData;
-                let map;
-                let officeMarkers = [];
-                let warehouseMarkers = [];
-                let currentTab = '';
-
-                // Initialize the map
-                map = new google.maps.Map(mapContainer, {
-                    center: data.defaultCenter,
-                    zoom: data.defaultZoom,
-                    styles: [{
-                        featureType: 'poi',
-                        elementType: 'labels',
-                        stylers: [{
-                            visibility: 'off'
-                        }]
-                    }]
-                });
-
-                // Create custom marker icons
-                const createMarkerIcon = (color) => {
-                    return {
-                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-                        fillColor: color,
-                        fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        strokeWeight: 2,
-                        scale: 1.5,
-                        anchor: new google.maps.Point(12, 22)
-                    };
-                };
-
-                // Function to create markers for a location type
-                const createMarkers = (locations, type) => {
-                    const markers = [];
-                    const color = type === 'offices' ? '#CB0B29' : '#4E4E4E';
-                    const bounds = new google.maps.LatLngBounds();
-
-                    locations.forEach((location) => {
-                        if (!location.lat || !location.lng) {
-                            return;
-                        }
-
-                        const position = {
-                            lat: location.lat,
-                            lng: location.lng
-                        };
-
-                        // Create marker with map-marker icon
-                        const marker = new google.maps.Marker({
-                            position: position,
-                            map: map,
-                            title: location.name,
-                            animation: google.maps.Animation.DROP,
-                            icon: createMarkerIcon(color)
-                        });
-
-                        // Create info window
-                        const infoContent = `
-                            <div style="padding: 10px; max-width: 200px;">
-                                <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;">
-                                    ${location.name || ''}
-                                </h3>
-                                ${location.address ? `<p style="margin: 0; font-size: 14px; color: #6b7280;">${location.address}</p>` : ''}
-                            </div>
-                        `;
-
-                        const infoWindow = new google.maps.InfoWindow({
-                            content: infoContent
-                        });
-
-                        marker.addListener('click', () => {
-                            // Close all other info windows
-                            officeMarkers.concat(warehouseMarkers).forEach(m => {
-                                if (m.infoWindow) {
-                                    m.infoWindow.close();
-                                }
-                            });
-                            infoWindow.open(map, marker);
-                        });
-
-                        marker.infoWindow = infoWindow;
-                        marker.locationType = type;
-                        markers.push(marker);
-                        bounds.extend(position);
-                    });
-
-                    return {
-                        markers,
-                        bounds
-                    };
-                };
-
-                // Create all markers
-                const officeResult = createMarkers(data.offices || [], 'offices');
-                const warehouseResult = createMarkers(data.warehouses || [], 'warehouses');
-
-                officeMarkers = officeResult.markers;
-                warehouseMarkers = warehouseResult.markers;
-
-                // Combine bounds
-                const combinedBounds = new google.maps.LatLngBounds();
-                officeMarkers.concat(warehouseMarkers).forEach(marker => {
-                    combinedBounds.extend(marker.getPosition());
-                });
-
-                // Fit map to show all markers
-                if (officeMarkers.length > 0 || warehouseMarkers.length > 0) {
-                    map.fitBounds(combinedBounds);
-                }
-
-                // Function to show/hide markers based on tab
-                const updateMarkerVisibility = (tabName) => {
-                    if (tabName === 'all') {
-                        officeMarkers.forEach(m => m.setVisible(true));
-                        warehouseMarkers.forEach(m => m.setVisible(true));
-                    } else if (tabName === 'offices') {
-                        officeMarkers.forEach(m => m.setVisible(true));
-                        warehouseMarkers.forEach(m => m.setVisible(false));
-                    } else if (tabName === 'warehouses') {
-                        officeMarkers.forEach(m => m.setVisible(false));
-                        warehouseMarkers.forEach(m => m.setVisible(true));
-                    }
-                };
-
-                // Function to switch tabs
-                const switchTab = (tabName) => {
-                    if (currentTab === tabName) {
-                        return;
-                    }
-
-                    currentTab = tabName;
-
-                    // Update tab buttons
-                    document.querySelectorAll('.map-tab-button').forEach(button => {
-                        const isActive = button.dataset.tab === tabName;
-                        button.dataset.active = isActive ? 'true' : 'false';
-
-                        if (isActive) {
-                            button.classList.add('border-red-600', 'text-red-600', 'bg-red-50');
-                            button.classList.remove('border-transparent');
-                        } else {
-                            button.classList.remove('border-red-600', 'text-red-600', 'bg-red-50');
-                            button.classList.add('border-transparent');
-                        }
-                    });
-
-                    // Update marker visibility
-                    updateMarkerVisibility(tabName);
-                };
-
-                // Add click listeners to tab buttons
-                document.querySelectorAll('.map-tab-button').forEach(button => {
-                    button.addEventListener('click', () => {
-                        switchTab(button.dataset.tab);
-                    });
-                });
-
-                // Initialize showing all markers
-                switchTab('all');
-            };
+            })();
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo esc_attr($google_maps_api_key); ?>&callback=initContactMap" async defer></script>
     <?php endif; ?>
