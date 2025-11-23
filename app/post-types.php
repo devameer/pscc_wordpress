@@ -62,20 +62,7 @@ function beit_register_post_types(): void
         'all_items'             => __('All Features', 'beit'),
     ];
 
-    register_post_type(
-        'beit_feature',
-        [
-            'labels'             => $feature_labels,
-            'public'             => true,
-            'show_in_menu'       => true,
-            'menu_position'      => 22,
-            'menu_icon'          => 'dashicons-star-filled',
-            'has_archive'        => false,
-            'rewrite'            => ['slug' => 'feature'],
-            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt'],
-            'show_in_rest'       => true,
-        ]
-    );
+
 
     $news_labels = [
         'name'                  => __('News', 'beit'),
@@ -125,20 +112,20 @@ function beit_register_post_types(): void
         'all_items'             => __('All Voices & Visions', 'beit'),
     ];
 
-    register_post_type(
-        'beit_voice',
-        [
-            'labels'             => $voices_labels,
-            'public'             => true,
-            'show_in_menu'       => true,
-            'menu_position'      => 24,
-            'menu_icon'          => 'dashicons-format-gallery',
-            'has_archive'        => true,
-            'rewrite'            => ['slug' => 'voices'],
-            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
-            'show_in_rest'       => true,
-        ]
-    );
+    // register_post_type(
+    //     'beit_voice',
+    //     [
+    //         'labels'             => $voices_labels,
+    //         'public'             => true,
+    //         'show_in_menu'       => true,
+    //         'menu_position'      => 24,
+    //         'menu_icon'          => 'dashicons-format-gallery',
+    //         'has_archive'        => true,
+    //         'rewrite'            => ['slug' => 'voices'],
+    //         'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
+    //         'show_in_rest'       => true,
+    //     ]
+    // );
 
     $program_labels = [
         'name'                  => __('Programs & Projects', 'beit'),

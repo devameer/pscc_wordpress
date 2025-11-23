@@ -168,37 +168,46 @@ $voices = [
 $voices_field = $has_acf ? get_field('front_voices') : null;
 if (is_array($voices_field)) {
     $voices = array_merge($voices, array_filter($voices_field));
-}
 
-$voices_query = new WP_Query(
-    [
-        'post_type'      => 'beit_voice',
-        'posts_per_page' => 6,
-        'post_status'    => 'publish',
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    ]
-);
+    // Process ACF voices items if they exist
+    if (!empty($voices_field['items']) && is_array($voices_field['items'])) {
+        $processed_items = [];
+        $index = 0;
 
-if ($voices_query->have_posts()) {
-    $index = 0;
-    while ($voices_query->have_posts()) {
-        $voices_query->the_post();
+        foreach ($voices_field['items'] as $item) {
+            $media_type = $item['media_type'] ?? 'image';
+            $processed_item = [
+                'span' => $index === 0 ? 'double' : 'single',
+            ];
 
-        $voices['items'][] = [
-            'id'      => get_the_ID(),
-            'title'   => get_the_title(),
-            'excerpt' => get_the_excerpt(),
-            'image'   => get_post_thumbnail_id() ?: '',
-            'link'    => get_permalink(),
-            'span'    => $index === 0 ? 'double' : 'single',
-        ];
+            if ($media_type === 'image' && !empty($item['image'])) {
+                $processed_item['image'] = $item['image'];
+                $processed_item['media'] = [
+                    'type' => 'image',
+                    'src' => wp_get_attachment_image_url($item['image'], 'full'),
+                    'thumbnail_url' => wp_get_attachment_image_url($item['image'], 'large'),
+                    'caption' => '',
+                ];
+            } elseif ($media_type === 'video') {
+                $video_src = $item['video_file'] ?? $item['video_url'] ?? '';
+                $thumbnail_id = $item['video_thumbnail'] ?? 0;
+                $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
 
-        $index++;
+                $processed_item['media'] = [
+                    'type' => 'video',
+                    'src' => $video_src,
+                    'thumbnail_url' => $thumbnail_url,
+                    'caption' => '',
+                ];
+            }
+
+            $processed_items[] = $processed_item;
+            $index++;
+        }
+
+        $voices['items'] = $processed_items;
     }
 }
-
-wp_reset_postdata();
 
 $our_story = $our_story_defaults;
 $our_story_field = $has_acf ? get_field('front_our_story') : null;

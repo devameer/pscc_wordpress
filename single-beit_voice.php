@@ -18,11 +18,15 @@ while (have_posts()) {
     $is_rtl      = is_rtl();
     $thumbnail   = get_post_thumbnail_id();
 
+    $has_acf = function_exists('get_field');
+    $custom_title = $has_acf ? get_field('voice_custom_title', get_the_ID()) : '';
+    $display_title = $custom_title ?: get_the_title();
+
     get_template_part(
         'resources/views/components/page-hero',
         null,
         [
-            'title'       => get_the_title(),
+            'title'       => $display_title,
             'description' => esc_html(get_the_date()),
             'background_classes' => 'bg-gradient-to-br from-slate-800 via-amber-800 to-red-900',
         ]

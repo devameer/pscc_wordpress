@@ -353,6 +353,100 @@ acf_add_local_field_group(
                         'type'  => 'textarea',
                         'rows'  => 3,
                     ],
+                    [
+                        'key'          => 'field_front_voices_items',
+                        'label'        => __('Voice Items', 'beit'),
+                        'name'         => 'items',
+                        'type'         => 'repeater',
+                        'layout'       => 'block',
+                        'button_label' => __('Add voice item', 'beit'),
+                        'max'          => 6,
+                        'instructions' => __('Add up to 6 voice items. First item will be displayed as double size.', 'beit'),
+                        'sub_fields'   => [
+                            [
+                                'key'     => 'field_front_voices_item_media_type',
+                                'label'   => __('Media Type', 'beit'),
+                                'name'    => 'media_type',
+                                'type'    => 'button_group',
+                                'choices' => [
+                                    'image' => __('Image', 'beit'),
+                                    'video' => __('Video', 'beit'),
+                                ],
+                                'default_value' => 'image',
+                            ],
+                            [
+                                'key'               => 'field_front_voices_item_image',
+                                'label'             => __('Image', 'beit'),
+                                'name'              => 'image',
+                                'type'              => 'image',
+                                'return_format'     => 'id',
+                                'preview_size'      => 'medium',
+                                'library'           => 'all',
+                                'conditional_logic' => [
+                                    [
+                                        [
+                                            'field'    => 'field_front_voices_item_media_type',
+                                            'operator' => '==',
+                                            'value'    => 'image',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            [
+                                'key'               => 'field_front_voices_item_video_file',
+                                'label'             => __('Video File', 'beit'),
+                                'name'              => 'video_file',
+                                'type'              => 'file',
+                                'return_format'     => 'url',
+                                'library'           => 'all',
+                                'mime_types'        => 'mp4,webm,ogg',
+                                'conditional_logic' => [
+                                    [
+                                        [
+                                            'field'    => 'field_front_voices_item_media_type',
+                                            'operator' => '==',
+                                            'value'    => 'video',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            [
+                                'key'               => 'field_front_voices_item_video_url',
+                                'label'             => __('Video URL (YouTube/Vimeo)', 'beit'),
+                                'name'              => 'video_url',
+                                'type'              => 'url',
+                                'instructions'      => __('If video file is not provided, use external URL.', 'beit'),
+                                'conditional_logic' => [
+                                    [
+                                        [
+                                            'field'    => 'field_front_voices_item_media_type',
+                                            'operator' => '==',
+                                            'value'    => 'video',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            [
+                                'key'               => 'field_front_voices_item_video_thumbnail',
+                                'label'             => __('Video Thumbnail', 'beit'),
+                                'name'              => 'video_thumbnail',
+                                'type'              => 'image',
+                                'return_format'     => 'id',
+                                'preview_size'      => 'medium',
+                                'library'           => 'all',
+                                'instructions'      => __('Thumbnail image for video preview.', 'beit'),
+                                'conditional_logic' => [
+                                    [
+                                        [
+                                            'field'    => 'field_front_voices_item_media_type',
+                                            'operator' => '==',
+                                            'value'    => 'video',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
             [

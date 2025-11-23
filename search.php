@@ -21,7 +21,7 @@ $available_post_types = [
     'post'         => __('Posts', 'beit'),
     'page'         => __('Pages', 'beit'),
     'beit_news'    => __('News', 'beit'),
-    'beit_voice'   => __('Voices & Visions', 'beit'),
+    // 'beit_voice'   => __('Voices & Visions', 'beit'),
     'beit_program' => __('Programs & Projects', 'beit'),
 ];
 

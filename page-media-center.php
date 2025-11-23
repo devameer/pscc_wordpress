@@ -15,46 +15,56 @@ if (!defined('ABSPATH')) {
 get_header();
 
 $is_rtl     = is_rtl();
-$paged      = max(1, (int) get_query_var('paged', 1));
-$per_page   = 9;
 $lightbox_id = 'media-center-lightbox';
-
-$media_query = new WP_Query(
-    [
-        'post_type'      => 'beit_voice',
-        'post_status'    => 'publish',
-        'posts_per_page' => $per_page,
-        'paged'          => $paged,
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    ]
-);
-
-$media_items = [];
-
-if ($media_query->have_posts()) {
-    while ($media_query->have_posts()) {
-        $media_query->the_post();
-
-        $media_items[] = [
-            'id'      => get_the_ID(),
-            'title'   => get_the_title(),
-            'excerpt' => get_the_excerpt(),
-            'media'   => beit_get_voice_media_data(get_the_ID()),
-            'date'    => get_the_date(),
-        ];
-    }
-
-    wp_reset_postdata();
-}
 
 $current_page_id = get_the_ID();
 $has_acf = function_exists('get_field');
+
+// Get hero data
 $hero_data = $has_acf ? (get_field('media_center_hero', $current_page_id) ?: []) : [];
 $hero_custom_title = $hero_data['custom_title'] ?? '';
-$hero_title = $hero_custom_title ?: get_the_title($current_page_id); // Use custom title if available, otherwise page title
-$hero_subtitle = get_the_content(); // Get content as subtitle
+$hero_title = $hero_custom_title ?: get_the_title($current_page_id);
+$hero_subtitle = get_the_content();
 $hero_description = get_post_meta($current_page_id, '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', $current_page_id);
+
+// Get media items from ACF
+$media_items = [];
+$voices_acf = $has_acf ? get_field('media_center_voices', $current_page_id) : null;
+
+if (!empty($voices_acf) && is_array($voices_acf)) {
+    foreach ($voices_acf as $item) {
+        $media_type = $item['media_type'] ?? 'image';
+        $title = $item['title'] ?? '';
+        $excerpt = $item['excerpt'] ?? '';
+
+        $processed_item = [
+            'title'   => $title,
+            'excerpt' => $excerpt,
+        ];
+
+        if ($media_type === 'image' && !empty($item['image'])) {
+            $processed_item['media'] = [
+                'type' => 'image',
+                'src' => wp_get_attachment_image_url($item['image'], 'full'),
+                'thumbnail_url' => wp_get_attachment_image_url($item['image'], 'large'),
+                'caption' => $title,
+            ];
+        } elseif ($media_type === 'video') {
+            $video_src = $item['video_file'] ?? $item['video_url'] ?? '';
+            $thumbnail_id = $item['video_thumbnail'] ?? 0;
+            $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+
+            $processed_item['media'] = [
+                'type' => 'video',
+                'src' => $video_src,
+                'thumbnail_url' => $thumbnail_url,
+                'caption' => $title,
+            ];
+        }
+
+        $media_items[] = $processed_item;
+    }
+}
 
 get_template_part(
     'resources/views/components/page-hero',
@@ -117,44 +127,6 @@ get_template_part(
                 <h2 class="text-2xl font-semibold text-slate-900"><?php esc_html_e('No media found', 'beit'); ?></h2>
                 <p class="mt-2 text-sm text-slate-600"><?php esc_html_e('Please check back soon for new stories and media highlights.', 'beit'); ?></p>
             </div>
-        <?php endif; ?>
-
-        <?php
-        $pagination_links = paginate_links(
-            [
-                'total'   => max(1, (int) $media_query->max_num_pages),
-                'current' => $paged,
-                'type'    => 'array',
-            ]
-        );
-
-        if (!empty($pagination_links)) :
-        ?>
-            <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('Media pagination', 'beit'); ?>">
-                <ul class="flex items-center gap-2">
-                    <?php
-                    foreach ($pagination_links as $link) {
-                        $is_current = strpos($link, 'current') !== false;
-                        $classes    = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
-                        $classes   .= $is_current
-                            ? ' border border-red-600 bg-red-600 text-white'
-                            : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
-
-                        $link = preg_replace(
-                            '/class="([^"]*)"/',
-                            'class="$1 ' . esc_attr($classes) . '"',
-                            $link,
-                            1
-                        );
-                    ?>
-                        <li class="inline-flex">
-                            <?php echo wp_kses_post($link); ?>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </nav>
         <?php endif; ?>
     </section>
 </main>

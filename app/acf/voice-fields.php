@@ -20,6 +20,13 @@ acf_add_local_field_group(
         'title'  => __('Voice Media Settings', 'beit'),
         'fields' => [
             [
+                'key'   => 'field_voice_custom_title',
+                'label' => __('Custom Title', 'beit'),
+                'name'  => 'voice_custom_title',
+                'type'  => 'text',
+                'instructions' => __('Optional custom title for this voice. If left empty, the post title will be used.', 'beit'),
+            ],
+            [
                 'key'     => 'field_voice_media_type',
                 'label'   => __('Media Type', 'beit'),
                 'name'    => 'voice_media_type',
