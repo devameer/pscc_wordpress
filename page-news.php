@@ -16,7 +16,10 @@ get_header();
 
 // Store current page info before any queries
 $current_page_id  = get_the_ID();
-$hero_title       = get_the_title($current_page_id);
+$has_acf = function_exists('get_field');
+$hero_data = $has_acf ? (get_field('news_hero', $current_page_id) ?: []) : [];
+$hero_custom_title = $hero_data['custom_title'] ?? '';
+$hero_title       = $hero_custom_title ?: get_the_title($current_page_id); // Use custom title if available, otherwise page title
 $hero_subtitle    = get_post_field('post_content', $current_page_id); // Get content as subtitle
 $hero_description = get_post_meta($current_page_id, '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', $current_page_id);
 

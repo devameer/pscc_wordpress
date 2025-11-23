@@ -67,6 +67,9 @@ $acf_field_files = [
     BEIT_THEME_DIR . '/app/acf/front-page-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-contact-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-donate-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-programs-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-news-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-media-center-fields.php',
     BEIT_THEME_DIR . '/app/acf/voice-fields.php',
     BEIT_THEME_DIR . '/app/acf/program-fields.php',
 ];

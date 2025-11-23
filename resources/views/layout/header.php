@@ -176,7 +176,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <?php endif; ?>
                             </div>
                         <?php elseif (has_custom_logo()) : ?>
-                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative -top-5 logo-header">
+                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative  logo-header">
                                 <?php the_custom_logo(); ?>
                             </div>
                         <?php else : ?>

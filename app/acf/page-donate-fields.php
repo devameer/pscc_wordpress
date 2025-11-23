@@ -26,29 +26,12 @@ acf_add_local_field_group(
                 'type'       => 'group',
                 'layout'     => 'block',
                 'sub_fields' => [
-                  
                     [
                         'key'   => 'field_donate_hero_title',
-                        'label' => __('Headline', 'beit'),
+                        'label' => __('Custom Hero Title', 'beit'),
                         'name'  => 'title',
                         'type'  => 'text',
-                    ],
-                    [
-                        'key'   => 'field_donate_hero_subtitle',
-                        'label' => __('Subtitle', 'beit'),
-                        'name'  => 'subtitle',
-                        'type'  => 'textarea',
-                        'rows'  => 3,
-                    ],
-                    [
-                        'key'           => 'field_donate_hero_background',
-                        'label'         => __('Background Image', 'beit'),
-                        'name'          => 'background',
-                        'type'          => 'image',
-                        'return_format' => 'url',
-                        'preview_size'  => 'large',
-                        'library'       => 'all',
-                        'instructions'  => __('Optional hero background image (a gradient overlay will be applied automatically).', 'beit'),
+                        'instructions' => __('Optional custom title for hero section. If left empty, the page title will be used.', 'beit'),
                     ],
                 ],
             ],

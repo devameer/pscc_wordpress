@@ -20,9 +20,9 @@ while (have_posts()) {
     $has_acf = function_exists('get_field');
 
     $hero_data       = $has_acf ? (get_field('contact_hero') ?: []) : [];
-    $hero_subtitle_acf   = $hero_data['subtitle'] ?? '';
-    $hero_subtitle   = get_the_content() ; // Use page content first, then ACF field
-    $hero_background = $hero_data['background'] ?? '';
+    $hero_custom_title = $hero_data['custom_title'] ?? '';
+    $hero_title      = $hero_custom_title ?: get_the_title(); // Use custom title if available, otherwise page title
+    $hero_subtitle   = get_the_content(); // Use page content as subtitle
 
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
     $social_links    = [];
@@ -77,9 +77,8 @@ while (have_posts()) {
         'resources/views/components/page-hero',
         null,
         [
-            'title'            => get_the_title(),
+            'title'            => $hero_title,
             'description'      => $hero_subtitle,
-            'background_image' => $hero_background,
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
             'overlay_gradients' => true,
         ]

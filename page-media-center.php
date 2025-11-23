@@ -48,9 +48,13 @@ if ($media_query->have_posts()) {
     wp_reset_postdata();
 }
 
-$hero_title = get_the_title();
+$current_page_id = get_the_ID();
+$has_acf = function_exists('get_field');
+$hero_data = $has_acf ? (get_field('media_center_hero', $current_page_id) ?: []) : [];
+$hero_custom_title = $hero_data['custom_title'] ?? '';
+$hero_title = $hero_custom_title ?: get_the_title($current_page_id); // Use custom title if available, otherwise page title
 $hero_subtitle = get_the_content(); // Get content as subtitle
-$hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
+$hero_description = get_post_meta($current_page_id, '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', $current_page_id);
 
 get_template_part(
     'resources/views/components/page-hero',

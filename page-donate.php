@@ -21,9 +21,7 @@ while (have_posts()) {
 
     $hero_data        = $has_acf ? (get_field('donate_hero') ?: []) : [];
     $hero_title       = $hero_data['title'] ?? get_the_title();
-    $hero_subtitle_acf    = $hero_data['subtitle'] ?? '';
-    $hero_subtitle    = get_the_content() ?: ($hero_subtitle_acf ?: __('Empowering hope and resilience across Gaza.', 'beit')); // Use page content first
-    $hero_background  = $hero_data['background'] ?? '';
+    $hero_subtitle    = get_the_content(); // Use page content as subtitle
 
     $bank_accounts   = $has_acf ? (get_field('donation_accounts') ?: []) : [];
     $impact_title    = $has_acf ? (get_field('donation_story_title') ?: __('Why Your Donation Matters', 'beit')) : __('Why Your Donation Matters', 'beit');
@@ -37,7 +35,6 @@ while (have_posts()) {
         [
             'title'            => $hero_title,
             'description'      => $hero_subtitle,
-            'background_image' => $hero_background,
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
             'height'           => 'py-24',
             'overlay_gradients' => true,
