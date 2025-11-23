@@ -20,6 +20,16 @@ acf_add_local_field_group(
         'title'    => __('Hero Slide Details', 'beit'),
         'fields'   => [
             [
+                'key'           => 'field_hero_slide_order',
+                'label'         => __('Display Order', 'beit'),
+                'name'          => 'hero_slide_order',
+                'type'          => 'number',
+                'instructions'  => __('Lower numbers appear first. If not set, slides will be ordered by date.', 'beit'),
+                'default_value' => 0,
+                'min'           => 0,
+                'step'          => 1,
+            ],
+            [
                 'key'   => 'field_hero_slide_title',
                 'label' => __('Title Prefix', 'beit'),
                 'name'  => 'hero_slide_title',

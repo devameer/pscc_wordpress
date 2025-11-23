@@ -151,6 +151,7 @@
     }
 })();
 
+// Mobile menu toggle
 (() => {
     const toggleButtons = document.querySelectorAll('[data-menu-toggle="mobile"]');
 
@@ -166,6 +167,28 @@
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
             button.setAttribute('aria-expanded', String(!isExpanded));
             target.classList.toggle('hidden', isExpanded);
+        });
+    });
+})();
+
+// Mobile dropdown menu toggle
+(() => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileMenu) return;
+
+    const dropdownParents = mobileMenu.querySelectorAll('.has-dropdown');
+
+    dropdownParents.forEach((parent) => {
+        const link = parent.querySelector('a');
+        if (!link) return;
+
+        // Prevent default click on parent link
+        link.addEventListener('click', (e) => {
+            // Only prevent default if it has a submenu
+            if (parent.querySelector('.dropdown-menu')) {
+                e.preventDefault();
+                parent.classList.toggle('mobile-dropdown-open');
+            }
         });
     });
 })();

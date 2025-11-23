@@ -19,6 +19,7 @@ $beit_theme_includes = [
     'app/widgets.php',
     'app/post-types.php',
     'app/acf.php',
+    'app/nav-walker.php',
 ];
 
 foreach ($beit_theme_includes as $relative_path) {

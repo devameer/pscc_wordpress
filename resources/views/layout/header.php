@@ -219,7 +219,8 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 'menu_class'     => 'flex items-center text-xs lg:text-sm uppercase tracking-wide text-white',
                                 'container'      => false,
                                 'fallback_cb'    => false,
-                                'depth'          => 1,
+                                'depth'          => 2,
+                                'walker'         => new Beit_Nav_Walker(),
                             ]
                         );
                         ?>
@@ -239,7 +240,8 @@ $donate_target = $donate_link['target'] ?? '_self';
                         'menu_class'     => 'flex flex-col gap-1 px-3 py-3 sm:px-4 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white',
                         'container'      => false,
                         'fallback_cb'    => false,
-                        'depth'          => 1,
+                        'depth'          => 2,
+                        'walker'         => new Beit_Nav_Walker(),
                     ]
                 );
                 ?>

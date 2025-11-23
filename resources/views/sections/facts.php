@@ -46,7 +46,7 @@ if (!$default_year_id && !empty($years)) {
 
 ?>
 
-<section class="relative bg-[#7F7F7F] py-12 md:py-16 lg:py-20 text-white bg-cover bg-center bg-no-repeat" <?php if ($background_image) : ?>data-bg="<?php echo esc_url($background_image); ?>" <?php endif; ?>>
+<section class="relative bg-[#7F7F7F] py-12 md:py-16 lg:py-20 text-white bg-cover bg-center bg-no-repeat bg-fixed" <?php if ($background_image) : ?>data-bg="<?php echo esc_url($background_image); ?>" <?php endif; ?>>
     <!-- Overlay -->
     <?php if ($background_image) : ?>
         <div class="absolute inset-0 bg-black/60"></div>

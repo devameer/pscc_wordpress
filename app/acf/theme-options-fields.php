@@ -71,7 +71,7 @@ acf_add_local_field_group(
             ],
             [
                 'key'   => 'field_donate_link',
-                'label' => __('Donate Link', 'beit'),
+                'label' => __('header action btn', 'beit'),
                 'name'  => 'donate_link',
                 'type'  => 'link',
             ],

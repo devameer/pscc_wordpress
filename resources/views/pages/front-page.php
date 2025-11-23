@@ -42,9 +42,10 @@ $hero_query = new WP_Query(
         'post_type'      => 'beit_hero_slide',
         'posts_per_page' => -1,
         'post_status'    => 'publish',
+        'meta_key'       => 'hero_slide_order',
         'orderby'        => [
-            'menu_order' => 'ASC',
-            'date'       => 'DESC',
+            'meta_value_num' => 'ASC',
+            'date'           => 'DESC',
         ],
     ]
 );
@@ -54,6 +55,7 @@ if ($hero_query->have_posts()) {
         $hero_query->the_post();
 
         $slide_id = get_the_ID();
+        $slide_order = $has_acf ? (int) get_field('hero_slide_order', $slide_id) : 0;
         $title = $has_acf ? (string) get_field('hero_slide_title', $slide_id) : '';
         $description = $has_acf ? (string) get_field('hero_slide_description', $slide_id) : '';
         $background_image = get_the_post_thumbnail_url($slide_id, 'full') ?: '';
@@ -69,8 +71,8 @@ if ($hero_query->have_posts()) {
         }
 
         $hero_slides[] = [
-            'title'     => $title,
-
+            'order'            => $slide_order,
+            'title'            => $title,
             'description'      => $description,
             'background_image' => $background_image,
             'video_url'        => $video_url,
