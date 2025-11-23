@@ -104,7 +104,7 @@ if (!$default_year_id && !empty($years)) {
                 $fact_delay = 200 + ($fact_index * 100);
             ?>
                 <div
-                    class="rounded-md bg-white/30 backdrop-blur-md p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
+                    class="rounded-md bg-white/30 backdrop-blur-sm p-6 md:p-8 text-center shadow-lg h-52 md:h-60 flex flex-col justify-center items-center gap-3 md:gap-4" data-aos="flip-up" data-aos-delay="<?php echo esc_attr($fact_delay); ?>">
                     <?php if ($value) : ?>
                         <div class="text-3xl md:text-4xl lg:text-6xl font-extrabold" data-counter data-target="<?php echo esc_attr($value); ?>">0</div>
                     <?php endif; ?>
