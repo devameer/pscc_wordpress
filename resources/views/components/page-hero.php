@@ -12,19 +12,17 @@ $args = wp_parse_args(
         'title'              => get_the_title(),
         'description'        => '',
         'subtitle'           => '',
-        'eyebrow'            => __('Latest Updates', 'beit'),
         'background_image'   => '',
         'background_classes' => 'bg-slate-950',
         'overlay_gradients'  => true,
         'overlay_style'      => 'default', // 'default', 'contact', 'donate', 'none'
-        'height'             => 'pb-24 pt-40', // py-20, py-24, h-96, etc.
+        'height'             => 'pb-16 pt-60', // py-20, py-24, h-96, etc.
     ]
 );
 
 $title              = $args['title'];
 $description        = $args['description'];
 $subtitle           = $args['subtitle'];
-$eyebrow            = $args['eyebrow'];
 $background_image   = $args['background_image'];
 $background_classes = $args['background_classes'];
 $overlay_gradients  = (bool) $args['overlay_gradients'];
@@ -69,17 +67,7 @@ $section_classes[] = $height;
 
     <div class="relative z-10 container mx-auto px-4 md:px-6<?php echo $height === 'h-96' ? ' flex h-full items-center' : ''; ?>">
         <div class="max-w-3xl space-y-4">
-            <?php if ($eyebrow) : ?>
-                <?php if ($overlay_style === 'donate') : ?>
-                    <span class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70" data-aos="fade-down">
-                        <?php echo esc_html($eyebrow); ?>
-                    </span>
-                <?php else : ?>
-                    <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/70" data-aos="fade-down">
-                        <?php echo esc_html($eyebrow); ?>
-                    </div>
-                <?php endif; ?>
-            <?php endif; ?>
+          
 
             <h1 class="text-3xl font-bold leading-tight md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>" data-aos="fade-up" data-aos-delay="100">
                 <?php echo esc_html($title); ?>
@@ -90,7 +78,7 @@ $section_classes[] = $height;
             <?php endif; ?>
 
             <?php if ($description) : ?>
-                <div class="text-base text-white/75 md:text-lg<?php echo $overlay_style === 'donate' ? ' text-lg font-light text-white/90 md:text-xl' : ''; ?>" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-white md:text-3xl font-light" data-aos="fade-up" data-aos-delay="300">
                     <?php echo wp_kses_post($description); ?>
                 </div>
             <?php endif; ?>

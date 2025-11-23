@@ -26,13 +26,7 @@ acf_add_local_field_group(
                 'type'       => 'group',
                 'layout'     => 'block',
                 'sub_fields' => [
-                    [
-                        'key'   => 'field_donate_hero_eyebrow',
-                        'label' => __('Eyebrow Text', 'beit'),
-                        'name'  => 'eyebrow',
-                        'type'  => 'text',
-                        'default_value' => __('Donate Information', 'beit'),
-                    ],
+                  
                     [
                         'key'   => 'field_donate_hero_title',
                         'label' => __('Headline', 'beit'),

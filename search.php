@@ -45,7 +45,6 @@ get_template_part(
                 $results_count
             )
             : __('Find what you\'re looking for', 'beit'),
-        'eyebrow'     => __('Search', 'beit'),
         'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
     ]
 );

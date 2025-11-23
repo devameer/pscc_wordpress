@@ -12,7 +12,16 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
+    <?php
+    // Favicon from ACF
+    if (function_exists('get_field')) {
+        $favicon_url = get_field('site_favicon', 'option');
+        if ($favicon_url) {
+            echo '<link rel="icon" type="image/x-icon" href="' . esc_url($favicon_url) . '">';
+        }
+    }
+    wp_head();
+    ?>
     <style>
         #wpadminbar {
             display: none !important;
@@ -25,6 +34,8 @@
 </head>
 <?php
 $topbar_socials = [];
+$site_logo         = 0;
+$site_logo_scroll  = 0;
 
 if (function_exists('get_field')) {
     $topbar_email        = get_field('topbar_email', 'option');
@@ -33,6 +44,8 @@ if (function_exists('get_field')) {
     $donate_link         = get_field('donate_link', 'option');
     $topbar_socials_raw  = get_field('topbar_social_links', 'option');
     $topbar_socials      = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
+    $site_logo           = get_field('site_logo', 'option') ?: 0;
+    $site_logo_scroll    = get_field('site_logo_horizontal', 'option') ?: 0;
 } else {
     $topbar_email        = null;
     $topbar_phone        = null;
@@ -50,10 +63,10 @@ $donate_target = $donate_link['target'] ?? '_self';
     <?php wp_body_open(); ?>
     <div class="min-h-screen flex flex-col">
         <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) : ?>
-            <div class="bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/70">
+            <div class="topbar-section bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
                 <div class="container mx-auto flex flex-col sm:flex-row px-3  md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
                     <?php if (!empty($topbar_socials)) : ?>
-                        <div class="flex flex-wrap items-center gap-1 md:gap-2 border-r border-l border-white/60 sm:px-2 md:px-3">
+                        <div class="flex flex-wrap items-center gap-3 md:gap-2 lg:border-r border-b lg:border-b-0 lg:border-l border-white/20 sm:px-2 md:px-3 py-[0.3rem] justify-center lg:justify-start w-full sm:w-auto mb-2 sm:mb-0">
                             <?php foreach ($topbar_socials as $social) :
                                 $network = $social['network'] ?? '';
                                 $url     = $social['url'] ?? '';
@@ -75,7 +88,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                                         $icon_class = 'fa fa-youtube';
                                         break;
                                     case 'linkedin':
-                                        $icon_class = 'fa fa-linkedin-in';
+                                        $icon_class = 'fa fa-linkedin';
                                         break;
                                     default:
                                         $icon_class = 'fa-link';
@@ -85,19 +98,19 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-red-600 rounded"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
-                                    <?php if($network === 'twitter'): ?>
-                                                <?php echo file_get_contents(get_template_directory() . '/resources/assets/images/x.svg'); ?>
-                                            <?php else: ?>
-                                    <i class="<?php echo esc_attr($icon_class); ?> text-[10px] sm:text-xs md:text-sm"></i>
+                                    <?php if ($network === 'twitter'): ?>
+                                        <?php echo file_get_contents(get_template_directory() . '/resources/assets/images/x.svg'); ?>
+                                    <?php else: ?>
+                                        <i class="<?php echo esc_attr($icon_class); ?> text-[10px] sm:text-xs md:text-sm"></i>
                                     <?php endif; ?>
                                 </a>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
-                    <div class="flex flex-wrap items-center  mr-auto">
+                    <div class="flex flex-wrap items-center  mr-auto w-full sm:w-auto justify-between sm:justify-start">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
@@ -107,18 +120,18 @@ $donate_target = $donate_link['target'] ?? '_self';
                         <?php if ($topbar_phone) :
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                         ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa fa-phone text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                             href="#">
                             <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
                             <span class="text-[9px] sm:text-[10px] md:text-xs">عربي</span>
                         </a>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-r border-white/60 py-2 px-3 font-normal"
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                             href="#">
                             <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
                             <span class="text-[9px] sm:text-[10px] md:text-xs">FAQs</span>
@@ -126,13 +139,13 @@ $donate_target = $donate_link['target'] ?? '_self';
                     </div>
 
                     <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/60  px-3 py-1.5 lg:px-6 lg:py-3 text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400"
+                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400"
                             href="<?php echo esc_url(home_url('/?s=')); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="inline-flex bg-primary rounded-xs px-4 py-1.5 lg:px-10 lg:py-3 text-xs font-normal uppercase tracking-wide text-white transition hover:bg-red-700"
+                        <a class="inline-flex bg-primary rounded-xs px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-red-700"
                             href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                             rel="noopener">
                             <?php echo esc_html($donate_label); ?>
@@ -142,13 +155,28 @@ $donate_target = $donate_link['target'] ?? '_self';
             </div>
         <?php endif; ?>
 
-        <header class="fixed top-12 sm:top-8 md:top-10 z-50 w-full text-white transition-all duration-300 ease-in-out" data-scroll-header
-            data-scroll-threshold="48">
+        <header class="navbar-section fixed w-full text-white transition-all duration-300 ease-in-out z-50" data-scroll-header
+            data-scroll-threshold="48" style="top: var(--topbar-height, 0px);">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
                 <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
-                        <?php if (has_custom_logo()) : ?>
-                            <div class="w-14 sm:w-16 md:w-20 lg:w-24">
+                        <?php if ($site_logo || $site_logo_scroll) : ?>
+                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative  logo-header">
+                                <?php if ($site_logo) : ?>
+                                    <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
+                                        'class' => 'logo-default transition-opacity duration-300',
+                                        'alt'   => esc_attr(get_bloginfo('name')),
+                                    ]); ?>
+                                <?php endif; ?>
+                                <?php if ($site_logo_scroll) : ?>
+                                    <?php echo wp_get_attachment_image($site_logo_scroll, 'medium', false, [
+                                        'class' => 'logo-scroll absolute top-0 left-0 opacity-0 transition-opacity duration-300',
+                                        'alt'   => esc_attr(get_bloginfo('name')),
+                                    ]); ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php elseif (has_custom_logo()) : ?>
+                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative -top-5 logo-header">
                                 <?php the_custom_logo(); ?>
                             </div>
                         <?php else : ?>

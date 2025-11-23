@@ -13,7 +13,7 @@ $args = wp_parse_args(
         'settings'              => [],
         'content_alignment'     => '',
         'video_button_position' => '',
-        'hero_prev_icon'        => 'fa fa-arrow-left',
+        'hero_prev_icon'        => 'fa fa-facebook',
         'hero_next_icon'        => 'fa fa-arrow-right',
     ]
 );
@@ -52,7 +52,7 @@ if (empty($slides)) {
             ?>
                 <div class="swiper-slide">
                     <div
-                        class="relative flex min-h-[80vh] items-center justify-center overflow-hidden"
+                        class="relative flex min-h-[95vh] items-center justify-center overflow-hidden"
                         <?php if ($background_style) : ?>
                         style="<?php echo esc_attr($background_style); ?>"
                         <?php endif; ?>>
@@ -75,7 +75,7 @@ if (empty($slides)) {
                                 <?php endif; ?>
 
                                 <?php if (!empty($slide['description'])) : ?>
-                                    <p class="max-w-xl text-base text-white md:text-lg font-normal hero-description-animate">
+                                    <p class="max-w-xl text-base text-white md:text-lg font-light hero-description-animate">
                                         <?php echo esc_html($slide['description']); ?>
                                     </p>
                                 <?php endif; ?>
@@ -111,10 +111,10 @@ if (empty($slides)) {
                             <a
                                 class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3   px-5 py-3 text-sm font-semibold text-white  transition  md:flex hero-video-button group"
                                 href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span class="flex h-14 w-14 items-center justify-center rounded-xs text-2xl  bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <span class="flex h-20 w-20 items-center justify-center rounded-xs text-2xl  bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                                     <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
-                                <span class="leading-tight text-white text-2xl font-light border-l border-white/55 pl-4 group-hover:border-primary transition-colors duration-300">
+                                <span class="leading-tight text-white text-3xl font-light border-l border-white/30 pl-4 group-hover:border-primary transition-colors duration-300">
                                     <span class="block  capitalize tracking-wide  "><?php esc_html_e('See the change', 'beit'); ?></span>
                                     <span class="block  capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
                                 </span>

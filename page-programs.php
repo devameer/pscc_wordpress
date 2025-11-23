@@ -18,6 +18,7 @@ while (have_posts()) {
     the_post();
 
     $hero_title = get_the_title();
+    $hero_subtitle = get_the_content(); // Get content as subtitle
     $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
 
     get_template_part(
@@ -25,8 +26,8 @@ while (have_posts()) {
         null,
         [
             'title'       => $hero_title,
+            'subtitle'    => $hero_subtitle,
             'description' => $hero_description,
-            'eyebrow'     => __('Programs & Projects', 'beit'),
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
         ]
     );
@@ -62,7 +63,6 @@ if (!$programs_query->have_posts()) {
             }
 
             $heading          = function_exists('get_field') ? get_field('program_heading') : '';
-            $eyebrow          = function_exists('get_field') ? get_field('program_eyebrow') : '';
             $overlay_heading  = function_exists('get_field') ? get_field('program_overlay_heading') : '';
             $overlay_sub      = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
             $description      = function_exists('get_field') ? get_field('program_description') : '';
@@ -71,18 +71,16 @@ if (!$programs_query->have_posts()) {
             $image_id  = get_post_thumbnail_id();
             $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
 
-            $content_background = 'image-left' === $layout ? 'bg-white' : 'bg-gray-50';
+            $content_background = 'image-left' === $layout ? 'p-6 md:p-8 lg:p-12' : 'py-6 md:py-8 lg:py-12 pe-6 md:pe-8 lg:pe-12';
             $content_html = '';
-            $content_html .= '<div class="' . esc_attr($content_background) . ' p-6 md:p-8 lg:p-12 flex flex-col justify-center gap-4 md:gap-6 transition-transform duration-300">';
-            if ($eyebrow) {
-                $content_html .= '<span class="text-xs md:text-sm uppercase tracking-[0.4em] text-red-500">' . esc_html($eyebrow) . '</span>';
-            }
+            $content_html .= '<div class="' . esc_attr($content_background) . ' flex flex-col justify-center gap-4 md:gap-6 transition-transform duration-300">';
+          
             $content_html .= '<h2 class="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight">' . ($heading ? wp_kses_post($heading) : esc_html(get_the_title())) . '</h2>';
             $content_html .= '<p class="text-sm md:text-base text-gray-700 leading-relaxed">' . esc_html($description ?: get_the_excerpt()) . '</p>';
 
             // Read More button (links to single program page)
             $content_html .= sprintf(
-                '<a class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base rounded self-start transition inline-block" href="%s">%s</a>',
+                '<div class="flex justify-end"><a class="btn-more" href="%s">%s</a></div>',
                 esc_url(get_permalink()),
                 esc_html__('Read More', 'beit')
             );
@@ -90,7 +88,7 @@ if (!$programs_query->have_posts()) {
             // Keep custom button if exists (optional additional button)
             if (!empty($button['title']) && !empty($button['url'])) {
                 $content_html .= sprintf(
-                    '<a class="bg-slate-600 hover:bg-slate-700 text-white px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base rounded self-start transition inline-block ml-2 md:ml-3" href="%s" target="%s" rel="noopener">%s</a>',
+                    '<a class="bg-slate-600 hover:bg-slate-700 text-white px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base  self-start transition inline-block ml-2 md:ml-3" href="%s" target="%s" rel="noopener">%s</a>',
                     esc_url($button['url']),
                     esc_attr($button['target'] ?? '_self'),
                     esc_html($button['title'])
@@ -100,9 +98,9 @@ if (!$programs_query->have_posts()) {
 
             $image_html = '';
             if ($image_url) {
-                $image_html .= '<div class="relative h-[300px] md:h-[400px] overflow-hidden group">';
+                $image_html .= '<div class="relative h-[300px] md:h-[400px] overflow-hidden">';
                 $image_html .= '<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
-                $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>';
+                $image_html .= '<div class="absolute inset-0 bg-gradient-to-t   duration-300"></div>';
                 $image_html .= '<div class="absolute bottom-0 left-0 p-4 md:p-6 lg:p-8 text-white">';
                 if ($overlay_heading) {
                     $image_html .= '<h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">' . esc_html($overlay_heading) . '</h2>';
@@ -120,7 +118,7 @@ if (!$programs_query->have_posts()) {
             $image_animation = 'image-left' === $layout ? 'fade-left' : 'fade-right';
             $content_animation = 'image-left' === $layout ? 'fade-right' : 'fade-left';
 
-            $row_classes = 'grid md:grid-cols-2 gap-0 mb-0 rounded-2xl overflow-hidden transition hover:-translate-y-1';
+            $row_classes = 'grid md:grid-cols-2 gap-0 mb-0  overflow-hidden transition hover:-translate-y-1';
             echo '<div class="' . esc_attr($row_classes) . '" data-aos="fade-up" data-aos-delay="' . esc_attr($animation_delay) . '">';
 
             if ('image-left' === $layout) {

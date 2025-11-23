@@ -17,6 +17,7 @@ get_header();
 // Store current page info before any queries
 $current_page_id  = get_the_ID();
 $hero_title       = get_the_title($current_page_id);
+$hero_subtitle    = get_post_field('post_content', $current_page_id); // Get content as subtitle
 $hero_description = get_post_meta($current_page_id, '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', $current_page_id);
 
 $paged    = max(1, (int) get_query_var('paged', 1));
@@ -38,8 +39,8 @@ get_template_part(
     null,
     [
         'title'       => $hero_title,
+        'subtitle'    => $hero_subtitle,
         'description' => $hero_description,
-        'eyebrow'     => __('News & Activities', 'beit'),
         'background_classes' => 'bg-gradient-to-br from-slate-900 via-red-800 to-slate-950',
     ]
 );
@@ -58,21 +59,29 @@ get_template_part(
                     ?>
                         <article class="flex h-full flex-col overflow-hidden bg-white transition hover:-translate-y-1">
                             <?php if ($thumbnail_html) : ?>
-                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
+                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden relative">
                                     <?php echo $thumbnail_html; ?>
+                                    <span
+                                        class="absolute inset-0 z-10 flex items-center justify-center group">
+                                        <div class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
+                                        <span
+                                            class="inline-flex h-20 w-20 items-center justify-center  text-3xl
+                                text-white  transition-all duration-700 relative z-10  top-60 group-hover:top-0 opacity-0 group-hover:opacity-100">
+                                            <i
+                                                class="fa fa-search"></i>
+                                        </span>
+                                    </span>
                                 </a>
                             <?php endif; ?>
 
                             <div class="flex flex-1 flex-col gap-4 py-4">
-                                <h2 class="text-lg font-semibold text-slate-900">
+                                <h2 class="text-lg font-light ">
                                     <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                                 
-                                <div class="text-sm text-slate-600">
-                                    <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
-                                </div>
-                                
-                                
+
+
+
                             </div>
                         </article>
                     <?php endwhile; ?>

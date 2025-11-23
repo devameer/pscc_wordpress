@@ -30,7 +30,6 @@ $archive_description = get_the_archive_description();
         [
             'title'       => $archive_title,
             'description' => $archive_description,
-            'eyebrow'     => __('Latest Updates', 'beit'),
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
         ]
     );

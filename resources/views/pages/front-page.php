@@ -25,8 +25,8 @@ $is_rtl  = is_rtl();
 
 $content_alignment     = $is_rtl ? 'md:text-right' : 'md:text-left';
 $video_button_position = $is_rtl ? 'bottom-16 left-12' : 'bottom-16 right-12';
-$hero_prev_icon        = $is_rtl ? 'fa fa-arrow-right' : 'fa fa-arrow-left';
-$hero_next_icon        = $is_rtl ? 'fa fa-arrow-left' : 'fa fa-arrow-right';
+$hero_prev_icon        = $is_rtl ? 'fa fa-angle-right' : 'fa fa-angle-left';
+$hero_next_icon        = $is_rtl ? 'fa fa-angle-left' : 'fa fa-angle-right';
 
 $hero_settings = [
     'autoplay'        => $hero_defaults['autoplay'],

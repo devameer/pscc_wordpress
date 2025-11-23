@@ -31,12 +31,7 @@ acf_add_local_field_group(
                 'default_value' => 'image-left',
                 'return_format' => 'value',
             ],
-            [
-                'key'   => 'field_program_eyebrow',
-                'label' => __('Eyebrow Text', 'beit'),
-                'name'  => 'program_eyebrow',
-                'type'  => 'text',
-            ],
+           
             [
                 'key'   => 'field_program_heading',
                 'label' => __('Heading', 'beit'),

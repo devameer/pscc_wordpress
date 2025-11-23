@@ -22,19 +22,19 @@ $content_alignment = $args['content_alignment'] ?? '';
 ?>
 
 <section class="bg-[#282828] text-white overflow-hidden">
-    <div class="container mx-auto px-4 py-12 md:px-6 md:py-16 lg:py-20">
+    <div class=" mx-auto ">
         <div class="grid gap-8 md:gap-12 md:grid-cols-2 md:items-center">
             <div class="relative overflow-hidden" data-aos="fade-right">
                 <?php if (!empty($data['image'])) : ?>
                     <?php if (is_numeric($data['image'])) : ?>
-                        <?php echo wp_get_attachment_image((int) $data['image'], 'large', false, ['class' => 'w-full md:rounded-2xl object-cover']); ?>
+                        <?php echo wp_get_attachment_image((int) $data['image'], 'large', false, ['class' => 'w-full object-cover']); ?>
                     <?php else : ?>
-                        <img class="w-full md:rounded-2xl object-cover" src="<?php echo esc_url((string) $data['image']); ?>" alt="" loading="lazy" decoding="async">
+                        <img class="w-full object-cover" src="<?php echo esc_url((string) $data['image']); ?>" alt="" loading="lazy" decoding="async">
                     <?php endif; ?>
                 <?php endif; ?>
 
                 <?php if (!empty($data['tagline'])) : ?>
-                    <div class="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 px-3 py-2 md:px-4 rounded-xl max-w-xs md:max-w-sm">
+                    <div class="absolute bottom-4  right-4 md:bottom-8  px-3 py-2 md:px-4 rounded-xl max-w-xs md:max-w-sm">
                         <h3 class="text-2xl md:text-3xl font-light leading-tight">
                             <?php echo wp_kses_post($data['tagline']); ?>
                         </h3>
@@ -56,9 +56,11 @@ $content_alignment = $args['content_alignment'] ?? '';
                 <?php endif; ?>
 
                 <?php if (!empty($data['button']['title'])) : ?>
-                    <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700" href="<?php echo esc_url($data['button']['url'] ?? '#'); ?>" target="<?php echo esc_attr($data['button']['target'] ?? '_self'); ?>" rel="noopener">
-                        <?php echo esc_html($data['button']['title']); ?>
-                    </a>
+                    <div class="text-end">
+                        <a class="btn-more" href="<?php echo esc_url($data['button']['url'] ?? '#'); ?>" target="<?php echo esc_attr($data['button']['target'] ?? '_self'); ?>" rel="noopener">
+                            <?php echo esc_html($data['button']['title']); ?>
+                        </a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

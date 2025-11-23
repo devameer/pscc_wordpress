@@ -50,7 +50,7 @@ if (empty($items)) {
                     continue;
                 }
 
-                $classes = 'rounded-md object-cover w-full h-full';
+                $classes = ' object-cover w-full h-full';
                 $wrapper_classes = 'overflow-hidden';
 
                 if (($item['span'] ?? '') === 'double' && 0 === $index) {
@@ -63,14 +63,31 @@ if (empty($items)) {
                         data-type="<?php echo esc_attr($lightbox_type); ?>" data-caption="<?php echo esc_attr($caption); ?>"
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
+                        <?php if ('video' === $lightbox_type) : ?>
                         <span
-                            class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
+                            class="absolute inset-0 z-10 flex items-center justify-center group">
+                            <div class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
                             <span
-                                class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-slate-900">
+                                class="inline-flex h-20 w-20 items-center justify-center bg-white/50 backdrop-blur-sm text-3xl
+                                text-white group-hover:bg-primary transition-all duration-300 relative z-10">
                                 <i
-                                    class="fa <?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-search'); ?>"></i>
+                                    class="fa fa-play"></i>
                             </span>
                         </span>
+                        
+                        <?php elseif ('image' === $lightbox_type) : ?>
+                        <span
+                            class="absolute inset-0 z-10 flex items-center justify-center group">
+                                                        <div class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
+
+                            <span
+                                class="inline-flex h-12 w-12 items-center justify-center bg-white/50 backdrop-blur-sm text-xl
+                                text-white group-hover:bg-primary transition-all duration-300 relative z-10 opacity-0 group-hover:opacity-100">
+                                <i
+                                    class="fa fa-search"></i>
+                            </span>
+                        </span>
+                        <?php endif; ?>
                         <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
                             alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
                     </a>

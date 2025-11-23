@@ -20,9 +20,9 @@ while (have_posts()) {
     $has_acf = function_exists('get_field');
 
     $hero_data        = $has_acf ? (get_field('donate_hero') ?: []) : [];
-    $hero_eyebrow     = $hero_data['eyebrow'] ?? __('Donate Information', 'beit');
     $hero_title       = $hero_data['title'] ?? get_the_title();
-    $hero_subtitle    = $hero_data['subtitle'] ?? __('Empowering hope and resilience across Gaza.', 'beit');
+    $hero_subtitle_acf    = $hero_data['subtitle'] ?? '';
+    $hero_subtitle    = get_the_content() ?: ($hero_subtitle_acf ?: __('Empowering hope and resilience across Gaza.', 'beit')); // Use page content first
     $hero_background  = $hero_data['background'] ?? '';
 
     $bank_accounts   = $has_acf ? (get_field('donation_accounts') ?: []) : [];
@@ -37,7 +37,6 @@ while (have_posts()) {
         [
             'title'            => $hero_title,
             'description'      => $hero_subtitle,
-            'eyebrow'          => $hero_eyebrow,
             'background_image' => $hero_background,
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
             'height'           => 'py-24',

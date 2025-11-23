@@ -70,13 +70,7 @@ acf_add_local_field_group(
                         'type'  => 'textarea',
                         'rows'  => 2,
                     ],
-                    [
-                        'key'   => 'field_contact_details_hours',
-                        'label' => __('Working Hours', 'beit'),
-                        'name'  => 'hours',
-                        'type'  => 'textarea',
-                        'rows'  => 2,
-                    ],
+                    
                 ],
             ],
 

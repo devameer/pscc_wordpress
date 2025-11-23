@@ -63,7 +63,7 @@ if (empty($items)) {
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                                 </div>
 
-                                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="absolute inset-0 flex flex-col  p-6 pt-24   ">
                                     <?php
                                     $icon_output = '';
                                     if (!empty($item['icon'])) {
@@ -121,7 +121,7 @@ if (empty($items)) {
 
         <?php if (!empty($data['cta']['title'])) : ?>
             <div class="mt-10 text-center">
-                <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-6 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                <a class="btn-more"
                     href="<?php echo esc_url($data['cta']['url']); ?>"
                     target="<?php echo esc_attr($data['cta']['target'] ?? '_self'); ?>" rel="noopener">
                     <?php echo esc_html($data['cta']['title']); ?>

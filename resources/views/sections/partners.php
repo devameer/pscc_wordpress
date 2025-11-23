@@ -42,7 +42,7 @@ if (empty($items)) {
             <?php endif; ?>
         </div>
 
-        <div class="relative" data-aos="fade-up" data-aos-delay="200">
+        <div class="relative px-20" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper partners-slider" data-slider="partners">
                 <div class="swiper-wrapper items-center">
                     <?php foreach ($items as $partner) :
@@ -52,7 +52,7 @@ if (empty($items)) {
                         }
                     ?>
                         <div class="swiper-slide">
-                            <div class="flex h-56 items-center justify-center border border-gray-200 bg-white p-4 transition hover:bg-slate-200">
+                            <div class="flex h-52 items-center justify-center border border-gray-200 bg-white p-4 ">
                                 <?php if (is_numeric($logo)) : ?>
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'object-contain']); ?>
                                 <?php else : ?>

@@ -44,7 +44,7 @@ function beit_front_default_initiatives(): array
         'title'    => __('Our <span class="font-bold">Initiatives</span>', 'beit'),
         'subtitle' => __('Building healthier futures, one program at a time.', 'beit'),
         'cta'      => [
-            'title'  => __('Read More →', 'beit'),
+            'title'  => __('Read More', 'beit'),
             'url'    => '#',
             'target' => '_self',
         ],
@@ -91,7 +91,7 @@ function beit_front_default_news(): array
         'title'    => __('Latest News', 'beit'),
         'subtitle' => __('Sharing progress, announcements and Updates that Keep you Connected.', 'beit'),
         'cta'      => [
-            'title'  => __('Read More →', 'beit'),
+            'title'  => __('Read More', 'beit'),
             'url'    => $archive_link ?: '#',
             'target' => '_self',
         ],

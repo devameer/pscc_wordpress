@@ -167,19 +167,38 @@
     });
 })();
 
+// Sticky header and topbar on scroll
 (() => {
     const header = document.querySelector('[data-scroll-header]');
+    const topbar = document.querySelector('.topbar-section');
 
     if (!header) {
         return;
     }
 
+    // Set initial topbar height as CSS variable and position header
+    const setTopbarHeight = () => {
+        if (topbar) {
+            const topbarHeight = topbar.offsetHeight;
+            document.documentElement.style.setProperty('--topbar-height', topbarHeight + 'px');
+            if (!header.classList.contains('is-scrolled')) {
+                header.style.top = topbarHeight + 'px';
+            }
+        }
+    };
+
+    setTopbarHeight();
+    window.addEventListener('resize', setTopbarHeight);
+
     const thresholdAttr = parseInt(header.getAttribute('data-scroll-threshold') || '48', 10);
     const threshold = Number.isNaN(thresholdAttr) ? 48 : thresholdAttr;
+    const logoDefault = header.querySelector('.logo-default');
+    const logoScroll = header.querySelector('.logo-scroll');
 
     const applyState = () => {
         const isScrolled = window.scrollY > threshold;
         const hasClass = header.classList.contains('is-scrolled');
+        const isMobile = window.innerWidth < 1024; // lg breakpoint
 
         if (isScrolled === hasClass) {
             return;
@@ -188,17 +207,55 @@
         header.classList.toggle('is-scrolled', isScrolled);
 
         if (isScrolled) {
-            header.style.top = '0';
+            // On mobile: Only make navbar fixed (not topbar)
+            // On desktop: Make both topbar and navbar fixed
+            if (topbar && !isMobile) {
+                topbar.style.position = 'fixed';
+                topbar.style.top = '0';
+                topbar.style.left = '0';
+                topbar.style.right = '0';
+                topbar.style.zIndex = '51';
+                topbar.style.background = 'rgba(17, 19, 21, 0.92)';
+            }
+
+            // Adjust navbar position
+            const topbarHeight = topbar && !isMobile ? topbar.offsetHeight : 0;
+            header.style.position = 'fixed';
+            header.style.top = isMobile ? '0' : topbarHeight + 'px';
             header.style.backgroundColor = 'rgba(17, 19, 21, 0.92)';
             header.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.25)';
             header.style.backdropFilter = 'blur(8px)';
             header.style.webkitBackdropFilter = 'blur(8px)';
+
+            // Switch logos using opacity
+            if (logoDefault && logoScroll) {
+                logoDefault.style.opacity = '0';
+                logoScroll.style.opacity = '1';
+            }
         } else {
-            header.style.top = '';
+            // Reset topbar position
+            if (topbar) {
+                topbar.style.position = '';
+                topbar.style.top = '';
+                topbar.style.left = '';
+                topbar.style.right = '';
+                topbar.style.zIndex = '';
+                topbar.style.background = '';
+            }
+
+            // Reset navbar position to below topbar
+            const topbarHeight = topbar ? topbar.offsetHeight : 0;
+            header.style.top = topbarHeight + 'px';
             header.style.backgroundColor = '';
             header.style.boxShadow = '';
             header.style.backdropFilter = '';
             header.style.webkitBackdropFilter = '';
+
+            // Switch logos back using opacity
+            if (logoDefault && logoScroll) {
+                logoDefault.style.opacity = '1';
+                logoScroll.style.opacity = '0';
+            }
         }
     };
 
@@ -484,7 +541,8 @@ window.initContactMap = function() {
     const counters = document.querySelectorAll('[data-counter]');
     if (counters.length === 0) return;
 
-    const animateCounter = (el) => {
+    // Make animateCounter global for tabs
+    window.animateCounter = (el) => {
         if (el.dataset.counted === 'true') return;
         el.dataset.counted = 'true';
 
@@ -521,7 +579,7 @@ window.initContactMap = function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                animateCounter(entry.target);
+                window.animateCounter(entry.target);
                 observer.unobserve(entry.target);
             }
         });
@@ -612,5 +670,53 @@ window.initContactMap = function() {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// Facts section year tabs
+(() => {
+  const tabButtons = document.querySelectorAll('.facts-tab-button');
+  const yearContents = document.querySelectorAll('.facts-year-content');
+  
+  if (tabButtons.length === 0 || yearContents.length === 0) return;
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetYear = button.getAttribute('data-year');
+      
+      // Update button states
+      tabButtons.forEach(btn => {
+        const isActive = btn.getAttribute('data-year') === targetYear;
+        btn.setAttribute('data-active', isActive ? 'true' : 'false');
+        
+        if (isActive) {
+          btn.classList.remove('bg-white/10', 'text-white/70', 'hover:bg-white/20');
+          btn.classList.add('bg-primary', 'text-white');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('bg-white/10', 'text-white/70', 'hover:bg-white/20');
+        }
+      });
+      
+      // Update content visibility
+      yearContents.forEach(content => {
+        const contentYear = content.getAttribute('data-year');
+        if (contentYear === targetYear) {
+          content.classList.remove('hidden');
+          // Re-trigger counter animations
+          const counters = content.querySelectorAll('[data-counter]');
+          counters.forEach(counter => {
+            counter.setAttribute('data-counted', 'false');
+            // Trigger animation if in viewport
+            const rect = counter.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              animateCounter(counter);
+            }
+          });
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+    });
   });
 })();

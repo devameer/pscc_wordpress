@@ -35,7 +35,6 @@ while (have_posts()) {
         [
             'title'       => $hero_title,
             'description' => $hero_description,
-            'eyebrow'     => __('News Insight', 'beit'),
             'background_classes' => 'bg-gradient-to-br from-slate-950 via-red-900 to-slate-800',
         ]
     );

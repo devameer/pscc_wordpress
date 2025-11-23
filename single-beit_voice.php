@@ -24,7 +24,6 @@ while (have_posts()) {
         [
             'title'       => get_the_title(),
             'description' => esc_html(get_the_date()),
-            'eyebrow'     => __('Voices & Visions', 'beit'),
             'background_classes' => 'bg-gradient-to-br from-slate-800 via-amber-800 to-red-900',
         ]
     );

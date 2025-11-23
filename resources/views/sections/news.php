@@ -51,21 +51,31 @@ $empty_message = $args['empty_message'];
                 ?>
                     <article class="overflow-hidden transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($news_delay); ?>">
                         <?php if ($item_image) : ?>
-                            <div class="h-64 md:h-72 lg:h-80 w-full overflow-hidden">
+                            <a href="<?php echo esc_url($item_link); ?>" class="h-64 md:h-72 lg:h-80 w-full overflow-hidden relative block">
                                 <?php if (is_numeric($item_image)) : ?>
                                     <?php echo wp_get_attachment_image((int) $item_image, 'large', false, ['class' => 'h-full w-full object-cover']); ?>
                                 <?php else : ?>
                                     <img class="h-full w-full object-cover" src="<?php echo esc_url((string) $item_image); ?>" alt="" loading="lazy" decoding="async">
                                 <?php endif; ?>
-                            </div>
+                                <span
+                                    class="absolute inset-0 z-10 flex items-center justify-center group">
+                                    <div class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
+                                    <span
+                                        class="inline-flex h-20 w-20 items-center justify-center  text-3xl
+                                text-white  transition-all duration-700 relative z-10  top-60 group-hover:top-0 opacity-0 group-hover:opacity-100">
+                                        <i
+                                            class="fa fa-search"></i>
+                                    </span>
+                                </span>
+                            </a>
                         <?php endif; ?>
 
                         <div class="py-3 md:py-4">
                             <?php if ($item_title) : ?>
                                 <a href="<?php echo esc_url($item_link); ?>">
-                                <h3 class="text-base md:text-lg text-slate-900">
-                                    <?php echo esc_html($item_title); ?>
-                                </h3>
+                                    <h3 class="text-base md:text-xl text-slate-900 font-light">
+                                        <?php echo esc_html($item_title); ?>
+                                    </h3>
                                 </a>
                             <?php endif; ?>
 
@@ -86,10 +96,10 @@ $empty_message = $args['empty_message'];
 
         <?php if (!empty($heading['cta']['title']) && !empty($heading['cta']['url'])) : ?>
             <div class="mt-8 md:mt-10 text-center" data-aos="fade-up" data-aos-delay="500">
-                <a class="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 md:px-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                <a class="btn-more"
                     href="<?php echo esc_url($heading['cta']['url']); ?>">
                     <?php echo esc_html($heading['cta']['title']); ?>
-                    
+
                 </a>
             </div>
         <?php endif; ?>

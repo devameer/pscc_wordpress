@@ -49,6 +49,7 @@ if ($media_query->have_posts()) {
 }
 
 $hero_title = get_the_title();
+$hero_subtitle = get_the_content(); // Get content as subtitle
 $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
 
 get_template_part(
@@ -56,8 +57,8 @@ get_template_part(
     null,
     [
         'title'       => $hero_title,
+        'subtitle'    => $hero_subtitle,
         'description' => $hero_description,
-        'eyebrow'     => __('Media Center', 'beit'),
         'background_classes' => 'bg-gradient-to-br from-slate-950 via-slate-800 to-red-900',
     ]
 );

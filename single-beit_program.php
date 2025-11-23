@@ -22,7 +22,6 @@ while (have_posts()) {
     $primary_cat = (!is_wp_error($categories) && !empty($categories)) ? $categories[0]->name : '';
 
     // Get ACF fields if available
-    $eyebrow = function_exists('get_field') ? get_field('program_eyebrow') : '';
 
     $hero_title = get_the_title();
     $hero_description = sprintf(
@@ -38,7 +37,6 @@ while (have_posts()) {
         [
             'title'       => $hero_title,
             'description' => $hero_description,
-            'eyebrow'     => $eyebrow ?: __('Program Details', 'beit'),
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
         ]
     );

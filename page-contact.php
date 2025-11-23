@@ -20,7 +20,8 @@ while (have_posts()) {
     $has_acf = function_exists('get_field');
 
     $hero_data       = $has_acf ? (get_field('contact_hero') ?: []) : [];
-    $hero_subtitle   = $hero_data['subtitle'] ?? __('TOGETHER, We Make Change Happen.', 'beit');
+    $hero_subtitle_acf   = $hero_data['subtitle'] ?? '';
+    $hero_subtitle   = get_the_content() ; // Use page content first, then ACF field
     $hero_background = $hero_data['background'] ?? '';
 
     $contact_details = $has_acf ? (get_field('contact_details') ?: []) : [];
@@ -71,7 +72,6 @@ while (have_posts()) {
     $email   = $contact_details['email'] ?? '';
     $phone   = $contact_details['phone'] ?? '';
     $address = $contact_details['address'] ?? '';
-    $hours   = $contact_details['hours'] ?? '';
 
     get_template_part(
         'resources/views/components/page-hero',
@@ -79,7 +79,6 @@ while (have_posts()) {
         [
             'title'            => get_the_title(),
             'description'      => $hero_subtitle,
-            'eyebrow'          => __('Contact Us', 'beit'),
             'background_image' => $hero_background,
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
             'overlay_gradients' => true,
@@ -89,8 +88,8 @@ while (have_posts()) {
 
 
     <main class="bg-gray-50 text-slate-900">
-        <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-2">
-            <section class="rounded-lg bg-white p-8 shadow-sm">
+        <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-5">
+            <section class="rounded-lg bg-white p-8 shadow-sm lg:col-span-2">
                 <h2 class="text-2xl font-bold text-gray-800">
                     <?php esc_html_e('Share Your Thoughts Here', 'beit'); ?>
                 </h2>
@@ -144,7 +143,7 @@ while (have_posts()) {
                 </div>
             </section>
 
-            <aside class="space-y-6">
+            <aside class="space-y-6 lg:col-span-3">
                 <div class="space-y-4">
                     <h2 class="text-2xl font-bold text-gray-800"><?php esc_html_e('Our Offices', 'beit'); ?></h2>
                     <?php if (!empty($offices)) : ?>
@@ -164,7 +163,7 @@ while (have_posts()) {
                                     <?php if ($map_link) : ?>
                                         <a class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-red-600 hover:text-red-700"
                                             href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
-                                            <i class="fa fa-map-marker-alt"></i>
+                                            <i class="fa fa-map-marker"></i>
                                             <?php esc_html_e('View on Map', 'beit'); ?>
                                         </a>
                                     <?php endif; ?>
@@ -228,11 +227,11 @@ while (have_posts()) {
                     </div>
                 <?php endif; ?>
 
-                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                        <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-globe text-xl"></i></span>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <div class="flex items-start gap-3 border border-black/20 bg-white p-6 ">
+                        <span class="w-12 h-12 flex justify-center items-center text-white bg-primary"><i class="fa fa-globe text-xl"></i></span>
                         <div>
-                            <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Social', 'beit'); ?></h3>
+                            <h3 class="mb-1 font-bold "><?php esc_html_e('Social', 'beit'); ?></h3>
                             <div class="flex flex-wrap gap-3 text-gray-700">
                                 <?php
                                 if (!empty($social_links)) {
@@ -265,10 +264,10 @@ while (have_posts()) {
                     </div>
 
                     <?php if ($phone) : ?>
-                        <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-phone text-xl"></i></span>
+                        <div class="flex items-start gap-3 border border-black/20 bg-white p-6 ">
+                            <span class="w-12 h-12 flex justify-center items-center text-white bg-primary"><i class="fa fa-phone text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Phone', 'beit'); ?></h3>
+                                <h3 class="mb-1 font-bold "><?php esc_html_e('Phone', 'beit'); ?></h3>
                                 <a class="text-gray-700 font-light"
                                     href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>"><?php echo esc_html($phone); ?></a>
                             </div>
@@ -276,10 +275,10 @@ while (have_posts()) {
                     <?php endif; ?>
 
                     <?php if ($email) : ?>
-                        <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-envelope text-xl"></i></span>
+                        <div class="flex items-start gap-3 border border-black/20 bg-white p-6 ">
+                            <span class="w-12 h-12 flex justify-center items-center text-white bg-primary"><i class="fa fa-envelope text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Email', 'beit'); ?></h3>
+                                <h3 class="mb-1 font-bold "><?php esc_html_e('Email', 'beit'); ?></h3>
                                 <a class="text-gray-700 font-light"
                                     href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
                             </div>
@@ -287,25 +286,17 @@ while (have_posts()) {
                     <?php endif; ?>
 
                     <?php if ($address) : ?>
-                        <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i
-                                    class="fa fa-map-marker-alt text-xl"></i></span>
+                        <div class="flex items-start gap-3 border border-black/20 bg-white p-6 ">
+                            <span class="w-12 h-12 flex justify-center items-center text-white bg-primary"><i
+                                    class="fa fa-map-marker text-xl"></i></span>
                             <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Address', 'beit'); ?></h3>
+                                <h3 class="mb-1 font-bold "><?php esc_html_e('Address', 'beit'); ?></h3>
                                 <p class="text-gray-700 font-light"><?php echo esc_html($address); ?></p>
                             </div>
                         </div>
                     <?php endif; ?>
 
-                    <?php if ($hours) : ?>
-                        <div class="flex items-start gap-3 rounded-lg border-l-4 border-red-600 bg-white p-6 shadow-sm">
-                            <span class="rounded bg-red-600 p-3 text-white"><i class="fa fa-clock text-xl"></i></span>
-                            <div>
-                                <h3 class="mb-2 font-bold text-gray-800"><?php esc_html_e('Working Hours', 'beit'); ?></h3>
-                                <p class="text-gray-700 font-light"><?php echo esc_html($hours); ?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
+                    
                 </div>
             </aside>
         </div>
