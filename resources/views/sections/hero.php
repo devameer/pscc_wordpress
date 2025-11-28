@@ -57,12 +57,13 @@ if (empty($slides)) {
                         style="<?php echo esc_attr($background_style); ?>"
                         <?php endif; ?>>
                         <div class="absolute inset-0">
-                            <!-- <span class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></span> -->
-                            <span class="absolute inset-0 bg-black/35 mix-blend-multiply"></span>
+                            <!-- Gradient overlay - direction changes based on RTL/LTR -->
+                            <span class="absolute inset-0 bg-gradient-to-r ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-black/80 via-black/60 to-transparent"></span>
+                            <span class="absolute inset-0 bg-black/20 mix-blend-multiply"></span>
                         </div>
 
                         <div class="relative z-10 container mx-auto px-4 py-20 md:px-6">
-                            <div class="max-w-2xl space-y-6 text-white <?php echo esc_attr($content_alignment); ?>">
+                            <div class="max-w-2xl space-y-6 text-white ltr:text-left rtl:text-right <?php echo esc_attr($content_alignment); ?>">
 
                             <!-- ho -->
                                 <?php if (!empty($slide['title'])) : ?>
@@ -81,7 +82,7 @@ if (empty($slides)) {
                                 <?php endif; ?>
 
                                 <?php if (!empty($primary_button['title']) || !empty($secondary_button['title'])) : ?>
-                                    <div class="flex flex-wrap items-center gap-4 hero-buttons-animate">
+                                    <div class="flex flex-wrap items-center gap-4 hero-buttons-animate justify-start ">
                                         <?php if (!empty($primary_button['title'])) : ?>
                                             <a
                                                 class="font-normal inline-flex items-center rounded-xs bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-red-700 hover:scale-105 hover:shadow-lg"
@@ -95,7 +96,7 @@ if (empty($slides)) {
                                         <?php if (!empty($secondary_button['title'])) : ?>
                                             <span class="hero-or-animate">OR</span>
                                             <a
-                                                class="font-light inline-flex items-center gap-2 underline text-xl  capitalize tracking-wide text-white transition hover:border-white hover:text-white hover:translate-x-2"
+                                                class="font-light inline-flex items-center gap-2 underline text-xl capitalize tracking-wide text-white transition hover:border-white hover:text-white ltr:hover:translate-x-2 rtl:hover:-translate-x-2"
                                                 href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($secondary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener">
@@ -109,14 +110,14 @@ if (empty($slides)) {
 
                         <?php if (!empty($slide['video_url']) && '#' !== $slide['video_url']) : ?>
                             <a
-                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3   px-5 py-3 text-sm font-semibold text-white  transition  md:flex hero-video-button group"
+                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3 px-5 py-3 text-sm font-semibold text-white transition md:flex hero-video-button group"
                                 href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span class="flex h-20 w-20 items-center justify-center rounded-xs text-2xl  bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <span class="flex h-20 w-20 items-center justify-center rounded-xs text-2xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                                     <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
-                                <span class="leading-tight text-white text-3xl font-light border-l border-white/30 pl-4 group-hover:border-primary transition-colors duration-300">
-                                    <span class="block  capitalize tracking-wide  "><?php esc_html_e('See the change', 'beit'); ?></span>
-                                    <span class="block  capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
+                                <span class="leading-tight text-white text-3xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-4 rtl:pr-4 group-hover:border-primary transition-colors duration-300">
+                                    <span class="block capitalize tracking-wide"><?php esc_html_e('See the change', 'beit'); ?></span>
+                                    <span class="block capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
                                 </span>
                             </a>
                         <?php endif; ?>

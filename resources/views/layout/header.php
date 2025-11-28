@@ -62,11 +62,14 @@ $donate_target = $donate_link['target'] ?? '_self';
 <body <?php body_class('bg-white'); ?>>
     <?php wp_body_open(); ?>
     <div class="min-h-screen flex flex-col">
-        <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) : ?>
+        <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) :
+            $current_lang = beit_get_current_language();
+            $is_rtl = $current_lang['is_rtl'];
+        ?>
             <div class="topbar-section bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
                 <div class="container mx-auto flex flex-col sm:flex-row px-3  md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
                     <?php if (!empty($topbar_socials)) : ?>
-                        <div class="flex flex-wrap items-center gap-3 md:gap-2 lg:border-r border-b lg:border-b-0 lg:border-l border-white/20 sm:px-2 md:px-3 py-[0.3rem] justify-center lg:justify-start w-full sm:w-auto mb-2 sm:mb-0">
+                        <div class="flex flex-wrap items-center gap-3 md:gap-2 border-b lg:border-b-0 border-white/20 sm:px-2 md:px-3 py-[0.3rem] justify-center ltr:lg:justify-start rtl:lg:justify-end w-full sm:w-auto mb-2 sm:mb-0 ltr:lg:border-r rtl:lg:border-l lg:border-l">
                             <?php foreach ($topbar_socials as $social) :
                                 $network = $social['network'] ?? '';
                                 $url     = $social['url'] ?? '';
@@ -108,9 +111,9 @@ $donate_target = $donate_link['target'] ?? '_self';
                         </div>
                     <?php endif; ?>
 
-                    <div class="flex flex-wrap items-center  mr-auto w-full sm:w-auto justify-between sm:justify-start">
+                    <div class="flex flex-wrap items-center w-full sm:w-auto justify-between ltr:sm:justify-start rtl:sm:justify-end ltr:mr-auto rtl:ml-auto">
                         <?php if ($topbar_email) : ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ltr:md:border-r rtl:md:border-l"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
@@ -120,26 +123,52 @@ $donate_target = $donate_link['target'] ?? '_self';
                         <?php if ($topbar_phone) :
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                         ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ltr:md:border-r rtl:md:border-l"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa fa-phone text-[10px] sm:text-xs md:text-sm"></i>
                                 <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
-                            href="#">
-                            <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
-                            <span class="text-[9px] sm:text-[10px] md:text-xs">عربي</span>
-                        </a>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
+                        <?php
+                        // Language Switcher
+                        if (function_exists('pll_the_languages')) {
+                            $languages = pll_the_languages(['raw' => 1, 'echo' => 0]);
+                            if (is_array($languages) && count($languages) > 0) {
+                                foreach ($languages as $lang) {
+                                    if (!$lang['current_lang']) {
+                                        $lang_name = ($lang['slug'] === 'ar') ? 'عربي' : 'English';
+                        ?>
+                                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ltr:md:border-r rtl:md:border-l"
+                                            href="<?php echo esc_url($lang['url']); ?>"
+                                            hreflang="<?php echo esc_attr($lang['slug']); ?>">
+                                            <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
+                                            <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($lang_name); ?></span>
+                                        </a>
+                            <?php
+                                        break; // Show only the other language
+                                    }
+                                }
+                            }
+                        } else {
+                            // Fallback if Polylang is not active
+                            ?>
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ltr:md:border-r rtl:md:border-l"
+                                href="#">
+                                <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs">عربي</span>
+                            </a>
+                        <?php
+                        }
+                        ?>
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row <?php echo $is_rtl ? 'md:border-l' : 'md:border-r'; ?>"
                             href="#">
                             <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
                             <span class="text-[9px] sm:text-[10px] md:text-xs">FAQs</span>
                         </a>
                     </div>
 
-                    <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400"
+                    <div class="hidden lg:flex items-center <?php echo $is_rtl ? 'flex-row-reverse' : ''; ?>">
+                        <a class="inline-flex items-center gap-2 border-white/20 px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400 <?php echo $is_rtl ? 'border-r' : 'border-l border-r'; ?>"
                             href="<?php echo esc_url(home_url('/?s=')); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
@@ -170,7 +199,7 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <?php endif; ?>
                                 <?php if ($site_logo_scroll) : ?>
                                     <?php echo wp_get_attachment_image($site_logo_scroll, 'medium', false, [
-                                        'class' => 'logo-scroll absolute top-0 left-0 opacity-0 transition-opacity duration-300',
+                                        'class' => 'logo-scroll absolute top-0 ltr:left-0 rtl:right-0 opacity-0 transition-opacity duration-300',
                                         'alt'   => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
@@ -188,7 +217,7 @@ $donate_target = $donate_link['target'] ?? '_self';
 
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
                         <button
-                            class="ml-auto inline-flex items-center justify-center rounded-md border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
+                            class="ltr:ml-auto rtl:mr-auto inline-flex items-center justify-center rounded-md border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
                             type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
                             <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

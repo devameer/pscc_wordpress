@@ -65,7 +65,7 @@ function beit_theme_enqueue_assets(): void
 
     if (file_exists($compiled_css_path)) {
         wp_enqueue_style(
-            'beit-app',
+            'beit-main',
             BEIT_THEME_URI . '/' . $compiled_css . '?v=' . beit_theme_asset_version(),
             ['beit-base'],
             beit_theme_asset_version()

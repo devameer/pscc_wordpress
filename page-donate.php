@@ -46,7 +46,7 @@ while (have_posts()) {
     <main class="bg-white text-slate-900">
         <div class="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
             <section class="space-y-8">
-                <div class="rounded-3xl bg-white p-8 shadow-xl shadow-red-100">
+                <div class="rounded-3xl bg-white p-8 shadow-xl shadow-red-100 ltr:text-left rtl:text-right" data-aos="fade-up">
                     <h2 class="text-2xl font-semibold text-red-700 md:text-3xl">
                         <?php esc_html_e('Direct Bank Transfer', 'beit'); ?></h2>
                     <p class="mt-4 text-sm text-slate-600">
@@ -72,21 +72,21 @@ while (have_posts()) {
                                             <div class="flex justify-between gap-3">
                                                 <dt class="font-semibold text-slate-500"><?php esc_html_e('Account Name', 'beit'); ?>:
                                                 </dt>
-                                                <dd class="text-right"><?php echo esc_html($account_name); ?></dd>
+                                                <dd class="ltr:text-right rtl:text-left"><?php echo esc_html($account_name); ?></dd>
                                             </div>
                                         <?php endif; ?>
                                         <?php if ($account_number) : ?>
                                             <div class="flex justify-between gap-3">
                                                 <dt class="font-semibold text-slate-500"><?php esc_html_e('Account Number', 'beit'); ?>:
                                                 </dt>
-                                                <dd class="font-mono text-xs uppercase text-slate-800">
+                                                <dd class="font-mono text-xs uppercase text-slate-800 ltr:text-right rtl:text-left">
                                                     <?php echo esc_html($account_number); ?></dd>
                                             </div>
                                         <?php endif; ?>
                                         <?php if ($iban) : ?>
                                             <div class="flex justify-between gap-3">
                                                 <dt class="font-semibold text-slate-500"><?php esc_html_e('IBAN', 'beit'); ?>:</dt>
-                                                <dd class="font-mono text-xs uppercase text-slate-800"><?php echo esc_html($iban); ?>
+                                                <dd class="font-mono text-xs uppercase text-slate-800 ltr:text-right rtl:text-left"><?php echo esc_html($iban); ?>
                                                 </dd>
                                             </div>
                                         <?php endif; ?>
@@ -110,7 +110,7 @@ while (have_posts()) {
             </section>
 
             <aside class="space-y-6">
-                <div class="rounded-3xl bg-red-600 p-6 text-white shadow-xl">
+                <div class="rounded-3xl bg-red-600 p-6 text-white shadow-xl ltr:text-left rtl:text-right" data-aos="fade-up" data-aos-delay="100">
                     <h2 class="text-xl font-semibold md:text-2xl"><?php esc_html_e('Need Assistance?', 'beit'); ?></h2>
                     <p class="mt-3 text-sm text-white/80">
                         <?php esc_html_e('Our donor relations team is ready to help you process your contribution or answer any questions.', 'beit'); ?>
@@ -140,13 +140,13 @@ while (have_posts()) {
                 </div>
 
                 <?php if (!empty($highlight_cards)) : ?>
-                    <div class="grid gap-4">
+                    <div class="grid gap-4" data-aos="fade-up" data-aos-delay="200">
                         <?php foreach ($highlight_cards as $card) :
                             $icon  = $card['icon'] ?? 'fa fa-hand-holding-heart';
                             $title = $card['title'] ?? '';
                             $text  = $card['description'] ?? '';
                         ?>
-                            <div class="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-lg">
+                            <div class="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-lg ltr:text-left rtl:text-right">
                                 <span class="rounded bg-red-600 p-3 text-white"><i
                                         class="<?php echo esc_attr($icon); ?> text-lg"></i></span>
                                 <div>

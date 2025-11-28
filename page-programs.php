@@ -71,16 +71,16 @@ if (!$programs_query->have_posts()) {
             $image_id  = get_post_thumbnail_id();
             $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
 
-            $content_background = 'image-left' === $layout ? 'p-4 sm:p-6 md:p-8 lg:p-12' : 'py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-0 md:pe-8 lg:py-12 lg:pe-12';
+            $content_background = 'image-left' === $layout ? 'p-4 sm:p-6 md:p-8 lg:p-12' : 'py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-0 ltr:md:pe-8 rtl:md:ps-8 ltr:lg:pe-12 rtl:lg:ps-12';
             $content_html = '';
-            $content_html .= '<div class="' . esc_attr($content_background) . ' flex flex-col justify-center gap-3 sm:gap-4 md:gap-6 transition-transform duration-300">';
-          
+            $content_html .= '<div class="' . esc_attr($content_background) . ' flex flex-col justify-center gap-3 sm:gap-4 md:gap-6 transition-transform duration-300 ltr:text-left rtl:text-right">';
+
             $content_html .= '<h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight">' . ($heading ? wp_kses_post($heading) : esc_html(get_the_title())) . '</h2>';
             $content_html .= '<p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">' . esc_html($description ?: get_the_excerpt()) . '</p>';
 
             // Read More button (links to single program page)
             $content_html .= sprintf(
-                '<div class="flex justify-start sm:justify-end"><a class="btn-more text-xs sm:text-sm px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5" href="%s">%s</a></div>',
+                '<div class="flex ltr:justify-start rtl:justify-start ltr:sm:justify-end rtl:sm:justify-start"><a class="btn-more text-xs sm:text-sm px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5" href="%s">%s</a></div>',
                 esc_url(get_permalink()),
                 esc_html__('Read More', 'beit')
             );
@@ -88,7 +88,7 @@ if (!$programs_query->have_posts()) {
             // Keep custom button if exists (optional additional button)
             if (!empty($button['title']) && !empty($button['url'])) {
                 $content_html .= sprintf(
-                    '<a class="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2.5 sm:px-6 sm:py-2.5 md:px-8 md:py-3 text-xs sm:text-sm md:text-base self-start transition inline-block ml-2 md:ml-3 mt-2 sm:mt-0" href="%s" target="%s" rel="noopener">%s</a>',
+                    '<a class="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2.5 sm:px-6 sm:py-2.5 md:px-8 md:py-3 text-xs sm:text-sm md:text-base self-start transition inline-block ltr:ml-2 rtl:mr-2 ltr:md:ml-3 rtl:md:mr-3 mt-2 sm:mt-0" href="%s" target="%s" rel="noopener">%s</a>',
                     esc_url($button['url']),
                     esc_attr($button['target'] ?? '_self'),
                     esc_html($button['title'])
@@ -101,7 +101,7 @@ if (!$programs_query->have_posts()) {
                 $image_html .= '<div class="relative h-[250px] sm:h-[300px] md:h-[400px] overflow-hidden">';
                 $image_html .= '<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
                 $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent duration-300"></div>';
-                $image_html .= '<div class="absolute bottom-0 left-0 p-3 sm:p-4 md:p-6 lg:p-8 text-white">';
+                $image_html .= '<div class="absolute bottom-0 ltr:left-0 rtl:right-0 p-3 sm:p-4 md:p-6 lg:p-8 text-white ltr:text-left rtl:text-right">';
                 if ($overlay_heading) {
                     $image_html .= '<h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold">' . esc_html($overlay_heading) . '</h2>';
                 }
@@ -113,10 +113,18 @@ if (!$programs_query->have_posts()) {
                 $image_html .= '<div class="flex h-[250px] sm:h-[300px] md:h-[400px] items-center justify-center bg-slate-100 p-4 sm:p-6 md:p-8 text-center text-xs sm:text-sm md:text-base text-slate-500">' . esc_html__('Add a featured image to display here.', 'beit') . '</div>';
             }
 
-            // Animation attributes - alternate between slide directions
+            // Animation attributes - alternate between slide directions (RTL-aware)
             $animation_delay = $index * 100;
-            $image_animation = 'image-left' === $layout ? 'fade-left' : 'fade-right';
-            $content_animation = 'image-left' === $layout ? 'fade-right' : 'fade-left';
+            $is_rtl = is_rtl();
+
+            // For RTL, reverse the animation directions
+            if ('image-left' === $layout) {
+                $image_animation = $is_rtl ? 'fade-right' : 'fade-left';
+                $content_animation = $is_rtl ? 'fade-left' : 'fade-right';
+            } else {
+                $image_animation = $is_rtl ? 'fade-left' : 'fade-right';
+                $content_animation = $is_rtl ? 'fade-right' : 'fade-left';
+            }
 
             $row_classes = 'grid md:grid-cols-2 gap-0 mb-4 sm:mb-6 md:mb-8 lg:mb-0 overflow-hidden rounded-lg md:rounded-none shadow-md md:shadow-none transition hover:-translate-y-1';
             echo '<div class="' . esc_attr($row_classes) . '" data-aos="fade-up" data-aos-delay="' . esc_attr($animation_delay) . '">';

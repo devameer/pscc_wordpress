@@ -86,76 +86,7 @@ acf_add_local_field_group(
                     ],
                 ],
             ],
-            [
-                'key'        => 'field_front_programs',
-                'label'      => __('Programs & Projects', 'beit'),
-                'name'       => 'front_programs',
-                'type'       => 'group',
-                'sub_fields' => [
-                    [
-                        'key'   => 'field_front_programs_title',
-                        'label' => __('Title', 'beit'),
-                        'name'  => 'title',
-                        'type'  => 'text',
-                    ],
-                    [
-                        'key'   => 'field_front_programs_subtitle',
-                        'label' => __('Subtitle', 'beit'),
-                        'name'  => 'subtitle',
-                        'type'  => 'textarea',
-                        'rows'  => 3,
-                    ],
-                    [
-                        'key'   => 'field_front_programs_cta',
-                        'label' => __('CTA Link', 'beit'),
-                        'name'  => 'cta',
-                        'type'  => 'link',
-                    ],
-                    [
-                        'key'          => 'field_front_programs_items',
-                        'label'        => __('Programs & Projects', 'beit'),
-                        'name'         => 'items',
-                        'type'         => 'repeater',
-                        'layout'       => 'row',
-                        'button_label' => __('Add program', 'beit'),
-                        'sub_fields'   => [
-                            [
-                                'key'   => 'field_front_program_item_category',
-                                'label' => __('Category', 'beit'),
-                                'name'  => 'category',
-                                'type'  => 'text',
-                            ],
-                            [
-                                'key'   => 'field_front_program_item_title',
-                                'label' => __('Title', 'beit'),
-                                'name'  => 'title',
-                                'type'  => 'text',
-                            ],
-                            [
-                                'key'   => 'field_front_program_item_description',
-                                'label' => __('Description', 'beit'),
-                                'name'  => 'description',
-                                'type'  => 'textarea',
-                                'rows'  => 3,
-                            ],
-                            [
-                                'key'           => 'field_front_program_item_image',
-                                'label'         => __('Image', 'beit'),
-                                'name'          => 'image',
-                                'type'          => 'image',
-                                'return_format' => 'url',
-                                'preview_size'  => 'large',
-                            ],
-                            [
-                                'key'   => 'field_front_program_item_link',
-                                'label' => __('Link', 'beit'),
-                                'name'  => 'link',
-                                'type'  => 'url',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+         
             [
                 'key'        => 'field_front_our_story',
                 'label'      => __('Our Story', 'beit'),
@@ -476,46 +407,7 @@ acf_add_local_field_group(
                     ],
                 ],
             ],
-            [
-                'key'        => 'field_front_newsletter',
-                'label'      => __('Newsletter', 'beit'),
-                'name'       => 'front_newsletter',
-                'type'       => 'group',
-                'sub_fields' => [
-                    [
-                        'key'   => 'field_front_newsletter_title',
-                        'label' => __('Title', 'beit'),
-                        'name'  => 'title',
-                        'type'  => 'text',
-                    ],
-                    [
-                        'key'   => 'field_front_newsletter_description',
-                        'label' => __('Description', 'beit'),
-                        'name'  => 'description',
-                        'type'  => 'textarea',
-                        'rows'  => 3,
-                    ],
-                    [
-                        'key'   => 'field_front_newsletter_placeholder',
-                        'label' => __('Placeholder', 'beit'),
-                        'name'  => 'placeholder',
-                        'type'  => 'text',
-                    ],
-                    [
-                        'key'   => 'field_front_newsletter_button',
-                        'label' => __('Button Label', 'beit'),
-                        'name'  => 'button',
-                        'type'  => 'text',
-                    ],
-                    [
-                        'key'   => 'field_front_newsletter_privacy',
-                        'label' => __('Privacy note', 'beit'),
-                        'name'  => 'privacy',
-                        'type'  => 'textarea',
-                        'rows'  => 3,
-                    ],
-                ],
-            ],
+          
         ],
         'location' => [
             [

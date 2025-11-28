@@ -66,7 +66,7 @@ $section_classes[] = $height;
 
 
     <div class="relative z-10 container mx-auto px-4 md:px-6<?php echo $height === 'h-96' ? ' flex h-full items-center' : ''; ?>">
-        <div class="max-w-3xl space-y-4">
+        <div class="max-w-3xl space-y-4 ltr:text-left rtl:text-right">
           
 
             <h1 class="text-3xl font-light leading-tight md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>" data-aos="fade-up" data-aos-delay="100">

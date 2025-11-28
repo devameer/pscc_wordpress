@@ -90,7 +90,7 @@ get_template_part(
                     $lightbox_type = $media['type'];
                     $caption = $media['caption'] ?: $item['title'];
                 ?>
-                    <article class="overflow-hidden  transition hover:-translate-y-1 mb-6">
+                    <article class="overflow-hidden transition hover:-translate-y-1 mb-6 ltr:text-left rtl:text-right" data-aos="fade-up" data-aos-delay="100">
                         <?php if ($thumb) : ?>
                             <a
                                 class="group relative block w-full"

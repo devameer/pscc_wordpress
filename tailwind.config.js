@@ -20,6 +20,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"Montserrat"', ...defaultTheme.fontFamily.sans],
+        arabic: ['"Cairo"', '"Tajawal"', '"Noto Sans Arabic"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: {
@@ -30,5 +31,11 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // RTL Support Plugin
+    function ({ addVariant }) {
+      addVariant('rtl', '[dir="rtl"] &');
+      addVariant('ltr', '[dir="ltr"] &');
+    },
+  ],
 };

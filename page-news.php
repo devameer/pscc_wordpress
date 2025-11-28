@@ -77,8 +77,8 @@ get_template_part(
                                 </a>
                             <?php endif; ?>
 
-                            <div class="flex flex-1 flex-col gap-4 py-4">
-                                <h2 class="text-lg font-light ">
+                            <div class="flex flex-1 flex-col gap-4 py-4 ltr:text-left rtl:text-right">
+                                <h2 class="text-lg font-light">
                                     <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                                 

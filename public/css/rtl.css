@@ -1,0 +1,202 @@
+/**
+ * RTL (Right-to-Left) Styles for Arabic Language
+ *
+ * This file contains RTL-specific styles that override LTR defaults
+ * when the site is displayed in Arabic or other RTL languages.
+ *
+ * @package beit
+ */
+
+/* ==========================================================================
+   Base RTL Adjustments
+   ========================================================================== */
+
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ==========================================================================
+   Typography RTL
+   ========================================================================== */
+
+.rtl {
+    font-family: 'Cairo', 'Tajawal', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ==========================================================================
+   Hero Section RTL
+   ========================================================================== */
+
+/* Hero content alignment for RTL */
+.rtl .hero-slider .max-w-2xl {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* Hero slider navigation buttons */
+.rtl .hero-slider-prev {
+    right: 0;
+    left: auto;
+}
+
+.rtl .hero-slider-next {
+    left: 0;
+    right:auto;
+}
+
+
+
+/* Animation adjustments for RTL */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.rtl .hero-title-animate {
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+.rtl .hero-description-animate {
+    animation: slideInFromRight 0.8s ease-out 0.2s both;
+}
+
+.rtl .hero-buttons-animate {
+    animation: slideInFromRight 0.8s ease-out 0.4s both;
+}
+
+/* ==========================================================================
+   Initiatives & Partners Sliders RTL
+   ========================================================================== */
+
+/* Initiatives slider navigation */
+.rtl .initiatives-button-prev {
+    right: 0.5rem;
+    left: auto;
+}
+
+.rtl .initiatives-button-next {
+    left: 0.5rem;
+    right: auto;
+}
+
+/* Partners slider navigation */
+.rtl .partners-button-prev {
+    right: 0.5rem;
+    left: auto;
+}
+
+.rtl .partners-button-next {
+    left: 0.5rem;
+    right: auto;
+}
+
+/* ==========================================================================
+   Menu & Navigation RTL
+   ========================================================================== */
+
+/* Mobile menu toggle */
+.rtl .lg\\:hidden {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Menu items alignment */
+.rtl #primary-menu {
+    direction: rtl;
+}
+
+/* Dropdown menus */
+.rtl .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+
+/* ==========================================================================
+   Our Story Section RTL
+   ========================================================================== */
+
+/* Tagline positioning */
+.rtl .absolute.bottom-4.right-4 {
+    right: auto;
+    left: 1rem;
+}
+
+/* ==========================================================================
+   General RTL Utilities
+   ========================================================================== */
+
+/* Text alignment */
+.rtl .text-left {
+    text-align: right !important;
+}
+
+.rtl .text-right {
+    text-align: left !important;
+}
+
+/* Float adjustments */
+.rtl .float-left {
+    float: right !important;
+}
+
+.rtl .float-right {
+    float: left !important;
+}
+
+/* Margin & Padding adjustments */
+.rtl .ml-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.rtl .mr-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+/* ==========================================================================
+   Programs Page RTL
+   ========================================================================== */
+
+/* Image overlay text positioning */
+.rtl .absolute.bottom-0.left-0 {
+    left: auto;
+    right: 0;
+}
+
+/* Programs layout - swap image and content order for RTL */
+.rtl .md\\:order-1 {
+    order: 1;
+}
+
+.rtl .md\\:order-2 {
+    order: 2;
+}
+
+/* Ensure proper text alignment in programs */
+.rtl .justify-start {
+    justify-content: flex-start;
+}
+
+.rtl .sm\\:justify-end {
+    justify-content: flex-end;
+}
+

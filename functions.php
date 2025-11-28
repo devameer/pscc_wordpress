@@ -20,6 +20,7 @@ $beit_theme_includes = [
     'app/post-types.php',
     'app/acf.php',
     'app/nav-walker.php',
+    'app/languages.php',
 ];
 
 foreach ($beit_theme_includes as $relative_path) {
