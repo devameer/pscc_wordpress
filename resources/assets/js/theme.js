@@ -404,6 +404,10 @@ const waitForSwiper = (callback, timeout = 5000) => {
             // Get the last 3 items
             const itemsToHide = menuItems.slice(-4);
 
+            // Detect current language (check HTML lang attribute or dir attribute)
+            const isArabic = document.documentElement.lang === 'ar' || document.documentElement.dir === 'rtl';
+            const menuText = isArabic ? 'قائمة' : 'Menu';
+
             // Create "Other" dropdown container
             const otherDropdown = document.createElement('li');
             otherDropdown.className = 'menu-other-dropdown relative';
@@ -411,7 +415,7 @@ const waitForSwiper = (callback, timeout = 5000) => {
                 <a href="#" class="menu-other-trigger flex items-center gap-1">
                                 <i class="fa fa-bars  transition-transform duration-300"></i>
 
-                    <span>Menu</span>
+                    <span>${menuText}</span>
                 </a>
                 <ul class="menu-other-list opacity-0 invisible transition-all duration-300 pointer-events-none">
                 </ul>

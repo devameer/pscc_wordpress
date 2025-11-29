@@ -71,12 +71,13 @@ while (have_posts()) {
     $email   = $contact_details['email'] ?? '';
     $phone   = $contact_details['phone'] ?? '';
     $address = $contact_details['address'] ?? '';
-
+    $hero_custom_title = $hero_data['custom_title'] ?? '';
+    $hero_title =  $hero_custom_title || get_the_title();
     get_template_part(
         'resources/views/components/page-hero',
         null,
         [
-            'title'            => get_the_title(),
+            'title'            => $hero_title,
             'description'      => $hero_subtitle,
             'background_classes' => 'bg-gradient-to-br from-red-800 via-slate-900 to-red-950',
             'overlay_gradients' => true,
