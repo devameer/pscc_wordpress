@@ -1,3 +1,12 @@
+// Wait for Swiper to be loaded
+const waitForSwiper = (callback) => {
+    if (window.Swiper) {
+        callback();
+    } else {
+        setTimeout(() => waitForSwiper(callback), 50);
+    }
+};
+
 (() => {
     const initializeHeroSlider = (slider) => {
         if (!window.Swiper || !slider) {
@@ -71,76 +80,74 @@
     };
 
     const onReady = () => {
-        if (!window.Swiper) {
-            return;
-        }
+        waitForSwiper(() => {
+            document.querySelectorAll('.hero-slider').forEach((slider) => initializeHeroSlider(slider));
 
-        document.querySelectorAll('.hero-slider').forEach((slider) => initializeHeroSlider(slider));
+            document.querySelectorAll('.initiatives-slider').forEach((slider) => {
+                const wrapper = slider.parentElement;
+                const nextEl = wrapper ? wrapper.querySelector('.initiatives-button-next') : null;
+                const prevEl = wrapper ? wrapper.querySelector('.initiatives-button-prev') : null;
 
-        document.querySelectorAll('.initiatives-slider').forEach((slider) => {
-            const wrapper = slider.parentElement;
-            const nextEl = wrapper ? wrapper.querySelector('.initiatives-button-next') : null;
-            const prevEl = wrapper ? wrapper.querySelector('.initiatives-button-prev') : null;
-
-            initializeCarousel(slider, {
-              loop: true,
-              speed: 600,
-              spaceBetween: 24,
-              slidesPerView: 1,
-              navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
-              breakpoints: {
-                500: {
-                  slidesPerView: 2,
-                },
-                600: {
-                  slidesPerView: 3,
-                },
-                1000: {
-                  slidesPerView: 4,
-                },
-                1024: {
-                  slidesPerView: 5,
-                },
-                1280: {
-                  slidesPerView: 6,
-                },
-              },
+                initializeCarousel(slider, {
+                  loop: true,
+                  speed: 600,
+                  spaceBetween: 24,
+                  slidesPerView: 1,
+                  navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
+                  breakpoints: {
+                    500: {
+                      slidesPerView: 2,
+                    },
+                    600: {
+                      slidesPerView: 3,
+                    },
+                    1000: {
+                      slidesPerView: 4,
+                    },
+                    1024: {
+                      slidesPerView: 5,
+                    },
+                    1280: {
+                      slidesPerView: 6,
+                    },
+                  },
+                });
             });
-        });
 
-        document.querySelectorAll('.partners-slider').forEach((slider) => {
-            const wrapper = slider.parentElement;
-            const nextEl = wrapper ? wrapper.querySelector('.partners-button-next') : null;
-            const prevEl = wrapper ? wrapper.querySelector('.partners-button-prev') : null;
+            document.querySelectorAll('.partners-slider').forEach((slider) => {
+                const wrapper = slider.parentElement;
+                const nextEl = wrapper ? wrapper.querySelector('.partners-button-next') : null;
+                const prevEl = wrapper ? wrapper.querySelector('.partners-button-prev') : null;
 
-            initializeCarousel(
-                slider,
-                {
-                    loop: true,
-                    speed: 500,
-                    spaceBetween: 30,
-                    slidesPerView: 1,
-                    autoplay: {
-                        delay: 3500,
-                        disableOnInteraction: false,
-                    },
-                    navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
-                    breakpoints: {
-                        640: {
-                            slidesPerView: 2,
+                initializeCarousel(
+                    slider,
+                    {
+                        loop: true,
+                        speed: 500,
+                        spaceBetween: 30,
+                        slidesPerView: 1,
+                        autoplay: {
+                            delay: 3500,
+                            disableOnInteraction: false,
                         },
-                        768: {
-                            slidesPerView: 3,
+                        navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
+                        breakpoints: {
+                            640: {
+                                slidesPerView: 2,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                            },
+                            1280: {
+                                slidesPerView: 5,
+                            },
                         },
-                        1024: {
-                            slidesPerView: 4,
-                        },
-                        1280: {
-                            slidesPerView: 5,
-                        },
-                    },
-                }
-            );
+                    }
+                );
+            });
         });
     };
 
