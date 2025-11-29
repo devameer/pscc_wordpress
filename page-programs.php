@@ -72,7 +72,7 @@ if (!$programs_query->have_posts()) {
             $image_id  = get_post_thumbnail_id();
             $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
 
-            $content_background = 'image-left' === $layout ? 'p-4 sm:p-6 md:p-8 lg:p-12' : 'py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-0 ltr:md:pe-8 rtl:md:ps-8 ltr:lg:pe-12 rtl:lg:ps-12';
+            $content_background = 'image-left' === $layout ? 'p-4 sm:p-6 md:p-8 lg:p-12' : 'p-4 sm:p-6 md:py-8 ltr:md:ps-8 rtl:md:pe-8 ltr:lg:ps-12 rtl:lg:pe-12';
             $content_html = '';
             $content_html .= '<div class="' . esc_attr($content_background) . ' flex flex-col justify-center gap-3 sm:gap-4 md:gap-6 transition-transform duration-300 ltr:text-left rtl:text-right">';
 
