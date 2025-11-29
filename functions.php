@@ -38,3 +38,10 @@ function beit_flush_rewrite_rules() {
     beit_register_post_types();
     flush_rewrite_rules();
 }
+
+add_filter('locale', function ($locale) {
+    if (is_admin()) {
+        return 'en_US'; // إجبار لوحة التحكم تكون إنجليزي
+    }
+    return $locale; // الواجهة الأمامية تظل كما هي (مثلاً ar)
+});
