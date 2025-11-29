@@ -72,7 +72,7 @@ while (have_posts()) {
     $phone   = $contact_details['phone'] ?? '';
     $address = $contact_details['address'] ?? '';
     $hero_custom_title = $hero_data['custom_title'] ?? '';
-    $hero_title =  $hero_custom_title || get_the_title();
+    $hero_title =  $hero_custom_title ?: get_the_title();
     get_template_part(
         'resources/views/components/page-hero',
         null,

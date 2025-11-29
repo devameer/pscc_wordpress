@@ -20,7 +20,7 @@ while (have_posts()) {
     $hero_subtitle = get_the_content(); // Get content as subtitle
     $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
     $hero_custom_title = $hero_data['custom_title'] ?? '';
-    $hero_title =  $hero_custom_title || get_the_title();
+    $hero_title =  $hero_custom_title ?: get_the_title();
 
     get_template_part(
         'resources/views/components/page-hero',
