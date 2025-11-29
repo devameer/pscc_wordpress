@@ -107,12 +107,12 @@ if (empty($items)) {
 
             <div class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2">
                 <button
-                    class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 ltr:initiatives-button-prev rtl:initiatives-button-next"
+                    class="initiatives-button-prev pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20"
                     type="button" aria-label="<?php esc_attr_e('Previous initiatives', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_prev_icon); ?>"></i>
                 </button>
                 <button
-                    class="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20 ltr:initiatives-button-next rtl:initiatives-button-prev"
+                    class="initiatives-button-next pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20"
                     type="button" aria-label="<?php esc_attr_e('Next initiatives', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_next_icon); ?>"></i>
                 </button>

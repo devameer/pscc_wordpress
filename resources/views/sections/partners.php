@@ -65,10 +65,10 @@ if (empty($items)) {
             </div>
 
             <div class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 z-10">
-                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700 ltr:partners-button-prev rtl:partners-button-next" type="button" aria-label="<?php esc_attr_e('Previous partners', 'beit'); ?>">
+                <button class="partners-button-prev pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700" type="button" aria-label="<?php esc_attr_e('Previous partners', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_prev_icon); ?>"></i>
                 </button>
-                <button class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700 ltr:partners-button-next rtl:partners-button-prev" type="button" aria-label="<?php esc_attr_e('Next partners', 'beit'); ?>">
+                <button class="partners-button-next pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-red-600 text-white hover:bg-red-700" type="button" aria-label="<?php esc_attr_e('Next partners', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_next_icon); ?>"></i>
                 </button>
             </div>
