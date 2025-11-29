@@ -39,9 +39,15 @@ function beit_flush_rewrite_rules() {
     flush_rewrite_rules();
 }
 
-add_filter('locale', function ($locale) {
+add_filter('language_attributes', function ($output) {
     if (is_admin()) {
-        return 'en_US'; // إجبار لوحة التحكم تكون إنجليزي
+        // إزالة أي dir="rtl"
+        $output = preg_replace('/dir=("|\')rtl("|\')/i', '', $output);
+        // إضافة dir="ltr"
+        if (strpos($output, 'dir=') === false) {
+            $output .= ' dir="ltr"';
+        }
     }
-    return $locale; // الواجهة الأمامية تظل كما هي (مثلاً ar)
+
+    return $output;
 });
