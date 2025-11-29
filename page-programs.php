@@ -16,7 +16,7 @@ get_header();
 
 while (have_posts()) {
     the_post();
-
+    $hero_data = function_exists('get_field') ? (get_field('programs_hero') ?: []) : [];
     $hero_subtitle = get_the_content(); // Get content as subtitle
     $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
     $hero_custom_title = $hero_data['custom_title'] ?? '';
