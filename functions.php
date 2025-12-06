@@ -52,9 +52,13 @@ add_filter('language_attributes', function ($output) {
     return $output;
 });
 
-// إزالة كلاسات Polylang من body في لوحة الإدارة فقط
-add_filter('admin_body_class', function ($classes) {
-    // إزالة الكلاسات التي تبدأ بـ pll-lang
-    $classes = preg_replace('/\bpll-lang-\S+\b/', '', $classes);
-    return trim($classes);
-}, 999);
+
+
+// إضافة CSS مخصص إلى لوحة الإدارة
+add_action('admin_head', function () {
+    echo '<style>
+        .pll-dir-rtl input[type=text], .pll-dir-rtl textarea {
+            direction: ltr !important;
+        }
+    </style>';
+});
