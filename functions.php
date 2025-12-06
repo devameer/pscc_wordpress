@@ -51,3 +51,13 @@ add_filter('language_attributes', function ($output) {
 
     return $output;
 });
+
+// إزالة كلاسات Polylang من body
+add_filter('body_class', function ($classes) {
+    // إزالة الكلاسات التي تبدأ بـ pll-lang
+    $classes = array_filter($classes, function($class) {
+        return strpos($class, 'pll-lang-') !== 0;
+    });
+
+    return $classes;
+}, 999);
