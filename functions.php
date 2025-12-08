@@ -20,7 +20,7 @@ $beit_theme_includes = [
     'app/post-types.php',
     'app/acf.php',
     'app/nav-walker.php',
-    'app/languages.php',
+    'app/maintenance-mode.php',
 ];
 
 foreach ($beit_theme_includes as $relative_path) {
@@ -38,27 +38,3 @@ function beit_flush_rewrite_rules() {
     beit_register_post_types();
     flush_rewrite_rules();
 }
-
-add_filter('language_attributes', function ($output) {
-    if (is_admin()) {
-        // إزالة أي dir="rtl"
-        $output = preg_replace('/dir=("|\')rtl("|\')/i', '', $output);
-        // إضافة dir="ltr"
-        if (strpos($output, 'dir=') === false) {
-            $output .= ' dir="ltr"';
-        }
-    }
-
-    return $output;
-});
-
-
-
-// إضافة CSS مخصص إلى لوحة الإدارة
-add_action('admin_head', function () {
-    echo '<style>
-        .pll-dir-rtl input[type=text], .pll-dir-rtl textarea {
-            direction: ltr !important;
-        }
-    </style>';
-});
