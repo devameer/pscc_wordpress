@@ -42,6 +42,7 @@ if (function_exists('get_field')) {
     $topbar_phone        = get_field('topbar_phone', 'option');
     $topbar_search_label = get_field('topbar_search_label', 'option') ?: __('Search', 'beit');
     $donate_link         = get_field('donate_link', 'option');
+    $faq_link            = get_field('faq_link', 'option');
     $topbar_socials_raw  = get_field('topbar_social_links', 'option');
     $topbar_socials      = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
     $site_logo           = get_field('site_logo', 'option') ?: 0;
@@ -51,11 +52,16 @@ if (function_exists('get_field')) {
     $topbar_phone        = null;
     $topbar_search_label = __('Search', 'beit');
     $donate_link         = null;
+    $faq_link            = null;
 }
 
 $donate_label  = $donate_link['title'] ?? __('Donate', 'beit');
 $donate_url    = $donate_link['url'] ?? '#';
 $donate_target = $donate_link['target'] ?? '_self';
+
+$faq_label  = $faq_link['title'] ?? __('FAQs', 'beit');
+$faq_url    = $faq_link['url'] ?? '#';
+$faq_target = $faq_link['target'] ?? '_self';
 
 ?>
 
@@ -126,15 +132,26 @@ $donate_target = $donate_link['target'] ?? '_self';
                                 <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
-                            href="#">
-                            <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
-                            <span class="text-[9px] sm:text-[10px] md:text-xs">عربي</span>
-                        </a>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
-                            href="#">
+                        <?php
+                        $languages = beit_get_languages();
+                        if (!empty($languages)) :
+                            foreach ($languages as $lang) :
+                                if (!$lang['current_lang']) :
+                        ?>
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
+                                href="<?php echo esc_url($lang['url']); ?>">
+                                <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($lang['name']); ?></span>
+                            </a>
+                        <?php
+                                endif;
+                            endforeach;
+                        endif;
+                        ?>
+                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
+                            href="<?php echo esc_url($faq_url); ?>" target="<?php echo esc_attr($faq_target); ?>">
                             <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
-                            <span class="text-[9px] sm:text-[10px] md:text-xs">FAQs</span>
+                            <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($faq_label); ?></span>
                         </a>
                     </div>
 

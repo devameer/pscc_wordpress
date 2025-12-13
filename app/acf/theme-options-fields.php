@@ -76,6 +76,13 @@ acf_add_local_field_group(
                 'type'  => 'link',
             ],
             [
+                'key'   => 'field_faq_link',
+                'label' => __('FAQ Link', 'beit'),
+                'name'  => 'faq_link',
+                'type'  => 'link',
+                'instructions' => __('Link to FAQs page displayed in topbar.', 'beit'),
+            ],
+            [
                 'key'           => 'field_site_logo',
                 'label'         => __('Site Logo (Regular)', 'beit'),
                 'name'          => 'site_logo',

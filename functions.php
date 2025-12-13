@@ -20,6 +20,7 @@ $beit_theme_includes = [
     'app/post-types.php',
     'app/acf.php',
     'app/nav-walker.php',
+    'app/languages.php',
     'app/maintenance-mode.php',
 ];
 
