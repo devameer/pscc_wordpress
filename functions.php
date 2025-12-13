@@ -39,3 +39,16 @@ function beit_flush_rewrite_rules() {
     beit_register_post_types();
     flush_rewrite_rules();
 }
+
+add_filter('language_attributes', function ($output) {
+    if (is_admin()) {
+        // إزالة أي dir="rtl"
+        $output = preg_replace('/dir=("|\')rtl("|\')/i', '', $output);
+        // إضافة dir="ltr"
+        if (strpos($output, 'dir=') === false) {
+            $output .= ' dir="ltr"';
+        }
+    }
+
+    return $output;
+});
