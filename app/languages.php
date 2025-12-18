@@ -183,3 +183,23 @@ function beit_get_languages(): array
 
     return is_array($languages) ? $languages : [];
 }
+
+/**
+ * Enable Polylang support for custom post types.
+ */
+function beit_polylang_post_types($post_types, $is_settings)
+{
+    if ($is_settings) {
+        // Remove the default post types and add only ours
+        unset($post_types['post']);
+        unset($post_types['page']);
+    }
+
+    // Add custom post types
+    $post_types['beit_hero_slide'] = 'beit_hero_slide';
+    $post_types['beit_news'] = 'beit_news';
+    $post_types['beit_program'] = 'beit_program';
+
+    return $post_types;
+}
+add_filter('pll_get_post_types', 'beit_polylang_post_types', 10, 2);
