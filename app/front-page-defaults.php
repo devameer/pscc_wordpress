@@ -20,7 +20,7 @@ function beit_front_default_hero(): array
         'slides'           => [
             [
                 'title'     => __('Because Every', 'beit'),
-                'description'      => __('Child Protection and Education show significant humanitarian needs. Many families struggle to meet children and youths' needs education.', 'beit'),
+                'description'      => __('Child Protection and Education show significant humanitarian needs. Many families struggle to meet children and youths\' needs education.', 'beit'),
                 'primary_button'   => [
                     'title'  => __('DONATE', 'beit'),
                     'url'    => '#',
