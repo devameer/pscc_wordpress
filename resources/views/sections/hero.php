@@ -94,7 +94,7 @@ if (empty($slides)) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($secondary_button['title'])) : ?>
-                                            <span class="hero-or-animate">OR</span>
+                                            <span class="hero-or-animate"><?php echo esc_html(beit_translate('OR', 'or')); ?></span>
                                             <a
                                                 class="font-light inline-flex items-center gap-2 underline text-xl capitalize tracking-wide text-white transition hover:border-white hover:text-white ltr:hover:translate-x-2 rtl:hover:-translate-x-2"
                                                 href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
@@ -117,7 +117,7 @@ if (empty($slides)) {
                                 </span>
                                 <span class="leading-tight text-white text-3xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-4 rtl:pr-4 group-hover:border-primary transition-colors duration-300">
                                     <span class="block capitalize tracking-wide"><?php esc_html_e('See the change', 'beit'); ?></span>
-                                    <span class="block capitalize"><span class="font-bold uppercase">Watch</span> the story</span>
+                                    <span class="block capitalize"><span class="font-bold uppercase"><?php echo esc_html(beit_translate('Watch', 'watch')); ?></span> <?php echo esc_html(beit_translate('the story', 'the_story')); ?></span>
                                 </span>
                             </a>
                         <?php endif; ?>

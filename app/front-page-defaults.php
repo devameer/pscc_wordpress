@@ -19,8 +19,8 @@ function beit_front_default_hero(): array
         'show_pagination'  => true,
         'slides'           => [
             [
-                'title'     => 'Because Every',
-                'description'      => __('Child Protection and Education show significant humanitarian needs. Many families struggle to meet children and youths’ needs education.', 'beit'),
+                'title'     => __('Because Every', 'beit'),
+                'description'      => __('Child Protection and Education show significant humanitarian needs. Many families struggle to meet children and youths' needs education.', 'beit'),
                 'primary_button'   => [
                     'title'  => __('DONATE', 'beit'),
                     'url'    => '#',
@@ -50,32 +50,32 @@ function beit_front_default_initiatives(): array
         ],
         'items'    => [
             [
-                'title' => "Cash Transfer<br>and Voucher",
+                'title' => __('Cash Transfer<br>and Voucher', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],
             [
-                'title' => "Child<br>Protection",
+                'title' => __('Child<br>Protection', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],
             [
-                'title' => "Water<br>Sanitation",
+                'title' => __('Water<br>Sanitation', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],
             [
-                'title' => "Education<br>Support",
+                'title' => __('Education<br>Support', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],
             [
-                'title' => "Food<br>Security",
+                'title' => __('Food<br>Security', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1514996937319-344454492b37?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],
             [
-                'title' => "Rehabilitation &<br>Reconstruction",
+                'title' => __('Rehabilitation &<br>Reconstruction', 'beit'),
                 'image' => 'https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?w=300&h=300&fit=crop',
                 'icon'  => '',
             ],

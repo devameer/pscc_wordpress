@@ -100,6 +100,11 @@ function beit_register_polylang_strings(): void
         pll_register_string('view_all', 'View All', 'beit');
         pll_register_string('contact_us', 'Contact Us', 'beit');
         pll_register_string('faqs', 'FAQs', 'beit');
+
+        // Register hero section strings
+        pll_register_string('or', 'OR', 'beit');
+        pll_register_string('watch', 'Watch', 'beit');
+        pll_register_string('the_story', 'the story', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');

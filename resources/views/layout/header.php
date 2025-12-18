@@ -40,7 +40,7 @@ $site_logo_scroll  = 0;
 if (function_exists('get_field')) {
     $topbar_email        = get_field('topbar_email', 'option');
     $topbar_phone        = get_field('topbar_phone', 'option');
-    $topbar_search_label = get_field('topbar_search_label', 'option') ?: __('Search', 'beit');
+    $topbar_search_label = get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
     $donate_link         = get_field('donate_link', 'option');
     $faq_link            = get_field('faq_link', 'option');
     $topbar_socials_raw  = get_field('topbar_social_links', 'option');
@@ -50,16 +50,16 @@ if (function_exists('get_field')) {
 } else {
     $topbar_email        = null;
     $topbar_phone        = null;
-    $topbar_search_label = __('Search', 'beit');
+    $topbar_search_label = beit_translate('Search', 'search_label');
     $donate_link         = null;
     $faq_link            = null;
 }
 
-$donate_label  = $donate_link['title'] ?? __('Donate', 'beit');
+$donate_label  = $donate_link['title'] ?? beit_translate('Donate', 'donate_label');
 $donate_url    = $donate_link['url'] ?? '#';
 $donate_target = $donate_link['target'] ?? '_self';
 
-$faq_label  = $faq_link['title'] ?? __('FAQs', 'beit');
+$faq_label  = $faq_link['title'] ?? beit_translate('FAQs', 'faqs');
 $faq_url    = $faq_link['url'] ?? '#';
 $faq_target = $faq_link['target'] ?? '_self';
 
