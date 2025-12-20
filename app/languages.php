@@ -75,11 +75,14 @@ function beit_enqueue_rtl_styles(): void
         $current_lang = pll_current_language('slug');
 
         if ($current_lang === 'ar' || is_rtl()) {
+            $rtl_file = BEIT_THEME_DIR . '/public/css/rtl.css';
+            $rtl_version = file_exists($rtl_file) ? filemtime($rtl_file) : BEIT_THEME_VERSION;
+
             wp_enqueue_style(
                 'beit-rtl',
-                BEIT_THEME_URI . '/public/css/rtl.css?ver=' . rand(1, 1000),
+                BEIT_THEME_URI . '/public/css/rtl.css',
                 ['beit-main'],
-                BEIT_THEME_VERSION
+                $rtl_version
             );
         }
     }
