@@ -227,7 +227,7 @@ function beit_front_default_our_story(): array
         'description' => __('The Beit Lahia for Development Association is an independent charitable organization in Gaza that operates on humanitarian development principles and international standards across education, health, and human development.', 'beit'),
         'image' => 'https://images.unsplash.com/photo-1490135900376-4b6b31f0946b?w=800&h=600&fit=crop',
         'button' => [
-            'title' => __('Read More', 'beit'),
+            'title' => '',
             'url' => '#',
             'target' => '_self',
         ],
