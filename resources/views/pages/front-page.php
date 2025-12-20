@@ -12,25 +12,25 @@ if (!defined('ABSPATH')) {
 
 require_once BEIT_THEME_DIR . '/app/front-page-defaults.php';
 
-$hero_defaults        = beit_front_default_hero();
+$hero_defaults = beit_front_default_hero();
 $initiatives_defaults = beit_front_default_initiatives();
-$news_defaults        = beit_front_default_news();
-$facts_defaults       = beit_front_default_facts();
-$partners_defaults    = beit_front_default_partners();
-$voices_defaults      = beit_front_default_voices();
-$our_story_defaults   = beit_front_default_our_story();
+$news_defaults = beit_front_default_news();
+$facts_defaults = beit_front_default_facts();
+$partners_defaults = beit_front_default_partners();
+$voices_defaults = beit_front_default_voices();
+$our_story_defaults = beit_front_default_our_story();
 
 $has_acf = function_exists('get_field');
-$is_rtl  = is_rtl();
+$is_rtl = is_rtl();
 
-$content_alignment     = $is_rtl ? 'md:text-right' : 'md:text-left';
+$content_alignment = $is_rtl ? 'md:text-right' : 'md:text-left';
 $video_button_position = $is_rtl ? 'bottom-16 left-12' : 'bottom-16 right-12';
-$hero_prev_icon        = $is_rtl ? 'fa fa-angle-right' : 'fa fa-angle-left';
-$hero_next_icon        = $is_rtl ? 'fa fa-angle-left' : 'fa fa-angle-right';
+$hero_prev_icon = $is_rtl ? 'fa fa-angle-right' : 'fa fa-angle-left';
+$hero_next_icon = $is_rtl ? 'fa fa-angle-left' : 'fa fa-angle-right';
 
 $hero_settings = [
-    'autoplay'        => $hero_defaults['autoplay'],
-    'loop'            => $hero_defaults['loop'],
+    'autoplay' => $hero_defaults['autoplay'],
+    'loop' => $hero_defaults['loop'],
     'show_navigation' => $hero_defaults['show_navigation'],
     'show_pagination' => $hero_defaults['show_pagination'],
 ];
@@ -39,13 +39,13 @@ $hero_slides = [];
 
 $hero_query = new WP_Query(
     [
-        'post_type'      => 'beit_hero_slide',
+        'post_type' => 'beit_hero_slide',
         'posts_per_page' => -1,
-        'post_status'    => 'publish',
-        'meta_key'       => 'hero_slide_order',
-        'orderby'        => [
+        'post_status' => 'publish',
+        'meta_key' => 'hero_slide_order',
+        'orderby' => [
             'meta_value_num' => 'ASC',
-            'date'           => 'DESC',
+            'date' => 'DESC',
         ],
     ]
 );
@@ -71,12 +71,12 @@ if ($hero_query->have_posts()) {
         }
 
         $hero_slides[] = [
-            'order'            => $slide_order,
-            'title'            => $title,
-            'description'      => $description,
+            'order' => $slide_order,
+            'title' => $title,
+            'description' => $description,
             'background_image' => $background_image,
-            'video_url'        => $video_url,
-            'primary_button'   => $primary_button,
+            'video_url' => $video_url,
+            'primary_button' => $primary_button,
             'secondary_button' => $secondary_button,
         ];
     }
@@ -108,11 +108,11 @@ $news_posts = [];
 if (post_type_exists('beit_news')) {
     $news_query = new WP_Query(
         [
-            'post_type'      => 'beit_news',
+            'post_type' => 'beit_news',
             'posts_per_page' => 3,
-            'post_status'    => 'publish',
-            'orderby'        => 'date',
-            'order'          => 'DESC',
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC',
         ]
     );
 
@@ -121,10 +121,10 @@ if (post_type_exists('beit_news')) {
             $news_query->the_post();
 
             $news_posts[] = [
-                'title'   => get_the_title(),
+                'title' => get_the_title(),
                 'excerpt' => get_the_excerpt(),
-                'image'   => get_post_thumbnail_id(get_the_ID()),
-                'link'    => get_permalink(),
+                'image' => get_post_thumbnail_id(get_the_ID()),
+                'link' => get_permalink(),
             ];
         }
 
@@ -162,9 +162,9 @@ if (is_array($partners_field)) {
 }
 
 $voices = [
-    'title'    => $voices_defaults['title'] ?? __('Voices & Visions', 'beit'),
+    'title' => $voices_defaults['title'] ?? __('Voices & Visions', 'beit'),
     'subtitle' => $voices_defaults['subtitle'] ?? '',
-    'items'    => [],
+    'items' => [],
 ];
 
 $voices_field = $has_acf ? get_field('front_voices') : null;
@@ -217,7 +217,7 @@ if (is_array($our_story_field)) {
     $our_story = array_merge($our_story, array_filter($our_story_field));
 }
 
-$display_news     = $news_posts;
+$display_news = $news_posts;
 
 ?>
 
@@ -227,12 +227,12 @@ $display_news     = $news_posts;
         'resources/views/sections/hero',
         null,
         [
-            'slides'                => $hero_slides,
-            'settings'              => $hero_settings,
-            'content_alignment'     => $content_alignment,
+            'slides' => $hero_slides,
+            'settings' => $hero_settings,
+            'content_alignment' => $content_alignment,
             'video_button_position' => $video_button_position,
-            'hero_prev_icon'        => $hero_prev_icon,
-            'hero_next_icon'        => $hero_next_icon,
+            'hero_prev_icon' => $hero_prev_icon,
+            'hero_next_icon' => $hero_next_icon,
         ]
     );
 
@@ -241,9 +241,9 @@ $display_news     = $news_posts;
             'resources/views/sections/initiatives',
             null,
             [
-                'data'              => $initiatives,
-                'hero_prev_icon'    => $hero_prev_icon,
-                'hero_next_icon'    => $hero_next_icon,
+                'data' => $initiatives,
+                'hero_prev_icon' => $hero_prev_icon,
+                'hero_next_icon' => $hero_next_icon,
             ]
         );
     }
@@ -253,13 +253,13 @@ $display_news     = $news_posts;
         null,
         [
             'heading' => [
-                'title'    => $news['title'] ?? '',
+                'title' => $news['title'] ?? '',
                 'subtitle' => $news['subtitle'] ?? '',
-                'cta'      => $news['cta'] ?? [],
+                'cta' => $news['cta'] ?? [],
             ],
-            'items'          => $display_news,
-            'is_rtl'         => $is_rtl,
-            'empty_message'  => __('No news items found yet. Check back soon for updates.', 'beit'),
+            'items' => $display_news,
+            'is_rtl' => $is_rtl,
+            'empty_message' => beit_translate('No news items found yet. Check back soon for updates.', 'no_news_items_found'),
         ]
     );
 
@@ -268,7 +268,7 @@ $display_news     = $news_posts;
             'resources/views/sections/voices',
             null,
             [
-                'voices'      => $voices,
+                'voices' => $voices,
                 'lightbox_id' => 'home-voices-lightbox',
             ]
         );
@@ -278,7 +278,7 @@ $display_news     = $news_posts;
         'resources/views/sections/our-story',
         null,
         [
-            'data'              => $our_story,
+            'data' => $our_story,
             'content_alignment' => $content_alignment,
         ]
     );
@@ -298,7 +298,7 @@ $display_news     = $news_posts;
             'resources/views/sections/partners',
             null,
             [
-                'partners'       => $partners,
+                'partners' => $partners,
                 'hero_prev_icon' => $hero_prev_icon,
                 'hero_next_icon' => $hero_next_icon,
             ]

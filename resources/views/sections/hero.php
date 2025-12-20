@@ -116,7 +116,7 @@ if (empty($slides)) {
                                     <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
                                 <span class="leading-tight text-white text-3xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-4 rtl:pr-4 group-hover:border-primary transition-colors duration-300">
-                                    <span class="block capitalize tracking-wide"><?php esc_html_e('See the change', 'beit'); ?></span>
+                                    <span class="block capitalize tracking-wide"><?php echo esc_html(beit_translate('See the change', 'see_the_change')); ?></span>
                                     <span class="block capitalize"><span class="font-bold uppercase"><?php echo esc_html(beit_translate('Watch', 'watch')); ?></span> <?php echo esc_html(beit_translate('the story', 'the_story')); ?></span>
                                 </span>
                             </a>

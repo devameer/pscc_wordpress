@@ -87,6 +87,7 @@ function beit_register_polylang_strings(): void
         pll_register_string('or', 'OR', 'beit');
         pll_register_string('watch', 'Watch', 'beit');
         pll_register_string('the_story', 'the story', 'beit');
+        pll_register_string('see_the_change', 'See the change', 'beit');
 
         // Register single news page strings
         pll_register_string('share_this_article', 'Share this article', 'beit');
@@ -110,6 +111,9 @@ function beit_register_polylang_strings(): void
         pll_register_string('check_back_photos', 'Please check back soon for new photos.', 'beit');
         pll_register_string('check_back_videos', 'Please check back soon for new videos.', 'beit');
         pll_register_string('watch_video', 'Watch Video', 'beit');
+
+        // News section strings
+        pll_register_string('no_news_items_found', 'No news items found yet. Check back soon for updates.', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');
