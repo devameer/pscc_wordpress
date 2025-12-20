@@ -7,6 +7,9 @@
  * @package beit
  */
 
+/* Import Cairo font for Arabic text */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* ==========================================================================
    Base RTL Adjustments
    ========================================================================== */
@@ -42,7 +45,7 @@ body.rtl {
 
 .rtl .hero-slider-next {
     left: 0;
-    right:auto;
+    right: auto;
 }
 
 
@@ -53,6 +56,7 @@ body.rtl {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -64,6 +68,7 @@ body.rtl {
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -199,4 +204,3 @@ body.rtl {
 .rtl .sm\\:justify-end {
     justify-content: flex-end;
 }
-

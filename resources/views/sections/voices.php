@@ -1,23 +1,100 @@
 <?php
-
 /**
  * Voices & Visions gallery section.
  *
  * @package beit
  */
 
+$has_acf = function_exists('get_field');
+
 $voices = wp_parse_args(
     $args['voices'] ?? [],
     [
-        'title'    => '',
+        'title' => '',
         'subtitle' => '',
-        'items'    => [],
+        'items' => [],
     ]
 );
-
 $lightbox_id = $args['lightbox_id'] ?? 'voices-lightbox';
 
-$items = $voices['items'];
+// Fetch items from Media Library post type instead of ACF
+$items = [];
+$media_query = new WP_Query([
+    'post_type' => 'beit_media',
+    'posts_per_page' => 6,
+    'post_status' => 'publish',
+    'meta_query' => [
+        [
+            'key' => 'show_on_homepage',
+            'value' => '1',
+            'compare' => '=',
+        ],
+    ],
+    'meta_key' => 'homepage_order',
+    'orderby' => 'meta_value_num',
+    'order' => 'ASC',
+]);
+
+if ($media_query->have_posts()) {
+    $index = 0;
+    while ($media_query->have_posts()) {
+        $media_query->the_post();
+        $media_id = get_the_ID();
+        $media_type = $has_acf ? (get_field('media_type', $media_id) ?: 'image') : 'image';
+
+        $item = [
+            'span' => $index === 0 ? 'double' : 'single',
+            'title' => get_the_title(),
+        ];
+
+        if ($media_type === 'image') {
+            $thumb_id = get_post_thumbnail_id($media_id);
+            $item['image'] = $thumb_id;
+            $item['media'] = [
+                'type' => 'image',
+                'src' => wp_get_attachment_image_url($thumb_id, 'full'),
+                'thumbnail_url' => wp_get_attachment_image_url($thumb_id, 'large'),
+                'caption' => get_the_title(),
+            ];
+        } else {
+            // Get both video sources - same logic as page-videos-gallery.php
+            $video_file = $has_acf ? get_field('media_video_file', $media_id) : '';
+            $video_url = $has_acf ? get_field('media_video_url', $media_id) : '';
+            $thumbnail_id = $has_acf ? get_field('media_video_thumbnail', $media_id) : 0;
+            if (!$thumbnail_id) {
+                $thumbnail_id = get_post_thumbnail_id($media_id);
+            }
+            $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+
+            // Determine video source - prioritize file if available, otherwise use URL
+            $video_src = '';
+            $is_external_video = false;
+            if (!empty($video_file)) {
+                $video_src = $video_file;
+                $is_external_video = false;
+            } elseif (!empty($video_url)) {
+                // Convert YouTube/Vimeo URLs to embed format
+                $video_src = beit_get_video_embed_url($video_url);
+                $is_external_video = true;
+            }
+
+            // Set the lightbox type based on video source
+            $lightbox_type = $is_external_video ? '' : 'video';
+
+            $item['media'] = [
+                'type' => $lightbox_type,
+                'src' => $video_src,
+                'thumbnail_url' => $thumbnail_url,
+                'caption' => get_the_title(),
+                'is_external' => $is_external_video,
+            ];
+        }
+
+        $items[] = $item;
+        $index++;
+    }
+    wp_reset_postdata();
+}
 
 if (empty($items)) {
     return;
@@ -28,10 +105,11 @@ if (empty($items)) {
 <section class="pb-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
-            <?php if (!empty($voices['title'])) : ?>
-                <h2 class="text-3xl font-light text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?></h2>
+            <?php if (!empty($voices['title'])): ?>
+                <h2 class="text-3xl font-light text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?>
+                </h2>
             <?php endif; ?>
-            <?php if (!empty($voices['subtitle'])) : ?>
+            <?php if (!empty($voices['subtitle'])): ?>
                 <p class="text-base text-black md:text-lg font-light"><?php echo wp_kses_post($voices['subtitle']); ?></p>
             <?php endif; ?>
         </div>
@@ -39,12 +117,14 @@ if (empty($items)) {
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <?php
             $voice_anim_index = 0;
-            foreach ($items as $index => $item) :
-                $media = isset($item['media']) ? $item['media'] : beit_get_voice_media_data($item['id'] ?? 0, $item['image'] ?? null);
+            foreach ($items as $index => $item):
+                $media = $item['media'];
                 $thumb_url = $media['thumbnail_url'];
                 $lightbox_src = $media['src'];
                 $lightbox_type = $media['type'];
                 $caption = $media['caption'] ?? ($item['title'] ?? '');
+                $is_external_video = $media['is_external'] ?? false;
+                $is_video = $lightbox_type === 'video' || $is_external_video;
 
                 if (!$thumb_url) {
                     continue;
@@ -57,46 +137,62 @@ if (empty($items)) {
                     $wrapper_classes .= ' lg:col-span-2 lg:row-span-2';
                 }
                 $voice_delay = 100 + ($voice_anim_index * 100);
-            ?>
-                <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
+
+                // Use appropriate data-type attribute based on media type (same as page-videos-gallery.php)
+                $data_type_attr = '';
+                if ($lightbox_type === 'image') {
+                    $data_type_attr = 'data-type="image"';
+                } elseif ($lightbox_type === 'video') {
+                    $data_type_attr = 'data-type="video"';
+                }
+                // For external videos (YouTube/Vimeo), don't set data-type - fslightbox will auto-detect
+                ?>
+                <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
+                    data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
                     <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
-                        data-type="<?php echo esc_attr($lightbox_type); ?>" data-caption="<?php echo esc_attr($caption); ?>"
+                        <?php echo $data_type_attr; ?> data-caption="<?php echo esc_attr($caption); ?>"
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
-                        <?php if ('video' === $lightbox_type) : ?>
-                        <span
-                            class="absolute inset-0 z-10 flex items-center justify-center group">
-                            <div class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
-                            <span
-                                class="inline-flex h-20 w-20 items-center justify-center bg-white/50 backdrop-blur-sm text-3xl
+                        <?php if ($is_video): ?>
+                            <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                                <div
+                                    class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
+                                </div>
+                                <span class="inline-flex h-20 w-20 items-center justify-center bg-white/50 backdrop-blur-sm text-3xl
                                 text-white group-hover:bg-primary transition-all duration-300 relative z-10">
-                                <i
-                                    class="fa fa-play"></i>
+                                    <i class="fa fa-play"></i>
+                                </span>
                             </span>
-                        </span>
-                        
-                        <?php elseif ('image' === $lightbox_type) : ?>
-                        <span
-                            class="absolute inset-0 z-10 flex items-center justify-center group">
-                                                        <div class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full"></div>
 
-                            <span
-                                class="inline-flex h-12 w-12 items-center justify-center bg-white/50 backdrop-blur-sm text-xl
+                        <?php elseif ($lightbox_type === 'image'): ?>
+                            <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                                <div
+                                    class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
+                                </div>
+
+                                <span
+                                    class="inline-flex h-12 w-12 items-center justify-center bg-white/50 backdrop-blur-sm text-xl
                                 text-white group-hover:bg-primary transition-all duration-300 relative z-10 opacity-0 group-hover:opacity-100">
-                                <i
-                                    class="fa fa-search"></i>
+                                    <i class="fa fa-search"></i>
+                                </span>
                             </span>
-                        </span>
                         <?php endif; ?>
                         <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
                             alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
                     </a>
                 </div>
-            <?php
+                <?php
                 $voice_anim_index++;
             endforeach; ?>
         </div>
 
-   
+
     </div>
 </section>
+
+<script>
+    // Refresh fslightbox to ensure it works with dynamically loaded content
+    if (typeof refreshFsLightbox === 'function') {
+        refreshFsLightbox();
+    }
+</script>
