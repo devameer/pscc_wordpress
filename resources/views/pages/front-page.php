@@ -265,16 +265,14 @@ $display_news = $news_posts;
         );
     }
 
-    if (!empty($voices['items'])) {
-        get_template_part(
-            'resources/views/sections/voices',
-            null,
-            [
-                'voices' => $voices,
-                'lightbox_id' => 'home-voices-lightbox',
-            ]
-        );
-    }
+    get_template_part(
+        'resources/views/sections/voices',
+        null,
+        [
+            'voices' => $voices,
+            'lightbox_id' => 'home-voices-lightbox',
+        ]
+    );
 
     get_template_part(
         'resources/views/sections/our-story',

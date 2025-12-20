@@ -11,11 +11,33 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Post types that should have thumbnail column in admin.
+ * Get all post types that should have thumbnail column in admin.
+ * Automatically includes all post types that support thumbnails.
  */
 function beit_get_post_types_with_thumbnails(): array
 {
-    return ['beit_news', 'beit_program', 'beit_media', 'beit_hero_slide', 'post'];
+    // Get all public post types
+    $post_types = get_post_types(['public' => true], 'names');
+
+    // Filter to only include post types that support thumbnails
+    $post_types_with_thumbnails = [];
+
+    foreach ($post_types as $post_type) {
+        if (post_type_supports($post_type, 'thumbnail')) {
+            $post_types_with_thumbnails[] = $post_type;
+        }
+    }
+
+    // Also include these post types even if they don't explicitly support thumbnails
+    $always_include = ['beit_media', 'beit_hero_slide'];
+
+    foreach ($always_include as $post_type) {
+        if (!in_array($post_type, $post_types_with_thumbnails, true) && post_type_exists($post_type)) {
+            $post_types_with_thumbnails[] = $post_type;
+        }
+    }
+
+    return $post_types_with_thumbnails;
 }
 
 /**
@@ -57,11 +79,13 @@ function beit_display_thumbnail_column($column_name, $post_id): void
             // Get video thumbnail
             $thumbnail_id = get_field('media_video_thumbnail', $post_id);
             if ($thumbnail_id) {
+                echo '<div style="position: relative; display: inline-block;">';
                 echo wp_get_attachment_image($thumbnail_id, [60, 60], false, [
                     'style' => 'width: 60px; height: 60px; object-fit: cover; border-radius: 4px;',
                     'class' => 'no-lazy'
                 ]);
                 echo '<span class="dashicons dashicons-video-alt3" style="position: absolute; bottom: 2px; right: 2px; background: rgba(0,0,0,0.7); color: #fff; border-radius: 2px; font-size: 14px; width: 18px; height: 18px; line-height: 18px; text-align: center;"></span>';
+                echo '</div>';
                 return;
             } else {
                 // Show video icon placeholder
@@ -103,40 +127,21 @@ function beit_display_thumbnail_column($column_name, $post_id): void
  */
 function beit_admin_thumbnail_column_styles(): void
 {
-    $screen = get_current_screen();
-
-    if (!$screen) {
-        return;
-    }
-
-    $post_types = beit_get_post_types_with_thumbnails();
-
-    if (in_array($screen->post_type, $post_types, true) && $screen->base === 'edit') {
-        ?>
-        <style>
-            .column-thumbnail {
-                width: 70px !important;
-            }
-
-            .column-thumbnail img {
-                display: block;
-            }
-        </style>
-        <?php
-    }
+    ?>
+    <style>
+        .column-thumbnail {
+            width: 70px !important;
+        }
+        .column-thumbnail img {
+            display: block;
+        }
+    </style>
+    <?php
 }
 add_action('admin_head', 'beit_admin_thumbnail_column_styles');
 
 /**
- * Register columns and display callbacks for each post type.
- */
-foreach (beit_get_post_types_with_thumbnails() as $post_type) {
-    add_filter("manage_{$post_type}_posts_columns", 'beit_add_thumbnail_column');
-    add_action("manage_{$post_type}_posts_custom_column", 'beit_display_thumbnail_column', 10, 2);
-}
-
-/**
- * Make the thumbnail column sortable (optional - sorts by thumbnail ID).
+ * Make the thumbnail column sortable.
  */
 function beit_thumbnail_column_sortable($columns): array
 {
@@ -160,7 +165,18 @@ function beit_thumbnail_column_orderby($query): void
 }
 add_action('pre_get_posts', 'beit_thumbnail_column_orderby');
 
-// Add sortable columns for each post type
-foreach (beit_get_post_types_with_thumbnails() as $post_type) {
-    add_filter("manage_edit-{$post_type}_sortable_columns", 'beit_thumbnail_column_sortable');
+/**
+ * Register columns and display callbacks for all post types.
+ * This runs after post types are registered.
+ */
+function beit_register_thumbnail_columns(): void
+{
+    $post_types = beit_get_post_types_with_thumbnails();
+
+    foreach ($post_types as $post_type) {
+        add_filter("manage_{$post_type}_posts_columns", 'beit_add_thumbnail_column');
+        add_action("manage_{$post_type}_posts_custom_column", 'beit_display_thumbnail_column', 10, 2);
+        add_filter("manage_edit-{$post_type}_sortable_columns", 'beit_thumbnail_column_sortable');
+    }
 }
+add_action('admin_init', 'beit_register_thumbnail_columns');
