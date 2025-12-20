@@ -80,7 +80,7 @@ function beit_enqueue_rtl_styles(): void
 
             wp_enqueue_style(
                 'beit-rtl',
-                BEIT_THEME_URI . '/public/css/rtl.css',
+                BEIT_THEME_URI . '/public/css/rtl.css?ver=454',
                 ['beit-main'],
                 $rtl_version
             );
