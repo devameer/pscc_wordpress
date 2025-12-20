@@ -115,6 +115,9 @@ function beit_register_polylang_strings(): void
 
         // News section strings
         pll_register_string('no_news_items_found', 'No news items found yet. Check back soon for updates.', 'beit');
+
+        // Footer strings
+        pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');
