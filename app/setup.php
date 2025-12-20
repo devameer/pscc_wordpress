@@ -28,7 +28,7 @@ function beit_theme_setup(): void
     register_nav_menus(
         [
             'primary' => __('Primary Menu', 'beit'),
-            'footer'  => __('Footer Menu', 'beit'),
+            'footer' => __('Footer Menu', 'beit'),
         ]
     );
 
@@ -48,10 +48,10 @@ function beit_theme_setup(): void
     add_theme_support(
         'custom-logo',
         [
-            'height'      => 80,
-            'width'       => 240,
+            'height' => 80,
+            'width' => 240,
             'flex-height' => true,
-            'flex-width'  => true,
+            'flex-width' => true,
         ]
     );
 
@@ -80,10 +80,13 @@ add_action('pre_get_posts', 'beit_modify_search_query');
 function beit_add_lazy_loading_to_images($attr, $attachment, $size): array
 {
     // Skip for hero/featured images above the fold
-    if (isset($attr['class']) && (
-        strpos($attr['class'], 'no-lazy') !== false ||
-        strpos($attr['class'], 'skip-lazy') !== false
-    )) {
+    if (
+        isset($attr['class']) && (
+            strpos($attr['class'], 'no-lazy') !== false ||
+            strpos($attr['class'], 'skip-lazy') !== false ||
+            strpos($attr['class'], 'hero-image') !== false
+        )
+    ) {
         return $attr;
     }
 
@@ -93,6 +96,88 @@ function beit_add_lazy_loading_to_images($attr, $attachment, $size): array
     return $attr;
 }
 add_filter('wp_get_attachment_image_attributes', 'beit_add_lazy_loading_to_images', 10, 3);
+
+/**
+ * Enable native WordPress lazy loading for all images and iframes.
+ */
+add_filter('wp_lazy_loading_enabled', '__return_true');
+
+/**
+ * Add lazy loading to all images in post content.
+ */
+function beit_add_lazy_loading_to_content_images($content)
+{
+    if (empty($content)) {
+        return $content;
+    }
+
+    // Add loading="lazy" and decoding="async" to all img tags without loading attribute
+    $content = preg_replace_callback(
+        '/<img([^>]+)>/i',
+        function ($matches) {
+            $img_tag = $matches[0];
+            $attributes = $matches[1];
+
+            // Skip if already has loading attribute or has skip-lazy/no-lazy class
+            if (
+                preg_match('/loading\s*=/i', $attributes) ||
+                preg_match('/class\s*=\s*["\'][^"\']*(?:no-lazy|skip-lazy|hero-image)[^"\']*["\']/i', $attributes)
+            ) {
+                return $img_tag;
+            }
+
+            // Add loading="lazy" attribute
+            if (!preg_match('/loading\s*=/i', $attributes)) {
+                $img_tag = str_replace('<img', '<img loading="lazy"', $img_tag);
+            }
+
+            // Add decoding="async" attribute if not present
+            if (!preg_match('/decoding\s*=/i', $attributes)) {
+                $img_tag = str_replace('<img', '<img decoding="async"', $img_tag);
+            }
+
+            return $img_tag;
+        },
+        $content
+    );
+
+    return $content;
+}
+add_filter('the_content', 'beit_add_lazy_loading_to_content_images', 99);
+add_filter('widget_text', 'beit_add_lazy_loading_to_content_images', 99);
+add_filter('widget_custom_html_content', 'beit_add_lazy_loading_to_content_images', 99);
+
+/**
+ * Add lazy loading to iframes (YouTube, Vimeo, etc.).
+ */
+function beit_add_lazy_loading_to_iframes($content)
+{
+    if (empty($content)) {
+        return $content;
+    }
+
+    // Add loading="lazy" to all iframe tags without loading attribute
+    $content = preg_replace_callback(
+        '/<iframe([^>]+)>/i',
+        function ($matches) {
+            $iframe_tag = $matches[0];
+            $attributes = $matches[1];
+
+            // Skip if already has loading attribute
+            if (preg_match('/loading\s*=/i', $attributes)) {
+                return $iframe_tag;
+            }
+
+            // Add loading="lazy" attribute
+            return str_replace('<iframe', '<iframe loading="lazy"', $iframe_tag);
+        },
+        $content
+    );
+
+    return $content;
+}
+add_filter('the_content', 'beit_add_lazy_loading_to_iframes', 99);
+add_filter('embed_oembed_html', 'beit_add_lazy_loading_to_iframes', 99);
 
 /**
  * Add fetchpriority="high" to featured images above the fold.

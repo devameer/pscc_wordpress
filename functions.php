@@ -23,6 +23,7 @@ $beit_theme_includes = [
     'app/languages.php',
     'app/maintenance-mode.php',
     'app/media-library-admin.php',
+    'app/admin-columns.php',
 ];
 
 foreach ($beit_theme_includes as $relative_path) {
@@ -36,7 +37,8 @@ foreach ($beit_theme_includes as $relative_path) {
 // Temporary: Flush rewrite rules on theme activation/update
 // Remove this after permalinks are working
 add_action('after_switch_theme', 'beit_flush_rewrite_rules');
-function beit_flush_rewrite_rules() {
+function beit_flush_rewrite_rules()
+{
     beit_register_post_types();
     flush_rewrite_rules();
 }
