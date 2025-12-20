@@ -408,7 +408,7 @@
 })();
 
 // Contact Map with Tabs functionality
-window.initContactMap = function() {
+window.initContactMapFromTheme = function() {
     const mapContainer = document.getElementById('contact-map');
 
     if (!mapContainer || !window.contactMapData || !window.google) {

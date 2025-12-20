@@ -344,6 +344,23 @@ while (have_posts()) {
 
     <?php if ($google_maps_api_key): ?>
         <script>
+            // Define initContactMap immediately to prevent race condition with Google Maps
+            if (typeof window.initContactMap === 'undefined') {
+                window.initContactMap = function() {
+                    // This will be overridden by theme.js when it loads
+                    // If theme.js hasn't loaded yet, retry after a short delay
+                    if (typeof window.initContactMapFromTheme === 'function') {
+                        window.initContactMapFromTheme();
+                    } else {
+                        setTimeout(function() {
+                            if (typeof window.initContactMapFromTheme === 'function') {
+                                window.initContactMapFromTheme();
+                            }
+                        }, 100);
+                    }
+                };
+            }
+            
             // Tab hover functionality - initialize immediately
             (function () {
                 const initDropdowns = () => {
