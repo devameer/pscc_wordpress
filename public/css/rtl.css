@@ -217,3 +217,16 @@ body.rtl {
 .rtl .sm\\:justify-end {
     justify-content: flex-end;
 }
+
+.rtl .form-field {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl .flex.flex-wrap.items-center.gap-4>p {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    direction: rtl;
+    width: 100%;
+}

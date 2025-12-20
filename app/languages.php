@@ -121,6 +121,11 @@ function beit_register_polylang_strings(): void
         pll_register_string('check_back_videos', 'Please check back soon for new videos.', 'beit');
         pll_register_string('check_back_media', 'Please check back soon for new stories and media highlights.', 'beit');
 
+        // Contact page strings
+        pll_register_string('share_your_thoughts', 'Share Your Thoughts Here', 'beit');
+        pll_register_string('our_offices', 'Our Offices', 'beit');
+        pll_register_string('warehouses', 'Warehouses', 'beit');
+
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');
     }
