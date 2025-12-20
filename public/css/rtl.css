@@ -91,6 +91,15 @@ body.rtl {
     animation-delay: 0.6s;
 }
 
+/* Override the initial opacity:0 for active slide in RTL - ensure visibility after animation */
+.rtl .swiper-slide-active .hero-title-animate,
+.rtl .swiper-slide-active .hero-description-animate,
+.rtl .swiper-slide-active .hero-buttons-animate,
+.rtl .swiper-slide-active .hero-or-animate,
+.rtl .swiper-slide-active .hero-video-button {
+    animation-fill-mode: forwards;
+}
+
 /* ==========================================================================
    Initiatives & Partners Sliders RTL
    ========================================================================== */
