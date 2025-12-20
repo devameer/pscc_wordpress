@@ -158,5 +158,38 @@ function beit_register_post_types(): void
             'show_in_rest'       => true,
         ]
     );
+
+    $media_library_labels = [
+        'name'                  => __('Media Library', 'beit'),
+        'singular_name'         => __('Media Item', 'beit'),
+        'menu_name'             => __('Media Library', 'beit'),
+        'name_admin_bar'        => __('Media Item', 'beit'),
+        'add_new'               => __('Add New', 'beit'),
+        'add_new_item'          => __('Add New Media Item', 'beit'),
+        'edit_item'             => __('Edit Media Item', 'beit'),
+        'new_item'              => __('New Media Item', 'beit'),
+        'view_item'             => __('View Media Item', 'beit'),
+        'search_items'          => __('Search Media', 'beit'),
+        'not_found'             => __('No media items found', 'beit'),
+        'not_found_in_trash'    => __('No media items found in Trash', 'beit'),
+        'all_items'             => __('All Media', 'beit'),
+    ];
+
+    register_post_type(
+        'beit_media',
+        [
+            'labels'             => $media_library_labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_in_menu'       => true,
+            'menu_position'      => 26,
+            'menu_icon'          => 'dashicons-format-gallery',
+            'has_archive'        => true,
+            'rewrite'            => ['slug' => 'media-library'],
+            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'],
+            'show_in_rest'       => true,
+            'taxonomies'         => ['category'],
+        ]
+    );
 }
 add_action('init', 'beit_register_post_types');

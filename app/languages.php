@@ -105,6 +105,29 @@ function beit_register_polylang_strings(): void
         pll_register_string('or', 'OR', 'beit');
         pll_register_string('watch', 'Watch', 'beit');
         pll_register_string('the_story', 'the story', 'beit');
+
+        // Register single news page strings
+        pll_register_string('share_this_article', 'Share this article', 'beit');
+        pll_register_string('share_on_social_media', 'Share on your favorite social media', 'beit');
+        pll_register_string('copy_link', 'Copy link', 'beit');
+        pll_register_string('failed_to_copy_link', 'Failed to copy link', 'beit');
+        pll_register_string('previous', 'Previous', 'beit');
+        pll_register_string('next', 'Next', 'beit');
+        pll_register_string('latest_articles', 'Latest Articles', 'beit');
+        pll_register_string('stay_updated_recent_news', 'Stay updated with our recent news', 'beit');
+        pll_register_string('categories', 'Categories', 'beit');
+        pll_register_string('recent_news', 'Recent News', 'beit');
+
+        // Register media library strings
+        pll_register_string('photo_gallery', 'Photo Gallery', 'beit');
+        pll_register_string('video_gallery', 'Video Gallery', 'beit');
+        pll_register_string('photos_count', '%d photos available', 'beit');
+        pll_register_string('videos_count', '%d videos available', 'beit');
+        pll_register_string('no_photos_found', 'No photos found', 'beit');
+        pll_register_string('no_videos_found', 'No videos found', 'beit');
+        pll_register_string('check_back_photos', 'Please check back soon for new photos.', 'beit');
+        pll_register_string('check_back_videos', 'Please check back soon for new videos.', 'beit');
+        pll_register_string('watch_video', 'Watch Video', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');

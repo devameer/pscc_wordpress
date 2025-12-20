@@ -178,7 +178,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                 <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
                         <?php if ($site_logo || $site_logo_scroll) : ?>
-                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative  logo-header">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php if ($site_logo) : ?>
                                     <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
                                         'class' => 'logo-default transition-opacity duration-300',
@@ -191,16 +191,15 @@ $faq_target = $faq_link['target'] ?? '_self';
                                         'alt'   => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
-                            </div>
+                            </a>
                         <?php elseif (has_custom_logo()) : ?>
-                            <div class="w-14 sm:w-16 md:w-20 lg:w-32 relative  logo-header">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php the_custom_logo(); ?>
-                            </div>
+                            </a>
                         <?php else : ?>
-                            <div
-                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
-                            </div>
+                            </a>
                         <?php endif; ?>
 
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
