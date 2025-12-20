@@ -77,7 +77,7 @@ function beit_enqueue_rtl_styles(): void
         if ($current_lang === 'ar' || is_rtl()) {
             wp_enqueue_style(
                 'beit-rtl',
-                BEIT_THEME_URI . '/public/css/rtl.css',
+                BEIT_THEME_URI . '/public/css/rtl.css?ver=' . rand(1, 1000),
                 ['beit-main'],
                 BEIT_THEME_VERSION
             );
@@ -154,14 +154,14 @@ function beit_get_language_switcher($args = []): string
     }
 
     $defaults = [
-        'dropdown'               => 0,
-        'show_names'             => 1,
-        'show_flags'             => 0,
-        'hide_if_empty'          => 1,
-        'force_home'             => 0,
-        'echo'                   => 0,
+        'dropdown' => 0,
+        'show_names' => 1,
+        'show_flags' => 0,
+        'hide_if_empty' => 1,
+        'force_home' => 0,
+        'echo' => 0,
         'hide_if_no_translation' => 0,
-        'display_names_as'       => 'name', // 'name' or 'slug'
+        'display_names_as' => 'name', // 'name' or 'slug'
     ];
 
     $args = wp_parse_args($args, $defaults);
