@@ -324,13 +324,14 @@
         const itemsToHide = menuItems.slice(-4);
 
         // Create "Other" dropdown container
+        const menuLabel = (typeof beitStrings !== 'undefined' && beitStrings.menu) ? beitStrings.menu : 'Menu';
         const otherDropdown = document.createElement('li');
         otherDropdown.className = 'menu-other-dropdown relative';
         otherDropdown.innerHTML = `
             <a href="#" class="menu-other-trigger flex items-center gap-1">
                             <i class="fa fa-bars  transition-transform duration-300"></i>
 
-                <span>Menu</span>
+                <span>${menuLabel}</span>
             </a>
             <ul class="menu-other-list opacity-0 invisible transition-all duration-300 pointer-events-none">
             </ul>

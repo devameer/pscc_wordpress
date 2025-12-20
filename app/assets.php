@@ -103,6 +103,11 @@ function beit_theme_enqueue_assets(): void
         true
     );
 
+    // Pass translations to JavaScript
+    wp_localize_script('beit-theme', 'beitStrings', [
+        'menu' => beit_translate('Menu', 'menu'),
+    ]);
+
     wp_enqueue_script(
         'fslightbox',
         'https://cdn.jsdelivr.net/npm/fslightbox/index.js',

@@ -248,20 +248,22 @@ $display_news = $news_posts;
         );
     }
 
-    get_template_part(
-        'resources/views/sections/news',
-        null,
-        [
-            'heading' => [
-                'title' => $news['title'] ?? '',
-                'subtitle' => $news['subtitle'] ?? '',
-                'cta' => $news['cta'] ?? [],
-            ],
-            'items' => $display_news,
-            'is_rtl' => $is_rtl,
-            'empty_message' => beit_translate('No news items found yet. Check back soon for updates.', 'no_news_items_found'),
-        ]
-    );
+    if (!empty($display_news)) {
+        get_template_part(
+            'resources/views/sections/news',
+            null,
+            [
+                'heading' => [
+                    'title' => $news['title'] ?? '',
+                    'subtitle' => $news['subtitle'] ?? '',
+                    'cta' => $news['cta'] ?? [],
+                ],
+                'items' => $display_news,
+                'is_rtl' => $is_rtl,
+                'empty_message' => beit_translate('No news items found yet. Check back soon for updates.', 'no_news_items_found'),
+            ]
+        );
+    }
 
     if (!empty($voices['items'])) {
         get_template_part(

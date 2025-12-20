@@ -82,6 +82,7 @@ function beit_register_polylang_strings(): void
         pll_register_string('view_all', 'View All', 'beit');
         pll_register_string('contact_us', 'Contact Us', 'beit');
         pll_register_string('faqs', 'FAQs', 'beit');
+        pll_register_string('menu', 'Menu', 'beit');
 
         // Register hero section strings
         pll_register_string('or', 'OR', 'beit');
