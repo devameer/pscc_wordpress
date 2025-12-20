@@ -198,9 +198,15 @@ add_action('init', 'beit_disable_emojis');
 
 /**
  * Remove query strings from static resources for better caching.
+ * Excludes rtl.css to allow proper cache busting with filemtime.
  */
 function beit_remove_script_version($src): string
 {
+    // Don't remove version from RTL css - we need it for cache busting
+    if ($src && strpos($src, 'rtl.css') !== false) {
+        return $src;
+    }
+
     if ($src && strpos($src, 'ver=')) {
         $src = remove_query_arg('ver', $src);
     }
