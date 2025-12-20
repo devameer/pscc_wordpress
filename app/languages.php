@@ -107,14 +107,19 @@ function beit_register_polylang_strings(): void
         pll_register_string('video_gallery', 'Video Gallery', 'beit');
         pll_register_string('photos_count', '%d photos available', 'beit');
         pll_register_string('videos_count', '%d videos available', 'beit');
-        pll_register_string('no_photos_found', 'No photos found', 'beit');
-        pll_register_string('no_videos_found', 'No videos found', 'beit');
-        pll_register_string('check_back_photos', 'Please check back soon for new photos.', 'beit');
-        pll_register_string('check_back_videos', 'Please check back soon for new videos.', 'beit');
         pll_register_string('watch_video', 'Watch Video', 'beit');
 
-        // News section strings
-        pll_register_string('no_news_items_found', 'No news items found yet. Check back soon for updates.', 'beit');
+        // Empty state messages (unified)
+        pll_register_string('no_items_found', 'No items found', 'beit');
+        pll_register_string('no_news_found', 'No news items found', 'beit');
+        pll_register_string('no_photos_found', 'No photos found', 'beit');
+        pll_register_string('no_videos_found', 'No videos found', 'beit');
+        pll_register_string('no_media_found', 'No media items found', 'beit');
+        pll_register_string('no_programs_found', 'No programs found. Please add some via the dashboard.', 'beit');
+        pll_register_string('check_back_soon', 'Check back soon for the latest updates.', 'beit');
+        pll_register_string('check_back_photos', 'Please check back soon for new photos.', 'beit');
+        pll_register_string('check_back_videos', 'Please check back soon for new videos.', 'beit');
+        pll_register_string('check_back_media', 'Please check back soon for new stories and media highlights.', 'beit');
 
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');

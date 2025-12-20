@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
-$is_rtl     = is_rtl();
+$is_rtl = is_rtl();
 $lightbox_id = 'media-center-lightbox';
 
 $current_page_id = get_the_ID();
@@ -38,7 +38,7 @@ if (!empty($voices_acf) && is_array($voices_acf)) {
         $excerpt = $item['excerpt'] ?? '';
 
         $processed_item = [
-            'title'   => $title,
+            'title' => $title,
             'excerpt' => $excerpt,
         ];
 
@@ -70,8 +70,8 @@ get_template_part(
     'resources/views/components/page-hero',
     null,
     [
-        'title'       => $hero_title,
-        'subtitle'    => $hero_subtitle,
+        'title' => $hero_title,
+        'subtitle' => $hero_subtitle,
         'description' => $hero_description,
         'background_classes' => 'bg-gradient-to-br from-slate-950 via-slate-800 to-red-900',
     ]
@@ -81,22 +81,20 @@ get_template_part(
 
 <main class="bg-white text-slate-900">
     <section class="container mx-auto px-4 py-16">
-        <?php if (!empty($media_items)) : ?>
+        <?php if (!empty($media_items)): ?>
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <?php foreach ($media_items as $item) :
+                <?php foreach ($media_items as $item):
                     $media = $item['media'];
                     $thumb = $media['thumbnail_url'];
                     $lightbox_src = $media['src'];
                     $lightbox_type = $media['type'];
                     $caption = $media['caption'] ?: $item['title'];
-                ?>
-                    <article class="overflow-hidden transition hover:-translate-y-1 mb-6 ltr:text-left rtl:text-right" data-aos="fade-up" data-aos-delay="100">
-                        <?php if ($thumb) : ?>
-                            <a
-                                class="group relative block w-full"
-                                data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
-                                data-type="<?php echo esc_attr($lightbox_type); ?>"
-                                data-caption="<?php echo esc_attr($caption); ?>"
+                    ?>
+                    <article class="overflow-hidden transition hover:-translate-y-1 mb-6 ltr:text-left rtl:text-right"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <?php if ($thumb): ?>
+                            <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
+                                data-type="<?php echo esc_attr($lightbox_type); ?>" data-caption="<?php echo esc_attr($caption); ?>"
                                 href="<?php echo esc_url($lightbox_src); ?>"
                                 aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
                                 <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 ">
@@ -104,15 +102,20 @@ get_template_part(
                                         <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
                                     </span> -->
                                     <?php
-                                    if ('video' === $lightbox_type) : ?>
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
-                                    <?php else : ?>
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                    if ('video' === $lightbox_type): ?>
+                                        <img class="h-20 w-20"
+                                            src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>"
+                                            alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                    <?php else: ?>
+                                        <img class="h-20 w-20"
+                                            src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>"
+                                            alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
 
                                     <?php endif; ?>
 
                                 </span>
-                                <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy" decoding="async">
+                                <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>"
+                                    alt="<?php echo esc_attr($item['title']); ?>" loading="lazy" decoding="async">
                             </a>
                         <?php endif; ?>
                         <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($item['title']); ?></h3>
@@ -122,10 +125,13 @@ get_template_part(
                     </article>
                 <?php endforeach; ?>
             </div>
-        <?php else : ?>
+        <?php else: ?>
             <div class="rounded-3xl bg-slate-50 p-12 text-center shadow-inner">
-                <h2 class="text-2xl font-semibold text-slate-900"><?php esc_html_e('No media found', 'beit'); ?></h2>
-                <p class="mt-2 text-sm text-slate-600"><?php esc_html_e('Please check back soon for new stories and media highlights.', 'beit'); ?></p>
+                <h2 class="text-2xl font-semibold text-slate-900">
+                    <?php echo esc_html(beit_translate('No media items found', 'no_media_found')); ?></h2>
+                <p class="mt-2 text-sm text-slate-600">
+                    <?php echo esc_html(beit_translate('Please check back soon for new stories and media highlights.', 'check_back_media')); ?>
+                </p>
             </div>
         <?php endif; ?>
     </section>

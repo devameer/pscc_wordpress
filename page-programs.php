@@ -20,14 +20,14 @@ while (have_posts()) {
     $hero_subtitle = get_the_content(); // Get content as subtitle
     $hero_description = get_post_meta(get_the_ID(), '_yoast_wpseo_metadesc', true) ?: get_post_field('post_excerpt', get_the_ID());
     $hero_custom_title = $hero_data['custom_title'] ?? '';
-    $hero_title =  $hero_custom_title ?: get_the_title();
+    $hero_title = $hero_custom_title ?: get_the_title();
 
     get_template_part(
         'resources/views/components/page-hero',
         null,
         [
-            'title'       => $hero_title,
-            'subtitle'    => $hero_subtitle,
+            'title' => $hero_title,
+            'subtitle' => $hero_subtitle,
             'description' => $hero_description,
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-900 to-slate-950',
         ]
@@ -36,15 +36,15 @@ while (have_posts()) {
 
 $programs_query = new WP_Query(
     [
-        'post_type'      => 'beit_program',
-        'post_status'    => 'publish',
+        'post_type' => 'beit_program',
+        'post_status' => 'publish',
         'posts_per_page' => -1,
-        'orderby'        => ['menu_order' => 'ASC', 'date' => 'ASC'],
+        'orderby' => ['menu_order' => 'ASC', 'date' => 'ASC'],
     ]
 );
 
 if (!$programs_query->have_posts()) {
-    echo '<main class="container mx-auto px-4 py-16 text-center text-slate-600">' . esc_html__('No programs found. Please add some via the dashboard.', 'beit') . '</main>';
+    echo '<main class="container mx-auto px-4 py-16 text-center text-slate-600">' . esc_html(beit_translate('No programs found. Please add some via the dashboard.', 'no_programs_found')) . '</main>';
     get_footer();
     return;
 }
@@ -63,13 +63,13 @@ if (!$programs_query->have_posts()) {
                 $layout = 'image-left';
             }
 
-            $heading          = function_exists('get_field') ? get_field('program_heading') : '';
-            $overlay_heading  = function_exists('get_field') ? get_field('program_overlay_heading') : '';
-            $overlay_sub      = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
-            $description      = function_exists('get_field') ? get_field('program_description') : '';
-            $button           = function_exists('get_field') ? get_field('program_button') : null;
+            $heading = function_exists('get_field') ? get_field('program_heading') : '';
+            $overlay_heading = function_exists('get_field') ? get_field('program_overlay_heading') : '';
+            $overlay_sub = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
+            $description = function_exists('get_field') ? get_field('program_description') : '';
+            $button = function_exists('get_field') ? get_field('program_button') : null;
 
-            $image_id  = get_post_thumbnail_id();
+            $image_id = get_post_thumbnail_id();
             $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
 
             $content_background = 'image-left' === $layout ? 'p-4 sm:p-6 md:p-8 lg:p-12' : 'p-4 sm:p-6 md:py-8 ltr:md:ps-8 rtl:md:pe-8 ltr:lg:ps-12 rtl:lg:pe-12';
