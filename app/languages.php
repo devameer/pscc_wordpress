@@ -66,28 +66,7 @@ function beit_language_body_class($classes): array
     return $classes;
 }
 
-/**
- * Enqueue RTL stylesheet for Arabic.
- */
-function beit_enqueue_rtl_styles(): void
-{
-    if (function_exists('pll_current_language')) {
-        $current_lang = pll_current_language('slug');
-
-        if ($current_lang === 'ar' || is_rtl()) {
-            $rtl_file = BEIT_THEME_DIR . '/public/css/rtl.css';
-            $rtl_version = file_exists($rtl_file) ? filemtime($rtl_file) : BEIT_THEME_VERSION;
-
-            wp_enqueue_style(
-                'beit-rtl',
-                BEIT_THEME_URI . '/public/css/rtl.css?ver=454',
-                ['beit-main'],
-                $rtl_version
-            );
-        }
-    }
-}
-add_action('wp_enqueue_scripts', 'beit_enqueue_rtl_styles', 20);
+// RTL styles are now loaded from assets.php
 
 /**
  * Register Polylang strings for translation.

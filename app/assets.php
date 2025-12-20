@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
  */
 function beit_theme_asset_version(): string
 {
-    
+
 
     return rand(111111, 999999);
 }
@@ -36,7 +36,7 @@ function beit_theme_enqueue_assets(): void
         'beit-fonts',
         BEIT_THEME_URI . '/public/css/fonts.css',
         [],
-    []
+        []
     );
 
     wp_enqueue_style(
@@ -70,6 +70,21 @@ function beit_theme_enqueue_assets(): void
             ['beit-base'],
             beit_theme_asset_version()
         );
+
+        // Load RTL stylesheet for Arabic language
+        if (function_exists('pll_current_language')) {
+            $current_lang = pll_current_language('slug');
+            if ($current_lang === 'ar' || is_rtl()) {
+                $rtl_file = BEIT_THEME_DIR . '/public/css/rtl.css';
+
+                wp_enqueue_style(
+                    'beit-rtl',
+                    BEIT_THEME_URI . '/public/css/rtl.css?v=' . beit_theme_asset_version(),
+                    ['beit-main'],
+                    beit_theme_asset_version()
+                );
+            }
+        }
     }
 
     wp_enqueue_script(
