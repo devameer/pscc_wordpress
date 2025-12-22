@@ -70,9 +70,15 @@ $acf_field_files = [
     BEIT_THEME_DIR . '/app/acf/page-programs-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-news-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-media-center-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-content-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-annual-reports-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-publications-fields.php',
+    BEIT_THEME_DIR . '/app/acf/page-blog-fields.php',
     BEIT_THEME_DIR . '/app/acf/voice-fields.php',
     BEIT_THEME_DIR . '/app/acf/program-fields.php',
     BEIT_THEME_DIR . '/app/acf/media-library-fields.php',
+    BEIT_THEME_DIR . '/app/acf/annual-report-fields.php',
+    BEIT_THEME_DIR . '/app/acf/publication-fields.php',
 ];
 
 foreach ($acf_field_files as $acf_field_file) {

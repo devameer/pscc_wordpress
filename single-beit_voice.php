@@ -37,7 +37,7 @@ while (have_posts()) {
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
             <div class="space-y-10">
                 <?php if ($thumbnail) : ?>
-                    <figure class="overflow-hidden rounded-3xl shadow-lg">
+                    <figure class="overflow-hidden  shadow-lg">
                         <?php echo wp_get_attachment_image($thumbnail, 'full', false, ['class' => 'w-full object-cover']); ?>
                     </figure>
                 <?php endif; ?>
@@ -63,7 +63,7 @@ while (have_posts()) {
 
                 if ($related->have_posts()) :
                     ?>
-                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <section class=" border border-slate-200 bg-white p-6 shadow-sm">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
                             <?php esc_html_e('More Voices', 'beit'); ?>
                         </h2>
@@ -75,7 +75,7 @@ while (have_posts()) {
                                 <li>
                                     <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()) : ?>
-                                            <span class="h-14 w-20 overflow-hidden rounded-md">
+                                            <span class="h-14 w-20 overflow-hidden ">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover']); ?>
                                             </span>
                                         <?php endif; ?>

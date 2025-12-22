@@ -91,7 +91,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                                         $icon_class = 'fa fa-instagram';
                                         break;
                                     case 'youtube':
-                                        $icon_class = 'fa fa-youtube';
+                                        $icon_class = 'fa fa-youtube-play';
                                         break;
                                     case 'linkedin':
                                         $icon_class = 'fa fa-linkedin';
@@ -162,7 +162,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="inline-flex bg-primary rounded-xs px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-red-700"
+                        <a class="inline-flex bg-primary  px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-red-700"
                             href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                             rel="noopener">
                             <?php echo esc_html($donate_label); ?>
@@ -204,7 +204,7 @@ $faq_target = $faq_link['target'] ?? '_self';
 
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
                         <button
-                            class="ml-auto inline-flex items-center justify-center rounded-md border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
+                            class="ml-auto inline-flex items-center justify-center  border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
                             type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
                             <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -262,7 +262,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                 );
                 ?>
                 <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 block md:hidden">
-                    <a class="flex items-center gap-2 rounded-lg border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
+                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
                         href="<?php echo esc_url(home_url('/?s=')); ?>">
                         <i class="fa fa-magnifying-glass text-xs"></i>
                         <span><?php echo esc_html($topbar_search_label); ?></span>

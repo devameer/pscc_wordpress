@@ -29,7 +29,7 @@ if (empty($posts)) {
         $raw_excerpt = $voice['excerpt'] ?? '';
         $excerpt  = $raw_excerpt ? wp_trim_words(wp_strip_all_tags($raw_excerpt), 26, '…') : '';
         ?>
-        <article class="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <article class="group overflow-hidden  bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
             <?php if ($image_id) : ?>
                 <a href="<?php echo esc_url($permalink); ?>" class="block overflow-hidden">
                     <?php

@@ -6,6 +6,7 @@
  * @package beit
  *
  * Template Name: Programs & Projects Page
+ * Template Post Type: page
  */
 
 if (!defined('ABSPATH')) {
@@ -99,8 +100,8 @@ if (!$programs_query->have_posts()) {
 
             $image_html = '';
             if ($image_url) {
-                $image_html .= '<div class="relative h-[250px] sm:h-[300px] md:h-[400px] overflow-hidden">';
-                $image_html .= '<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
+                $image_html .= '<div class="relative  overflow-hidden">';
+                $image_html .= '<img class="w-full transition-transform duration-500 hover:scale-105" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title()) . '" loading="lazy" decoding="async">';
                 $image_html .= '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent duration-300"></div>';
                 $image_html .= '<div class="absolute bottom-0 ltr:left-0 rtl:right-0 p-3 sm:p-4 md:p-6 lg:p-8 text-white ltr:text-left rtl:text-right">';
                 if ($overlay_heading) {
@@ -111,7 +112,7 @@ if (!$programs_query->have_posts()) {
                 }
                 $image_html .= '</div></div>';
             } else {
-                $image_html .= '<div class="flex h-[250px] sm:h-[300px] md:h-[400px] items-center justify-center bg-slate-100 p-4 sm:p-6 md:p-8 text-center text-xs sm:text-sm md:text-base text-slate-500">' . esc_html__('Add a featured image to display here.', 'beit') . '</div>';
+                $image_html .= '<div class="flex  items-center justify-center bg-slate-100 p-4 sm:p-6 md:p-8 text-center text-xs sm:text-sm md:text-base text-slate-500">' . esc_html__('Add a featured image to display here.', 'beit') . '</div>';
             }
 
             // Animation attributes - alternate between slide directions (RTL-aware)

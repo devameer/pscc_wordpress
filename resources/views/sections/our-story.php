@@ -34,7 +34,7 @@ $content_alignment = $args['content_alignment'] ?? '';
                 <?php endif; ?>
 
                 <?php if (!empty($data['tagline'])) : ?>
-                    <div class="absolute bottom-4 <?php echo is_rtl() ? 'left-4' : 'right-4'; ?> md:bottom-8  px-3 py-2 md:px-4 rounded-xl max-w-xs md:max-w-sm">
+                    <div class="absolute bottom-4 <?php echo is_rtl() ? 'left-4' : 'right-4'; ?> md:bottom-8  px-3 py-2 md:px-4  max-w-xs md:max-w-sm">
                         <h3 class="text-2xl md:text-3xl font-light leading-tight">
                             <?php echo wp_kses_post($data['tagline']); ?>
                         </h3>

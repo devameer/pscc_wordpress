@@ -48,7 +48,7 @@ if (empty($items)) {
                 <div class="swiper-wrapper">
                     <?php foreach ($items as $item) : ?>
                         <div class="swiper-slide">
-                            <article class="group relative h-full overflow-hidden rounded-xs bg-slate-800/60">
+                            <article class="group relative h-full overflow-hidden  bg-slate-800/60">
                                 <?php if (!empty($item['image'])) : ?>
                                     <?php if (is_numeric($item['image'])) : ?>
                                         <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105', 'loading' => 'lazy', 'decoding' => 'async']); ?>

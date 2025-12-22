@@ -98,7 +98,7 @@ if (have_posts()) {
                 }
             } else {
                 ?>
-                <div class="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+                <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                     <h2 class="text-2xl font-semibold text-slate-900"><?php esc_html_e('No entries found', 'beit'); ?></h2>
                     <p class="mt-2 text-sm text-slate-600"><?php esc_html_e('Check back soon for more voices and visions from the field.', 'beit'); ?></p>
                 </div>

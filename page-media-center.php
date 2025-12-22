@@ -6,6 +6,7 @@
  * @package beit
  *
  * Template Name: Media Center
+ * Template Post Type: page
  */
 
 if (!defined('ABSPATH')) {
@@ -126,7 +127,7 @@ get_template_part(
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <div class="rounded-3xl bg-slate-50 p-12 text-center shadow-inner">
+            <div class=" bg-slate-50 p-12 text-center shadow-inner">
                 <h2 class="text-2xl font-semibold text-slate-900">
                     <?php echo esc_html(beit_translate('No media items found', 'no_media_found')); ?></h2>
                 <p class="mt-2 text-sm text-slate-600">

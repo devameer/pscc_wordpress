@@ -191,5 +191,69 @@ function beit_register_post_types(): void
             'taxonomies'         => ['category'],
         ]
     );
+
+    $annual_reports_labels = [
+        'name'                  => __('Annual Reports', 'beit'),
+        'singular_name'         => __('Annual Report', 'beit'),
+        'menu_name'             => __('Annual Reports', 'beit'),
+        'name_admin_bar'        => __('Annual Report', 'beit'),
+        'add_new'               => __('Add New', 'beit'),
+        'add_new_item'          => __('Add New Annual Report', 'beit'),
+        'edit_item'             => __('Edit Annual Report', 'beit'),
+        'new_item'              => __('New Annual Report', 'beit'),
+        'view_item'             => __('View Annual Report', 'beit'),
+        'search_items'          => __('Search Annual Reports', 'beit'),
+        'not_found'             => __('No annual reports found', 'beit'),
+        'not_found_in_trash'    => __('No annual reports found in Trash', 'beit'),
+        'all_items'             => __('All Annual Reports', 'beit'),
+    ];
+
+    register_post_type(
+        'beit_annual_report',
+        [
+            'labels'             => $annual_reports_labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_in_menu'       => true,
+            'menu_position'      => 27,
+            'menu_icon'          => 'dashicons-media-document',
+            'has_archive'        => true,
+            'rewrite'            => ['slug' => 'annual-reports'],
+            'supports'           => ['title', 'excerpt', 'revisions', 'page-attributes'],
+            'show_in_rest'       => true,
+        ]
+    );
+
+    $publications_labels = [
+        'name'                  => __('Publications', 'beit'),
+        'singular_name'         => __('Publication', 'beit'),
+        'menu_name'             => __('Publications', 'beit'),
+        'name_admin_bar'        => __('Publication', 'beit'),
+        'add_new'               => __('Add New', 'beit'),
+        'add_new_item'          => __('Add New Publication', 'beit'),
+        'edit_item'             => __('Edit Publication', 'beit'),
+        'new_item'              => __('New Publication', 'beit'),
+        'view_item'             => __('View Publication', 'beit'),
+        'search_items'          => __('Search Publications', 'beit'),
+        'not_found'             => __('No publications found', 'beit'),
+        'not_found_in_trash'    => __('No publications found in Trash', 'beit'),
+        'all_items'             => __('All Publications', 'beit'),
+    ];
+
+    register_post_type(
+        'beit_publication',
+        [
+            'labels'             => $publications_labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_in_menu'       => true,
+            'menu_position'      => 28,
+            'menu_icon'          => 'dashicons-book',
+            'has_archive'        => true,
+            'rewrite'            => ['slug' => 'publications'],
+            'supports'           => ['title', 'excerpt', 'revisions', 'page-attributes'],
+            'show_in_rest'       => true,
+        ]
+    );
 }
 add_action('init', 'beit_register_post_types');

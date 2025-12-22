@@ -89,7 +89,7 @@ $empty_message = $args['empty_message'];
                 endforeach; ?>
             </div>
         <?php elseif ($empty_message) : ?>
-            <div class="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+            <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                 <p class="text-base text-slate-600"><?php echo esc_html($empty_message); ?></p>
             </div>
         <?php endif; ?>

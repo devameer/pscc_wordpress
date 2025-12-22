@@ -6,6 +6,7 @@
  * @package beit
  *
  * Template Name: Contact Page
+ * Template Post Type: page
  */
 
 if (!defined('ABSPATH')) {
@@ -42,7 +43,7 @@ while (have_posts()) {
                     $icon = 'fa fa-instagram';
                     break;
                 case 'youtube':
-                    $icon = 'fa fa-youtube';
+                    $icon = 'fa fa-youtube-play';
                     break;
                 case 'linkedin':
                     $icon = 'fa fa-linkedin';
@@ -88,7 +89,7 @@ while (have_posts()) {
 
     <main class="bg-gray-50 text-slate-900">
         <div class="container mx-auto grid gap-10 px-4 py-12 lg:grid-cols-5">
-            <section class="rounded-lg bg-white p-8 shadow-sm lg:col-span-2" data-aos="fade-up">
+            <section class=" bg-white p-8 shadow-sm lg:col-span-2" data-aos="fade-up">
                 <h2 class="text-2xl font-bold text-gray-800 ltr:text-left rtl:text-right">
                     <?php echo esc_html(beit_translate('Share Your Thoughts Here', 'share_your_thoughts')); ?>
                 </h2>
@@ -149,7 +150,7 @@ while (have_posts()) {
                                 $office_address = $office['address'] ?? '';
                                 $map_link = $office['map_link'] ?? '';
                                 ?>
-                                <div class="rounded-lg bg-white p-4 shadow-sm ltr:text-left rtl:text-right">
+                                <div class=" bg-white p-4 shadow-sm ltr:text-left rtl:text-right">
                                     <?php if ($office_name): ?>
                                         <h3 class="text-lg font-semibold text-gray-800"><?php echo esc_html($office_name); ?></h3>
                                     <?php endif; ?>
@@ -172,7 +173,7 @@ while (have_posts()) {
                 </div>
 
                 <?php if ($google_maps_api_key && (!empty($map_offices) || !empty($map_warehouses))): ?>
-                    <div class="rounded-lg bg-white shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class=" bg-white shadow-sm" data-aos="fade-up" data-aos-delay="200">
                         <!-- Map Tabs -->
                         <div class="flex border-b border-gray-200 relative z-10">
                             <div class="map-tab-wrapper flex-1 relative">
@@ -289,7 +290,7 @@ while (have_posts()) {
                                         <?php
                                     }
                                 } else {
-                                    $defaults = ['fa fa-facebook-f', 'fa fa-instagram', 'fa fa-x-twitter', 'fa fa-linkedin-in', 'fa fa-youtube'];
+                                    $defaults = ['fa fa-facebook-f', 'fa fa-instagram', 'fa fa-x-twitter', 'fa fa-linkedin-in', 'fa fa-youtube-play'];
                                     foreach ($defaults as $icon) {
                                         echo '<span class="transition hover:text-red-600"><i class="' . esc_attr($icon) . '"></i></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     }

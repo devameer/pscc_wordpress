@@ -6,6 +6,7 @@
  * @package beit
  *
  * Template Name: News Page
+ * Template Post Type: page
  */
 
 if (!defined('ABSPATH')) {
@@ -130,7 +131,7 @@ get_template_part(
                 endif;
                 ?>
             <?php else: ?>
-                <div class="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+                <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                     <h2 class="text-2xl font-semibold text-slate-900">
                         <?php echo esc_html(beit_translate('No news items found', 'no_news_found')); ?></h2>
                     <p class="mt-2 text-sm text-slate-600">

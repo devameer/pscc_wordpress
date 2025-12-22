@@ -42,13 +42,12 @@ if (!$title) {
 
 // Build background style
 $background_style = '';
-            $image_path = get_template_directory_uri() . '/resources/assets/images/page-hero.png';
+$image_path = get_template_directory_uri() . '/resources/assets/images/page-hero.png';
 
-            if ($background_image) {
-    $overlay = '';
-    $background_style = 'url(' . $image_path . ')';
-
-  
+if ($background_image) {
+    $background_style = 'background-image: url(' . esc_url($background_image) . ');';
+} else {
+    $background_style = 'background-image: url(' . esc_url($image_path) . ');';
 }
 
 // Determine section classes
@@ -62,7 +61,7 @@ if ($background_image) {
 $section_classes[] = $height;
 
 ?>
-<section class="<?php echo esc_attr(implode(' ', $section_classes)); ?>" style="background-size:cover;" data-bg="<?php echo esc_url($image_path); ?>">
+<section class="<?php echo esc_attr(implode(' ', $section_classes)); ?>" style="<?php echo esc_attr($background_style); ?> background-size: cover; background-position: center;">
 
 
     <div class="relative z-10 container mx-auto px-4 md:px-6<?php echo $height === 'h-96' ? ' flex h-full items-center' : ''; ?>">

@@ -166,6 +166,184 @@ function beit_thumbnail_column_orderby($query): void
 add_action('pre_get_posts', 'beit_thumbnail_column_orderby');
 
 /**
+ * Add custom columns for Annual Reports post type.
+ */
+function beit_add_annual_report_columns($columns): array
+{
+    $new_columns = [];
+
+    foreach ($columns as $key => $value) {
+        $new_columns[$key] = $value;
+
+        // Add custom columns after title
+        if ($key === 'title') {
+            $new_columns['report_year'] = __('Year', 'beit');
+            $new_columns['file_size'] = __('File Size', 'beit');
+            $new_columns['pdf_download'] = __('Download', 'beit');
+        }
+    }
+
+    return $new_columns;
+}
+add_filter('manage_beit_annual_report_posts_columns', 'beit_add_annual_report_columns');
+
+/**
+ * Display custom column content for Annual Reports.
+ */
+function beit_display_annual_report_columns($column_name, $post_id): void
+{
+    $has_acf = function_exists('get_field');
+
+    switch ($column_name) {
+        case 'report_year':
+            $year = $has_acf ? get_field('annual_report_year', $post_id) : '';
+            if ($year) {
+                echo '<strong style="color: #d63638; font-size: 14px;">' . esc_html($year) . '</strong>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+
+        case 'file_size':
+            $size = $has_acf ? get_field('annual_report_file_size', $post_id) : '';
+            if ($size) {
+                echo '<span style="color: #50575e;">' . esc_html($size) . '</span>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+
+        case 'pdf_download':
+            $pdf_url = $has_acf ? get_field('annual_report_pdf_url', $post_id) : '';
+            if ($pdf_url) {
+                echo '<a href="' . esc_url($pdf_url) . '" target="_blank" rel="noopener noreferrer" class="button button-small" style="background: #d63638; border-color: #d63638; color: #fff;">';
+                echo '<span class="dashicons dashicons-download" style="font-size: 13px; margin-top: 3px;"></span> ';
+                echo esc_html__('Download', 'beit');
+                echo '</a>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+    }
+}
+add_action('manage_beit_annual_report_posts_custom_column', 'beit_display_annual_report_columns', 10, 2);
+
+/**
+ * Make Annual Reports columns sortable.
+ */
+function beit_annual_report_sortable_columns($columns): array
+{
+    $columns['report_year'] = 'report_year';
+    return $columns;
+}
+add_filter('manage_edit-beit_annual_report_sortable_columns', 'beit_annual_report_sortable_columns');
+
+/**
+ * Handle Annual Reports column sorting.
+ */
+function beit_annual_report_column_orderby($query): void
+{
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->get('orderby') === 'report_year') {
+        $query->set('meta_key', 'annual_report_year');
+        $query->set('orderby', 'meta_value');
+    }
+}
+add_action('pre_get_posts', 'beit_annual_report_column_orderby');
+
+/**
+ * Add custom columns for Publications post type.
+ */
+function beit_add_publication_columns($columns): array
+{
+    $new_columns = [];
+
+    foreach ($columns as $key => $value) {
+        $new_columns[$key] = $value;
+
+        // Add custom columns after title
+        if ($key === 'title') {
+            $new_columns['publication_year'] = __('Year', 'beit');
+            $new_columns['file_size'] = __('File Size', 'beit');
+            $new_columns['pdf_download'] = __('Download', 'beit');
+        }
+    }
+
+    return $new_columns;
+}
+add_filter('manage_beit_publication_posts_columns', 'beit_add_publication_columns');
+
+/**
+ * Display custom column content for Publications.
+ */
+function beit_display_publication_columns($column_name, $post_id): void
+{
+    $has_acf = function_exists('get_field');
+
+    switch ($column_name) {
+        case 'publication_year':
+            $year = $has_acf ? get_field('publication_year', $post_id) : '';
+            if ($year) {
+                echo '<strong style="color: #d63638; font-size: 14px;">' . esc_html($year) . '</strong>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+
+        case 'file_size':
+            $size = $has_acf ? get_field('publication_file_size', $post_id) : '';
+            if ($size) {
+                echo '<span style="color: #50575e;">' . esc_html($size) . '</span>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+
+        case 'pdf_download':
+            $pdf_url = $has_acf ? get_field('publication_pdf_url', $post_id) : '';
+            if ($pdf_url) {
+                echo '<a href="' . esc_url($pdf_url) . '" target="_blank" rel="noopener noreferrer" class="button button-small" style="background: #d63638; border-color: #d63638; color: #fff;">';
+                echo '<span class="dashicons dashicons-download" style="font-size: 13px; margin-top: 3px;"></span> ';
+                echo esc_html__('Download', 'beit');
+                echo '</a>';
+            } else {
+                echo '<span style="color: #787c82;">—</span>';
+            }
+            break;
+    }
+}
+add_action('manage_beit_publication_posts_custom_column', 'beit_display_publication_columns', 10, 2);
+
+/**
+ * Make Publications columns sortable.
+ */
+function beit_publication_sortable_columns($columns): array
+{
+    $columns['publication_year'] = 'publication_year';
+    return $columns;
+}
+add_filter('manage_edit-beit_publication_sortable_columns', 'beit_publication_sortable_columns');
+
+/**
+ * Handle Publications column sorting.
+ */
+function beit_publication_column_orderby($query): void
+{
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->get('orderby') === 'publication_year') {
+        $query->set('meta_key', 'publication_year');
+        $query->set('orderby', 'meta_value');
+    }
+}
+add_action('pre_get_posts', 'beit_publication_column_orderby');
+
+/**
  * Register columns and display callbacks for all post types.
  * This runs after post types are registered.
  */

@@ -6,6 +6,7 @@
  * @package beit
  *
  * Template Name: Photos Gallery
+ * Template Post Type: page
  */
 
 if (!defined('ABSPATH')) {
@@ -99,7 +100,7 @@ while (have_posts()) {
                     ?>
                 </div>
             <?php else : ?>
-                <div class="rounded-3xl bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
+                <div class=" bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                     <i class="fa fa-images mb-4 text-6xl text-slate-300"></i>
                     <h2 class="text-2xl font-semibold text-slate-900">
                         <?php echo esc_html(beit_translate('No photos found', 'no_photos_found')); ?>

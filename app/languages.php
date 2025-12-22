@@ -128,6 +128,19 @@ function beit_register_polylang_strings(): void
 
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');
+
+        // Annual Reports and Publications strings
+        pll_register_string('year_label', 'Year', 'beit');
+        pll_register_string('download_report', 'Download Report', 'beit');
+        pll_register_string('download_publication', 'Download Publication', 'beit');
+        pll_register_string('no_annual_reports_found', 'No Annual Reports Found', 'beit');
+        pll_register_string('no_publications_found', 'No Publications Found', 'beit');
+        pll_register_string('check_back_reports', 'Check back soon for the latest reports.', 'beit');
+        pll_register_string('check_back_publications', 'Check back soon for the latest publications.', 'beit');
+        pll_register_string('reports_pagination', 'Reports pagination', 'beit');
+        pll_register_string('publications_pagination', 'Publications pagination', 'beit');
+        pll_register_string('no_reports_dashboard', 'No annual reports found. Please add some via the dashboard.', 'beit');
+        pll_register_string('no_publications_dashboard', 'No publications found. Please add some via the dashboard.', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');
@@ -227,6 +240,8 @@ function beit_polylang_post_types($post_types, $is_settings)
     $post_types['beit_hero_slide'] = 'beit_hero_slide';
     $post_types['beit_news'] = 'beit_news';
     $post_types['beit_program'] = 'beit_program';
+    $post_types['beit_annual_report'] = 'beit_annual_report';
+    $post_types['beit_publication'] = 'beit_publication';
 
     return $post_types;
 }

@@ -44,7 +44,7 @@ while (have_posts()) {
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
             <div class="space-y-10">
                 <?php if ($thumbnail): ?>
-                    <figure class="overflow-hidden rounded-3xl shadow-lg" data-aos="zoom-in" data-aos-duration="1000">
+                    <figure class="overflow-hidden  shadow-lg" data-aos="zoom-in" data-aos-duration="1000">
                         <?php echo wp_get_attachment_image($thumbnail, 'full', false, ['class' => 'w-full object-cover']); ?>
                     </figure>
                 <?php endif; ?>
@@ -72,7 +72,7 @@ while (have_posts()) {
                     <?php endif; ?>
                 </div>
 
-                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 shadow-lg"
+                <div class="relative overflow-hidden  border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 shadow-lg"
                     data-aos="fade-up" data-aos-delay="250">
                     <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-red-100 opacity-20 blur-3xl"></div>
                     <div class="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-blue-100 opacity-20 blur-2xl"></div>
@@ -152,7 +152,7 @@ while (have_posts()) {
                                 ?>
                                 <a href="<?php echo $link['url']; ?>" <?php if ($is_external): ?> target="_blank"
                                         rel="noopener noreferrer" <?php endif; ?>
-                                    class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-xl bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
+                                    class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden  bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
                                     aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
                                     <?php if ($link['icon'] === 'x-twitter'): ?>
                                         <span class="relative z-10 w-5 h-5">
@@ -168,7 +168,7 @@ while (have_posts()) {
                             <?php endforeach; ?>
 
                             <button onclick="copyToClipboard()" id="copyLinkBtn"
-                                class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-xl bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
+                                class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden  bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
                                 aria-label="<?php echo esc_attr(beit_translate('Copy link', 'copy_link')); ?>">
                                 <i class="fa fa-link relative z-10 text-xl" id="copyIcon"></i>
                                 <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300"
@@ -180,7 +180,7 @@ while (have_posts()) {
                         </div>
 
                         <div class="text-center">
-                            <div class="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-xs">
+                            <div class="inline-flex items-center gap-2  bg-slate-100 px-4 py-2 text-xs">
                                 <i class="fa fa-link text-slate-600"></i>
                                 <input type="text" readonly value="<?php echo esc_attr(get_permalink()); ?>"
                                     class="max-w-[200px] truncate border-0 bg-transparent text-slate-600 focus:outline-none sm:max-w-xs md:max-w-md"
@@ -285,7 +285,7 @@ while (have_posts()) {
                                 $article_cat = (!is_wp_error($article_cats) && !empty($article_cats)) ? $article_cats[0]->name : '';
                                 ?>
                                 <article
-                                    class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
+                                    class="group flex h-full flex-col overflow-hidden  bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                                     data-aos="fade-up" data-aos-delay="<?php echo 100 + ($latest_articles->current_post * 50); ?>">
                                     <?php if ($article_thumb): ?>
                                         <a href="<?php the_permalink(); ?>" class="block relative overflow-hidden aspect-[16/10]">
@@ -340,7 +340,7 @@ while (have_posts()) {
 
             <aside class="space-y-8" data-aos="fade-left" data-aos-delay="200">
                 <?php if (!empty($categories)): ?>
-                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
+                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
                         data-aos-delay="300">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
                             <?php echo esc_html(beit_translate('Categories', 'categories')); ?>
@@ -370,7 +370,7 @@ while (have_posts()) {
 
                 if ($recent->have_posts()):
                     ?>
-                    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
+                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
                         data-aos-delay="400">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
                             <?php echo esc_html(beit_translate('Recent News', 'recent_news')); ?>
@@ -383,7 +383,7 @@ while (have_posts()) {
                                 <li>
                                     <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
-                                            <span class="h-14 w-20 overflow-hidden rounded-md">
+                                            <span class="h-14 w-20 overflow-hidden ">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover']); ?>
                                             </span>
                                         <?php endif; ?>

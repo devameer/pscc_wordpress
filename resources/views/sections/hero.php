@@ -85,7 +85,7 @@ if (empty($slides)) {
                                     <div class="flex flex-wrap items-center gap-4 hero-buttons-animate justify-start ">
                                         <?php if (!empty($primary_button['title'])) : ?>
                                             <a
-                                                class="font-normal inline-flex items-center rounded-xs bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-red-700 hover:scale-105 hover:shadow-lg"
+                                                class="font-normal inline-flex items-center  bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-red-700 hover:scale-105 hover:shadow-lg"
                                                 href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
                                                 target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
                                                 rel="noopener">
@@ -112,7 +112,7 @@ if (empty($slides)) {
                             <a
                                 class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3 px-5 py-3 text-sm font-semibold text-white transition md:flex hero-video-button group"
                                 href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span class="flex h-20 w-20 items-center justify-center rounded-xs text-2xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <span class="flex h-20 w-20 items-center justify-center  text-2xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                                     <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
                                 <span class="leading-tight text-white text-3xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-4 rtl:pr-4 group-hover:border-primary transition-colors duration-300">

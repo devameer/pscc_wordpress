@@ -231,7 +231,7 @@ get_template_part(
                     <?php get_search_form(); ?>
                 </div>
 
-                <div class="rounded-3xl bg-slate-50 p-12 shadow-inner">
+                <div class=" bg-slate-50 p-12 shadow-inner">
                     <div class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600">
                         <i class="fa fa-magnifying-glass text-3xl"></i>
                     </div>
