@@ -101,6 +101,7 @@ function beit_register_polylang_strings(): void
         pll_register_string('stay_updated_recent_news', 'Stay updated with our recent news', 'beit');
         pll_register_string('categories', 'Categories', 'beit');
         pll_register_string('recent_news', 'Recent News', 'beit');
+        pll_register_string('recent_programs', 'Recent Programs', 'beit');
 
         // Register media library strings
         pll_register_string('photo_gallery', 'Photo Gallery', 'beit');

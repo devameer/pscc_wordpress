@@ -72,10 +72,10 @@ while (have_posts()) {
 
                 <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-semibold text-red-600" data-aos="fade-up" data-aos-delay="300">
                     <span>
-                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html__('Previous', 'beit')); ?>
+                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_translate('Previous', 'previous'))); ?>
                     </span>
                     <span>
-                        <?php next_post_link('%link', esc_html__('Next', 'beit') . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
+                        <?php next_post_link('%link', esc_html(beit_translate('Next', 'next')) . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
                     </span>
                 </nav>
             </div>
@@ -113,7 +113,7 @@ while (have_posts()) {
                     ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
                         <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
-                            <?php esc_html_e('Recent Programs', 'beit'); ?>
+                            <?php echo esc_html(beit_translate('Recent Programs', 'recent_programs')); ?>
                         </h2>
                         <ul class="mt-4 space-y-4 text-sm text-slate-700">
                             <?php

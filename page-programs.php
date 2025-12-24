@@ -84,7 +84,7 @@ if (!$programs_query->have_posts()) {
             $content_html .= sprintf(
                 '<div class="flex ltr:justify-start rtl:justify-start ltr:sm:justify-end rtl:sm:justify-start"><a class="btn-more text-xs sm:text-sm px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5" href="%s">%s</a></div>',
                 esc_url(get_permalink()),
-                esc_html__('Read More', 'beit')
+                esc_html(beit_translate('Read More', 'read_more'))
             );
 
             // Keep custom button if exists (optional additional button)
