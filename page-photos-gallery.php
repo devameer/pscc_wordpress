@@ -51,6 +51,9 @@ while (have_posts()) {
             'order'          => 'DESC',
         ]
     );
+
+    // DEBUG: Check query results
+    echo '<!-- DEBUG: Total posts found: ' . $photos_query->found_posts . ' -->';
 ?>
 
     <main class="bg-white text-slate-900">
@@ -75,6 +78,14 @@ while (have_posts()) {
                         $post_id = get_the_ID();
                         $gallery_images = get_field('media_gallery');
 
+                        // DEBUG: Output detailed info for each post
+                        echo '<!-- DEBUG Post ID: ' . $post_id . ' -->';
+                        echo '<!-- DEBUG Title: ' . htmlspecialchars($title) . ' -->';
+                        echo '<!-- DEBUG Thumbnail ID: ' . ($thumbnail_id ? $thumbnail_id : 'NONE') . ' -->';
+                        echo '<!-- DEBUG Gallery Images: ' . json_encode($gallery_images) . ' -->';
+                        echo '<!-- DEBUG Gallery Type: ' . gettype($gallery_images) . ' -->';
+                        echo '<!-- DEBUG Gallery Count: ' . (is_array($gallery_images) ? count($gallery_images) : 0) . ' -->';
+
                         // Combine featured image with gallery images
                         $all_images = [];
                         if ($thumbnail_id) {
@@ -86,6 +97,8 @@ while (have_posts()) {
                         // Remove duplicates
                         $all_images = array_unique($all_images);
                         $image_count = count($all_images);
+
+                        echo '<!-- DEBUG Total Images: ' . $image_count . ' -->';
 
                         if ($thumbnail_id) :
                             $thumb_url = wp_get_attachment_image_url($thumbnail_id, 'large');
