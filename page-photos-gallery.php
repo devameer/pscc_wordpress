@@ -98,17 +98,24 @@ while (have_posts()) {
                             $thumb_url = wp_get_attachment_image_url($thumbnail_id, 'large');
                             $image_url = wp_get_attachment_image_url($thumbnail_id, 'full');
 
+                            // Get image dimensions for PhotoSwipe
+                            $image_meta = wp_get_attachment_metadata($thumbnail_id);
+                            $image_width = $image_meta['width'] ?? 1920;
+                            $image_height = $image_meta['height'] ?? 1080;
+
                             // Unique lightbox group ID for this media item
                             $gallery_id = 'gallery-' . $post_id;
                     ?>
                             <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
                                 <a
-                                    class="group relative block w-full"
-                                    data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
-                                    data-type="image"
-                                    data-caption="<?php echo esc_attr($title); ?>"
+                                    class="group relative block w-full pswp-gallery-item"
+                                    data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                                    data-pswp-width="<?php echo esc_attr($image_width); ?>"
+                                    data-pswp-height="<?php echo esc_attr($image_height); ?>"
                                     href="<?php echo esc_url($image_url); ?>"
                                     aria-label="<?php echo esc_attr(sprintf(__('View %s', 'beit'), $title)); ?>">
+                                    <img class="pswp-thumbnail" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" style="display:none;">
+                                    <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($title); ?></span>
                                     <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                         <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
                                     </span>
@@ -124,19 +131,30 @@ while (have_posts()) {
                                 // Add hidden links for gallery images to enable lightbox navigation
                                 if ($gallery_images && is_array($gallery_images)) :
                                     foreach ($gallery_images as $gallery_image_id) :
+                                        if ($gallery_image_id == $thumbnail_id) continue; // Skip duplicate
+
                                         $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
+                                        $gallery_thumb_url = wp_get_attachment_image_url($gallery_image_id, 'medium');
                                         $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
                                         $caption = $title;
                                         if ($gallery_image_caption) {
                                             $caption .= ' - ' . $gallery_image_caption;
                                         }
+
+                                        // Get dimensions
+                                        $gallery_meta = wp_get_attachment_metadata($gallery_image_id);
+                                        $gallery_width = $gallery_meta['width'] ?? 1920;
+                                        $gallery_height = $gallery_meta['height'] ?? 1080;
                                 ?>
                                         <a
-                                            class="hidden"
-                                            data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
-                                            data-type="image"
-                                            data-caption="<?php echo esc_attr($caption); ?>"
-                                            href="<?php echo esc_url($gallery_image_url); ?>"></a>
+                                            class="hidden pswp-gallery-item"
+                                            data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                                            data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
+                                            data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
+                                            href="<?php echo esc_url($gallery_image_url); ?>">
+                                            <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                                            <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
+                                        </a>
                                 <?php endforeach;
                                 endif;
                                 ?>
@@ -168,57 +186,6 @@ while (have_posts()) {
 }
 ?>
 
-<script>
-    // Refresh fslightbox to ensure it works with dynamically loaded content
-    if (typeof refreshFsLightbox === 'function') {
-        refreshFsLightbox();
-    }
-
-    // Add captions to FSLightbox - Inline implementation
-    (function() {
-        let captionUpdateInterval = null;
-
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a[data-fslightbox]');
-            if (link) {
-                const caption = link.getAttribute('data-caption');
-
-                // Clear any existing interval
-                if (captionUpdateInterval) {
-                    clearInterval(captionUpdateInterval);
-                }
-
-                // Try to add caption multiple times to ensure it works
-                let attempts = 0;
-                captionUpdateInterval = setInterval(function() {
-                    attempts++;
-
-                    const container = document.querySelector('.fslightbox-container');
-                    if (container) {
-                        let captionEl = container.querySelector('.fslightbox-custom-caption');
-
-                        if (!captionEl) {
-                            captionEl = document.createElement('div');
-                            captionEl.className = 'fslightbox-custom-caption';
-                            captionEl.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:linear-gradient(to top,rgba(0,0,0,0.9),rgba(0,0,0,0.7) 50%,transparent);padding:40px 20px 25px;font-size:20px;font-weight:600;color:white;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.8);font-family:Montserrat,sans-serif;z-index:2147483647;pointer-events:none;';
-                            container.appendChild(captionEl);
-                        }
-
-                        if (caption) {
-                            captionEl.textContent = caption;
-                            captionEl.style.display = 'block';
-                        }
-                    }
-
-                    // Stop after 10 attempts or 2 seconds
-                    if (attempts >= 10) {
-                        clearInterval(captionUpdateInterval);
-                    }
-                }, 200);
-            }
-        });
-    })();
-</script>
 
 <?php
 get_footer();

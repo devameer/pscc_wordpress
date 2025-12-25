@@ -65,8 +65,14 @@ while (have_posts()) {
                                 foreach ($all_images as $index => $image_id) :
                                     $image_url = wp_get_attachment_image_url($image_id, 'full');
                                     $thumb_url = wp_get_attachment_image_url($image_id, 'large');
+                                    $medium_url = wp_get_attachment_image_url($image_id, 'medium');
                                     $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $title;
                                     $image_caption = wp_get_attachment_caption($image_id);
+
+                                    // Get image dimensions
+                                    $image_meta = wp_get_attachment_metadata($image_id);
+                                    $image_width = $image_meta['width'] ?? 1920;
+                                    $image_height = $image_meta['height'] ?? 1080;
 
                                     // Create caption with title and image caption
                                     $caption = $title;
@@ -76,12 +82,14 @@ while (have_posts()) {
                                     ?>
                                     <article class="overflow-hidden transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
                                         <a
-                                            class="group relative block w-full cursor-pointer"
-                                            data-fslightbox="media-gallery"
-                                            data-type="image"
-                                            data-caption="<?php echo esc_attr($caption); ?>"
+                                            class="group relative block w-full cursor-pointer pswp-gallery-item"
+                                            data-pswp-gallery="media-gallery"
+                                            data-pswp-width="<?php echo esc_attr($image_width); ?>"
+                                            data-pswp-height="<?php echo esc_attr($image_height); ?>"
                                             href="<?php echo esc_url($image_url); ?>"
                                             aria-label="<?php echo esc_attr(sprintf(__('View image %d', 'beit'), $index + 1)); ?>">
+                                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                                            <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
                                             <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                                 <img class="h-16 w-16" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
                                             </span>
@@ -166,6 +174,7 @@ while (have_posts()) {
             </div>
         </section>
     </main>
+
 
     <?php
 }

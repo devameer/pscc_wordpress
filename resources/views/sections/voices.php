@@ -161,21 +161,31 @@ if (empty($items)) {
                 }
                 $voice_delay = 100 + ($voice_anim_index * 100);
 
-                // Use appropriate data-type attribute based on media type (same as page-videos-gallery.php)
-                $data_type_attr = '';
+                // Prepare attributes based on media type
                 if ($lightbox_type === 'image') {
-                    $data_type_attr = 'data-type="image"';
-                } elseif ($lightbox_type === 'video') {
-                    $data_type_attr = 'data-type="video"';
+                    // PhotoSwipe for images
+                    $thumb_id = $item['image'] ?? 0;
+                    $image_meta = $thumb_id ? wp_get_attachment_metadata($thumb_id) : [];
+                    $image_width = $image_meta['width'] ?? 1920;
+                    $image_height = $image_meta['height'] ?? 1080;
+                    $medium_url = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'medium') : $thumb_url;
+
+                    $lightbox_attrs = 'data-pswp-gallery="' . esc_attr($gallery_id) . '" data-pswp-width="' . esc_attr($image_width) . '" data-pswp-height="' . esc_attr($image_height) . '"';
+                } else {
+                    // FSLightbox for videos
+                    $data_type_attr = ($lightbox_type === 'video') ? 'data-type="video"' : '';
+                    $lightbox_attrs = 'data-fslightbox="' . esc_attr($gallery_id) . '" ' . $data_type_attr;
                 }
-                // For external videos (YouTube/Vimeo), don't set data-type - fslightbox will auto-detect
                 ?>
                 <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
                     data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
-                    <a class="group relative block w-full h-full" data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
-                        <?php echo $data_type_attr; ?> data-caption="<?php echo esc_attr($caption); ?>"
+                    <a class="group relative block w-full h-full" <?php echo $lightbox_attrs; ?>
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
+                        <?php if ($lightbox_type === 'image'): ?>
+                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url ?? $thumb_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                            <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
+                        <?php endif; ?>
                         <?php if ($is_video): ?>
                             <span class="absolute inset-0 z-10 flex items-center justify-center group">
                                 <div
@@ -205,24 +215,33 @@ if (empty($items)) {
                     </a>
 
                     <?php
-                    // Add hidden links for gallery images to enable lightbox navigation
+                    // Add hidden links for gallery images to enable lightbox navigation (PhotoSwipe)
                     if ($lightbox_type === 'image' && !empty($all_images) && count($all_images) > 1):
                         // Skip first image (already displayed above)
                         $gallery_images = array_slice($all_images, 1);
                         foreach ($gallery_images as $gallery_image_id):
                             $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
+                            $gallery_thumb_url = wp_get_attachment_image_url($gallery_image_id, 'medium');
                             $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
                             $gallery_caption = $item['title'];
                             if ($gallery_image_caption) {
                                 $gallery_caption .= ' - ' . $gallery_image_caption;
                             }
+
+                            // Get dimensions
+                            $gallery_meta = wp_get_attachment_metadata($gallery_image_id);
+                            $gallery_width = $gallery_meta['width'] ?? 1920;
+                            $gallery_height = $gallery_meta['height'] ?? 1080;
                             ?>
                             <a
                                 class="hidden"
-                                data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
-                                data-type="image"
-                                data-caption="<?php echo esc_attr($gallery_caption); ?>"
-                                href="<?php echo esc_url($gallery_image_url); ?>"></a>
+                                data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                                data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
+                                data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
+                                href="<?php echo esc_url($gallery_image_url); ?>">
+                                <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>" alt="<?php echo esc_attr($gallery_caption); ?>" style="display:none;">
+                                <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($gallery_caption); ?></span>
+                            </a>
                         <?php endforeach;
                     endif;
                     ?>

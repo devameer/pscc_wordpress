@@ -108,6 +108,41 @@ function beit_theme_enqueue_assets(): void
         'menu' => beit_translate('Menu', 'menu'),
     ]);
 
+    // PhotoSwipe CSS
+    wp_enqueue_style(
+        'photoswipe',
+        'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.css',
+        [],
+        '5.4.3'
+    );
+
+    // PhotoSwipe JS
+    wp_enqueue_script(
+        'photoswipe',
+        'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/umd/photoswipe.umd.min.js',
+        [],
+        '5.4.3',
+        true
+    );
+
+    wp_enqueue_script(
+        'photoswipe-lightbox',
+        'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/umd/photoswipe-lightbox.umd.min.js',
+        ['photoswipe'],
+        '5.4.3',
+        true
+    );
+
+    // PhotoSwipe initialization script
+    wp_enqueue_script(
+        'photoswipe-init',
+        BEIT_THEME_URI . '/resources/assets/js/photoswipe-init.js',
+        ['photoswipe', 'photoswipe-lightbox'],
+        beit_theme_asset_version(),
+        true
+    );
+
+    // FSLightbox for videos (PhotoSwipe doesn't support videos well)
     wp_enqueue_script(
         'fslightbox',
         'https://cdn.jsdelivr.net/npm/fslightbox/index.js',
@@ -139,7 +174,6 @@ function beit_defer_scripts($tag, $handle, $src): string
     // List of script handles that should be deferred
     $defer_scripts = [
         'swiper',
-        'fslightbox',
         'aos',
         'beit-theme',
     ];
