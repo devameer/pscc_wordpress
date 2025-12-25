@@ -237,4 +237,49 @@ heelo
     if (typeof refreshFsLightbox === 'function') {
         refreshFsLightbox();
     }
+
+    // Add captions to FSLightbox - Inline implementation
+    (function() {
+        let captionUpdateInterval = null;
+
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[data-fslightbox]');
+            if (link) {
+                const caption = link.getAttribute('data-caption');
+
+                // Clear any existing interval
+                if (captionUpdateInterval) {
+                    clearInterval(captionUpdateInterval);
+                }
+
+                // Try to add caption multiple times to ensure it works
+                let attempts = 0;
+                captionUpdateInterval = setInterval(function() {
+                    attempts++;
+
+                    const container = document.querySelector('.fslightbox-container');
+                    if (container) {
+                        let captionEl = container.querySelector('.fslightbox-custom-caption');
+
+                        if (!captionEl) {
+                            captionEl = document.createElement('div');
+                            captionEl.className = 'fslightbox-custom-caption';
+                            captionEl.style.cssText = 'position:fixed;bottom:0;left:0;right:0;width:100%;background:linear-gradient(to top,rgba(0,0,0,0.9),rgba(0,0,0,0.7) 50%,transparent);padding:40px 20px 25px;font-size:20px;font-weight:600;color:white;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.8);font-family:Montserrat,sans-serif;z-index:2147483647;pointer-events:none;';
+                            container.appendChild(captionEl);
+                        }
+
+                        if (caption) {
+                            captionEl.textContent = caption;
+                            captionEl.style.display = 'block';
+                        }
+                    }
+
+                    // Stop after 10 attempts or 2 seconds
+                    if (attempts >= 10) {
+                        clearInterval(captionUpdateInterval);
+                    }
+                }, 200);
+            }
+        });
+    })();
 </script>
