@@ -51,9 +51,6 @@ while (have_posts()) {
             'order'          => 'DESC',
         ]
     );
-
-    // DEBUG: Check query results
-    echo '<!-- DEBUG: Total posts found: ' . $photos_query->found_posts . ' -->';
 ?>
 
     <main class="bg-white text-slate-900">
@@ -76,21 +73,14 @@ while (have_posts()) {
                         $thumbnail_id = get_post_thumbnail_id();
                         $title = get_the_title();
                         $post_id = get_the_ID();
-                        $media_type = get_field('media_type');
-                        $gallery_images = get_field('media_gallery');
 
-                        // Try alternative method
-                        $gallery_images_alt = get_post_meta($post_id, 'media_gallery', true);
+                        // Use get_post_meta instead of get_field for gallery images
+                        $gallery_images = get_post_meta($post_id, 'media_gallery', true);
 
-                        // DEBUG: Output detailed info for each post
-                        echo '<!-- DEBUG Post ID: ' . $post_id . ' -->';
-                        echo '<!-- DEBUG Title: ' . htmlspecialchars($title) . ' -->';
-                        echo '<!-- DEBUG Media Type: ' . json_encode($media_type) . ' -->';
-                        echo '<!-- DEBUG Thumbnail ID: ' . ($thumbnail_id ? $thumbnail_id : 'NONE') . ' -->';
-                        echo '<!-- DEBUG Gallery Images (ACF): ' . json_encode($gallery_images) . ' -->';
-                        echo '<!-- DEBUG Gallery Images (meta): ' . json_encode($gallery_images_alt) . ' -->';
-                        echo '<!-- DEBUG Gallery Type: ' . gettype($gallery_images) . ' -->';
-                        echo '<!-- DEBUG Gallery Count: ' . (is_array($gallery_images) ? count($gallery_images) : 0) . ' -->';
+                        // Ensure it's an array
+                        if (!is_array($gallery_images)) {
+                            $gallery_images = false;
+                        }
 
                         // Combine featured image with gallery images
                         $all_images = [];
@@ -104,8 +94,6 @@ while (have_posts()) {
                         $all_images = array_unique($all_images);
                         $image_count = count($all_images);
 
-                        echo '<!-- DEBUG Total Images: ' . $image_count . ' -->';
-
                         if ($thumbnail_id) :
                             $thumb_url = wp_get_attachment_image_url($thumbnail_id, 'large');
                             $image_url = wp_get_attachment_image_url($thumbnail_id, 'full');
@@ -114,7 +102,6 @@ while (have_posts()) {
                             $gallery_id = 'gallery-' . $post_id;
                     ?>
                             <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
-                                image_count <?php echo json_encode(get_field('media_gallery')); ?>
                                 <a
                                     class="group relative block w-full"
                                     data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
