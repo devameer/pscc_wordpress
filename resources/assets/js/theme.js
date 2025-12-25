@@ -819,3 +819,117 @@ window.initContactMapFromTheme = function() {
     });
   });
 })();
+
+// FSLightbox - Add captions manually
+(() => {
+    const addCaptionToLightbox = () => {
+        // Find the FSLightbox slide
+        const slideImage = document.querySelector('.fslightbox-slide-number-container');
+        if (!slideImage) return;
+
+        // Get the current lightbox instance
+        const container = document.querySelector('.fslightbox-container');
+        if (!container) return;
+
+        // Find or create caption element
+        let captionEl = container.querySelector('.fslightbox-custom-caption');
+
+        if (!captionEl) {
+            captionEl = document.createElement('div');
+            captionEl.className = 'fslightbox-custom-caption';
+            captionEl.style.cssText = `
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 50%, transparent);
+                padding: 40px 20px 25px;
+                font-size: 20px;
+                font-weight: 600;
+                color: white;
+                text-align: center;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+                font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+                z-index: 2147483647;
+                pointer-events: none;
+            `;
+            container.appendChild(captionEl);
+        }
+
+        // Get caption from current active link
+        const activeLinks = document.querySelectorAll('a[data-fslightbox]');
+        activeLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const caption = this.getAttribute('data-caption');
+                setTimeout(() => {
+                    const captionElement = document.querySelector('.fslightbox-custom-caption');
+                    if (captionElement && caption) {
+                        captionElement.textContent = caption;
+                        captionElement.style.display = 'block';
+                    }
+                }, 100);
+            });
+        });
+    };
+
+    // Watch for FSLightbox opening
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1 && node.classList) {
+                    if (node.classList.contains('fslightbox-container')) {
+                        addCaptionToLightbox();
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: false
+    });
+
+    // Also initialize captions on all lightbox links
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-fslightbox]');
+        if (link) {
+            const caption = link.getAttribute('data-caption');
+            setTimeout(() => {
+                let captionEl = document.querySelector('.fslightbox-custom-caption');
+                const container = document.querySelector('.fslightbox-container');
+
+                if (container && !captionEl) {
+                    captionEl = document.createElement('div');
+                    captionEl.className = 'fslightbox-custom-caption';
+                    captionEl.style.cssText = `
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        width: 100%;
+                        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 50%, transparent);
+                        padding: 40px 20px 25px;
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: white;
+                        text-align: center;
+                        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+                        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+                        z-index: 2147483647;
+                        pointer-events: none;
+                    `;
+                    container.appendChild(captionEl);
+                }
+
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                    captionEl.style.display = 'block';
+                }
+            }, 150);
+        }
+    });
+
+    console.log('FSLightbox custom captions initialized');
+})();

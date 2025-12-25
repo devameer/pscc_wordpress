@@ -45,11 +45,25 @@ if ($media_query->have_posts()) {
         $item = [
             'span' => $index === 0 ? 'double' : 'single',
             'title' => get_the_title(),
+            'post_id' => $media_id,
         ];
 
         if ($media_type === 'image') {
             $thumb_id = get_post_thumbnail_id($media_id);
+            $gallery_images = $has_acf ? get_field('media_gallery', $media_id) : [];
+
+            // Combine featured image with gallery images
+            $all_images = [];
+            if ($thumb_id) {
+                $all_images[] = $thumb_id;
+            }
+            if ($gallery_images && is_array($gallery_images)) {
+                $all_images = array_merge($all_images, $gallery_images);
+            }
+            $all_images = array_unique($all_images);
+
             $item['image'] = $thumb_id;
+            $item['all_images'] = $all_images;
             $item['media'] = [
                 'type' => 'image',
                 'src' => wp_get_attachment_image_url($thumb_id, 'full'),
@@ -126,6 +140,11 @@ if (empty($items)) {
                 $is_external_video = $media['is_external'] ?? false;
                 $is_video = $lightbox_type === 'video' || $is_external_video;
 
+                // Get all images for this item (for gallery support)
+                $all_images = $item['all_images'] ?? [];
+                $post_id = $item['post_id'] ?? 0;
+                $gallery_id = $post_id ? 'homepage-gallery-' . $post_id : $lightbox_id;
+
                 if (!$thumb_url) {
                     continue;
                 }
@@ -149,7 +168,7 @@ if (empty($items)) {
                 ?>
                 <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
                     data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
-                    <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
+                    <a class="group relative block w-full h-full" data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
                         <?php echo $data_type_attr; ?> data-caption="<?php echo esc_attr($caption); ?>"
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
@@ -180,6 +199,29 @@ if (empty($items)) {
                         <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
                             alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
                     </a>
+
+                    <?php
+                    // Add hidden links for gallery images to enable lightbox navigation
+                    if ($lightbox_type === 'image' && !empty($all_images) && count($all_images) > 1):
+                        // Skip first image (already displayed above)
+                        $gallery_images = array_slice($all_images, 1);
+                        foreach ($gallery_images as $gallery_image_id):
+                            $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
+                            $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
+                            $gallery_caption = $item['title'];
+                            if ($gallery_image_caption) {
+                                $gallery_caption .= ' - ' . $gallery_image_caption;
+                            }
+                            ?>
+                            <a
+                                class="hidden"
+                                data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
+                                data-type="image"
+                                data-caption="<?php echo esc_attr($gallery_caption); ?>"
+                                href="<?php echo esc_url($gallery_image_url); ?>"></a>
+                        <?php endforeach;
+                    endif;
+                    ?>
                 </div>
                 <?php
                 $voice_anim_index++;

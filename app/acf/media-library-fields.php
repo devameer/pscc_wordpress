@@ -118,6 +118,26 @@ acf_add_local_field_group(
                 ],
             ],
             [
+                'key'               => 'field_media_gallery',
+                'label'             => __('Gallery Images', 'beit'),
+                'name'              => 'media_gallery',
+                'type'              => 'gallery',
+                'return_format'     => 'id',
+                'preview_size'      => 'medium',
+                'library'           => 'all',
+                'min'               => 0,
+                'instructions'      => __('Add multiple images to create a photo gallery. These images will be displayed with the featured image in a lightbox.', 'beit'),
+                'conditional_logic' => [
+                    [
+                        [
+                            'field'    => 'field_media_type',
+                            'operator' => '==',
+                            'value'    => 'image',
+                        ],
+                    ],
+                ],
+            ],
+            [
                 'key'          => 'field_media_show_on_homepage',
                 'label'        => __('Show on Homepage', 'beit'),
                 'name'         => 'show_on_homepage',

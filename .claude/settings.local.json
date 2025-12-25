@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dir:*)",
       "Bash(curl:*)",
-      "Bash(php -r:*)"
+      "Bash(php -r:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
