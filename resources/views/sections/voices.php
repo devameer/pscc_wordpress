@@ -179,7 +179,7 @@ if (empty($items)) {
                 ?>
                 <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
                     data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
-                    <a class="group relative block w-full h-full" <?php echo $lightbox_attrs; ?>
+                    <a class="group relative block w-full h-full object-cover" <?php echo $lightbox_attrs; ?>
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
                         <?php if ($lightbox_type === 'image'): ?>
