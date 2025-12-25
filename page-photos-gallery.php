@@ -95,7 +95,6 @@ while (have_posts()) {
                             $gallery_id = 'gallery-' . $post_id;
                     ?>
                             <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
-                                image_count <?php echo json_encode(get_field('media_gallery')); ?>
                                 <a
                                     class="group relative block w-full"
                                     data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
