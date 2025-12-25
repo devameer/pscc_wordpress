@@ -50,7 +50,11 @@ if ($media_query->have_posts()) {
 
         if ($media_type === 'image') {
             $thumb_id = get_post_thumbnail_id($media_id);
-            $gallery_images = $has_acf ? get_field('media_gallery', $media_id) : [];
+            // Use get_post_meta instead of get_field for gallery images
+            $gallery_images = get_post_meta($media_id, 'media_gallery', true);
+            if (!is_array($gallery_images)) {
+                $gallery_images = [];
+            }
 
             // Combine featured image with gallery images
             $all_images = [];

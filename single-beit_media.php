@@ -38,8 +38,11 @@ while (have_posts()) {
                     <?php
                     // Get featured image
                     $thumbnail_id = get_post_thumbnail_id();
-                    // Get gallery images
-                    $gallery_images = get_field('media_gallery');
+                    // Get gallery images - use get_post_meta instead of get_field
+                    $gallery_images = get_post_meta(get_the_ID(), 'media_gallery', true);
+                    if (!is_array($gallery_images)) {
+                        $gallery_images = [];
+                    }
 
                     // Combine featured image with gallery images
                     $all_images = [];
