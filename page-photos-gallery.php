@@ -76,13 +76,19 @@ while (have_posts()) {
                         $thumbnail_id = get_post_thumbnail_id();
                         $title = get_the_title();
                         $post_id = get_the_ID();
+                        $media_type = get_field('media_type');
                         $gallery_images = get_field('media_gallery');
+
+                        // Try alternative method
+                        $gallery_images_alt = get_post_meta($post_id, 'media_gallery', true);
 
                         // DEBUG: Output detailed info for each post
                         echo '<!-- DEBUG Post ID: ' . $post_id . ' -->';
                         echo '<!-- DEBUG Title: ' . htmlspecialchars($title) . ' -->';
+                        echo '<!-- DEBUG Media Type: ' . json_encode($media_type) . ' -->';
                         echo '<!-- DEBUG Thumbnail ID: ' . ($thumbnail_id ? $thumbnail_id : 'NONE') . ' -->';
-                        echo '<!-- DEBUG Gallery Images: ' . json_encode($gallery_images) . ' -->';
+                        echo '<!-- DEBUG Gallery Images (ACF): ' . json_encode($gallery_images) . ' -->';
+                        echo '<!-- DEBUG Gallery Images (meta): ' . json_encode($gallery_images_alt) . ' -->';
                         echo '<!-- DEBUG Gallery Type: ' . gettype($gallery_images) . ' -->';
                         echo '<!-- DEBUG Gallery Count: ' . (is_array($gallery_images) ? count($gallery_images) : 0) . ' -->';
 
