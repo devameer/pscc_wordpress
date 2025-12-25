@@ -119,7 +119,7 @@ if (empty($items)) {
 }
 
 ?>
-heelo
+
 <section class="pb-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
