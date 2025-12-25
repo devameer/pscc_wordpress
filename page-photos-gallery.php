@@ -51,7 +51,7 @@ while (have_posts()) {
             'order'          => 'DESC',
         ]
     );
-    ?>
+?>
 
     <main class="bg-white text-slate-900">
         <section class="container mx-auto px-4 py-16">
@@ -93,8 +93,9 @@ while (have_posts()) {
 
                             // Unique lightbox group ID for this media item
                             $gallery_id = 'gallery-' . $post_id;
-                            ?>
+                    ?>
                             <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
+                                image_count <?php echo $image_count; ?>
                                 <a
                                     class="group relative block w-full"
                                     data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
@@ -123,20 +124,20 @@ while (have_posts()) {
                                         if ($gallery_image_caption) {
                                             $caption .= ' - ' . $gallery_image_caption;
                                         }
-                                        ?>
+                                ?>
                                         <a
                                             class="hidden"
                                             data-fslightbox="<?php echo esc_attr($gallery_id); ?>"
                                             data-type="image"
                                             data-caption="<?php echo esc_attr($caption); ?>"
                                             href="<?php echo esc_url($gallery_image_url); ?>"></a>
-                                    <?php endforeach;
+                                <?php endforeach;
                                 endif;
                                 ?>
 
                                 <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($title); ?></h3>
                             </article>
-                            <?php
+                    <?php
                             $delay = ($delay + 50) % 500;
                         endif;
                     endwhile;
@@ -157,7 +158,7 @@ while (have_posts()) {
         </section>
     </main>
 
-    <?php
+<?php
 }
 ?>
 
