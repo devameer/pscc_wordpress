@@ -21,10 +21,17 @@ acf_add_local_field_group(
         'fields' => [
             [
                 'key'   => 'field_voice_custom_title',
-                'label' => __('Custom Title', 'beit'),
+                'label' => __('Custom Title (English)', 'beit'),
                 'name'  => 'voice_custom_title',
                 'type'  => 'text',
-                'instructions' => __('Optional custom title for this voice. If left empty, the post title will be used.', 'beit'),
+                'instructions' => __('Optional custom title for this voice in English. If left empty, the post title will be used.', 'beit'),
+            ],
+            [
+                'key'   => 'field_voice_custom_title_ar',
+                'label' => __('العنوان المخصص (عربي)', 'beit'),
+                'name'  => 'voice_custom_title_ar',
+                'type'  => 'text',
+                'instructions' => __('العنوان المخصص باللغة العربية. إذا ترك فارغاً، سيتم استخدام عنوان المقال.', 'beit'),
             ],
             [
                 'key'     => 'field_voice_media_type',

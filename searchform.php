@@ -42,7 +42,7 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
         
         <button
             type="submit"
-            class="absolute right-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 md:px-8 md:py-4"
+            class="absolute ltr:right-2 rtl:left-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 md:px-8 md:py-4"
         >
             <?php esc_html_e('Search', 'beit'); ?>
         </button>

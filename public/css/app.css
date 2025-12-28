@@ -4451,6 +4451,10 @@ h1,
   left: 1.5rem;
 }
 
+.ltr\:right-2:where([dir="ltr"], [dir="ltr"] *) {
+  right: 0.5rem;
+}
+
 .ltr\:ml-2:where([dir="ltr"], [dir="ltr"] *) {
   margin-left: 0.5rem;
 }
@@ -4532,6 +4536,10 @@ h1,
 
 .rtl\:right-6:where([dir="rtl"], [dir="rtl"] *) {
   right: 1.5rem;
+}
+
+.rtl\:left-2:where([dir="rtl"], [dir="rtl"] *) {
+  left: 0.5rem;
 }
 
 .rtl\:ml-2:where([dir="rtl"], [dir="rtl"] *) {

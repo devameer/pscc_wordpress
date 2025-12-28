@@ -20,6 +20,13 @@ acf_add_local_field_group(
         'title'  => __('Media Settings', 'beit'),
         'fields' => [
             [
+                'key'   => 'field_media_custom_title_ar',
+                'label' => __('العنوان بالعربي', 'beit'),
+                'name'  => 'media_custom_title_ar',
+                'type'  => 'text',
+                'instructions' => __('العنوان باللغة العربية. إذا ترك فارغاً، سيتم استخدام عنوان المقال الأساسي.', 'beit'),
+            ],
+            [
                 'key'     => 'field_media_type',
                 'label'   => __('Media Type', 'beit'),
                 'name'    => 'media_type',
