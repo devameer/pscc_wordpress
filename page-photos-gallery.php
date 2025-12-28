@@ -71,8 +71,8 @@ while (have_posts()) {
                     while ($photos_query->have_posts()) :
                         $photos_query->the_post();
                         $thumbnail_id = get_post_thumbnail_id();
-                        $title = get_the_title();
                         $post_id = get_the_ID();
+                        $title = beit_get_multilingual_title($post_id, 'beit_media');
 
                         // Use get_post_meta instead of get_field for gallery images
                         $gallery_images = get_post_meta($post_id, 'media_gallery', true);

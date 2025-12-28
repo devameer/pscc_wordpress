@@ -98,10 +98,11 @@ get_template_part(
                         $thumb = $media['thumbnail_url'];
                         $lightbox_src = $media['src'];
                         $lightbox_type = $media['type'];
-                        $caption = $media['caption'] ?: get_the_title();
+                        $localized_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
+                        $caption = $media['caption'] ?: $localized_title;
                 ?>
                         <article class="overflow-hidden  transition hover:-translate-y-1 mb-6">
-                            
+
                             <?php if ($thumb) : ?>
                                 <a
                                     class="group relative block w-full"
@@ -123,10 +124,10 @@ get_template_part(
                                         <?php endif; ?>
 
                                     </span>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($localized_title); ?>" loading="lazy" decoding="async">
                                 </a>
                             <?php endif; ?>
-                            <h3 class="text-base font-medium md:text-lg pt-3"><?php echo the_title(); ?></h3>
+                            <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($localized_title); ?></h3>
 
 
 

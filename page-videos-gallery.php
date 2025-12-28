@@ -69,11 +69,12 @@ while (have_posts()) {
                     <?php
                     while ($videos_query->have_posts()) :
                         $videos_query->the_post();
+                        $post_id = get_the_ID();
                         $video_source_type = get_field('media_video_source_type');
                         $video_file = get_field('media_video_file');
                         $video_url = get_field('media_video_url');
                         $video_thumbnail_id = get_field('media_video_thumbnail');
-                        $title = get_the_title();
+                        $title = beit_get_multilingual_title($post_id, 'beit_media');
 
                         // Determine video source - prioritize URL if file is empty, or file if URL is empty
                         $video_src = '';

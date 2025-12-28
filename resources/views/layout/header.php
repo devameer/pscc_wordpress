@@ -161,11 +161,13 @@ $faq_target = $faq_link['target'] ?? '_self';
                             endforeach;
                         endif;
                         ?>
-                        <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
-                            href="<?php echo esc_url($faq_url); ?>" target="<?php echo esc_attr($faq_target); ?>">
-                            <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
-                            <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($faq_label); ?></span>
-                        </a>
+                        <?php if ($faq_link && !empty($faq_url) && $faq_url !== '#') : ?>
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
+                                href="<?php echo esc_url($faq_url); ?>" target="<?php echo esc_attr($faq_target); ?>">
+                                <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($faq_label); ?></span>
+                            </a>
+                        <?php endif; ?>
                     </div>
 
                     <div class="hidden lg:flex items-center ">

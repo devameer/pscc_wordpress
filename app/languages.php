@@ -170,6 +170,9 @@ function beit_register_polylang_strings(): void
         pll_register_string('use_general_terms', 'Use more general terms', 'beit');
         pll_register_string('browse_main_sections', 'Browse our main sections', 'beit');
         pll_register_string('add_featured_image', 'Add a featured image to display here.', 'beit');
+
+        // Search form placeholder
+        pll_register_string('search_placeholder', 'Search for news, programs, stories...', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');

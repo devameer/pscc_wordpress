@@ -10,6 +10,56 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!function_exists('beit_get_multilingual_title')) {
+    /**
+     * Get the appropriate title based on current language for media items.
+     *
+     * @param int|null $post_id The post ID. If null, uses current post.
+     * @param string $post_type The post type ('beit_voice' or 'beit_media').
+     * @return string The localized title.
+     */
+    function beit_get_multilingual_title(?int $post_id = null, string $post_type = ''): string
+    {
+        if (!$post_id) {
+            $post_id = get_the_ID();
+        }
+
+        if (!$post_type) {
+            $post_type = get_post_type($post_id);
+        }
+
+        // Get current language
+        $current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'en';
+
+        // Default to post title
+        $title = get_the_title($post_id);
+
+        // If Arabic, try to get Arabic title
+        if ($current_lang === 'ar' && function_exists('get_field')) {
+            if ($post_type === 'beit_voice') {
+                $arabic_title = get_field('voice_custom_title_ar', $post_id);
+                if ($arabic_title) {
+                    return $arabic_title;
+                }
+                // Fallback to English custom title if no Arabic
+                $english_title = get_field('voice_custom_title', $post_id);
+                return $english_title ?: $title;
+            } elseif ($post_type === 'beit_media') {
+                $arabic_title = get_field('media_custom_title_ar', $post_id);
+                return $arabic_title ?: $title;
+            }
+        }
+
+        // For English or if no Arabic title, return English custom title or default title
+        if (function_exists('get_field') && $post_type === 'beit_voice') {
+            $english_title = get_field('voice_custom_title', $post_id);
+            return $english_title ?: $title;
+        }
+
+        return $title;
+    }
+}
+
 if (!function_exists('beit_get_video_embed_url')) {
     /**
      * Convert a video URL into an embeddable URL for lightbox usage.

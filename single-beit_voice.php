@@ -17,10 +17,7 @@ while (have_posts()) {
 
     $is_rtl      = is_rtl();
     $thumbnail   = get_post_thumbnail_id();
-
-    $has_acf = function_exists('get_field');
-    $custom_title = $has_acf ? get_field('voice_custom_title', get_the_ID()) : '';
-    $display_title = $custom_title ?: get_the_title();
+    $display_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
 
     get_template_part(
         'resources/views/components/page-hero',
@@ -71,6 +68,7 @@ while (have_posts()) {
                             <?php
                             while ($related->have_posts()) :
                                 $related->the_post();
+                                $related_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
                                 ?>
                                 <li>
                                     <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
@@ -81,7 +79,7 @@ while (have_posts()) {
                                         <?php endif; ?>
                                         <span class="flex-1">
                                             <span class="block text-xs text-slate-400"><?php echo esc_html(get_the_date()); ?></span>
-                                            <span class="block font-semibold"><?php the_title(); ?></span>
+                                            <span class="block font-semibold"><?php echo esc_html($related_title); ?></span>
                                         </span>
                                     </a>
                                 </li>

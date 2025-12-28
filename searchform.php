@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 $search_query = get_search_query();
-$placeholder  = __('Search for news, programs, stories...', 'beit');
+$placeholder  = beit_translate('Search for news, programs, stories...', 'search_placeholder');
 $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : '';
 
 ?>
