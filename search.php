@@ -18,11 +18,13 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
 
 // Get available post types for filtering
 $available_post_types = [
-    'post'         => __('Posts', 'beit'),
-    'page'         => __('Pages', 'beit'),
-    'beit_news'    => __('News', 'beit'),
-    // 'beit_voice'   => __('Voices & Visions', 'beit'),
-    'beit_program' => __('Programs & Projects', 'beit'),
+    'post'                  => __('Posts', 'beit'),
+    'page'                  => __('Pages', 'beit'),
+    'beit_news'             => __('News', 'beit'),
+    'beit_media'            => __('Media', 'beit'),
+    'beit_program'          => __('Programs & Projects', 'beit'),
+    'beit_annual_report'    => __('Annual Reports', 'beit'),
+    'beit_publication'      => __('Publications', 'beit'),
 ];
 
 $hero_title = $search_query
@@ -181,6 +183,132 @@ get_template_part(
                         </article>
                   
                 <?php
+                    }
+                    // Annual Reports - Special card design
+                    elseif ('beit_annual_report' === $post_type) {
+                        $report_year = function_exists('get_field') ? get_field('annual_report_year') : '';
+                        $report_file = function_exists('get_field') ? get_field('annual_report_file') : '';
+                        $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+                    ?>
+                        <article class="flex h-full flex-col overflow-hidden bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-xl" data-type="beit_annual_report">
+                            <?php if ($image_url) : ?>
+                                <div class="relative overflow-hidden">
+                                    <img class="h-64 w-full object-cover transition-transform duration-500 hover:scale-105" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <?php if ($report_year) : ?>
+                                        <div class="absolute top-4 right-4 bg-primary px-4 py-2 text-white font-bold text-lg shadow-lg">
+                                            <?php echo esc_html($report_year); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="flex flex-1 flex-col gap-4 p-6">
+                                <span class="inline-flex items-center gap-2 text-xs font-semibold text-red-600 self-start">
+                                    <i class="fa fa-file-text"></i>
+                                    <?php esc_html_e('Annual Report', 'beit'); ?>
+                                </span>
+
+                                <h2 class="text-xl font-bold text-slate-900">
+                                    <?php the_title(); ?>
+                                </h2>
+
+                                <?php if (has_excerpt()) : ?>
+                                    <p class="text-sm text-slate-600 line-clamp-3"><?php echo get_the_excerpt(); ?></p>
+                                <?php endif; ?>
+
+                                <?php if ($report_file) : ?>
+                                    <a href="<?php echo esc_url($report_file); ?>" class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-red-700 transition" target="_blank" rel="noopener">
+                                        <i class="fa fa-download"></i>
+                                        <?php esc_html_e('Download Report', 'beit'); ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php the_permalink(); ?>" class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-red-700 transition">
+                                        <?php esc_html_e('View Details', 'beit'); ?>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </article>
+                    <?php
+                    }
+                    // Publications - Special card design
+                    elseif ('beit_publication' === $post_type) {
+                        $pub_type = function_exists('get_field') ? get_field('publication_type') : '';
+                        $pub_file = function_exists('get_field') ? get_field('publication_file') : '';
+                        $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+                    ?>
+                        <article class="flex h-full flex-col overflow-hidden bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-xl" data-type="beit_publication">
+                            <?php if ($image_url) : ?>
+                                <div class="relative overflow-hidden">
+                                    <img class="h-64 w-full object-cover transition-transform duration-500 hover:scale-105" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <?php if ($pub_type) : ?>
+                                        <div class="absolute top-4 left-4 bg-slate-900 px-3 py-1 text-white text-xs font-semibold uppercase shadow-lg">
+                                            <?php echo esc_html($pub_type); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="flex flex-1 flex-col gap-4 p-6">
+                                <span class="inline-flex items-center gap-2 text-xs font-semibold text-red-600 self-start">
+                                    <i class="fa fa-book"></i>
+                                    <?php esc_html_e('Publication', 'beit'); ?>
+                                </span>
+
+                                <h2 class="text-xl font-bold text-slate-900">
+                                    <?php the_title(); ?>
+                                </h2>
+
+                                <?php if (has_excerpt()) : ?>
+                                    <p class="text-sm text-slate-600 line-clamp-3"><?php echo get_the_excerpt(); ?></p>
+                                <?php endif; ?>
+
+                                <?php if ($pub_file) : ?>
+                                    <a href="<?php echo esc_url($pub_file); ?>" class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-red-700 transition" target="_blank" rel="noopener">
+                                        <i class="fa fa-download"></i>
+                                        <?php esc_html_e('Download Publication', 'beit'); ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php the_permalink(); ?>" class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-red-700 transition">
+                                        <?php esc_html_e('View Details', 'beit'); ?>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </article>
+                    <?php
+                    }
+                    // Default style for other post types (post, page, beit_media, etc.)
+                    else {
+                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
+                        $post_type_obj = get_post_type_object($post_type);
+                        $post_type_name = $post_type_obj ? $post_type_obj->labels->singular_name : ucfirst($post_type);
+                    ?>
+                        <article class="flex h-full flex-col overflow-hidden transition hover:-translate-y-1" data-type="<?php echo esc_attr($post_type); ?>">
+                            <?php if ($thumbnail_html) : ?>
+                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
+                                    <?php echo $thumbnail_html; ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <div class="flex flex-1 flex-col gap-3 py-6">
+                                <?php if ($post_type !== 'post' && $post_type !== 'page') : ?>
+                                    <span class="inline-flex items-center gap-2 text-xs font-semibold text-red-600">
+                                        <i class="fa fa-tag"></i>
+                                        <?php echo esc_html($post_type_name); ?>
+                                    </span>
+                                <?php endif; ?>
+
+                                <h2 class="text-lg font-semibold text-slate-900">
+                                    <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </h2>
+
+                                <?php if (has_excerpt()) : ?>
+                                    <p class="text-sm text-slate-600 line-clamp-3"><?php echo get_the_excerpt(); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </article>
+                    <?php
                     }
                 }
                 ?>

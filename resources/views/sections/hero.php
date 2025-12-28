@@ -62,7 +62,7 @@ if (empty($slides)) {
                             <span class="absolute inset-0 bg-black/20 mix-blend-multiply"></span>
                         </div>
 
-                        <div class="relative z-10 container mx-auto px-4 py-20 md:px-6">
+                        <div class="relative z-10 container mx-auto px-4 pt-24 md:px-6">
                             <div class="max-w-2xl space-y-6 text-white ltr:text-left rtl:text-right <?php echo esc_attr($content_alignment); ?>">
 
                             <!-- ho -->
@@ -110,13 +110,13 @@ if (empty($slides)) {
 
                         <?php if (!empty($slide['video_url']) && '#' !== $slide['video_url']) : ?>
                             <a
-                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-3 px-5 py-3 text-sm font-semibold text-white transition md:flex hero-video-button group"
+                                class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-2 px-4 py-2 text-sm font-semibold text-white transition md:flex hero-video-button group"
                                 href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span class="flex h-20 w-20 items-center justify-center  text-2xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <span class="flex h-14 w-14 items-center justify-center text-xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                                     <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
                                 </span>
-                                <span class="leading-tight text-white text-3xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-4 rtl:pr-4 group-hover:border-primary transition-colors duration-300">
-                                    <span class="block capitalize tracking-wide"><?php echo esc_html(beit_translate('See the change', 'see_the_change')); ?></span>
+                                <span class="leading-tight text-white text-xl font-light ltr:border-l rtl:border-r border-white/30 ltr:pl-3 rtl:pr-3 group-hover:border-primary transition-colors duration-300">
+                                    <span class="block capitalize tracking-wide text-sm"><?php echo esc_html(beit_translate('See the change', 'see_the_change')); ?></span>
                                     <span class="block capitalize"><span class="font-bold uppercase"><?php echo esc_html(beit_translate('Watch', 'watch')); ?></span> <?php echo esc_html(beit_translate('the story', 'the_story')); ?></span>
                                 </span>
                             </a>

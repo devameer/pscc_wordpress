@@ -142,6 +142,34 @@ function beit_register_polylang_strings(): void
         pll_register_string('publications_pagination', 'Publications pagination', 'beit');
         pll_register_string('no_reports_dashboard', 'No annual reports found. Please add some via the dashboard.', 'beit');
         pll_register_string('no_publications_dashboard', 'No publications found. Please add some via the dashboard.', 'beit');
+
+        // Search page strings
+        pll_register_string('search', 'Search', 'beit');
+        pll_register_string('search_results_for', 'Search Results for: %s', 'beit');
+        pll_register_string('result_found_singular', '%d result found', 'beit');
+        pll_register_string('results_found_plural', '%d results found', 'beit');
+        pll_register_string('find_what_looking_for', 'Find what you\'re looking for', 'beit');
+        pll_register_string('filter_by', 'Filter by:', 'beit');
+        pll_register_string('all', 'All', 'beit');
+        pll_register_string('posts', 'Posts', 'beit');
+        pll_register_string('pages', 'Pages', 'beit');
+        pll_register_string('news', 'News', 'beit');
+        pll_register_string('media', 'Media', 'beit');
+        pll_register_string('programs_projects', 'Programs & Projects', 'beit');
+        pll_register_string('annual_reports', 'Annual Reports', 'beit');
+        pll_register_string('publications', 'Publications', 'beit');
+        pll_register_string('annual_report', 'Annual Report', 'beit');
+        pll_register_string('publication', 'Publication', 'beit');
+        pll_register_string('view_details', 'View Details', 'beit');
+        pll_register_string('no_results_found', 'No Results Found', 'beit');
+        pll_register_string('no_results_message', 'Sorry, we couldn\'t find any results for "%s". Please try again with different keywords.', 'beit');
+        pll_register_string('enter_search_term', 'Please enter a search term to find content.', 'beit');
+        pll_register_string('search_tips', 'Search Tips:', 'beit');
+        pll_register_string('check_spelling', 'Check your spelling', 'beit');
+        pll_register_string('try_different_keywords', 'Try different keywords', 'beit');
+        pll_register_string('use_general_terms', 'Use more general terms', 'beit');
+        pll_register_string('browse_main_sections', 'Browse our main sections', 'beit');
+        pll_register_string('add_featured_image', 'Add a featured image to display here.', 'beit');
     }
 }
 add_action('init', 'beit_register_polylang_strings');

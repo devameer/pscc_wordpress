@@ -37,12 +37,25 @@ $topbar_socials = [];
 $site_logo         = 0;
 $site_logo_scroll  = 0;
 
+// Get current language for multilingual ACF fields
+$current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'en';
+$lang_suffix = $current_lang === 'en' ? '' : '_' . $current_lang;
+
+// Get search page URL (language-aware if Polylang is active)
+$search_url = home_url('/?s=');
+if (function_exists('pll_home_url')) {
+    $search_url = pll_home_url() . '?s=';
+}
+
 if (function_exists('get_field')) {
     $topbar_email        = get_field('topbar_email', 'option');
     $topbar_phone        = get_field('topbar_phone', 'option');
-    $topbar_search_label = get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
-    $donate_link         = get_field('donate_link', 'option');
-    $faq_link            = get_field('faq_link', 'option');
+
+    // Try language-specific field first, fallback to default
+    $topbar_search_label = get_field('topbar_search_label' . $lang_suffix, 'option') ?: get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
+    $donate_link         = get_field('donate_link' . $lang_suffix, 'option') ?: get_field('donate_link', 'option');
+    $faq_link            = get_field('faq_link' . $lang_suffix, 'option') ?: get_field('faq_link', 'option');
+
     $topbar_socials_raw  = get_field('topbar_social_links', 'option');
     $topbar_socials      = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
     $site_logo           = get_field('site_logo', 'option') ?: 0;
@@ -157,7 +170,7 @@ $faq_target = $faq_link['target'] ?? '_self';
 
                     <div class="hidden lg:flex items-center ">
                         <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400"
-                            href="<?php echo esc_url(home_url('/?s=')); ?>">
+                            href="<?php echo esc_url($search_url); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
@@ -263,7 +276,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                 ?>
                 <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 block md:hidden">
                     <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
-                        href="<?php echo esc_url(home_url('/?s=')); ?>">
+                        href="<?php echo esc_url($search_url); ?>">
                         <i class="fa fa-magnifying-glass text-xs"></i>
                         <span><?php echo esc_html($topbar_search_label); ?></span>
                     </a>
