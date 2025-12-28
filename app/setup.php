@@ -71,41 +71,25 @@ function beit_modify_search_query($query): void
             // Filter by specific post type
             $query->set('post_type', $post_type_filter);
         } else {
-            // Search in all public post types including pages
+            // Search in all public post types except pages and hero slides
             $post_types = get_post_types([
                 'public' => true,
                 'exclude_from_search' => false,
             ], 'names');
 
-            // Explicitly ensure 'page' and 'post' are included
-            if (!in_array('page', $post_types, true)) {
-                $post_types[] = 'page';
-            }
+            // Explicitly ensure 'post' is included
             if (!in_array('post', $post_types, true)) {
                 $post_types[] = 'post';
             }
 
-            // Exclude hero slides from search results
-            $post_types = array_diff($post_types, ['beit_hero_slide']);
+            // Exclude hero slides and pages from search results
+            $post_types = array_diff($post_types, ['beit_hero_slide', 'page']);
 
             $query->set('post_type', $post_types);
         }
     }
 }
 add_action('pre_get_posts', 'beit_modify_search_query');
-
-/**
- * Make sure 'page' post type is searchable.
- */
-function beit_make_pages_searchable(): void
-{
-    global $wp_post_types;
-
-    if (isset($wp_post_types['page'])) {
-        $wp_post_types['page']->exclude_from_search = false;
-    }
-}
-add_action('init', 'beit_make_pages_searchable');
 
 /**
  * Add loading="lazy" attribute to all WordPress images.
