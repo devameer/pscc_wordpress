@@ -14,7 +14,7 @@
             speed: 600,
             slidesPerView: 1,
             spaceBetween: 32,
-            // autoplay: autoplayDelay > 0 ? { delay: autoplayDelay } : false,
+            autoplay: autoplayDelay > 0 ? { delay: autoplayDelay, disableOnInteraction: false } : false,
             pagination: hasPagination
                 ? {
                       el: slider.querySelector('.swiper-pagination'),

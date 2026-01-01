@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 function beit_front_default_hero(): array
 {
     return [
-        'autoplay' => 5000,
+        'autoplay' => 8000,
         'loop' => true,
         'show_navigation' => true,
         'show_pagination' => true,
