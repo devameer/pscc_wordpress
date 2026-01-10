@@ -181,3 +181,52 @@
     font-display: swap;
 }
 
+/**
+ * 29LT Bukra Font Family - Arabic Font
+ * @package beit
+ */
+
+/* Variable Font - Supports all weights (200-900) */
+@font-face {
+    font-family: '29LT Bukra';
+    src: url('../fonts/29LT Bukra Variable.ttf') format('truetype');
+    font-weight: 200 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light - 300 */
+@font-face {
+    font-family: '29LT Bukra';
+    src: url('../fonts/29ltbukralight.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Regular - 400 */
+@font-face {
+    font-family: '29LT Bukra';
+    src: url('../fonts/29ltbukraregular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Bold - 700 */
+@font-face {
+    font-family: '29LT Bukra';
+    src: url('../fonts/29ltbukrabold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Bold Italic - 700 */
+@font-face {
+    font-family: '29LT Bukra';
+    src: url('../fonts/29ltbukrabolditalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
