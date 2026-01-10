@@ -13,36 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Generator: Poedit\n"
 
-# Annual Reports Post Type
-msgid "Annual Reports"
-msgstr "التقارير السنوية"
 
-msgid "Annual Report"
-msgstr "تقرير سنوي"
-
-msgid "Add New Annual Report"
-msgstr "إضافة تقرير سنوي جديد"
-
-msgid "Edit Annual Report"
-msgstr "تعديل التقرير السنوي"
-
-msgid "New Annual Report"
-msgstr "تقرير سنوي جديد"
-
-msgid "View Annual Report"
-msgstr "عرض التقرير السنوي"
-
-msgid "Search Annual Reports"
-msgstr "البحث في التقارير السنوية"
-
-msgid "No annual reports found"
-msgstr "لم يتم العثور على تقارير سنوية"
-
-msgid "No annual reports found in Trash"
-msgstr "لا توجد تقارير سنوية في سلة المهملات"
-
-msgid "All Annual Reports"
-msgstr "جميع التقارير السنوية"
 
 # Publications Post Type
 msgid "Publications"
@@ -75,42 +46,7 @@ msgstr "لا توجد منشورات في سلة المهملات"
 msgid "All Publications"
 msgstr "جميع المنشورات"
 
-# ACF Fields - Annual Reports
-msgid "Annual Report Details"
-msgstr "تفاصيل التقرير السنوي"
 
-msgid "Report Year"
-msgstr "سنة التقرير"
-
-msgid "Enter the year of this report (e.g., 2024)."
-msgstr "أدخل سنة هذا التقرير (مثال: 2024)."
-
-msgid "PDF File URL"
-msgstr "رابط ملف PDF"
-
-msgid "Paste any download URL for the PDF file."
-msgstr "الصق أي رابط تحميل لملف PDF."
-
-msgid "File Name"
-msgstr "اسم الملف"
-
-msgid "Enter the display name for the download file (e.g., \"Annual Report 2024\")."
-msgstr "أدخل الاسم المعروض لملف التحميل (مثال: \"التقرير السنوي 2024\")."
-
-msgid "File Size"
-msgstr "حجم الملف"
-
-msgid "Enter the file size (e.g., \"2.5 MB\")."
-msgstr "أدخل حجم الملف (مثال: \"2.5 ميجابايت\")."
-
-msgid "Download Button Text"
-msgstr "نص زر التحميل"
-
-msgid "Custom text for the download button."
-msgstr "نص مخصص لزر التحميل."
-
-msgid "Download Report"
-msgstr "تحميل التقرير"
 
 # ACF Fields - Publications
 msgid "Publication Details"
@@ -132,33 +68,19 @@ msgstr "تحميل المنشور"
 msgid "Year"
 msgstr "السنة"
 
-msgid "No Annual Reports Found"
-msgstr "لم يتم العثور على تقارير سنوية"
-
-msgid "Check back soon for the latest reports."
-msgstr "تحقق قريباً للحصول على أحدث التقارير."
-
 msgid "No Publications Found"
 msgstr "لم يتم العثور على منشورات"
 
 msgid "Check back soon for the latest publications."
 msgstr "تحقق قريباً للحصول على أحدث المنشورات."
 
-msgid "Reports pagination"
-msgstr "ترقيم صفحات التقارير"
-
 msgid "Publications pagination"
 msgstr "ترقيم صفحات المنشورات"
-
-msgid "No annual reports found. Please add some via the dashboard."
-msgstr "لم يتم العثور على تقارير سنوية. يرجى إضافة بعضها عبر لوحة التحكم."
 
 msgid "No publications found. Please add some via the dashboard."
 msgstr "لم يتم العثور على منشورات. يرجى إضافة بعضها عبر لوحة التحكم."
 
 # Page Templates
-msgid "Annual Reports Page Settings"
-msgstr "إعدادات صفحة التقارير السنوية"
 
 msgid "Publications Page Settings"
 msgstr "إعدادات صفحة المنشورات"

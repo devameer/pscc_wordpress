@@ -254,9 +254,7 @@ function beit_polylang_post_types($post_types, $is_settings)
     // Add custom post types
     $post_types['beit_hero_slide'] = 'beit_hero_slide';
     $post_types['beit_news'] = 'beit_news';
-    $post_types['beit_program'] = 'beit_program';
-    $post_types['beit_annual_report'] = 'beit_annual_report';
-    $post_types['beit_publication'] = 'beit_publication';
+    $post_types['beit_media'] = 'beit_media';
 
     return $post_types;
 }

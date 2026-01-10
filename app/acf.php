@@ -23,11 +23,11 @@ function beit_acf_register_options_pages(): void
         [
             'page_title' => __('Theme Settings', 'beit'),
             'menu_title' => __('Theme Settings', 'beit'),
-            'menu_slug'  => 'beit-theme-settings',
+            'menu_slug' => 'beit-theme-settings',
             'capability' => 'manage_options',
-            'redirect'   => false,
-            'position'   => 61,
-            'icon_url'   => 'dashicons-admin-generic',
+            'redirect' => false,
+            'position' => 61,
+            'icon_url' => 'dashicons-admin-generic',
         ]
     );
 }
@@ -71,13 +71,10 @@ $acf_field_files = [
     BEIT_THEME_DIR . '/app/acf/page-news-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-media-center-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-content-fields.php',
-    BEIT_THEME_DIR . '/app/acf/page-annual-reports-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-publications-fields.php',
     BEIT_THEME_DIR . '/app/acf/page-blog-fields.php',
     BEIT_THEME_DIR . '/app/acf/voice-fields.php',
-    BEIT_THEME_DIR . '/app/acf/program-fields.php',
     BEIT_THEME_DIR . '/app/acf/media-library-fields.php',
-    BEIT_THEME_DIR . '/app/acf/annual-report-fields.php',
     BEIT_THEME_DIR . '/app/acf/publication-fields.php',
 ];
 
