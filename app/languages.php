@@ -143,7 +143,6 @@ function beit_register_polylang_strings(): void
         pll_register_string('pages', 'Pages', 'beit');
         pll_register_string('news', 'News', 'beit');
         pll_register_string('media', 'Media', 'beit');
-        pll_register_string('programs_projects', 'Programs & Projects', 'beit');
         pll_register_string('view_details', 'View Details', 'beit');
         pll_register_string('no_results_found', 'No Results Found', 'beit');
         pll_register_string('no_results_message', 'Sorry, we couldn\'t find any results for "%s". Please try again with different keywords.', 'beit');
