@@ -22,7 +22,6 @@ $available_post_types = [
     'page' => __('Pages', 'beit'),
     'beit_news' => __('News', 'beit'),
     'beit_media' => __('Media', 'beit'),
-    'beit_program' => __('Programs & Projects', 'beit'),
 ];
 
 $hero_title = $search_query
@@ -154,38 +153,6 @@ get_template_part(
                                 </h2>
                             </div>
                         </article>
-                        <?php
-                    }
-                    // beit_program (Programs style overlay card)
-                    elseif ('beit_program' === $post_type) {
-                        $overlay_heading = function_exists('get_field') ? get_field('program_overlay_heading') : '';
-                        $overlay_sub = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
-                        $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
-                        ?>
-                        <article class="overflow-hidden  transition hover:-translate-y-1" data-type="beit_program">
-
-                            <?php if ($image_url): ?>
-                                <a href="<?php the_permalink(); ?>" class="relative block overflow-hidden group">
-                                    <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>"
-                                        loading="lazy" decoding="async">
-                                    <span class="p-4 md:p-6 lg:p-8 text-black">
-                                        <h3 class="text-lg md:text-xl font-bold">
-                                            <?php echo esc_html($overlay_heading ?: get_the_title()); ?></h3>
-                                        <?php if ($overlay_sub): ?>
-                                            <p class="text-sm md:text-base font-light"><?php echo esc_html($overlay_sub); ?></p>
-                                        <?php endif; ?>
-                                    </span>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
-                                    <div class="h-56 w-full bg-slate-100 flex items-center justify-center text-slate-500">
-                                        <?php esc_html_e('Add a featured image to display here.', 'beit'); ?>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
-                        </article>
-
                         <?php
                     }
 

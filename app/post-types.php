@@ -96,21 +96,6 @@ function beit_register_post_types(): void
         ]
     );
 
-    $voices_labels = [
-        'name' => __('Voices & Visions', 'beit'),
-        'singular_name' => __('Voice & Vision', 'beit'),
-        'menu_name' => __('Voices & Visions', 'beit'),
-        'name_admin_bar' => __('Voice & Vision', 'beit'),
-        'add_new' => __('Add New', 'beit'),
-        'add_new_item' => __('Add New Voice & Vision', 'beit'),
-        'edit_item' => __('Edit Voice & Vision', 'beit'),
-        'new_item' => __('New Voice & Vision', 'beit'),
-        'view_item' => __('View Voice & Vision', 'beit'),
-        'search_items' => __('Search Voices & Visions', 'beit'),
-        'not_found' => __('No items found', 'beit'),
-        'not_found_in_trash' => __('No items found in Trash', 'beit'),
-        'all_items' => __('All Voices & Visions', 'beit'),
-    ];
 
     // register_post_type(
     //     'beit_voice',
@@ -127,37 +112,7 @@ function beit_register_post_types(): void
     //     ]
     // );
 
-    $program_labels = [
-        'name' => __('Programs & Projects', 'beit'),
-        'singular_name' => __('Program / Project', 'beit'),
-        'menu_name' => __('Programs & Projects', 'beit'),
-        'name_admin_bar' => __('Program / Project', 'beit'),
-        'add_new' => __('Add Program / Project', 'beit'),
-        'add_new_item' => __('Add New Program / Project', 'beit'),
-        'edit_item' => __('Edit Program / Project', 'beit'),
-        'new_item' => __('New Program / Project', 'beit'),
-        'view_item' => __('View Program / Project', 'beit'),
-        'search_items' => __('Search Programs & Projects', 'beit'),
-        'not_found' => __('No programs or projects found', 'beit'),
-        'not_found_in_trash' => __('No programs or projects found in Trash', 'beit'),
-        'all_items' => __('All Programs & Projects', 'beit'),
-    ];
 
-    register_post_type(
-        'beit_program',
-        [
-            'labels' => $program_labels,
-            'public' => true,
-            'publicly_queryable' => true,
-            'show_in_menu' => true,
-            'menu_position' => 25,
-            'menu_icon' => 'dashicons-clipboard',
-            'has_archive' => false,
-            'rewrite' => ['slug' => 'program'],
-            'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'],
-            'show_in_rest' => true,
-        ]
-    );
 
     $media_library_labels = [
         'name' => __('Media Library', 'beit'),
