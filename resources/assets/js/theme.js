@@ -400,11 +400,11 @@
     };
 
     // Initialize on DOM ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMenuOtherDropdown);
-    } else {
-        initMenuOtherDropdown();
-    }
+    // if (document.readyState === 'loading') {
+    //     document.addEventListener('DOMContentLoaded', initMenuOtherDropdown);
+    // } else {
+    //     initMenuOtherDropdown();
+    // }
 })();
 
 // Contact Map with Tabs functionality
