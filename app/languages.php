@@ -130,18 +130,6 @@ function beit_register_polylang_strings(): void
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');
 
-        // Annual Reports and Publications strings
-        pll_register_string('year_label', 'Year', 'beit');
-        pll_register_string('download_report', 'Download Report', 'beit');
-        pll_register_string('download_publication', 'Download Publication', 'beit');
-        pll_register_string('no_annual_reports_found', 'No Annual Reports Found', 'beit');
-        pll_register_string('no_publications_found', 'No Publications Found', 'beit');
-        pll_register_string('check_back_reports', 'Check back soon for the latest reports.', 'beit');
-        pll_register_string('check_back_publications', 'Check back soon for the latest publications.', 'beit');
-        pll_register_string('reports_pagination', 'Reports pagination', 'beit');
-        pll_register_string('publications_pagination', 'Publications pagination', 'beit');
-        pll_register_string('no_reports_dashboard', 'No annual reports found. Please add some via the dashboard.', 'beit');
-        pll_register_string('no_publications_dashboard', 'No publications found. Please add some via the dashboard.', 'beit');
 
         // Search page strings
         pll_register_string('search', 'Search', 'beit');
@@ -156,10 +144,6 @@ function beit_register_polylang_strings(): void
         pll_register_string('news', 'News', 'beit');
         pll_register_string('media', 'Media', 'beit');
         pll_register_string('programs_projects', 'Programs & Projects', 'beit');
-        pll_register_string('annual_reports', 'Annual Reports', 'beit');
-        pll_register_string('publications', 'Publications', 'beit');
-        pll_register_string('annual_report', 'Annual Report', 'beit');
-        pll_register_string('publication', 'Publication', 'beit');
         pll_register_string('view_details', 'View Details', 'beit');
         pll_register_string('no_results_found', 'No Results Found', 'beit');
         pll_register_string('no_results_message', 'Sorry, we couldn\'t find any results for "%s". Please try again with different keywords.', 'beit');

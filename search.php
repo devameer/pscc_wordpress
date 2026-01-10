@@ -18,13 +18,11 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
 
 // Get available post types for filtering
 $available_post_types = [
-    'post'                  => __('Posts', 'beit'),
-    'page'                  => __('Pages', 'beit'),
-    'beit_news'             => __('News', 'beit'),
-    'beit_media'            => __('Media', 'beit'),
-    'beit_program'          => __('Programs & Projects', 'beit'),
-    'beit_annual_report'    => __('Annual Reports', 'beit'),
-    'beit_publication'      => __('Publications', 'beit'),
+    'post' => __('Posts', 'beit'),
+    'page' => __('Pages', 'beit'),
+    'beit_news' => __('News', 'beit'),
+    'beit_media' => __('Media', 'beit'),
+    'beit_program' => __('Programs & Projects', 'beit'),
 ];
 
 $hero_title = $search_query
@@ -39,7 +37,7 @@ get_template_part(
     'resources/views/components/page-hero',
     null,
     [
-        'title'       => $hero_title,
+        'title' => $hero_title,
         'description' => $search_query && $results_count > 0
             ? sprintf(
                 /* translators: %d: number of results */
@@ -59,19 +57,17 @@ get_template_part(
             <?php get_search_form(); ?>
         </div>
 
-        <?php if ($search_query) : ?>
+        <?php if ($search_query): ?>
             <!-- Post Type Filters -->
             <div class="mb-8 flex flex-wrap items-center gap-3">
                 <span class="text-sm font-semibold text-slate-700"><?php esc_html_e('Filter by:', 'beit'); ?></span>
-                <a
-                    href="<?php echo esc_url(add_query_arg(['s' => $search_query], home_url('/'))); ?>"
+                <a href="<?php echo esc_url(add_query_arg(['s' => $search_query], home_url('/'))); ?>"
                     class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo empty($post_type_filter) ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                     data-filter="all">
                     <?php esc_html_e('All', 'beit'); ?>
                 </a>
-                <?php foreach ($available_post_types as $type => $label) : ?>
-                    <a
-                        href="<?php echo esc_url(add_query_arg(['s' => $search_query, 'post_type' => $type], home_url('/'))); ?>"
+                <?php foreach ($available_post_types as $type => $label): ?>
+                    <a href="<?php echo esc_url(add_query_arg(['s' => $search_query, 'post_type' => $type], home_url('/'))); ?>"
                         class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo $post_type_filter === $type ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                         data-filter="<?php echo esc_attr($type); ?>">
                         <?php echo esc_html($label); ?>
@@ -80,7 +76,7 @@ get_template_part(
             </div>
         <?php endif; ?>
 
-        <?php if (have_posts()) : ?>
+        <?php if (have_posts()): ?>
 
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <?php
@@ -100,15 +96,12 @@ get_template_part(
                         $lightbox_type = $media['type'];
                         $localized_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
                         $caption = $media['caption'] ?: $localized_title;
-                ?>
+                        ?>
                         <article class="overflow-hidden  transition hover:-translate-y-1 mb-6">
 
-                            <?php if ($thumb) : ?>
-                                <a
-                                    class="group relative block w-full"
-                                    data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
-                                    data-type="<?php echo esc_attr($lightbox_type); ?>"
-                                    data-caption="<?php echo esc_attr($caption); ?>"
+                            <?php if ($thumb): ?>
+                                <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
+                                    data-type="<?php echo esc_attr($lightbox_type); ?>" data-caption="<?php echo esc_attr($caption); ?>"
                                     href="<?php echo esc_url($lightbox_src); ?>"
                                     aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
                                     <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 ">
@@ -116,15 +109,20 @@ get_template_part(
                                         <i class="fa<?php echo esc_attr('video' === $lightbox_type ? 'fa-play' : 'fa-magnifying-glass'); ?>"></i>
                                     </span> -->
                                         <?php
-                                        if ('video' === $lightbox_type) : ?>
-                                            <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
-                                        <?php else : ?>
-                                            <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                        if ('video' === $lightbox_type): ?>
+                                            <img class="h-20 w-20"
+                                                src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>"
+                                                alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                        <?php else: ?>
+                                            <img class="h-20 w-20"
+                                                src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>"
+                                                alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
 
                                         <?php endif; ?>
 
                                     </span>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($localized_title); ?>" loading="lazy" decoding="async">
+                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb); ?>"
+                                        alt="<?php echo esc_attr($localized_title); ?>" loading="lazy" decoding="async">
                                 </a>
                             <?php endif; ?>
                             <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($localized_title); ?></h3>
@@ -132,49 +130,54 @@ get_template_part(
 
 
                         </article>
-                    <?php
+                        <?php
                     }
                     // beit_news (Archive style - simple)
                     elseif ('beit_news' === $post_type) {
 
                         $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
-                    ?>
-                        <article class="flex h-full flex-col overflow-hidden   transition hover:-translate-y-1" data-type="beit_news">
-                            
-                            <?php if ($thumbnail_html) : ?>
+                        ?>
+                        <article class="flex h-full flex-col overflow-hidden   transition hover:-translate-y-1"
+                            data-type="beit_news">
+
+                            <?php if ($thumbnail_html): ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
                                     <?php echo $thumbnail_html; ?>
                                 </a>
                             <?php endif; ?>
 
                             <div class="flex flex-1 flex-col gap-3 py-6">
-                               
+
                                 <h2 class="text-lg font-semibold text-slate-900">
-                                    <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <a class="transition hover:text-red-600"
+                                        href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                             </div>
                         </article>
-                    <?php
+                        <?php
                     }
                     // beit_program (Programs style overlay card)
                     elseif ('beit_program' === $post_type) {
-                        $overlay_heading  = function_exists('get_field') ? get_field('program_overlay_heading') : '';
-                        $overlay_sub      = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
+                        $overlay_heading = function_exists('get_field') ? get_field('program_overlay_heading') : '';
+                        $overlay_sub = function_exists('get_field') ? get_field('program_overlay_subheading') : '';
                         $image_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
-                    ?>
+                        ?>
                         <article class="overflow-hidden  transition hover:-translate-y-1" data-type="beit_program">
-                            
-                            <?php if ($image_url) : ?>
+
+                            <?php if ($image_url): ?>
                                 <a href="<?php the_permalink(); ?>" class="relative block overflow-hidden group">
-                                    <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>"
+                                        loading="lazy" decoding="async">
                                     <span class="p-4 md:p-6 lg:p-8 text-black">
-                                        <h3 class="text-lg md:text-xl font-bold"><?php echo esc_html($overlay_heading ?: get_the_title()); ?></h3>
-                                        <?php if ($overlay_sub) : ?>
+                                        <h3 class="text-lg md:text-xl font-bold">
+                                            <?php echo esc_html($overlay_heading ?: get_the_title()); ?></h3>
+                                        <?php if ($overlay_sub): ?>
                                             <p class="text-sm md:text-base font-light"><?php echo esc_html($overlay_sub); ?></p>
                                         <?php endif; ?>
                                     </span>
                                 </a>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
                                     <div class="h-56 w-full bg-slate-100 flex items-center justify-center text-slate-500">
                                         <?php esc_html_e('Add a featured image to display here.', 'beit'); ?>
@@ -182,218 +185,26 @@ get_template_part(
                                 </a>
                             <?php endif; ?>
                         </article>
-                  
-                <?php
+
+                        <?php
                     }
-                    // Annual Reports - Archive page card design
-                    elseif ('beit_annual_report' === $post_type) {
-                        $is_rtl = is_rtl();
-                        $has_acf = function_exists('get_field');
-                        $report_year = $has_acf ? get_field('annual_report_year') : '';
-                        $pdf_url = $has_acf ? get_field('annual_report_pdf_url') : '';
-                        $file_size = $has_acf ? get_field('annual_report_file_size') : '';
-                        $download_text = $has_acf ? get_field('annual_report_download_text') : __('Download Report', 'beit');
-                    ?>
-                        <article class="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border-2 border-transparent hover:border-red-100" data-type="beit_annual_report">
 
-                            <!-- Decorative top border -->
-                            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-orange-500"></div>
-
-                            <!-- Decorative background elements -->
-                            <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-red-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-3xl"></div>
-                            <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-orange-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-2xl"></div>
-
-                            <!-- Content -->
-                            <div class="relative flex flex-1 flex-col gap-6 p-7">
-
-                                <!-- PDF Icon and Year Header -->
-                                <div class="flex items-center gap-4">
-                                    <div class="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-red-600 via-red-600 to-red-700 shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                                        <i class="fa fa-file-pdf-o text-4xl text-white transition-transform group-hover:scale-110"></i>
-                                        <!-- Shine effect -->
-                                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <?php if ($report_year): ?>
-                                            <div class="ltr:text-left rtl:text-right">
-                                                <div class="mb-1 inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-600">
-                                                    <i class="fa fa-calendar-alt"></i>
-                                                    <?php echo esc_html__('Year', 'beit'); ?>
-                                                </div>
-                                                <div class="text-3xl font-black text-red-600 transition-colors group-hover:text-red-700">
-                                                    <?php echo esc_html($report_year); ?>
-                                                </div>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-
-                                <!-- Divider -->
-                                <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-
-                                <!-- Title -->
-                                <h2 class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-red-600 ltr:text-left rtl:text-right">
-                                    <?php the_title(); ?>
-                                </h2>
-
-                                <!-- Excerpt -->
-                                <?php if (has_excerpt()): ?>
-                                    <p class="line-clamp-3 text-sm leading-relaxed text-slate-600 ltr:text-left rtl:text-right">
-                                        <?php echo esc_html(get_the_excerpt()); ?>
-                                    </p>
-                                <?php endif; ?>
-
-                                <!-- Meta Information -->
-                                <div class="flex flex-wrap items-center gap-2">
-                                    <div class="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600 transition-colors group-hover:bg-slate-100">
-                                        <i class="fa fa-calendar-alt text-red-500"></i>
-                                        <span><?php echo esc_html(get_the_date()); ?></span>
-                                    </div>
-                                    <?php if ($file_size): ?>
-                                        <div class="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 transition-colors group-hover:bg-blue-100">
-                                            <i class="fa fa-hdd text-blue-500"></i>
-                                            <span><?php echo esc_html($file_size); ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-700 transition-colors group-hover:bg-green-100">
-                                        <i class="fa fa-file-pdf text-green-500"></i>
-                                        <span>PDF</span>
-                                    </div>
-                                </div>
-
-                                <!-- Download Button -->
-                                <?php if ($pdf_url): ?>
-                                    <div class="mt-auto pt-2">
-                                        <a href="<?php echo esc_url($pdf_url); ?>"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           class="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-2xl hover:shadow-red-500/50 active:scale-95">
-                                            <!-- Shine animation -->
-                                            <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full"></div>
-
-                                            <i class="fa fa-download relative text-xl transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:animate-bounce"></i>
-                                            <span class="relative"><?php echo esc_html($download_text); ?></span>
-                                            <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?> relative text-sm transition-all duration-300 <?php echo $is_rtl ? 'group-hover/btn:-translate-x-2' : 'group-hover/btn:translate-x-2'; ?>"></i>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </article>
-                    <?php
-                    }
-                    // Publications - Archive page card design
-                    elseif ('beit_publication' === $post_type) {
-                        $is_rtl = is_rtl();
-                        $has_acf = function_exists('get_field');
-                        $publication_year = $has_acf ? get_field('publication_year') : '';
-                        $pdf_url = $has_acf ? get_field('publication_pdf_url') : '';
-                        $file_size = $has_acf ? get_field('publication_file_size') : '';
-                        $download_text = $has_acf ? get_field('publication_download_text') : __('Download Publication', 'beit');
-                    ?>
-                        <article class="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border-2 border-transparent hover:border-red-100" data-type="beit_publication">
-
-                            <!-- Decorative top border -->
-                            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-orange-500"></div>
-
-                            <!-- Decorative background elements -->
-                            <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-red-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-3xl"></div>
-                            <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-orange-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-2xl"></div>
-
-                            <!-- Content -->
-                            <div class="relative flex flex-1 flex-col gap-6 p-7">
-
-                                <!-- PDF Icon and Year Header -->
-                                <div class="flex items-center gap-4">
-                                    <div class="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-red-600 via-red-600 to-red-700 shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                                        <i class="fa fa-file-pdf-o text-4xl text-white transition-transform group-hover:scale-110"></i>
-                                        <!-- Shine effect -->
-                                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <?php if ($publication_year): ?>
-                                            <div class="ltr:text-left rtl:text-right">
-                                                <div class="mb-1 inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-600">
-                                                    <i class="fa fa-calendar-alt"></i>
-                                                    <?php echo esc_html__('Year', 'beit'); ?>
-                                                </div>
-                                                <div class="text-3xl font-black text-red-600 transition-colors group-hover:text-red-700">
-                                                    <?php echo esc_html($publication_year); ?>
-                                                </div>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-
-                                <!-- Divider -->
-                                <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-
-                                <!-- Title -->
-                                <h2 class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-red-600 ltr:text-left rtl:text-right">
-                                    <?php the_title(); ?>
-                                </h2>
-
-                                <!-- Excerpt -->
-                                <?php if (has_excerpt()): ?>
-                                    <p class="line-clamp-3 text-sm leading-relaxed text-slate-600 ltr:text-left rtl:text-right">
-                                        <?php echo esc_html(get_the_excerpt()); ?>
-                                    </p>
-                                <?php endif; ?>
-
-                                <!-- Meta Information -->
-                                <div class="flex flex-wrap items-center gap-2">
-                                    <div class="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600 transition-colors group-hover:bg-slate-100">
-                                        <i class="fa fa-calendar-alt text-red-500"></i>
-                                        <span><?php echo esc_html(get_the_date()); ?></span>
-                                    </div>
-                                    <?php if ($file_size): ?>
-                                        <div class="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 transition-colors group-hover:bg-blue-100">
-                                            <i class="fa fa-hdd text-blue-500"></i>
-                                            <span><?php echo esc_html($file_size); ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-700 transition-colors group-hover:bg-green-100">
-                                        <i class="fa fa-file-pdf text-green-500"></i>
-                                        <span>PDF</span>
-                                    </div>
-                                </div>
-
-                                <!-- Download Button -->
-                                <?php if ($pdf_url): ?>
-                                    <div class="mt-auto pt-2">
-                                        <a href="<?php echo esc_url($pdf_url); ?>"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           class="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-2xl hover:shadow-red-500/50 active:scale-95">
-                                            <!-- Shine animation -->
-                                            <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full"></div>
-
-                                            <i class="fa fa-download relative text-xl transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:animate-bounce"></i>
-                                            <span class="relative"><?php echo esc_html($download_text); ?></span>
-                                            <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?> relative text-sm transition-all duration-300 <?php echo $is_rtl ? 'group-hover/btn:-translate-x-2' : 'group-hover/btn:translate-x-2'; ?>"></i>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </article>
-                    <?php
-                    }
                     // Default style for other post types (post, page, beit_media, etc.)
                     else {
                         $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
                         $post_type_obj = get_post_type_object($post_type);
                         $post_type_name = $post_type_obj ? $post_type_obj->labels->singular_name : ucfirst($post_type);
-                    ?>
-                        <article class="flex h-full flex-col overflow-hidden transition hover:-translate-y-1" data-type="<?php echo esc_attr($post_type); ?>">
-                            <?php if ($thumbnail_html) : ?>
+                        ?>
+                        <article class="flex h-full flex-col overflow-hidden transition hover:-translate-y-1"
+                            data-type="<?php echo esc_attr($post_type); ?>">
+                            <?php if ($thumbnail_html): ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden">
                                     <?php echo $thumbnail_html; ?>
                                 </a>
                             <?php endif; ?>
 
                             <div class="flex flex-1 flex-col gap-3 py-6">
-                                <?php if ($post_type !== 'post' && $post_type !== 'page') : ?>
+                                <?php if ($post_type !== 'post' && $post_type !== 'page'): ?>
                                     <span class="inline-flex items-center gap-2 text-xs font-semibold text-red-600">
                                         <i class="fa fa-tag"></i>
                                         <?php echo esc_html($post_type_name); ?>
@@ -401,15 +212,16 @@ get_template_part(
                                 <?php endif; ?>
 
                                 <h2 class="text-lg font-semibold text-slate-900">
-                                    <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <a class="transition hover:text-red-600"
+                                        href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
 
-                                <?php if (has_excerpt()) : ?>
+                                <?php if (has_excerpt()): ?>
                                     <p class="text-sm text-slate-600 line-clamp-3"><?php echo get_the_excerpt(); ?></p>
                                 <?php endif; ?>
                             </div>
                         </article>
-                    <?php
+                        <?php
                     }
                 }
                 ?>
@@ -419,21 +231,21 @@ get_template_part(
             // Pagination
             $pagination_links = paginate_links(
                 [
-                    'total'   => $GLOBALS['wp_query']->max_num_pages,
+                    'total' => $GLOBALS['wp_query']->max_num_pages,
                     'current' => max(1, get_query_var('paged')),
-                    'type'    => 'array',
+                    'type' => 'array',
                 ]
             );
 
-            if (!empty($pagination_links)) :
-            ?>
+            if (!empty($pagination_links)):
+                ?>
                 <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('Search results pagination', 'beit'); ?>">
                     <ul class="flex items-center gap-2">
                         <?php
                         foreach ($pagination_links as $link) {
                             $is_current = strpos($link, 'current') !== false;
-                            $classes    = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
-                            $classes   .= $is_current
+                            $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
+                            $classes .= $is_current
                                 ? ' border border-red-600 bg-red-600 text-white'
                                 : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
 
@@ -443,25 +255,26 @@ get_template_part(
                                 $link,
                                 1
                             );
-                        ?>
+                            ?>
                             <li class="inline-flex">
                                 <?php echo wp_kses_post($link); ?>
                             </li>
-                        <?php
+                            <?php
                         }
                         ?>
                     </ul>
                 </nav>
             <?php endif; ?>
 
-        <?php else : ?>
+        <?php else: ?>
             <div class="mx-auto max-w-2xl text-center">
                 <div class="mb-8">
                     <?php get_search_form(); ?>
                 </div>
 
                 <div class=" bg-slate-50 p-12 shadow-inner">
-                    <div class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600">
+                    <div
+                        class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600">
                         <i class="fa fa-magnifying-glass text-3xl"></i>
                     </div>
 
