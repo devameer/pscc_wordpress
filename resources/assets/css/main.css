@@ -105,7 +105,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--main-color);
+    background-color: var(--second-color);
     transform: scaleY(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -119,7 +119,7 @@
 
 #primary-menu li.menu-item.current_page_item a::after {
     transform: scaleY(1);
-    height: 80px;
+    /* height: 80px; */
 
 
 }
