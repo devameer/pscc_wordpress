@@ -594,5 +594,5 @@
 }
 
 .logo-default {
-    max-width: auto !important;
+    max-width: fit-content !important;
 }
