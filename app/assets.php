@@ -36,7 +36,7 @@ function beit_theme_enqueue_assets(): void
         'beit-fonts',
         BEIT_THEME_URI . '/public/css/fonts.css',
         [],
-        []
+        2
     );
 
     wp_enqueue_style(
