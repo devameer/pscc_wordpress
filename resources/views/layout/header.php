@@ -150,7 +150,8 @@ $faq_target = $faq_link['target'] ?? '_self';
                             </a>
                         <?php endif; ?>
                         <?php
-                        $languages = beit_get_languages();
+                        // $languages = beit_get_languages();
+                        $languages = [];
                         if (!empty($languages)):
                             foreach ($languages as $lang):
                                 if (!$lang['current_lang']):
