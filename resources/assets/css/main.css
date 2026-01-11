@@ -89,6 +89,12 @@
     white-space: nowrap;
     font-weight: 500;
     margin: 0 5px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+#primary-menu li.menu-item a:hover {
+    color: #fff;
 }
 
 #primary-menu li.menu-item a::after {

@@ -191,8 +191,8 @@ $faq_target = $faq_link['target'] ?? '_self';
             </div>
         <?php endif; ?>
 
-        <header class="navbar-section fixed w-full text-white transition-all duration-300 ease-in-out z-50"
-            data-scroll-header data-scroll-threshold="48" style="top: var(--topbar-height, 0px);">
+        <header class="navbar-section relative w-full text-white transition-all duration-300 ease-in-out z-50"
+            style="background-color: var(--main-color);">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
                 <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
@@ -229,7 +229,7 @@ $faq_target = $faq_link['target'] ?? '_self';
 
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
                         <button
-                            class="ml-auto inline-flex items-center justify-center  border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
+                            class="ml-auto inline-flex items-center justify-center border border-white/40 p-2 sm:p-2.5 text-white transition hover:border-white hover:bg-white/10 lg:hidden"
                             type="button" data-menu-toggle="mobile" aria-expanded="false"
                             aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
@@ -274,8 +274,8 @@ $faq_target = $faq_link['target'] ?? '_self';
                 </div>
             </div>
 
-            <div id="mobile-navigation"
-                class="hidden border-t border-white/10 bg-slate-950/98 backdrop-blur-md lg:hidden">
+            <div id="mobile-navigation" class="hidden border-t border-white/20 lg:hidden"
+                style="background-color: var(--main-color);">
                 <?php
                 wp_nav_menu(
                     [
