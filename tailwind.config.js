@@ -19,8 +19,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Montserrat"', ...defaultTheme.fontFamily.sans],
-        arabic: ['"29LT Bukra"', '"Cairo"', '"Tajawal"', '"Noto Sans Arabic"', ...defaultTheme.fontFamily.sans],
+        sans: ['"29LT Bukra"', ...defaultTheme.fontFamily.sans],
         bukra: ['"29LT Bukra"', ...defaultTheme.fontFamily.sans],
       },
       colors: {

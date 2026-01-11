@@ -1,3 +1,6 @@
+/* Import fonts */
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,14 +12,8 @@
 
 @layer base {
     body {
-        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+        font-family: '29LT Bukra', system-ui, -apple-system, sans-serif;
         @apply antialiased bg-slate-50 text-slate-900;
-    }
-
-    /* Arabic font support */
-    body[dir="rtl"],
-    [lang="ar"] {
-        font-family: '29LT Bukra', 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
     }
 
     h1,
@@ -25,25 +22,10 @@
     h4,
     h5,
     h6 {
-        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-    }
-
-    /* Arabic headings */
-    [dir="rtl"] h1,
-    [dir="rtl"] h2,
-    [dir="rtl"] h3,
-    [dir="rtl"] h4,
-    [dir="rtl"] h5,
-    [dir="rtl"] h6,
-    [lang="ar"] h1,
-    [lang="ar"] h2,
-    [lang="ar"] h3,
-    [lang="ar"] h4,
-    [lang="ar"] h5,
-    [lang="ar"] h6 {
-        font-family: '29LT Bukra', 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+        font-family: '29LT Bukra', system-ui, -apple-system, sans-serif;
     }
 }
+
 
 /* Example component class */
 @layer components {

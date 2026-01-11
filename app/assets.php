@@ -41,12 +41,7 @@ function beit_theme_enqueue_assets(): void
     );
 
     // Load custom fonts after Font Awesome
-    wp_enqueue_style(
-        'beit-fonts',
-        BEIT_THEME_URI . '/public/css/fonts.css',
-        ['beit-fontawesome'],
-        2
-    );
+
 
     wp_enqueue_style(
         'beit-base',
