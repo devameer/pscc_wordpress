@@ -5,22 +5,7 @@
  */
 
 /* 29LT Bukra Variable Font - Supports all weights (100-900) */
-@font-face {
-    font-family: '29LT Bukra';
-    src: url('../fonts/29LT Bukra Variable.ttf') format('truetype-variations');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
 
-/* 29LT Bukra Light - 300 */
-@font-face {
-    font-family: '29LT Bukra';
-    src: url('../fonts/29ltbukralight.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
 
 /* 29LT Bukra Regular - 400 */
 @font-face {
