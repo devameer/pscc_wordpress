@@ -76,11 +76,11 @@
     }
 
     .button-form {
-        @apply rounded bg-red-600 px-12 py-3 font-bold text-white transition hover:bg-red-700;
+        @apply rounded bg-red-600 px-12 py-3 font-bold text-white transition;
     }
 
     .btn-more {
-        @apply inline-flex items-center gap-2 rounded-sm bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-red-700
+        @apply inline-flex items-center gap-2 rounded-sm bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition;
     }
 }
 

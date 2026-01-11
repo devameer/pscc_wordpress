@@ -181,7 +181,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                             <span><?php echo esc_html($topbar_search_label); ?></span>
                         </a>
 
-                        <a class="inline-flex bg-primary  px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-red-700"
+                        <a class="inline-flex bg-primary  px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-primary"
                             href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                             rel="noopener">
                             <?php echo esc_html($donate_label); ?>
@@ -296,7 +296,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                         <span><?php echo esc_html($topbar_search_label); ?></span>
                     </a>
 
-                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-red-700"
+                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary"
                         href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                         rel="noopener">
                         <?php echo esc_html($donate_label); ?>

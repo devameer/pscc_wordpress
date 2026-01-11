@@ -57,7 +57,7 @@ while (have_posts()) {
                                 <?php if ($primary_cat): ?>
                                     <div class="absolute top-6 ltr:left-6 rtl:right-6">
                                         <a href="<?php echo esc_url(get_category_link($primary_cat->term_id)); ?>"
-                                            class="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 shadow-xl transition-all hover:bg-red-700">
+                                            class="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 shadow-xl transition-all hover:bg-primary">
                                             <i class="fa fa-tag text-white"></i>
                                             <span class="font-bold text-white"><?php echo esc_html($primary_cat->name); ?></span>
                                         </a>
