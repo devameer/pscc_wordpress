@@ -202,7 +202,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php if ($site_logo): ?>
                                     <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
-                                        'class' => 'logo-default transition-opacity duration-300 h-20 mx-w-auto',
+                                        'class' => 'logo-default transition-opacity duration-300 h-20 max-w-auto',
                                         'alt' => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
