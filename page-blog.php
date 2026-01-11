@@ -80,13 +80,13 @@ if (!$posts_query->have_posts()) {
         <?php if (!empty($categories)): ?>
             <div class="mb-10 flex flex-wrap items-center justify-center gap-3" data-aos="fade-up">
                 <a href="<?php echo esc_url(get_permalink()); ?>"
-                   class="rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 <?php echo $selected_category === 0 ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg' : 'bg-white text-slate-700 shadow-md hover:bg-slate-50'; ?>">
+                    class="rounded-full px-5 py-2 text-sm font-bold transition-all duration-300 <?php echo $selected_category === 0 ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg' : 'bg-white text-slate-700 shadow-md hover:bg-slate-50'; ?>">
                     <i class="fa fa-th-large"></i>
                     <?php echo esc_html__('All', 'beit'); ?>
                 </a>
                 <?php foreach ($categories as $category): ?>
                     <a href="<?php echo esc_url(add_query_arg('category', $category->term_id, get_permalink())); ?>"
-                       class="rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 <?php echo $selected_category === $category->term_id ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg' : 'bg-white text-slate-700 shadow-md hover:bg-slate-50'; ?>">
+                        class="rounded-full px-5 py-2 text-sm font-bold transition-all duration-300 <?php echo $selected_category === $category->term_id ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg' : 'bg-white text-slate-700 shadow-md hover:bg-slate-50'; ?>">
                         <i class="fa fa-tag"></i>
                         <?php echo esc_html($category->name); ?>
                         <span class="opacity-75">(<?php echo esc_html($category->count); ?>)</span>
@@ -111,7 +111,8 @@ if (!$posts_query->have_posts()) {
 
                 $delay = $index * 100;
                 ?>
-                <article class="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                <article
+                    class="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
                     data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay); ?>">
 
                     <!-- Thumbnail -->
@@ -129,7 +130,8 @@ if (!$posts_query->have_posts()) {
                         <!-- Category Badge -->
                         <?php if ($primary_cat): ?>
                             <div class="absolute top-4 ltr:left-4 rtl:right-4">
-                                <span class="inline-flex items-center gap-1 rounded-full bg-red-600 px-3 py-1.5 text-xs font-bold text-white shadow-lg">
+                                <span
+                                    class="inline-flex items-center gap-1 rounded-full bg-red-600 px-3 py-1.5 text-xs font-bold text-white shadow-lg">
                                     <i class="fa fa-tag"></i>
                                     <?php echo esc_html($primary_cat); ?>
                                 </span>
@@ -137,12 +139,15 @@ if (!$posts_query->have_posts()) {
                         <?php endif; ?>
 
                         <!-- Gradient Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        </div>
                     </div>
 
                     <!-- Content -->
                     <div class="flex flex-1 flex-col gap-4 p-6">
-                        <h2 class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-red-600 ltr:text-left rtl:text-right">
+                        <h2
+                            class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-red-600 ltr:text-left rtl:text-right">
                             <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>">
                                 <?php the_title(); ?>
                             </a>
@@ -155,7 +160,8 @@ if (!$posts_query->have_posts()) {
                         <?php endif; ?>
 
                         <!-- Meta Information -->
-                        <div class="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                        <div
+                            class="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-500">
                             <span class="inline-flex items-center gap-1">
                                 <i class="fa fa-calendar-alt text-red-600"></i>
                                 <?php echo esc_html(get_the_date()); ?>
@@ -176,9 +182,10 @@ if (!$posts_query->have_posts()) {
 
                         <!-- Read More Button -->
                         <a href="<?php the_permalink(); ?>"
-                           class="group/btn inline-flex items-center gap-2 self-start rounded-lg bg-gradient-to-r from-red-600 to-red-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg">
+                            class="group/btn inline-flex items-center gap-2 self-start rounded-lg bg-gradient-to-r from-red-600 to-red-700 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg">
                             <?php echo esc_html__('Read More', 'beit'); ?>
-                            <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?> text-xs transition-transform group-hover/btn:<?php echo $is_rtl ? '-translate-x-1' : 'translate-x-1'; ?>"></i>
+                            <i
+                                class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?> text-xs transition-transform group-hover/btn:<?php echo $is_rtl ? '-translate-x-1' : 'translate-x-1'; ?>"></i>
                         </a>
                     </div>
                 </article>
@@ -205,7 +212,7 @@ if (!$posts_query->have_posts()) {
                     <?php
                     foreach ($pagination_links as $link):
                         $is_current = strpos($link, 'current') !== false;
-                        $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
+                        $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                         $classes .= $is_current
                             ? ' border border-red-600 bg-red-600 text-white'
                             : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';

@@ -54,91 +54,91 @@ get_template_part(
     <section class="container mx-auto gap-10 px-4 py-16 md:px-6">
         <div>
             <?php if ($news_query->have_posts()): ?>
-                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <?php
-                    while ($news_query->have_posts()):
-                        $news_query->the_post();
-                        $thumbnail_id = get_post_thumbnail_id();
-                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
-                        ?>
-                        <article class="flex h-full flex-col overflow-hidden bg-white transition hover:-translate-y-1">
-                            <?php if ($thumbnail_html): ?>
-                                <a href="<?php the_permalink(); ?>" class="block overflow-hidden relative">
-                                    <?php echo $thumbnail_html; ?>
-                                    <span class="absolute inset-0 z-10 flex items-center justify-center group">
-                                        <div
-                                            class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
-                                        </div>
-                                        <span
-                                            class="inline-flex h-20 w-20 items-center justify-center  text-3xl
+                    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        <?php
+                        while ($news_query->have_posts()):
+                            $news_query->the_post();
+                            $thumbnail_id = get_post_thumbnail_id();
+                            $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover', 'loading' => 'lazy', 'decoding' => 'async']) : '';
+                            ?>
+                                <article class="flex h-full flex-col overflow-hidden bg-white transition hover:-translate-y-1">
+                                    <?php if ($thumbnail_html): ?>
+                                            <a href="<?php the_permalink(); ?>" class="block overflow-hidden relative">
+                                                <?php echo $thumbnail_html; ?>
+                                                <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                                                    <div
+                                                        class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
+                                                    </div>
+                                                    <span
+                                                        class="inline-flex h-20 w-20 items-center justify-center  text-3xl
                                 text-white  transition-all duration-700 relative z-10  top-60 group-hover:top-0 opacity-0 group-hover:opacity-100">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                    </span>
-                                </a>
-                            <?php endif; ?>
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                    <?php endif; ?>
 
-                            <div class="flex flex-1 flex-col gap-4 py-4 ltr:text-left rtl:text-right">
-                                <h2 class="text-lg font-normal">
-                                    <a class="transition hover:text-red-600"
-                                        href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h2>
-
-
+                                    <div class="flex flex-1 flex-col gap-4 py-4 ltr:text-left rtl:text-right">
+                                        <h2 class="text-lg font-normal">
+                                            <a class="transition hover:text-red-600"
+                                                href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </h2>
 
 
-                            </div>
-                        </article>
-                    <?php endwhile; ?>
-                    <?php wp_reset_postdata(); ?>
-                </div>
 
-                <?php
-                $pagination_links = paginate_links(
-                    [
-                        'total' => max(1, (int) $news_query->max_num_pages),
-                        'current' => $paged,
-                        'type' => 'array',
-                    ]
-                );
 
-                if (!empty($pagination_links)):
-                    ?>
-                    <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('News pagination', 'beit'); ?>">
-                        <ul class="flex items-center gap-2">
-                            <?php
-                            foreach ($pagination_links as $link):
-                                $is_current = strpos($link, 'current') !== false;
-                                $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
-                                $classes .= $is_current
-                                    ? ' border border-red-600 bg-red-600 text-white'
-                                    : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
+                                    </div>
+                                </article>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+                    </div>
 
-                                $link = preg_replace(
-                                    '/class="([^"]*)"/',
-                                    'class="$1 ' . esc_attr($classes) . '"',
-                                    $link,
-                                    1
-                                );
-                                ?>
-                                <li class="inline-flex">
-                                    <?php echo wp_kses_post($link); ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </nav>
                     <?php
-                endif;
-                ?>
+                    $pagination_links = paginate_links(
+                        [
+                            'total' => max(1, (int) $news_query->max_num_pages),
+                            'current' => $paged,
+                            'type' => 'array',
+                        ]
+                    );
+
+                    if (!empty($pagination_links)):
+                        ?>
+                            <nav class="mt-12 flex justify-center" aria-label="<?php esc_attr_e('News pagination', 'beit'); ?>">
+                                <ul class="flex items-center gap-2">
+                                    <?php
+                                    foreach ($pagination_links as $link):
+                                        $is_current = strpos($link, 'current') !== false;
+                                        $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
+                                        $classes .= $is_current
+                                            ? ' border border-red-600 bg-red-600 text-white'
+                                            : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
+
+                                        $link = preg_replace(
+                                            '/class="([^"]*)"/',
+                                            'class="$1 ' . esc_attr($classes) . '"',
+                                            $link,
+                                            1
+                                        );
+                                        ?>
+                                            <li class="inline-flex">
+                                                <?php echo wp_kses_post($link); ?>
+                                            </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </nav>
+                            <?php
+                    endif;
+                    ?>
             <?php else: ?>
-                <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
-                    <h2 class="text-2xl font-semibold text-slate-900">
-                        <?php echo esc_html(beit_translate('No news items found', 'no_news_found')); ?>
-                    </h2>
-                    <p class="mt-2 text-sm text-slate-600">
-                        <?php echo esc_html(beit_translate('Check back soon for the latest updates.', 'check_back_soon')); ?>
-                    </p>
-                </div>
+                    <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
+                        <h2 class="text-2xl font-bold text-slate-900">
+                            <?php echo esc_html(beit_translate('No news items found', 'no_news_found')); ?>
+                        </h2>
+                        <p class="mt-2 text-sm text-slate-600">
+                            <?php echo esc_html(beit_translate('Check back soon for the latest updates.', 'check_back_soon')); ?>
+                        </p>
+                    </div>
             <?php endif; ?>
         </div>
     </section>

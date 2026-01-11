@@ -24,7 +24,7 @@ while (have_posts()) {
         'resources/views/components/page-hero',
         null,
         [
-            'title'       => $title,
+            'title' => $title,
             'description' => '',
             'background_classes' => 'bg-gradient-to-br from-blue-900 via-slate-800 to-blue-950',
         ]
@@ -34,7 +34,7 @@ while (have_posts()) {
     <main class="bg-white text-slate-900">
         <section class="container mx-auto px-4 py-16">
             <div class="mx-auto max-w-6xl">
-                <?php if ($media_type === 'image') : ?>
+                <?php if ($media_type === 'image'): ?>
                     <?php
                     // Get featured image
                     $thumbnail_id = get_post_thumbnail_id();
@@ -57,12 +57,12 @@ while (have_posts()) {
                     $all_images = array_unique($all_images);
                     ?>
 
-                    <?php if (!empty($all_images)) : ?>
+                    <?php if (!empty($all_images)): ?>
                         <div class="mb-8" data-aos="fade-up">
                             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                                 <?php
                                 $delay = 0;
-                                foreach ($all_images as $index => $image_id) :
+                                foreach ($all_images as $index => $image_id):
                                     $image_url = wp_get_attachment_image_url($image_id, 'full');
                                     $thumb_url = wp_get_attachment_image_url($image_id, 'large');
                                     $medium_url = wp_get_attachment_image_url($image_id, 'medium');
@@ -80,20 +80,25 @@ while (have_posts()) {
                                         $caption .= ' - ' . $image_caption;
                                     }
                                     ?>
-                                    <article class="overflow-hidden transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
-                                        <a
-                                            class="group relative block w-full cursor-pointer pswp-gallery-item"
-                                            data-pswp-gallery="media-gallery"
-                                            data-pswp-width="<?php echo esc_attr($image_width); ?>"
+                                    <article class="overflow-hidden transition hover:-translate-y-1" data-aos="fade-up"
+                                        data-aos-delay="<?php echo $delay; ?>">
+                                        <a class="group relative block w-full cursor-pointer pswp-gallery-item"
+                                            data-pswp-gallery="media-gallery" data-pswp-width="<?php echo esc_attr($image_width); ?>"
                                             data-pswp-height="<?php echo esc_attr($image_height); ?>"
                                             href="<?php echo esc_url($image_url); ?>"
                                             aria-label="<?php echo esc_attr(sprintf(__('View image %d', 'beit'), $index + 1)); ?>">
-                                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
-                                            <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
-                                            <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                <img class="h-16 w-16" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
+                                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url); ?>"
+                                                alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                                            <span class="pswp-caption-content"
+                                                style="display:none;"><?php echo esc_html($caption); ?></span>
+                                            <span
+                                                class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                <img class="h-16 w-16"
+                                                    src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>"
+                                                    alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
                                             </span>
-                                            <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="lazy" decoding="async">
+                                            <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>"
+                                                alt="<?php echo esc_attr($image_alt); ?>" loading="lazy" decoding="async">
                                         </a>
                                     </article>
                                     <?php
@@ -108,16 +113,16 @@ while (have_posts()) {
                                 <?php echo esc_html(sprintf(__('%d images in this gallery', 'beit'), count($all_images))); ?>
                             </p>
                         </div>
-                    <?php else : ?>
+                    <?php else: ?>
                         <div class="bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                             <i class="fa fa-image mb-4 text-6xl text-slate-300"></i>
-                            <h2 class="text-2xl font-semibold text-slate-900">
+                            <h2 class="text-2xl font-bold text-slate-900">
                                 <?php echo esc_html(__('No images found', 'beit')); ?>
                             </h2>
                         </div>
                     <?php endif; ?>
 
-                <?php elseif ($media_type === 'video') : ?>
+                <?php elseif ($media_type === 'video'): ?>
                     <?php
                     $video_source_type = get_field('media_video_source_type') ?: 'url';
                     $video_thumbnail_id = get_field('media_video_thumbnail');
@@ -129,15 +134,15 @@ while (have_posts()) {
                     }
                     ?>
 
-                    <?php if ($video_url) : ?>
+                    <?php if ($video_url): ?>
                         <div class="mb-8" data-aos="fade-up">
                             <div class="aspect-video overflow-hidden rounded-lg shadow-lg">
-                                <?php if ($video_source_type === 'file') : ?>
+                                <?php if ($video_source_type === 'file'): ?>
                                     <video class="h-full w-full" controls<?php echo $video_thumbnail_id ? ' poster="' . esc_url(wp_get_attachment_image_url($video_thumbnail_id, 'full')) . '"' : ''; ?>>
                                         <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
                                         <?php esc_html_e('Your browser does not support the video tag.', 'beit'); ?>
                                     </video>
-                                <?php else : ?>
+                                <?php else: ?>
                                     <?php
                                     // Use WordPress oEmbed for external URLs
                                     echo wp_oembed_get($video_url);
@@ -145,27 +150,29 @@ while (have_posts()) {
                                 <?php endif; ?>
                             </div>
                         </div>
-                    <?php else : ?>
+                    <?php else: ?>
                         <div class="bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                             <i class="fa fa-video-camera mb-4 text-6xl text-slate-300"></i>
-                            <h2 class="text-2xl font-semibold text-slate-900">
+                            <h2 class="text-2xl font-bold text-slate-900">
                                 <?php echo esc_html(__('No video found', 'beit')); ?>
                             </h2>
                         </div>
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <?php if ($content) : ?>
-                    <div class="prose prose-slate mx-auto mt-12 max-w-3xl <?php echo $is_rtl ? 'text-right' : 'text-left'; ?>" data-aos="fade-up">
+                <?php if ($content): ?>
+                    <div class="prose prose-slate mx-auto mt-12 max-w-3xl <?php echo $is_rtl ? 'text-right' : 'text-left'; ?>"
+                        data-aos="fade-up">
                         <?php echo wp_kses_post($content); ?>
                     </div>
                 <?php endif; ?>
 
                 <div class="mt-12 text-center" data-aos="fade-up">
-                    <a href="<?php echo esc_url(home_url('/media-center')); ?>" class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700">
-                        <?php if ($is_rtl) : ?>
+                    <a href="<?php echo esc_url(home_url('/media-center')); ?>"
+                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700">
+                        <?php if ($is_rtl): ?>
                             <i class="fa fa-arrow-right"></i>
-                        <?php else : ?>
+                        <?php else: ?>
                             <i class="fa fa-arrow-left"></i>
                         <?php endif; ?>
                         <span><?php echo esc_html(__('Back to Media Center', 'beit')); ?></span>

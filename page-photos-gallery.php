@@ -28,7 +28,7 @@ while (have_posts()) {
         'resources/views/components/page-hero',
         null,
         [
-            'title'       => $hero_title,
+            'title' => $hero_title,
             'description' => $hero_description,
             'background_classes' => 'bg-gradient-to-br from-blue-900 via-slate-800 to-blue-950',
         ]
@@ -37,25 +37,25 @@ while (have_posts()) {
     // Query for photo media items
     $photos_query = new WP_Query(
         [
-            'post_type'      => 'beit_media',
+            'post_type' => 'beit_media',
             'posts_per_page' => -1,
-            'post_status'    => 'publish',
-            'meta_query'     => [
+            'post_status' => 'publish',
+            'meta_query' => [
                 [
-                    'key'     => 'media_type',
-                    'value'   => 'image',
+                    'key' => 'media_type',
+                    'value' => 'image',
                     'compare' => '=',
                 ],
             ],
-            'orderby'        => 'date',
-            'order'          => 'DESC',
+            'orderby' => 'date',
+            'order' => 'DESC',
         ]
     );
-?>
+    ?>
 
     <main class="bg-white text-slate-900">
         <section class="container mx-auto px-4 py-16">
-            <?php if ($photos_query->have_posts()) : ?>
+            <?php if ($photos_query->have_posts()): ?>
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-slate-900">
                         <?php echo esc_html(beit_translate('Photo Gallery', 'photo_gallery')); ?>
@@ -68,7 +68,7 @@ while (have_posts()) {
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <?php
                     $delay = 0;
-                    while ($photos_query->have_posts()) :
+                    while ($photos_query->have_posts()):
                         $photos_query->the_post();
                         $thumbnail_id = get_post_thumbnail_id();
                         $post_id = get_the_ID();
@@ -94,7 +94,7 @@ while (have_posts()) {
                         $all_images = array_unique($all_images);
                         $image_count = count($all_images);
 
-                        if ($thumbnail_id) :
+                        if ($thumbnail_id):
                             $thumb_url = wp_get_attachment_image_url($thumbnail_id, 'large');
                             $image_url = wp_get_attachment_image_url($thumbnail_id, 'full');
 
@@ -105,34 +105,41 @@ while (have_posts()) {
 
                             // Unique lightbox group ID for this media item
                             $gallery_id = 'gallery-' . $post_id;
-                    ?>
-                            <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
-                                <a
-                                    class="group relative block w-full pswp-gallery-item"
+                            ?>
+                            <article
+                                class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>"
+                                data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
+                                <a class="group relative block w-full pswp-gallery-item"
                                     data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
                                     data-pswp-width="<?php echo esc_attr($image_width); ?>"
-                                    data-pswp-height="<?php echo esc_attr($image_height); ?>"
-                                    href="<?php echo esc_url($image_url); ?>"
+                                    data-pswp-height="<?php echo esc_attr($image_height); ?>" href="<?php echo esc_url($image_url); ?>"
                                     aria-label="<?php echo esc_attr(sprintf(__('View %s', 'beit'), $title)); ?>">
-                                    <img class="pswp-thumbnail" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" style="display:none;">
+                                    <img class="pswp-thumbnail" src="<?php echo esc_url($thumb_url); ?>"
+                                        alt="<?php echo esc_attr($title); ?>" style="display:none;">
                                     <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($title); ?></span>
-                                    <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>" alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
+                                    <span
+                                        class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                        <img class="h-20 w-20"
+                                            src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/galleryIcon.svg'); ?>"
+                                            alt="<?php esc_attr_e('View Image', 'beit'); ?>" loading="lazy" decoding="async">
                                     </span>
-                                    <?php if ($image_count > 1) : ?>
-                                        <span class="absolute right-2 top-2 z-20 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                                    <?php if ($image_count > 1): ?>
+                                        <span
+                                            class="absolute right-2 top-2 z-20 rounded-full bg-blue-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
                                             <i class="fa fa-images"></i> <?php echo esc_html($image_count); ?>
                                         </span>
                                     <?php endif; ?>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
+                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>"
+                                        alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
                                 </a>
 
                                 <?php
                                 // Add hidden links for gallery images to enable lightbox navigation
-                                if ($gallery_images && is_array($gallery_images)) :
-                                    foreach ($gallery_images as $gallery_image_id) :
-                                        if ($gallery_image_id == $thumbnail_id) continue; // Skip duplicate
-
+                                if ($gallery_images && is_array($gallery_images)):
+                                    foreach ($gallery_images as $gallery_image_id):
+                                        if ($gallery_image_id == $thumbnail_id)
+                                            continue; // Skip duplicate
+                
                                         $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
                                         $gallery_thumb_url = wp_get_attachment_image_url($gallery_image_id, 'medium');
                                         $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
@@ -145,33 +152,32 @@ while (have_posts()) {
                                         $gallery_meta = wp_get_attachment_metadata($gallery_image_id);
                                         $gallery_width = $gallery_meta['width'] ?? 1920;
                                         $gallery_height = $gallery_meta['height'] ?? 1080;
-                                ?>
-                                        <a
-                                            class="hidden pswp-gallery-item"
-                                            data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                                        ?>
+                                        <a class="hidden pswp-gallery-item" data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
                                             data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
                                             data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
                                             href="<?php echo esc_url($gallery_image_url); ?>">
-                                            <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                                            <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>"
+                                                alt="<?php echo esc_attr($caption); ?>" style="display:none;">
                                             <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
                                         </a>
-                                <?php endforeach;
+                                    <?php endforeach;
                                 endif;
                                 ?>
 
                                 <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($title); ?></h3>
                             </article>
-                    <?php
+                            <?php
                             $delay = ($delay + 50) % 500;
                         endif;
                     endwhile;
                     wp_reset_postdata();
                     ?>
                 </div>
-            <?php else : ?>
+            <?php else: ?>
                 <div class=" bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                     <i class="fa fa-images mb-4 text-6xl text-slate-300"></i>
-                    <h2 class="text-2xl font-semibold text-slate-900">
+                    <h2 class="text-2xl font-bold text-slate-900">
                         <?php echo esc_html(beit_translate('No photos found', 'no_photos_found')); ?>
                     </h2>
                     <p class="mt-2 text-sm text-slate-600">
@@ -182,7 +188,7 @@ while (have_posts()) {
         </section>
     </main>
 
-<?php
+    <?php
 }
 ?>
 

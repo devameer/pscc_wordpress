@@ -57,7 +57,7 @@ while (have_posts()) {
                                 <?php if ($primary_cat): ?>
                                     <div class="absolute top-6 ltr:left-6 rtl:right-6">
                                         <a href="<?php echo esc_url(get_category_link($primary_cat->term_id)); ?>"
-                                           class="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 shadow-xl transition-all hover:bg-red-700">
+                                            class="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 shadow-xl transition-all hover:bg-red-700">
                                             <i class="fa fa-tag text-white"></i>
                                             <span class="font-bold text-white"><?php echo esc_html($primary_cat->name); ?></span>
                                         </a>
@@ -70,16 +70,17 @@ while (have_posts()) {
                         <?php endif; ?>
 
                         <!-- Post Meta -->
-                        <div class="flex flex-wrap items-center gap-4 rounded-xl bg-white p-5 shadow-md" data-aos="fade-up" data-aos-delay="50">
+                        <div class="flex flex-wrap items-center gap-4 rounded-xl bg-white p-5 shadow-md" data-aos="fade-up"
+                            data-aos-delay="50">
                             <div class="flex items-center gap-2 text-sm text-slate-600">
                                 <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
                                     <i class="fa fa-calendar-alt text-red-600"></i>
                                 </div>
                                 <div class="ltr:text-left rtl:text-right">
-                                    <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                    <div class="text-xs font-bold uppercase tracking-wide text-slate-500">
                                         <?php echo esc_html__('Published', 'beit'); ?>
                                     </div>
-                                    <div class="font-semibold text-slate-900">
+                                    <div class="font-bold text-slate-900">
                                         <?php echo esc_html(get_the_date()); ?>
                                     </div>
                                 </div>
@@ -92,10 +93,10 @@ while (have_posts()) {
                                     <i class="fa fa-user text-blue-600"></i>
                                 </div>
                                 <div class="ltr:text-left rtl:text-right">
-                                    <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                    <div class="text-xs font-bold uppercase tracking-wide text-slate-500">
                                         <?php echo esc_html__('Author', 'beit'); ?>
                                     </div>
-                                    <div class="font-semibold text-slate-900">
+                                    <div class="font-bold text-slate-900">
                                         <?php echo esc_html(get_the_author()); ?>
                                     </div>
                                 </div>
@@ -108,10 +109,10 @@ while (have_posts()) {
                                         <i class="fa fa-comments text-green-600"></i>
                                     </div>
                                     <div class="ltr:text-left rtl:text-right">
-                                        <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                        <div class="text-xs font-bold uppercase tracking-wide text-slate-500">
                                             <?php echo esc_html__('Comments', 'beit'); ?>
                                         </div>
-                                        <div class="font-semibold text-slate-900">
+                                        <div class="font-bold text-slate-900">
                                             <?php echo esc_html(get_comments_number()); ?>
                                         </div>
                                     </div>
@@ -121,7 +122,8 @@ while (have_posts()) {
 
                         <!-- Post Content -->
                         <div class="rounded-xl bg-white p-6 shadow-lg md:p-10" data-aos="fade-up" data-aos-delay="100">
-                            <div class="prose max-w-none prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-red-600 hover:prose-a:text-red-700 prose-strong:text-slate-900 prose-ul:text-slate-700 prose-img:rounded-xl ltr:text-left rtl:text-right">
+                            <div
+                                class="prose max-w-none prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-red-600 hover:prose-a:text-red-700 prose-strong:text-slate-900 prose-ul:text-slate-700 prose-img:rounded-xl ltr:text-left rtl:text-right">
                                 <?php the_content(); ?>
                             </div>
                             <?php wp_link_pages(['before' => '<div class="mt-8 text-sm text-slate-500">' . esc_html__('Pages:', 'beit'), 'after' => '</div>']); ?>
@@ -140,7 +142,7 @@ while (have_posts()) {
                                 <div class="flex flex-wrap gap-2">
                                     <?php foreach ($tags as $tag): ?>
                                         <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"
-                                           class="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 transition-all hover:bg-red-100 hover:text-red-600">
+                                            class="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 transition-all hover:bg-red-100 hover:text-red-600">
                                             <i class="fa fa-hashtag text-xs"></i>
                                             <?php echo esc_html($tag->name); ?>
                                         </a>
@@ -154,12 +156,16 @@ while (have_posts()) {
                             data-aos="fade-up" data-aos-delay="200">
 
                             <!-- Decorative Elements -->
-                            <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-red-100 opacity-20 blur-3xl"></div>
-                            <div class="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-orange-100 opacity-20 blur-2xl"></div>
+                            <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-red-100 opacity-20 blur-3xl">
+                            </div>
+                            <div
+                                class="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-orange-100 opacity-20 blur-2xl">
+                            </div>
 
                             <div class="relative space-y-6">
                                 <div class="text-center">
-                                    <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 shadow-lg">
+                                    <div
+                                        class="mb-2 inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 shadow-lg">
                                         <i class="fa fa-share-alt text-white"></i>
                                         <h3 class="text-sm font-bold uppercase tracking-wider text-white">
                                             <?php echo esc_html__('Share this post', 'beit'); ?>
@@ -224,10 +230,10 @@ while (have_posts()) {
                                     foreach ($social_links as $link):
                                         $is_external = !isset($link['external']) || $link['external'] !== false;
                                         ?>
-                                        <a href="<?php echo $link['url']; ?>"
-                                           <?php if ($is_external): ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>
-                                           class="group relative inline-flex h-14 w-14 transform items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br <?php echo $link['bg']; ?> text-white shadow-lg transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
-                                           aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
+                                        <a href="<?php echo $link['url']; ?>" <?php if ($is_external): ?>target="_blank"
+                                                rel="noopener noreferrer" <?php endif; ?>
+                                            class="group relative inline-flex h-14 w-14 transform items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br <?php echo $link['bg']; ?> text-white shadow-lg transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
+                                            aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
                                             <?php if ($link['icon'] === 'x-twitter'): ?>
                                                 <span class="relative z-10 h-5 w-5">
                                                     <?php
@@ -247,7 +253,8 @@ while (have_posts()) {
                                         class="group relative inline-flex h-14 w-14 transform items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-slate-700 to-slate-800 text-white shadow-lg transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
                                         aria-label="<?php echo esc_attr__('Copy link', 'beit'); ?>">
                                         <i class="fa fa-link relative z-10 text-xl" id="copyIcon"></i>
-                                        <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300" id="checkIcon"></i>
+                                        <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300"
+                                            id="checkIcon"></i>
                                     </button>
                                 </div>
 
@@ -291,7 +298,7 @@ while (have_posts()) {
                                 <div class="space-y-2">
                                     <?php foreach ($categories as $cat): ?>
                                         <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
-                                           class="group flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 transition-all hover:bg-red-50">
+                                            class="group flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 transition-all hover:bg-red-50">
                                             <span class="font-medium text-slate-700 group-hover:text-red-600">
                                                 <?php echo esc_html($cat->name); ?>
                                             </span>
@@ -320,16 +327,17 @@ while (have_posts()) {
                                     <?php echo esc_html__('Recent Posts', 'beit'); ?>
                                 </h3>
                                 <div class="space-y-4">
-                                    <?php while ($recent_posts->have_posts()): $recent_posts->the_post(); ?>
+                                    <?php while ($recent_posts->have_posts()):
+                                        $recent_posts->the_post(); ?>
                                         <a href="<?php the_permalink(); ?>"
-                                           class="group flex gap-3 rounded-lg p-2 transition-all hover:bg-slate-50">
+                                            class="group flex gap-3 rounded-lg p-2 transition-all hover:bg-slate-50">
                                             <?php if (has_post_thumbnail()): ?>
                                                 <div class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
                                                     <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover transition-transform group-hover:scale-110']); ?>
                                                 </div>
                                             <?php endif; ?>
                                             <div class="flex-1 ltr:text-left rtl:text-right">
-                                                <h4 class="line-clamp-2 text-sm font-semibold text-slate-900 group-hover:text-red-600">
+                                                <h4 class="line-clamp-2 text-sm font-bold text-slate-900 group-hover:text-red-600">
                                                     <?php the_title(); ?>
                                                 </h4>
                                                 <p class="mt-1 text-xs text-slate-500">
@@ -338,7 +346,8 @@ while (have_posts()) {
                                                 </p>
                                             </div>
                                         </a>
-                                    <?php endwhile; wp_reset_postdata(); ?>
+                                    <?php endwhile;
+                                    wp_reset_postdata(); ?>
                                 </div>
                             </div>
                         <?php endif; ?>

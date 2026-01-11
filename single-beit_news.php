@@ -49,7 +49,7 @@ while (have_posts()) {
                     </figure>
                 <?php endif; ?>
 
-                <div class="prose max-w-none prose-slate prose-headings:font-semibold prose-a:text-red-600 hover:prose-a:text-red-700"
+                <div class="prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700"
                     data-aos="fade-up" data-aos-delay="100">
                     <?php the_content(); ?>
                 </div>
@@ -59,13 +59,13 @@ while (have_posts()) {
                 <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500" data-aos="fade-up"
                     data-aos-delay="200">
                     <span
-                        class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-700">
+                        class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-700">
                         <i class="fa fa-calendar"></i>
                         <?php echo esc_html(get_the_date()); ?>
                     </span>
                     <?php if ($primary_cat): ?>
                         <span
-                            class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-700">
+                            class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-700">
                             <i class="fa fa-folder"></i>
                             <?php echo esc_html($primary_cat); ?>
                         </span>
@@ -235,7 +235,7 @@ while (have_posts()) {
                     }
                 </script>
 
-                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-semibold text-red-600"
+                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-bold text-red-600"
                     data-aos="fade-up" data-aos-delay="300">
                     <span>
                         <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_translate('Previous', 'previous'))); ?>
@@ -270,7 +270,7 @@ while (have_posts()) {
                                 </p>
                             </div>
                             <a href="<?php echo esc_url(get_post_type_archive_link('beit_news')); ?>"
-                                class="inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:text-red-700">
+                                class="inline-flex items-center gap-2 text-sm font-bold text-red-600 transition hover:text-red-700">
                                 <?php echo esc_html(beit_translate('View All', 'view_all')); ?>
                                 <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                             </a>
@@ -294,7 +294,7 @@ while (have_posts()) {
                                             ]); ?>
                                             <?php if ($article_cat): ?>
                                                 <span
-                                                    class="absolute top-3 <?php echo $is_rtl ? 'right-3' : 'left-3'; ?> inline-block rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                                                    class="absolute top-3 <?php echo $is_rtl ? 'right-3' : 'left-3'; ?> inline-block rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
                                                     <?php echo esc_html($article_cat); ?>
                                                 </span>
                                             <?php endif; ?>
@@ -321,7 +321,7 @@ while (have_posts()) {
                                         </p>
 
                                         <a href="<?php the_permalink(); ?>"
-                                            class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-red-600 transition hover:gap-3 hover:text-red-700">
+                                            class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-red-600 transition hover:gap-3 hover:text-red-700">
                                             <?php echo esc_html(beit_translate('Read More', 'read_more')); ?>
                                             <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                                         </a>
@@ -340,9 +340,8 @@ while (have_posts()) {
 
             <aside class="space-y-8" data-aos="fade-left" data-aos-delay="200">
                 <?php if (!empty($categories)): ?>
-                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
-                        data-aos-delay="300">
-                        <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
+                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="300">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
                             <?php echo esc_html(beit_translate('Categories', 'categories')); ?>
                         </h2>
                         <ul class="mt-4 space-y-2 text-sm text-slate-700">
@@ -370,9 +369,8 @@ while (have_posts()) {
 
                 if ($recent->have_posts()):
                     ?>
-                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left"
-                        data-aos-delay="400">
-                        <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500">
+                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
                             <?php echo esc_html(beit_translate('Recent News', 'recent_news')); ?>
                         </h2>
                         <ul class="mt-4 space-y-4 text-sm text-slate-700">
@@ -390,7 +388,7 @@ while (have_posts()) {
                                         <span class="flex-1">
                                             <span
                                                 class="block text-xs text-slate-400"><?php echo esc_html(get_the_date()); ?></span>
-                                            <span class="block font-semibold"><?php the_title(); ?></span>
+                                            <span class="block font-bold"><?php the_title(); ?></span>
                                         </span>
                                     </a>
                                 </li>

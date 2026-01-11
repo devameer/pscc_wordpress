@@ -28,7 +28,7 @@ while (have_posts()) {
         'resources/views/components/page-hero',
         null,
         [
-            'title'       => $hero_title,
+            'title' => $hero_title,
             'description' => $hero_description,
             'background_classes' => 'bg-gradient-to-br from-red-900 via-slate-800 to-red-950',
         ]
@@ -37,25 +37,25 @@ while (have_posts()) {
     // Query for video media items
     $videos_query = new WP_Query(
         [
-            'post_type'      => 'beit_media',
+            'post_type' => 'beit_media',
             'posts_per_page' => -1,
-            'post_status'    => 'publish',
-            'meta_query'     => [
+            'post_status' => 'publish',
+            'meta_query' => [
                 [
-                    'key'     => 'media_type',
-                    'value'   => 'video',
+                    'key' => 'media_type',
+                    'value' => 'video',
                     'compare' => '=',
                 ],
             ],
-            'orderby'        => 'date',
-            'order'          => 'DESC',
+            'orderby' => 'date',
+            'order' => 'DESC',
         ]
     );
     ?>
 
     <main class="bg-white text-slate-900">
         <section class="container mx-auto px-4 py-16">
-            <?php if ($videos_query->have_posts()) : ?>
+            <?php if ($videos_query->have_posts()): ?>
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-slate-900">
                         <?php echo esc_html(beit_translate('Video Gallery', 'video_gallery')); ?>
@@ -67,7 +67,7 @@ while (have_posts()) {
 
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <?php
-                    while ($videos_query->have_posts()) :
+                    while ($videos_query->have_posts()):
                         $videos_query->the_post();
                         $post_id = get_the_ID();
                         $video_source_type = get_field('media_video_source_type');
@@ -96,22 +96,23 @@ while (have_posts()) {
                             $thumbnail_url = $featured_image_id ? wp_get_attachment_image_url($featured_image_id, 'large') : '';
                         }
 
-                        if ($video_src && $thumbnail_url) :
+                        if ($video_src && $thumbnail_url):
                             // Use appropriate data attributes based on video type
                             $data_type = $is_external_video ? '' : 'data-type="video"';
                             ?>
-                            <article class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>" data-aos="fade-up" data-aos-delay="<?php echo 100 + ($videos_query->current_post * 50); ?>">
-                                <a
-                                    class="group relative block w-full"
-                                    data-fslightbox="<?php echo esc_attr($lightbox_id); ?>"
-                                    <?php echo $data_type; ?>
-                                    data-caption="<?php echo esc_attr($title); ?>"
+                            <article
+                                class="overflow-hidden transition hover:-translate-y-1 mb-6 <?php echo $is_rtl ? 'rtl:text-right' : 'ltr:text-left'; ?>"
+                                data-aos="fade-up" data-aos-delay="<?php echo 100 + ($videos_query->current_post * 50); ?>">
+                                <a class="group relative block w-full" data-fslightbox="<?php echo esc_attr($lightbox_id); ?>" <?php echo $data_type; ?> data-caption="<?php echo esc_attr($title); ?>"
                                     href="<?php echo esc_url($video_src); ?>"
                                     aria-label="<?php echo esc_attr(sprintf(__('Play %s', 'beit'), $title)); ?>">
                                     <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
-                                        <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
+                                        <img class="h-20 w-20"
+                                            src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>"
+                                            alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
                                     </span>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
+                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumbnail_url); ?>"
+                                        alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
                                 </a>
                                 <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($title); ?></h3>
                             </article>
@@ -121,10 +122,10 @@ while (have_posts()) {
                     wp_reset_postdata();
                     ?>
                 </div>
-            <?php else : ?>
+            <?php else: ?>
                 <div class=" bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                     <i class="fa fa-video mb-4 text-6xl text-slate-300"></i>
-                    <h2 class="text-2xl font-semibold text-slate-900">
+                    <h2 class="text-2xl font-bold text-slate-900">
                         <?php echo esc_html(beit_translate('No videos found', 'no_videos_found')); ?>
                     </h2>
                     <p class="mt-2 text-sm text-slate-600">

@@ -19,7 +19,7 @@
                         'alt' => esc_attr(get_bloginfo('name')),
                     ]);
                 } else {
-                    echo '<span class="text-white font-semibold text-lg">' . esc_html(get_bloginfo('name')) . '</span>';
+                    echo '<span class="text-white font-bold text-lg">' . esc_html(get_bloginfo('name')) . '</span>';
                 }
                 ?>
             </div>

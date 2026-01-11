@@ -59,15 +59,15 @@ get_template_part(
         <?php if ($search_query): ?>
             <!-- Post Type Filters -->
             <div class="mb-8 flex flex-wrap items-center gap-3">
-                <span class="text-sm font-semibold text-slate-700"><?php esc_html_e('Filter by:', 'beit'); ?></span>
+                <span class="text-sm font-bold text-slate-700"><?php esc_html_e('Filter by:', 'beit'); ?></span>
                 <a href="<?php echo esc_url(add_query_arg(['s' => $search_query], home_url('/'))); ?>"
-                    class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo empty($post_type_filter) ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
+                    class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo empty($post_type_filter) ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                     data-filter="all">
                     <?php esc_html_e('All', 'beit'); ?>
                 </a>
                 <?php foreach ($available_post_types as $type => $label): ?>
                     <a href="<?php echo esc_url(add_query_arg(['s' => $search_query, 'post_type' => $type], home_url('/'))); ?>"
-                        class="rounded-full px-4 py-2 text-sm font-semibold transition <?php echo $post_type_filter === $type ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
+                        class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo $post_type_filter === $type ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                         data-filter="<?php echo esc_attr($type); ?>">
                         <?php echo esc_html($label); ?>
                     </a>
@@ -147,7 +147,7 @@ get_template_part(
 
                             <div class="flex flex-1 flex-col gap-3 py-6">
 
-                                <h2 class="text-lg font-semibold text-slate-900">
+                                <h2 class="text-lg font-bold text-slate-900">
                                     <a class="transition hover:text-red-600"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
@@ -172,13 +172,13 @@ get_template_part(
 
                             <div class="flex flex-1 flex-col gap-3 py-6">
                                 <?php if ($post_type !== 'post' && $post_type !== 'page'): ?>
-                                    <span class="inline-flex items-center gap-2 text-xs font-semibold text-red-600">
+                                    <span class="inline-flex items-center gap-2 text-xs font-bold text-red-600">
                                         <i class="fa fa-tag"></i>
                                         <?php echo esc_html($post_type_name); ?>
                                     </span>
                                 <?php endif; ?>
 
-                                <h2 class="text-lg font-semibold text-slate-900">
+                                <h2 class="text-lg font-bold text-slate-900">
                                     <a class="transition hover:text-red-600"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
@@ -211,7 +211,7 @@ get_template_part(
                         <?php
                         foreach ($pagination_links as $link) {
                             $is_current = strpos($link, 'current') !== false;
-                            $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition';
+                            $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                             $classes .= $is_current
                                 ? ' border border-red-600 bg-red-600 text-white'
                                 : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
@@ -264,7 +264,7 @@ get_template_part(
                     </p>
 
                     <div class="space-y-4">
-                        <h3 class="text-lg font-semibold text-slate-900">
+                        <h3 class="text-lg font-bold text-slate-900">
                             <?php esc_html_e('Search Tips:', 'beit'); ?>
                         </h3>
                         <ul class="mx-auto max-w-md space-y-2 text-left text-sm text-slate-600">

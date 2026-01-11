@@ -34,8 +34,8 @@
 </head>
 <?php
 $topbar_socials = [];
-$site_logo         = 0;
-$site_logo_scroll  = 0;
+$site_logo = 0;
+$site_logo_scroll = 0;
 
 // Get current language for multilingual ACF fields
 $current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'en';
@@ -48,32 +48,32 @@ if (function_exists('pll_home_url')) {
 }
 
 if (function_exists('get_field')) {
-    $topbar_email        = get_field('topbar_email', 'option');
-    $topbar_phone        = get_field('topbar_phone', 'option');
+    $topbar_email = get_field('topbar_email', 'option');
+    $topbar_phone = get_field('topbar_phone', 'option');
 
     // Try language-specific field first, fallback to default
     $topbar_search_label = get_field('topbar_search_label' . $lang_suffix, 'option') ?: get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
-    $donate_link         = get_field('donate_link' . $lang_suffix, 'option') ?: get_field('donate_link', 'option');
-    $faq_link            = get_field('faq_link' . $lang_suffix, 'option') ?: get_field('faq_link', 'option');
+    $donate_link = get_field('donate_link' . $lang_suffix, 'option') ?: get_field('donate_link', 'option');
+    $faq_link = get_field('faq_link' . $lang_suffix, 'option') ?: get_field('faq_link', 'option');
 
-    $topbar_socials_raw  = get_field('topbar_social_links', 'option');
-    $topbar_socials      = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
-    $site_logo           = get_field('site_logo', 'option') ?: 0;
-    $site_logo_scroll    = get_field('site_logo_horizontal', 'option') ?: 0;
+    $topbar_socials_raw = get_field('topbar_social_links', 'option');
+    $topbar_socials = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
+    $site_logo = get_field('site_logo', 'option') ?: 0;
+    $site_logo_scroll = get_field('site_logo_horizontal', 'option') ?: 0;
 } else {
-    $topbar_email        = null;
-    $topbar_phone        = null;
+    $topbar_email = null;
+    $topbar_phone = null;
     $topbar_search_label = beit_translate('Search', 'search_label');
-    $donate_link         = null;
-    $faq_link            = null;
+    $donate_link = null;
+    $faq_link = null;
 }
 
-$donate_label  = $donate_link['title'] ?? beit_translate('Donate', 'donate_label');
-$donate_url    = $donate_link['url'] ?? '#';
+$donate_label = $donate_link['title'] ?? beit_translate('Donate', 'donate_label');
+$donate_url = $donate_link['url'] ?? '#';
 $donate_target = $donate_link['target'] ?? '_self';
 
-$faq_label  = $faq_link['title'] ?? beit_translate('FAQs', 'faqs');
-$faq_url    = $faq_link['url'] ?? '#';
+$faq_label = $faq_link['title'] ?? beit_translate('FAQs', 'faqs');
+$faq_url = $faq_link['url'] ?? '#';
 $faq_target = $faq_link['target'] ?? '_self';
 
 ?>
@@ -81,14 +81,17 @@ $faq_target = $faq_link['target'] ?? '_self';
 <body <?php body_class('bg-white'); ?>>
     <?php wp_body_open(); ?>
     <div class="min-h-screen flex flex-col">
-        <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)) : ?>
-            <div class="topbar-section bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
-                <div class="container mx-auto flex flex-col sm:flex-row px-3  md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
-                    <?php if (!empty($topbar_socials)) : ?>
-                        <div class="flex flex-wrap items-center gap-3 md:gap-2 lg:border-r border-b lg:border-b-0 lg:border-l border-white/20 sm:px-2 md:px-3 py-[0.3rem] justify-center lg:justify-start w-full sm:w-auto mb-2 sm:mb-0">
-                            <?php foreach ($topbar_socials as $social) :
+        <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)): ?>
+            <div
+                class="topbar-section bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
+                <div
+                    class="container mx-auto flex flex-col sm:flex-row px-3  md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
+                    <?php if (!empty($topbar_socials)): ?>
+                        <div
+                            class="flex flex-wrap items-center gap-3 md:gap-2 lg:border-r border-b lg:border-b-0 lg:border-l border-white/20 sm:px-2 md:px-3 py-[0.3rem] justify-center lg:justify-start w-full sm:w-auto mb-2 sm:mb-0">
+                            <?php foreach ($topbar_socials as $social):
                                 $network = $social['network'] ?? '';
-                                $url     = $social['url'] ?? '';
+                                $url = $social['url'] ?? '';
                                 if (!$network || !$url) {
                                     continue;
                                 }
@@ -113,7 +116,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                                         $icon_class = 'fa-link';
                                         break;
                                 }
-                            ?>
+                                ?>
                                 <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-red-600 rounded"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
@@ -128,17 +131,18 @@ $faq_target = $faq_link['target'] ?? '_self';
                     <?php endif; ?>
 
                     <div class="flex flex-wrap items-center  mr-auto w-full sm:w-auto justify-between sm:justify-start">
-                        <?php if ($topbar_email) : ?>
+                        <?php if ($topbar_email): ?>
                             <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
-                                <span class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
+                                <span
+                                    class="text-[9px] sm:text-[10px] md:text-xs truncate max-w-[120px] sm:max-w-none"><?php echo esc_html($topbar_email); ?></span>
                             </a>
                         <?php endif; ?>
 
-                        <?php if ($topbar_phone) :
+                        <?php if ($topbar_phone):
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
-                        ?>
+                            ?>
                             <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa fa-phone text-[10px] sm:text-xs md:text-sm"></i>
@@ -147,21 +151,21 @@ $faq_target = $faq_link['target'] ?? '_self';
                         <?php endif; ?>
                         <?php
                         $languages = beit_get_languages();
-                        if (!empty($languages)) :
-                            foreach ($languages as $lang) :
-                                if (!$lang['current_lang']) :
-                        ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
-                                href="<?php echo esc_url($lang['url']); ?>">
-                                <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
-                                <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($lang['name']); ?></span>
-                            </a>
-                        <?php
+                        if (!empty($languages)):
+                            foreach ($languages as $lang):
+                                if (!$lang['current_lang']):
+                                    ?>
+                                    <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
+                                        href="<?php echo esc_url($lang['url']); ?>">
+                                        <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
+                                        <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($lang['name']); ?></span>
+                                    </a>
+                                    <?php
                                 endif;
                             endforeach;
                         endif;
                         ?>
-                        <?php if ($faq_link && !empty($faq_url) && $faq_url !== '#') : ?>
+                        <?php if ($faq_link && !empty($faq_url) && $faq_url !== '#'): ?>
                             <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
                                 href="<?php echo esc_url($faq_url); ?>" target="<?php echo esc_attr($faq_target); ?>">
                                 <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
@@ -187,32 +191,38 @@ $faq_target = $faq_link['target'] ?? '_self';
             </div>
         <?php endif; ?>
 
-        <header class="navbar-section fixed w-full text-white transition-all duration-300 ease-in-out z-50" data-scroll-header
-            data-scroll-threshold="48" style="top: var(--topbar-height, 0px);">
+        <header class="navbar-section fixed w-full text-white transition-all duration-300 ease-in-out z-50"
+            data-scroll-header data-scroll-threshold="48" style="top: var(--topbar-height, 0px);">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
                 <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
-                        <?php if ($site_logo || $site_logo_scroll) : ?>
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
-                                <?php if ($site_logo) : ?>
+                        <?php if ($site_logo || $site_logo_scroll): ?>
+                            <a href="<?php echo esc_url(home_url('/')); ?>"
+                                class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
+                                aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
+                                <?php if ($site_logo): ?>
                                     <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
                                         'class' => 'logo-default transition-opacity duration-300',
-                                        'alt'   => esc_attr(get_bloginfo('name')),
+                                        'alt' => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
-                                <?php if ($site_logo_scroll) : ?>
+                                <?php if ($site_logo_scroll): ?>
                                     <?php echo wp_get_attachment_image($site_logo_scroll, 'medium', false, [
                                         'class' => 'logo-scroll absolute top-0 left-0 opacity-0 transition-opacity duration-300',
-                                        'alt'   => esc_attr(get_bloginfo('name')),
+                                        'alt' => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
                             </a>
-                        <?php elseif (has_custom_logo()) : ?>
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
+                        <?php elseif (has_custom_logo()): ?>
+                            <a href="<?php echo esc_url(home_url('/')); ?>"
+                                class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
+                                aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php the_custom_logo(); ?>
                             </a>
-                        <?php else : ?>
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
+                        <?php else: ?>
+                            <a href="<?php echo esc_url(home_url('/')); ?>"
+                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
+                                aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
                             </a>
                         <?php endif; ?>
@@ -220,22 +230,24 @@ $faq_target = $faq_link['target'] ?? '_self';
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
                         <button
                             class="ml-auto inline-flex items-center justify-center  border border-white/20 p-2 sm:p-2.5 text-white transition hover:border-red-500 lg:hidden"
-                            type="button" data-menu-toggle="mobile" aria-expanded="false" aria-controls="mobile-navigation">
+                            type="button" data-menu-toggle="mobile" aria-expanded="false"
+                            aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
-                            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4 6h16M4 12h16m-16 6h16"></path>
                             </svg>
                         </button>
 
                         <!-- <div class="hidden text-right md:block">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="text-lg font-semibold tracking-wide text-white transition hover:text-red-400">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="text-lg font-bold tracking-wide text-white transition hover:text-red-400">
                                 <?php bloginfo('name'); ?>
                             </a>
                             <?php
                             $description = get_bloginfo('description', 'display');
-                            if ($description || is_customize_preview()) :
-                            ?>
+                            if ($description || is_customize_preview()):
+                                ?>
                                 <p class="text-xs text-white/60"><?php echo esc_html($description); ?></p>
                             <?php endif; ?>
                         </div> -->
@@ -246,12 +258,12 @@ $faq_target = $faq_link['target'] ?? '_self';
                         wp_nav_menu(
                             [
                                 'theme_location' => 'primary',
-                                'menu_id'        => 'primary-menu',
-                                'menu_class'     => 'flex items-center text-xs lg:text-sm uppercase tracking-wide text-white',
-                                'container'      => false,
-                                'fallback_cb'    => false,
-                                'depth'          => 2,
-                                'walker'         => new Beit_Nav_Walker(),
+                                'menu_id' => 'primary-menu',
+                                'menu_class' => 'flex items-center text-xs lg:text-sm uppercase tracking-wide text-white',
+                                'container' => false,
+                                'fallback_cb' => false,
+                                'depth' => 2,
+                                'walker' => new Beit_Nav_Walker(),
                             ]
                         );
                         ?>
@@ -262,28 +274,29 @@ $faq_target = $faq_link['target'] ?? '_self';
                 </div>
             </div>
 
-            <div id="mobile-navigation" class="hidden border-t border-white/10 bg-slate-950/98 backdrop-blur-md lg:hidden">
+            <div id="mobile-navigation"
+                class="hidden border-t border-white/10 bg-slate-950/98 backdrop-blur-md lg:hidden">
                 <?php
                 wp_nav_menu(
                     [
                         'theme_location' => 'primary',
-                        'menu_id'        => 'mobile-menu',
-                        'menu_class'     => 'flex flex-col gap-1 px-3 py-3 sm:px-4 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white',
-                        'container'      => false,
-                        'fallback_cb'    => false,
-                        'depth'          => 2,
-                        'walker'         => new Beit_Nav_Walker(),
+                        'menu_id' => 'mobile-menu',
+                        'menu_class' => 'flex flex-col gap-1 px-3 py-3 sm:px-4 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wide text-white',
+                        'container' => false,
+                        'fallback_cb' => false,
+                        'depth' => 2,
+                        'walker' => new Beit_Nav_Walker(),
                     ]
                 );
                 ?>
                 <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 block md:hidden">
-                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-red-500 hover:bg-white/5"
+                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold text-white transition hover:border-red-500 hover:bg-white/5"
                         href="<?php echo esc_url($search_url); ?>">
                         <i class="fa fa-magnifying-glass text-xs"></i>
                         <span><?php echo esc_html($topbar_search_label); ?></span>
                     </a>
 
-                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-red-700"
                         href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                         rel="noopener">
                         <?php echo esc_html($donate_label); ?>
