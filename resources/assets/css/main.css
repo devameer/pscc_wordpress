@@ -15,8 +15,7 @@
 
     /* Arabic font support */
     body[dir="rtl"],
-    [lang="ar"],
-    [lang="ar"] * {
+    [lang="ar"] {
         font-family: '29LT Bukra', 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
     }
 
