@@ -592,3 +592,7 @@
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+.logo-default {
+    max-width: auto !important;
+}
