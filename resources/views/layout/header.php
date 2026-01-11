@@ -194,7 +194,7 @@ $faq_target = $faq_link['target'] ?? '_self';
         <header class="navbar-section relative w-full text-white transition-all duration-300 ease-in-out z-50"
             style="background-color: var(--main-color);">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
-                <div class="flex items-center justify-between py-2 sm:py-3 md:py-4">
+                <div class="flex items-center justify-between py-2">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
                         <?php if ($site_logo || $site_logo_scroll): ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"
@@ -202,7 +202,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php if ($site_logo): ?>
                                     <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
-                                        'class' => 'logo-default transition-opacity duration-300',
+                                        'class' => 'logo-default transition-opacity duration-300 h-20 mx-w-auto',
                                         'alt' => esc_attr(get_bloginfo('name')),
                                     ]); ?>
                                 <?php endif; ?>
