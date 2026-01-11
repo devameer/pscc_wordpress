@@ -31,12 +31,12 @@ $empty_message = $args['empty_message'];
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-8 md:mb-12 space-y-2 md:space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($heading['title'])): ?>
-                <h2 class="text-2xl md:text-3xl lg:text-5xl font-light text-slate-900">
+                <h2 class="text-2xl md:text-3xl lg:text-5xl font-normal text-slate-900">
                     <?php echo wp_kses_post($heading['title']); ?>
                 </h2>
             <?php endif; ?>
             <?php if (!empty($heading['subtitle'])): ?>
-                <p class="text-sm md:text-base lg:text-lg font-light max-w-sm mx-auto">
+                <p class="text-sm md:text-base lg:text-lg font-normal max-w-sm mx-auto">
                     <?php echo wp_kses_post($heading['subtitle']); ?>
                 </p>
             <?php endif; ?>
@@ -80,7 +80,7 @@ $empty_message = $args['empty_message'];
                         <div class="py-3 md:py-4">
                             <?php if ($item_title): ?>
                                 <a href="<?php echo esc_url($item_link); ?>">
-                                    <h3 class="text-base md:text-xl text-slate-900 font-light">
+                                    <h3 class="text-base md:text-xl text-slate-900 font-normal">
                                         <?php echo esc_html($item_title); ?>
                                     </h3>
                                 </a>

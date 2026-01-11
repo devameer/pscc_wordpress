@@ -142,7 +142,8 @@ while (have_posts()) {
             <aside class="space-y-6 lg:col-span-3">
                 <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
                     <h2 class="text-2xl font-bold text-gray-800 ltr:text-left rtl:text-right">
-                        <?php echo esc_html(beit_translate('Our Offices', 'our_offices')); ?></h2>
+                        <?php echo esc_html(beit_translate('Our Offices', 'our_offices')); ?>
+                    </h2>
                     <?php if (!empty($offices)): ?>
                         <div class="space-y-4">
                             <?php foreach ($offices as $office):
@@ -306,7 +307,7 @@ while (have_posts()) {
                                     class="fa fa-phone text-xl"></i></span>
                             <div>
                                 <h3 class="mb-1 font-bold"><?php esc_html_e('Phone', 'beit'); ?></h3>
-                                <a class="text-gray-700 font-light"
+                                <a class="text-gray-700 font-normal"
                                     href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>"><?php echo esc_html($phone); ?></a>
                             </div>
                         </div>
@@ -318,7 +319,7 @@ while (have_posts()) {
                                     class="fa fa-envelope text-xl"></i></span>
                             <div>
                                 <h3 class="mb-1 font-bold"><?php esc_html_e('Email', 'beit'); ?></h3>
-                                <a class="text-gray-700 font-light"
+                                <a class="text-gray-700 font-normal"
                                     href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
                             </div>
                         </div>
@@ -330,7 +331,7 @@ while (have_posts()) {
                                     class="fa fa-map-marker text-xl"></i></span>
                             <div>
                                 <h3 class="mb-1 font-bold"><?php esc_html_e('Address', 'beit'); ?></h3>
-                                <p class="text-gray-700 font-light"><?php echo esc_html($address); ?></p>
+                                <p class="text-gray-700 font-normal"><?php echo esc_html($address); ?></p>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -347,13 +348,13 @@ while (have_posts()) {
         <script>
             // Define initContactMap immediately to prevent race condition with Google Maps
             if (typeof window.initContactMap === 'undefined') {
-                window.initContactMap = function() {
+                window.initContactMap = function () {
                     // This will be overridden by theme.js when it loads
                     // If theme.js hasn't loaded yet, retry after a short delay
                     if (typeof window.initContactMapFromTheme === 'function') {
                         window.initContactMapFromTheme();
                     } else {
-                        setTimeout(function() {
+                        setTimeout(function () {
                             if (typeof window.initContactMapFromTheme === 'function') {
                                 window.initContactMapFromTheme();
                             }
@@ -361,7 +362,7 @@ while (have_posts()) {
                     }
                 };
             }
-            
+
             // Tab hover functionality - initialize immediately
             (function () {
                 const initDropdowns = () => {

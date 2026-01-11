@@ -79,7 +79,7 @@ get_template_part(
                             <?php endif; ?>
 
                             <div class="flex flex-1 flex-col gap-4 py-4 ltr:text-left rtl:text-right">
-                                <h2 class="text-lg font-light">
+                                <h2 class="text-lg font-normal">
                                     <a class="transition hover:text-red-600"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
@@ -133,7 +133,8 @@ get_template_part(
             <?php else: ?>
                 <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                     <h2 class="text-2xl font-semibold text-slate-900">
-                        <?php echo esc_html(beit_translate('No news items found', 'no_news_found')); ?></h2>
+                        <?php echo esc_html(beit_translate('No news items found', 'no_news_found')); ?>
+                    </h2>
                     <p class="mt-2 text-sm text-slate-600">
                         <?php echo esc_html(beit_translate('Check back soon for the latest updates.', 'check_back_soon')); ?>
                     </p>

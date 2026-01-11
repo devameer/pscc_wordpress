@@ -124,11 +124,11 @@ if (empty($items)) {
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($voices['title'])): ?>
-                <h2 class="text-3xl font-light text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?>
+                <h2 class="text-3xl font-normal text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?>
                 </h2>
             <?php endif; ?>
             <?php if (!empty($voices['subtitle'])): ?>
-                <p class="text-base text-black md:text-lg font-light"><?php echo wp_kses_post($voices['subtitle']); ?></p>
+                <p class="text-base text-black md:text-lg font-normal"><?php echo wp_kses_post($voices['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
@@ -183,7 +183,8 @@ if (empty($items)) {
                         href="<?php echo esc_url($lightbox_src); ?>"
                         aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
                         <?php if ($lightbox_type === 'image'): ?>
-                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url ?? $thumb_url); ?>" alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url ?? $thumb_url); ?>"
+                                alt="<?php echo esc_attr($caption); ?>" style="display:none;">
                             <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
                         <?php endif; ?>
                         <?php if ($is_video): ?>
@@ -233,14 +234,14 @@ if (empty($items)) {
                             $gallery_width = $gallery_meta['width'] ?? 1920;
                             $gallery_height = $gallery_meta['height'] ?? 1080;
                             ?>
-                            <a
-                                class="hidden"
-                                data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                            <a class="hidden" data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
                                 data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
                                 data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
                                 href="<?php echo esc_url($gallery_image_url); ?>">
-                                <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>" alt="<?php echo esc_attr($gallery_caption); ?>" style="display:none;">
-                                <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($gallery_caption); ?></span>
+                                <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>"
+                                    alt="<?php echo esc_attr($gallery_caption); ?>" style="display:none;">
+                                <span class="pswp-caption-content"
+                                    style="display:none;"><?php echo esc_html($gallery_caption); ?></span>
                             </a>
                         <?php endforeach;
                     endif;
@@ -262,10 +263,10 @@ if (empty($items)) {
     }
 
     // Add captions to FSLightbox - Inline implementation
-    (function() {
+    (function () {
         let captionUpdateInterval = null;
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             const link = e.target.closest('a[data-fslightbox]');
             if (link) {
                 const caption = link.getAttribute('data-caption');
@@ -277,7 +278,7 @@ if (empty($items)) {
 
                 // Try to add caption multiple times to ensure it works
                 let attempts = 0;
-                captionUpdateInterval = setInterval(function() {
+                captionUpdateInterval = setInterval(function () {
                     attempts++;
 
                     const container = document.querySelector('.fslightbox-container');

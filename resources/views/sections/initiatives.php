@@ -9,17 +9,17 @@
 $args = wp_parse_args(
     $args ?? [],
     [
-        'data'              => [],
+        'data' => [],
         'heading_alignment' => 'text-center',
-        'hero_prev_icon'    => 'fa fa-arrow-left',
-        'hero_next_icon'    => 'fa fa-arrow-right',
+        'hero_prev_icon' => 'fa fa-arrow-left',
+        'hero_next_icon' => 'fa fa-arrow-right',
     ]
 );
 
-$data              = $args['data'];
+$data = $args['data'];
 $heading_alignment = $args['heading_alignment'];
-$hero_prev_icon    = $args['hero_prev_icon'];
-$hero_next_icon    = $args['hero_next_icon'];
+$hero_prev_icon = $args['hero_prev_icon'];
+$hero_next_icon = $args['hero_next_icon'];
 
 $items = $data['items'] ?? [];
 
@@ -31,12 +31,13 @@ if (empty($items)) {
 
 <section class="bg-[#282828] py-12 md:py-16 lg:py-20 text-white">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 <?php echo esc_attr($heading_alignment); ?>" data-aos="fade-up">
-            <?php if (!empty($data['title'])) : ?>
-                <h2 class="text-3xl font-light md:text-5xl"><?php echo wp_kses_post($data['title']); ?></h2>
+        <div class="mb-8 md:mb-12 space-y-3 md:space-y-4 <?php echo esc_attr($heading_alignment); ?>"
+            data-aos="fade-up">
+            <?php if (!empty($data['title'])): ?>
+                <h2 class="text-3xl font-normal md:text-5xl"><?php echo wp_kses_post($data['title']); ?></h2>
             <?php endif; ?>
-            <?php if (!empty($data['subtitle'])) : ?>
-                <p class="text-md font-light text-white md:text-lg max-w-xs md:mx-auto lg:max-w-md">
+            <?php if (!empty($data['subtitle'])): ?>
+                <p class="text-md font-normal text-white md:text-lg max-w-xs md:mx-auto lg:max-w-md">
 
                     <?php echo esc_html($data['subtitle']); ?>
                 </p>
@@ -46,17 +47,18 @@ if (empty($items)) {
         <div class="relative" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper initiatives-slider" data-slider="initiatives">
                 <div class="swiper-wrapper">
-                    <?php foreach ($items as $item) : ?>
+                    <?php foreach ($items as $item): ?>
                         <div class="swiper-slide">
                             <article class="group relative h-full overflow-hidden  bg-slate-800/60">
-                                <?php if (!empty($item['image'])) : ?>
-                                    <?php if (is_numeric($item['image'])) : ?>
+                                <?php if (!empty($item['image'])): ?>
+                                    <?php if (is_numeric($item['image'])): ?>
                                         <?php echo wp_get_attachment_image((int) $item['image'], 'large', false, ['class' => 'h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105', 'loading' => 'lazy', 'decoding' => 'async']); ?>
-                                    <?php else : ?>
+                                    <?php else: ?>
                                         <img class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                            src="<?php echo esc_url((string) $item['image']); ?>" alt="" loading="lazy" decoding="async">
+                                            src="<?php echo esc_url((string) $item['image']); ?>" alt="" loading="lazy"
+                                            decoding="async">
                                     <?php endif; ?>
-                                <?php else : ?>
+                                <?php else: ?>
                                     <div class="h-64 w-full bg-gradient-to-br from-red-500/40 to-red-700/40"></div>
                                 <?php endif; ?>
 
@@ -93,8 +95,8 @@ if (empty($items)) {
                                     }
                                     ?>
 
-                                    <?php if (!empty($item['title'])) : ?>
-                                        <h3 class="text-xl font-light leading-tight">
+                                    <?php if (!empty($item['title'])): ?>
+                                        <h3 class="text-xl font-normal leading-tight">
                                             <?php echo wp_kses_post($item['title']); ?>
                                         </h3>
                                     <?php endif; ?>
@@ -119,10 +121,9 @@ if (empty($items)) {
             </div>
         </div>
 
-        <?php if (!empty($data['cta']['title'])) : ?>
+        <?php if (!empty($data['cta']['title'])): ?>
             <div class="mt-10 text-center">
-                <a class="btn-more"
-                    href="<?php echo esc_url($data['cta']['url']); ?>"
+                <a class="btn-more" href="<?php echo esc_url($data['cta']['url']); ?>"
                     target="<?php echo esc_attr($data['cta']['target'] ?? '_self'); ?>" rel="noopener">
                     <?php echo esc_html($data['cta']['title']); ?>
                 </a>
