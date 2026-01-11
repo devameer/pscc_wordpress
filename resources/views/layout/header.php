@@ -83,7 +83,7 @@ $faq_target = $faq_link['target'] ?? '_self';
     <div class="min-h-screen flex flex-col">
         <?php if ($topbar_email || $topbar_phone || !empty($topbar_socials)): ?>
             <div
-                class="topbar-section bg-[#4E4E4E] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
+                class="topbar-section bg-[--main-color] text-slate-200 text-[10px] sm:text-xs border-b border-white/20 transition-all duration-300">
                 <div
                     class="container mx-auto flex flex-col sm:flex-row px-3  md:px-4 lg:px-6 items-start sm:items-center sm:justify-between">
                     <?php if (!empty($topbar_socials)): ?>
