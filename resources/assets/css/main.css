@@ -8,6 +8,7 @@
 /* Theme base tweaks */
 :root {
     --main-color: #243F56;
+    --second-color: #b8a15a;
 }
 
 @layer base {
