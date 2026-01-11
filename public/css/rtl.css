@@ -23,7 +23,7 @@ body.rtl {
    Typography RTL
    ========================================================================== */
 
-.rtl {
+/* .rtl {
     font-family: '29LT Bukra', 'Cairo', 'Tajawal', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -35,7 +35,7 @@ body.rtl {
 .rtl h5,
 .rtl h6 {
     font-family: '29LT Bukra', 'Cairo', 'Tajawal', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
-}
+} */
 
 /* ==========================================================================
    Hero Section RTL
