@@ -117,7 +117,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                                         break;
                                 }
                                 ?>
-                                <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-red-600 rounded"
+                                <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-primary rounded"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
                                     <?php if ($network === 'twitter'): ?>
@@ -221,7 +221,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                             </a>
                         <?php else: ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"
-                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-red-600 text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
+                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-primary text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
                             </a>
@@ -296,7 +296,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                         <span><?php echo esc_html($topbar_search_label); ?></span>
                     </a>
 
-                    <a class="flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary"
+                    <a class="flex items-center justify-center rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary"
                         href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
                         rel="noopener">
                         <?php echo esc_html($donate_label); ?>

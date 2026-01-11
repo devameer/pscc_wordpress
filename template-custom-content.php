@@ -138,10 +138,12 @@ while (have_posts()) {
                                 </h2>
                             <?php endif; ?>
                             <div class="grid md:grid-cols-2 gap-8">
-                                <div class="prose max-w-none text-gray-700 ltr:text-left rtl:text-right" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay); ?>">
+                                <div class="prose max-w-none text-gray-700 ltr:text-left rtl:text-right" data-aos="fade-up"
+                                    data-aos-delay="<?php echo esc_attr($delay); ?>">
                                     <?php echo wp_kses_post($column_left); ?>
                                 </div>
-                                <div class="prose max-w-none text-gray-700 ltr:text-left rtl:text-right" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay + 100); ?>">
+                                <div class="prose max-w-none text-gray-700 ltr:text-left rtl:text-right" data-aos="fade-up"
+                                    data-aos-delay="<?php echo esc_attr($delay + 100); ?>">
                                     <?php echo wp_kses_post($column_right); ?>
                                 </div>
                             </div>
@@ -171,9 +173,10 @@ while (have_posts()) {
                                         $card_description = $card['description'] ?? '';
                                         $card_delay = $delay + ($card_index * 100);
                                         ?>
-                                        <div class="bg-white  shadow-md p-6 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($card_delay); ?>">
+                                        <div class="bg-white  shadow-md p-6 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up"
+                                            data-aos-delay="<?php echo esc_attr($card_delay); ?>">
                                             <?php if ($card_icon): ?>
-                                                <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mb-4">
+                                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
                                                     <i class="<?php echo esc_attr($card_icon); ?> text-xl"></i>
                                                 </div>
                                             <?php endif; ?>

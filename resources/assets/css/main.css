@@ -76,7 +76,7 @@
     }
 
     .button-form {
-        @apply rounded bg-red-600 px-12 py-3 font-bold text-white transition;
+        @apply rounded bg-primary px-12 py-3 font-bold text-white transition;
     }
 
     .btn-more {

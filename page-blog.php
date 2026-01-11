@@ -131,7 +131,7 @@ if (!$posts_query->have_posts()) {
                         <?php if ($primary_cat): ?>
                             <div class="absolute top-4 ltr:left-4 rtl:right-4">
                                 <span
-                                    class="inline-flex items-center gap-1 rounded-full bg-red-600 px-3 py-1.5 text-xs font-bold text-white shadow-lg">
+                                    class="inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-lg">
                                     <i class="fa fa-tag"></i>
                                     <?php echo esc_html($primary_cat); ?>
                                 </span>
@@ -214,7 +214,7 @@ if (!$posts_query->have_posts()) {
                         $is_current = strpos($link, 'current') !== false;
                         $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                         $classes .= $is_current
-                            ? ' border border-red-600 bg-red-600 text-white'
+                            ? ' border border-red-600 bg-primary text-white'
                             : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
 
                         $link = preg_replace(

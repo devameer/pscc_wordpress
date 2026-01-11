@@ -17,15 +17,15 @@
             autoplay: autoplayDelay > 0 ? { delay: autoplayDelay, disableOnInteraction: false } : false,
             pagination: hasPagination
                 ? {
-                      el: slider.querySelector('.swiper-pagination'),
-                      clickable: true,
-                  }
+                    el: slider.querySelector('.swiper-pagination'),
+                    clickable: true,
+                }
                 : undefined,
             navigation: hasNavigation
                 ? {
-                      nextEl: slider.querySelector('.swiper-button-next'),
-                      prevEl: slider.querySelector('.swiper-button-prev'),
-                  }
+                    nextEl: slider.querySelector('.swiper-button-next'),
+                    prevEl: slider.querySelector('.swiper-button-prev'),
+                }
                 : undefined,
             on: {
                 slideChangeTransitionStart: function () {
@@ -83,28 +83,28 @@
             const prevEl = wrapper ? wrapper.querySelector('.initiatives-button-prev') : null;
 
             initializeCarousel(slider, {
-              loop: true,
-              speed: 600,
-              spaceBetween: 24,
-              slidesPerView: 1,
-              navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
-              breakpoints: {
-                500: {
-                  slidesPerView: 2,
+                loop: true,
+                speed: 600,
+                spaceBetween: 24,
+                slidesPerView: 1,
+                navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
+                breakpoints: {
+                    500: {
+                        slidesPerView: 2,
+                    },
+                    600: {
+                        slidesPerView: 3,
+                    },
+                    1000: {
+                        slidesPerView: 4,
+                    },
+                    1024: {
+                        slidesPerView: 5,
+                    },
+                    1280: {
+                        slidesPerView: 6,
+                    },
                 },
-                600: {
-                  slidesPerView: 3,
-                },
-                1000: {
-                  slidesPerView: 4,
-                },
-                1024: {
-                  slidesPerView: 5,
-                },
-                1280: {
-                  slidesPerView: 6,
-                },
-              },
             });
         });
 
@@ -241,7 +241,7 @@
                 topbar.style.zIndex = '51';
                 topbar.style.background = 'rgba(17, 19, 21, 0.92)';
             }
-            
+
             // Adjust navbar position to be below topbar
             const topbarHeight = topbar ? topbar.offsetHeight : 0;
             header.style.position = 'fixed';
@@ -250,7 +250,7 @@
             header.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.25)';
             header.style.backdropFilter = 'blur(8px)';
             header.style.webkitBackdropFilter = 'blur(8px)';
-            
+
             // Switch logos using opacity
             if (logoDefault && logoScroll) {
                 logoDefault.style.opacity = '0';
@@ -266,7 +266,7 @@
                 topbar.style.zIndex = '';
                 topbar.style.background = '';
             }
-            
+
             // Reset navbar position to below topbar
             const topbarHeight = topbar ? topbar.offsetHeight : 0;
             header.style.top = topbarHeight + 'px';
@@ -274,7 +274,7 @@
             header.style.boxShadow = '';
             header.style.backdropFilter = '';
             header.style.webkitBackdropFilter = '';
-            
+
             // Switch logos back using opacity
             if (logoDefault && logoScroll) {
                 logoDefault.style.opacity = '1';
@@ -345,7 +345,7 @@
 
             const link = clonedItem.querySelector('a');
             if (link) {
-                link.className = 'block px-4 py-3 text-white transition hover:bg-red-600';
+                link.className = 'block px-4 py-3 text-white transition hover:bg-primary';
             }
 
             otherList.appendChild(clonedItem);
@@ -408,7 +408,7 @@
 })();
 
 // Contact Map with Tabs functionality
-window.initContactMapFromTheme = function() {
+window.initContactMapFromTheme = function () {
     const mapContainer = document.getElementById('contact-map');
 
     if (!mapContainer || !window.contactMapData || !window.google) {
@@ -576,22 +576,22 @@ window.initContactMapFromTheme = function() {
     // Location item click - highlight on map
     const locationItems = document.querySelectorAll('.map-location-item');
     console.log('Found location items:', locationItems.length);
-    
+
     locationItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const tabName = this.dataset.tab;
             const locationIndex = parseInt(this.dataset.locationIndex);
-            
+
             console.log('Clicked location:', tabName, locationIndex);
-            
+
             // Switch to the tab if not already active
             if (currentTab !== tabName) {
                 switchTab(tabName);
             }
-            
+
             // Get the corresponding marker
             let targetMarker;
             if (tabName === 'offices' && officeMarkers[locationIndex]) {
@@ -599,9 +599,9 @@ window.initContactMapFromTheme = function() {
             } else if (tabName === 'warehouses' && warehouseMarkers[locationIndex]) {
                 targetMarker = warehouseMarkers[locationIndex];
             }
-            
+
             console.log('Target marker:', targetMarker);
-            
+
             if (targetMarker) {
                 // Close all info windows
                 officeMarkers.concat(warehouseMarkers).forEach(m => {
@@ -609,23 +609,23 @@ window.initContactMapFromTheme = function() {
                         m.infoWindow.close();
                     }
                 });
-                
+
                 // Center map on marker
                 map.setCenter(targetMarker.getPosition());
                 map.setZoom(15);
-                
+
                 // Bounce animation
                 targetMarker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(() => {
                     targetMarker.setAnimation(null);
                 }, 2000);
-                
+
                 // Open info window
                 if (targetMarker.infoWindow) {
                     targetMarker.infoWindow.open(map, targetMarker);
                 }
             }
-            
+
             // Hide dropdown
             document.querySelectorAll('.map-tab-dropdown').forEach(d => d.classList.add('hidden'));
         });
@@ -723,101 +723,101 @@ window.initContactMapFromTheme = function() {
 
 // Search page client-side filters
 (() => {
-  const container = document.querySelector('section.container');
-  if (!container) return;
+    const container = document.querySelector('section.container');
+    if (!container) return;
 
-  const filterLinks = container.querySelectorAll('[data-filter]');
-  const cards = container.querySelectorAll('[data-type]');
-  if (filterLinks.length === 0 || cards.length === 0) return;
+    const filterLinks = container.querySelectorAll('[data-filter]');
+    const cards = container.querySelectorAll('[data-type]');
+    if (filterLinks.length === 0 || cards.length === 0) return;
 
-  const setActive = (type) => {
+    const setActive = (type) => {
+        filterLinks.forEach((a) => {
+            const current = a.dataset.filter || 'all';
+            const isActive = type === 'all' ? current === 'all' : current === type;
+            a.classList.toggle('bg-primary', isActive);
+            a.classList.toggle('text-white', isActive);
+            a.classList.toggle('bg-slate-100', !isActive);
+            a.classList.toggle('text-slate-700', !isActive);
+        });
+    };
+
+    const applyFilter = (type) => {
+        cards.forEach((card) => {
+            const show = type === 'all' || (card.dataset.type || '') === type;
+            card.style.display = show ? '' : 'none';
+        });
+        setActive(type);
+    };
+
     filterLinks.forEach((a) => {
-      const current = a.dataset.filter || 'all';
-      const isActive = type === 'all' ? current === 'all' : current === type;
-      a.classList.toggle('bg-red-600', isActive);
-      a.classList.toggle('text-white', isActive);
-      a.classList.toggle('bg-slate-100', !isActive);
-      a.classList.toggle('text-slate-700', !isActive);
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const type = a.dataset.filter || 'all';
+            applyFilter(type);
+        });
     });
-  };
 
-  const applyFilter = (type) => {
-    cards.forEach((card) => {
-      const show = type === 'all' || (card.dataset.type || '') === type;
-      card.style.display = show ? '' : 'none';
-    });
-    setActive(type);
-  };
-
-  filterLinks.forEach((a) => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const type = a.dataset.filter || 'all';
-      applyFilter(type);
-    });
-  });
-
-  const url = new URL(window.location.href);
-  const type = url.searchParams.get('post_type') || 'all';
-  applyFilter(type);
+    const url = new URL(window.location.href);
+    const type = url.searchParams.get('post_type') || 'all';
+    applyFilter(type);
 })();
 
 // Back-to-top button
 (() => {
-  const btn = document.getElementById('back-to-top');
-  if (!btn) return;
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 })();
 
 // Facts section year tabs
 (() => {
-  const tabButtons = document.querySelectorAll('.facts-tab-button');
-  const yearContents = document.querySelectorAll('.facts-year-content');
-  
-  if (tabButtons.length === 0 || yearContents.length === 0) return;
-  
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetYear = button.getAttribute('data-year');
-      
-      // Update button states
-      tabButtons.forEach(btn => {
-        const isActive = btn.getAttribute('data-year') === targetYear;
-        btn.setAttribute('data-active', isActive ? 'true' : 'false');
-        
-        if (isActive) {
-          btn.classList.remove('bg-white/10', 'text-white/70', 'hover:bg-white/20');
-          btn.classList.add('bg-primary', 'text-white');
-        } else {
-          btn.classList.remove('bg-primary', 'text-white');
-          btn.classList.add('bg-white/10', 'text-white/70', 'hover:bg-white/20');
-        }
-      });
-      
-      // Update content visibility
-      yearContents.forEach(content => {
-        const contentYear = content.getAttribute('data-year');
-        if (contentYear === targetYear) {
-          content.classList.remove('hidden');
-          // Re-trigger counter animations
-          const counters = content.querySelectorAll('[data-counter]');
-          counters.forEach(counter => {
-            counter.setAttribute('data-counted', 'false');
-            // Trigger animation if in viewport
-            const rect = counter.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-              animateCounter(counter);
-            }
-          });
-        } else {
-          content.classList.add('hidden');
-        }
-      });
+    const tabButtons = document.querySelectorAll('.facts-tab-button');
+    const yearContents = document.querySelectorAll('.facts-year-content');
+
+    if (tabButtons.length === 0 || yearContents.length === 0) return;
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetYear = button.getAttribute('data-year');
+
+            // Update button states
+            tabButtons.forEach(btn => {
+                const isActive = btn.getAttribute('data-year') === targetYear;
+                btn.setAttribute('data-active', isActive ? 'true' : 'false');
+
+                if (isActive) {
+                    btn.classList.remove('bg-white/10', 'text-white/70', 'hover:bg-white/20');
+                    btn.classList.add('bg-primary', 'text-white');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-white/10', 'text-white/70', 'hover:bg-white/20');
+                }
+            });
+
+            // Update content visibility
+            yearContents.forEach(content => {
+                const contentYear = content.getAttribute('data-year');
+                if (contentYear === targetYear) {
+                    content.classList.remove('hidden');
+                    // Re-trigger counter animations
+                    const counters = content.querySelectorAll('[data-counter]');
+                    counters.forEach(counter => {
+                        counter.setAttribute('data-counted', 'false');
+                        // Trigger animation if in viewport
+                        const rect = counter.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            animateCounter(counter);
+                        }
+                    });
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
     });
-  });
 })();
 
 // FSLightbox - Add captions manually
@@ -860,7 +860,7 @@ window.initContactMapFromTheme = function() {
         // Get caption from current active link
         const activeLinks = document.querySelectorAll('a[data-fslightbox]');
         activeLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 const caption = this.getAttribute('data-caption');
                 setTimeout(() => {
                     const captionElement = document.querySelector('.fslightbox-custom-caption');

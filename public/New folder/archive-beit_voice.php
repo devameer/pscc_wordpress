@@ -76,7 +76,7 @@ if (have_posts()) {
                                 $is_current = strpos($link, 'current') !== false;
                                 $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                                 $classes .= $is_current
-                                    ? ' border border-red-600 bg-red-600 text-white'
+                                    ? ' border border-red-600 bg-primary text-white'
                                     : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
 
                                 $link = preg_replace(
@@ -101,7 +101,8 @@ if (have_posts()) {
                 <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-900"><?php esc_html_e('No entries found', 'beit'); ?></h2>
                     <p class="mt-2 text-sm text-slate-600">
-                        <?php esc_html_e('Check back soon for more voices and visions from the field.', 'beit'); ?></p>
+                        <?php esc_html_e('Check back soon for more voices and visions from the field.', 'beit'); ?>
+                    </p>
                 </div>
                 <?php
             }

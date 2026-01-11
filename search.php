@@ -61,13 +61,13 @@ get_template_part(
             <div class="mb-8 flex flex-wrap items-center gap-3">
                 <span class="text-sm font-bold text-slate-700"><?php esc_html_e('Filter by:', 'beit'); ?></span>
                 <a href="<?php echo esc_url(add_query_arg(['s' => $search_query], home_url('/'))); ?>"
-                    class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo empty($post_type_filter) ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
+                    class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo empty($post_type_filter) ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                     data-filter="all">
                     <?php esc_html_e('All', 'beit'); ?>
                 </a>
                 <?php foreach ($available_post_types as $type => $label): ?>
                     <a href="<?php echo esc_url(add_query_arg(['s' => $search_query, 'post_type' => $type], home_url('/'))); ?>"
-                        class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo $post_type_filter === $type ? 'bg-red-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
+                        class="rounded-full px-4 py-2 text-sm font-bold transition <?php echo $post_type_filter === $type ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'; ?>"
                         data-filter="<?php echo esc_attr($type); ?>">
                         <?php echo esc_html($label); ?>
                     </a>
@@ -213,7 +213,7 @@ get_template_part(
                             $is_current = strpos($link, 'current') !== false;
                             $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                             $classes .= $is_current
-                                ? ' border border-red-600 bg-red-600 text-white'
+                                ? ' border border-red-600 bg-primary text-white'
                                 : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
 
                             $link = preg_replace(

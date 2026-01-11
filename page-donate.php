@@ -115,7 +115,7 @@ while (have_posts()) {
             </section>
 
             <aside class="space-y-6">
-                <div class=" bg-red-600 p-6 text-white shadow-xl ltr:text-left rtl:text-right" data-aos="fade-up"
+                <div class=" bg-primary p-6 text-white shadow-xl ltr:text-left rtl:text-right" data-aos="fade-up"
                     data-aos-delay="100">
                     <h2 class="text-xl font-bold md:text-2xl"><?php esc_html_e('Need Assistance?', 'beit'); ?></h2>
                     <p class="mt-3 text-sm text-white/80">
@@ -153,7 +153,7 @@ while (have_posts()) {
                             $text = $card['description'] ?? '';
                             ?>
                             <div class="flex items-start gap-3  bg-white p-5 shadow-lg ltr:text-left rtl:text-right">
-                                <span class="rounded bg-red-600 p-3 text-white"><i
+                                <span class="rounded bg-primary p-3 text-white"><i
                                         class="<?php echo esc_attr($icon); ?> text-lg"></i></span>
                                 <div>
                                     <?php if ($title): ?>

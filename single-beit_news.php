@@ -294,7 +294,7 @@ while (have_posts()) {
                                             ]); ?>
                                             <?php if ($article_cat): ?>
                                                 <span
-                                                    class="absolute top-3 <?php echo $is_rtl ? 'right-3' : 'left-3'; ?> inline-block rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
+                                                    class="absolute top-3 <?php echo $is_rtl ? 'right-3' : 'left-3'; ?> inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-lg">
                                                     <?php echo esc_html($article_cat); ?>
                                                 </span>
                                             <?php endif; ?>
