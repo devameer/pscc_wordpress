@@ -32,10 +32,19 @@ function beit_theme_enqueue_assets(): void
         '11.1.0'
     );
 
+    // Load Font Awesome first to avoid conflicts
+    wp_enqueue_style(
+        'beit-fontawesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
+        [],
+        '4.7.0'
+    );
+
+    // Load custom fonts after Font Awesome
     wp_enqueue_style(
         'beit-fonts',
         BEIT_THEME_URI . '/public/css/fonts.css',
-        [],
+        ['beit-fontawesome'],
         2
     );
 
@@ -46,12 +55,6 @@ function beit_theme_enqueue_assets(): void
         []
     );
 
-    wp_enqueue_style(
-        'beit-fontawesome',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
-        [],
-        '4.7.0'
-    );
 
     wp_enqueue_style(
         'aos',
