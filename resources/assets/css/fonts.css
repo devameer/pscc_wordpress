@@ -7,7 +7,7 @@
 /* 29LT Bukra Variable Font - Supports all weights (100-900) */
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/29LT Bukra Variable.ttf') format('truetype-variations');
+    src: url('../fonts/29LT Bukra Variable.ttf') format('truetype-variations');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
@@ -16,7 +16,7 @@
 /* 29LT Bukra Light - 300 */
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/29ltbukralight.otf') format('opentype');
+    src: url('../fonts/29ltbukralight.otf') format('opentype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -25,7 +25,7 @@
 /* 29LT Bukra Regular - 400 */
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/29ltbukraregular.otf') format('opentype');
+    src: url('../fonts/29ltbukraregular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -33,7 +33,7 @@
 
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/FontsFree-Net-bokra.ttf') format('truetype');
+    src: url('../fonts/FontsFree-Net-bokra.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -42,7 +42,7 @@
 /* 29LT Bukra Bold - 700 */
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/29ltbukrabold.otf') format('opentype');
+    src: url('../fonts/29ltbukrabold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -51,7 +51,7 @@
 /* 29LT Bukra Bold Italic - 700 */
 @font-face {
     font-family: '29LT Bukra';
-    src: url('../../../public/fonts/29ltbukrabolditalic.otf') format('opentype');
+    src: url('../fonts/29ltbukrabolditalic.otf') format('opentype');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
