@@ -152,7 +152,7 @@ while (have_posts()) {
                                 ?>
                                 <a href="<?php echo $link['url']; ?>" <?php if ($is_external): ?> target="_blank"
                                         rel="noopener noreferrer" <?php endif; ?>
-                                    class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden  bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
+                                    class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
                                     aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
                                     <?php if ($link['icon'] === 'x-twitter'): ?>
                                         <span class="relative z-10 w-5 h-5">
@@ -168,7 +168,7 @@ while (have_posts()) {
                             <?php endforeach; ?>
 
                             <button onclick="copyToClipboard()" id="copyLinkBtn"
-                                class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden  bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
+                                class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
                                 aria-label="<?php echo esc_attr(beit_translate('Copy link', 'copy_link')); ?>">
                                 <i class="fa fa-link relative z-10 text-xl" id="copyIcon"></i>
                                 <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300"

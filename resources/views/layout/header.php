@@ -53,7 +53,6 @@ if (function_exists('get_field')) {
 
     // Try language-specific field first, fallback to default
     $topbar_search_label = get_field('topbar_search_label' . $lang_suffix, 'option') ?: get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
-    $donate_link = get_field('donate_link' . $lang_suffix, 'option') ?: get_field('donate_link', 'option');
     $faq_link = get_field('faq_link' . $lang_suffix, 'option') ?: get_field('faq_link', 'option');
 
     $topbar_socials_raw = get_field('topbar_social_links', 'option');
@@ -64,13 +63,8 @@ if (function_exists('get_field')) {
     $topbar_email = null;
     $topbar_phone = null;
     $topbar_search_label = beit_translate('Search', 'search_label');
-    $donate_link = null;
     $faq_link = null;
 }
-
-$donate_label = $donate_link['title'] ?? beit_translate('Donate', 'donate_label');
-$donate_url = $donate_link['url'] ?? '#';
-$donate_target = $donate_link['target'] ?? '_self';
 
 $faq_label = $faq_link['title'] ?? beit_translate('FAQs', 'faqs');
 $faq_url = $faq_link['url'] ?? '#';
@@ -176,16 +170,10 @@ $faq_target = $faq_link['target'] ?? '_self';
                     </div>
 
                     <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400"
+                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-red-400 rounded-full"
                             href="<?php echo esc_url($search_url); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
-                        </a>
-
-                        <a class="inline-flex bg-primary  px-4 py-1.5 lg:px-10 lg:py-[0.9rem] text-xs font-normal uppercase tracking-wide text-white transition hover:bg-primary"
-                            href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
-                            rel="noopener">
-                            <?php echo esc_html($donate_label); ?>
                         </a>
                     </div>
                 </div>
@@ -230,7 +218,7 @@ $faq_target = $faq_link['target'] ?? '_self';
 
                         <!-- Mobile & Tablet Menu Toggle Button (Next to Logo) -->
                         <button
-                            class="ml-auto inline-flex items-center justify-center border border-white/40 p-2 sm:p-2.5 text-white transition hover:border-white hover:bg-white/10 lg:hidden"
+                            class="ml-auto inline-flex items-center justify-center border border-white/40 p-2 sm:p-2.5 text-white transition hover:border-white hover:bg-white/10 lg:hidden rounded-full"
                             type="button" data-menu-toggle="mobile" aria-expanded="false"
                             aria-controls="mobile-navigation">
                             <span class="sr-only"><?php esc_html_e('Toggle navigation', 'beit'); ?></span>
@@ -291,16 +279,10 @@ $faq_target = $faq_link['target'] ?? '_self';
                 );
                 ?>
                 <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 block md:hidden">
-                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold text-white transition hover:border-red-500 hover:bg-white/5"
+                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold text-white transition hover:border-red-500 hover:bg-white/5 rounded-full"
                         href="<?php echo esc_url($search_url); ?>">
                         <i class="fa fa-magnifying-glass text-xs"></i>
                         <span><?php echo esc_html($topbar_search_label); ?></span>
-                    </a>
-
-                    <a class="flex items-center justify-center rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary"
-                        href="<?php echo esc_url($donate_url); ?>" target="<?php echo esc_attr($donate_target); ?>"
-                        rel="noopener">
-                        <?php echo esc_html($donate_label); ?>
                     </a>
                 </div>
             </div>

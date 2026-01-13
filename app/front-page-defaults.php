@@ -96,38 +96,6 @@ function beit_front_default_newsletter(): array
     ];
 }
 
-function beit_front_default_facts(): array
-{
-    return [
-        'title' => __('Facts & Figures', 'beit'),
-        'subtitle' => __('Turning data into real community impact—because transparency builds trust.', 'beit'),
-        'background_image' => '',
-        'filters' => [
-            ['label' => '2025', 'highlighted' => true],
-            ['label' => '2024', 'highlighted' => false],
-            ['label' => '2023', 'highlighted' => false],
-        ],
-        'items' => [
-            [
-                'value' => '240',
-                'label' => __('Projects Reached', 'beit'),
-            ],
-            [
-                'value' => '25,000',
-                'label' => __('Beneficiaries by Sector', 'beit'),
-            ],
-            [
-                'value' => '376',
-                'label' => __('Volunteers Engaged', 'beit'),
-            ],
-            [
-                'value' => '52',
-                'label' => __('Working Hours', 'beit'),
-            ],
-        ],
-    ];
-}
-
 function beit_front_default_members(): array
 {
     return [

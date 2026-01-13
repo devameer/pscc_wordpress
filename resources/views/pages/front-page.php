@@ -14,7 +14,6 @@ require_once BEIT_THEME_DIR . '/app/front-page-defaults.php';
 
 $hero_defaults = beit_front_default_hero();
 $news_defaults = beit_front_default_news();
-$facts_defaults = beit_front_default_facts();
 $members_defaults = beit_front_default_members();
 $voices_defaults = beit_front_default_voices();
 $our_story_defaults = beit_front_default_our_story();
@@ -124,21 +123,6 @@ if (post_type_exists('beit_news')) {
     }
 }
 
-$facts = $facts_defaults;
-$facts_field = $has_acf ? get_field('front_facts') : null;
-if (is_array($facts_field)) {
-    $facts = array_merge($facts, array_filter($facts_field));
-    if (!empty($facts_field['filters']) && is_array($facts_field['filters'])) {
-        $facts['filters'] = $facts_field['filters'];
-    }
-    if (!empty($facts_field['items']) && is_array($facts_field['items'])) {
-        $facts['items'] = $facts_field['items'];
-    }
-    if (!empty($facts_field['background_image'])) {
-        $facts['background_image'] = $facts_field['background_image'];
-    }
-}
-
 $members = $members_defaults;
 $members_field = $has_acf ? get_field('front_members') : null;
 if (is_array($members_field)) {
@@ -206,6 +190,20 @@ if (is_array($our_story_field)) {
 
 $display_news = $news_posts;
 
+// Contact Section Settings
+$contact_section = [
+    'title' => __('Get In Touch', 'beit'),
+    'subtitle' => __('We would love to hear from you', 'beit'),
+    'background_image' => '',
+    'overlay_color' => '#1e293b',
+    'overlay_opacity' => 85,
+];
+$contact_field = $has_acf ? get_field('front_contact') : null;
+if (is_array($contact_field)) {
+    $contact_section = array_merge($contact_section, array_filter($contact_field, function ($v) {
+        return $v !== '' && $v !== null; }));
+}
+
 ?>
 
 <main class="bg-white text-slate-900">
@@ -258,16 +256,6 @@ $display_news = $news_posts;
         ]
     );
 
-    if (!empty($facts['items'])) {
-        get_template_part(
-            'resources/views/sections/facts',
-            null,
-            [
-                'facts' => $facts,
-            ]
-        );
-    }
-
     if (!empty($members['items'])) {
         get_template_part(
             'resources/views/sections/partners',
@@ -279,5 +267,18 @@ $display_news = $news_posts;
             ]
         );
     }
+
+    // Contact Section
+    get_template_part(
+        'resources/views/sections/contact-section',
+        null,
+        [
+            'title' => $contact_section['title'] ?? '',
+            'subtitle' => $contact_section['subtitle'] ?? '',
+            'background_image' => $contact_section['background_image'] ?? '',
+            'overlay_color' => $contact_section['overlay_color'] ?? '#1e293b',
+            'overlay_opacity' => $contact_section['overlay_opacity'] ?? 85,
+        ]
+    );
     ?>
 </main>

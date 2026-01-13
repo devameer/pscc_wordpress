@@ -31,7 +31,7 @@
 /* Example component class */
 @layer components {
     .btn {
-        @apply inline-flex items-center gap-2 bg-primary-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600;
+        @apply inline-flex items-center gap-2 bg-primary-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 rounded-full;
     }
 
     .hero-slider {
@@ -76,7 +76,7 @@
     }
 
     .button-form {
-        @apply rounded bg-primary px-12 py-3 font-bold text-white transition;
+        @apply rounded-full bg-primary px-12 py-3 font-bold text-white transition;
     }
 
     .btn-more {
