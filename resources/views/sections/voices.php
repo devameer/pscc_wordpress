@@ -44,7 +44,7 @@ if ($media_query->have_posts()) {
 
         $item = [
             'span' => $index === 0 ? 'double' : 'single',
-            'title' => beit_get_multilingual_title($media_id, 'beit_media'),
+            'title' => get_the_title($media_id),
             'post_id' => $media_id,
         ];
 
@@ -72,7 +72,7 @@ if ($media_query->have_posts()) {
                 'type' => 'image',
                 'src' => wp_get_attachment_image_url($thumb_id, 'full'),
                 'thumbnail_url' => wp_get_attachment_image_url($thumb_id, 'large'),
-                'caption' => beit_get_multilingual_title($media_id, 'beit_media'),
+                'caption' => get_the_title($media_id),
             ];
         } else {
             // Get both video sources - same logic as page-videos-gallery.php
@@ -103,7 +103,7 @@ if ($media_query->have_posts()) {
                 'type' => $lightbox_type,
                 'src' => $video_src,
                 'thumbnail_url' => $thumbnail_url,
-                'caption' => beit_get_multilingual_title($media_id, 'beit_media'),
+                'caption' => get_the_title($media_id),
                 'is_external' => $is_external_video,
             ];
         }

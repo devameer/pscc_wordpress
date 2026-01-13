@@ -53,14 +53,7 @@ $media_query = new WP_Query([
 <main class="bg-white text-slate-900">
     <section class="container mx-auto px-4 py-16">
         <?php if ($media_query->have_posts()) : ?>
-            <div class="mb-12 text-center" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-slate-900">
-                    <?php echo esc_html(beit_translate('Media Center', 'media_center')); ?>
-                </h2>
-                <p class="mt-2 text-slate-600">
-                    <?php echo esc_html(sprintf(beit_translate('%d items available', 'items_count'), $media_query->found_posts)); ?>
-                </p>
-            </div>
+     
 
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <?php
@@ -69,9 +62,7 @@ $media_query = new WP_Query([
                     $media_query->the_post();
                     $post_id = get_the_ID();
                     $media_type = $has_acf ? get_field('media_type', $post_id) : 'image';
-                    $title = function_exists('beit_get_multilingual_title') 
-                        ? beit_get_multilingual_title($post_id, 'beit_media') 
-                        : get_the_title();
+                    $title = get_the_title();
 
                     if ($media_type === 'image') :
                         // Image handling with gallery support
@@ -158,7 +149,7 @@ $media_query = new WP_Query([
                                 endif;
                                 ?>
 
-                                <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($title); ?></h3>
+                                <h3 class="text-base font-medium md:text-lg pt-3"><?php the_title(); ?></h3>
                             </article>
                 <?php
                         endif;
@@ -207,7 +198,7 @@ $media_query = new WP_Query([
                                     </span>
                                     <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
                                 </a>
-                                <h3 class="text-base font-medium md:text-lg pt-3"><?php echo esc_html($title); ?></h3>
+                                <h3 class="text-base font-medium md:text-lg pt-3"><?php the_title(); ?></h3>
                             </article>
                 <?php
                         endif;

@@ -31,7 +31,7 @@ $empty_message = $args['empty_message'];
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-8 md:mb-12 space-y-2 md:space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($heading['title'])): ?>
-                <h2 class="text-2xl md:text-3xl lg:text-5xl font-normal text-slate-900">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-normal text-slate-900">
                     <?php echo wp_kses_post($heading['title']); ?>
                 </h2>
             <?php endif; ?>
