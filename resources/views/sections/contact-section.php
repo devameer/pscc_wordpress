@@ -16,6 +16,7 @@ $has_acf = function_exists('get_field');
 $contact_details = $has_acf ? (get_field('theme_contact_details', 'option') ?: []) : [];
 $google_maps_api_key = $has_acf ? get_field('theme_google_maps_api_key', 'option') : '';
 $map_location = $has_acf ? (get_field('theme_map_location', 'option') ?: []) : [];
+$form_shortcode = $has_acf ? get_field('theme_contact_form_shortcode', 'option') : '';
 
 $email = $contact_details['email'] ?? '';
 $phone = $contact_details['phone'] ?? '';
@@ -71,8 +72,22 @@ $opacity = $overlay_opacity / 100;
         </div>
 
         <div class="grid gap-8 lg:grid-cols-2">
-            <!-- Contact Information -->
-            <div class="space-y-6" data-aos="fade-right" data-aos-delay="100">
+            <!-- Contact Form -->
+            <?php if ($form_shortcode): ?>
+                <div class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-6 sm:p-8 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>"
+                    data-aos="fade-right" data-aos-delay="100">
+                    <h3
+                        class="mb-6 text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                        <?php echo esc_html(beit_translate('Send Us a Message', 'send_us_a_message')); ?>
+                    </h3>
+                    <div class="contact-form-wrapper <?php echo $background_image_url ? 'form-dark-theme' : ''; ?>">
+                        <?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <!-- Contact Information & Map -->
+            <div class="space-y-6" data-aos="fade-left" data-aos-delay="200">
                 <?php if ($phone || $email || $address): ?>
                     <div
                         class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
@@ -90,7 +105,8 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Phone', 'beit'); ?></h4>
+                                            <?php esc_html_e('Phone', 'beit'); ?>
+                                        </h4>
                                         <a class="font-normal transition hover:text-primary <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
                                             <?php echo esc_html($phone); ?>
@@ -108,7 +124,8 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Email', 'beit'); ?></h4>
+                                            <?php esc_html_e('Email', 'beit'); ?>
+                                        </h4>
                                         <a class="font-normal transition hover:text-primary break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
                                             <?php echo esc_html($email); ?>
@@ -126,23 +143,23 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Address', 'beit'); ?></h4>
+                                            <?php esc_html_e('Address', 'beit'); ?>
+                                        </h4>
                                         <p
                                             class="font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">
-                                            <?php echo esc_html($address); ?></p>
+                                            <?php echo esc_html($address); ?>
+                                        </p>
                                     </div>
                                 </div>
                             <?php endif; ?>
                         </div>
                     </div>
                 <?php endif; ?>
-            </div>
 
-            <!-- Map -->
-            <?php if ($google_maps_api_key && !empty($map_location['latitude']) && !empty($map_location['longitude'])): ?>
-                <div class="space-y-6" data-aos="fade-left" data-aos-delay="200">
+                <!-- Map -->
+                <?php if ($google_maps_api_key && !empty($map_location['latitude']) && !empty($map_location['longitude'])): ?>
                     <div class="overflow-hidden rounded-lg shadow-lg">
-                        <div id="homepage-contact-map" style="height: 400px; width: 100%;"></div>
+                        <div id="homepage-contact-map" style="height: 300px; width: 100%;"></div>
                     </div>
 
                     <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
@@ -151,75 +168,76 @@ $opacity = $overlay_opacity / 100;
                             <?php if (!empty($map_location['name'])): ?>
                                 <h3
                                     class="mb-2 text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                    <?php echo esc_html($map_location['name']); ?></h3>
+                                    <?php echo esc_html($map_location['name']); ?>
+                                </h3>
                             <?php endif; ?>
                             <?php if (!empty($map_location['address'])): ?>
                                 <p class="<?php echo $background_image_url ? 'text-gray-200' : 'text-gray-600'; ?>">
-                                    <?php echo esc_html($map_location['address']); ?></p>
+                                    <?php echo esc_html($map_location['address']); ?>
+                                </p>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
-                </div>
 
-                <script>
-                    function initHomepageContactMap() {
-                        const mapElement = document.getElementById('homepage-contact-map');
-                        if (!mapElement) return;
+                    <script>
+                        function initHomepageContactMap() {
+                            const mapElement = document.getElementById('homepage-contact-map');
+                            if (!mapElement) return;
 
-                        const location = {
-                            lat: <?php echo floatval($map_location['latitude']); ?>,
-                            lng: <?php echo floatval($map_location['longitude']); ?>
-                        };
+                            const location = {
+                                lat: <?php echo floatval($map_location['latitude']); ?>,
+                                lng: <?php echo floatval($map_location['longitude']); ?>
+                            };
 
-                        const map = new google.maps.Map(mapElement, {
-                            zoom: 15,
-                            center: location,
-                            mapTypeControl: false,
-                            streetViewControl: false,
-                            fullscreenControl: true,
-                        });
-
-                        const marker = new google.maps.Marker({
-                            position: location,
-                            map: map,
-                            title: <?php echo json_encode($map_location['name'] ?? ''); ?>,
-                            animation: google.maps.Animation.DROP
-                        });
-
-                        <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
-                            const infoContent = '<div style="padding: 10px; max-width: 300px;">' +
-                                <?php if (!empty($map_location['name'])): ?>
-                                '<h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;"><?php echo esc_js($map_location['name']); ?></h3>' +
-                                <?php endif; ?>
-                            <?php if (!empty($map_location['address'])): ?>
-                                '<p style="margin: 0; font-size: 14px; color: #6b7280;"><?php echo esc_js($map_location['address']); ?></p>' +
-                                <?php endif; ?>
-                            '</div>';
-
-                            const infoWindow = new google.maps.InfoWindow({
-                                content: infoContent
+                            const map = new google.maps.Map(mapElement, {
+                                zoom: 15,
+                                center: location,
+                                mapTypeControl: false,
+                                streetViewControl: false,
+                                fullscreenControl: true,
                             });
 
-                            marker.addListener('click', function () {
-                                infoWindow.open(map, marker);
+                            const marker = new google.maps.Marker({
+                                position: location,
+                                map: map,
+                                title: <?php echo json_encode($map_location['name'] ?? ''); ?>,
+                                animation: google.maps.Animation.DROP
                             });
-                        <?php endif; ?>
-                    }
 
-                    // Load Google Maps API if not already loaded
-                    (function () {
-                        if (typeof google !== 'undefined' && google.maps) {
-                            initHomepageContactMap();
-                        } else if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
-                            const script = document.createElement('script');
-                            script.src = 'https://maps.googleapis.com/maps/api/js?key=<?php echo esc_js($google_maps_api_key); ?>&callback=initHomepageContactMap';
-                            script.async = true;
-                            script.defer = true;
-                            document.head.appendChild(script);
+                            <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
+                                const infoContent = '<div style="padding: 10px; max-width: 300px;">' +
+                                    <?php if (!empty($map_location['name'])): ?>
+                                    '<h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: bold; color: #1f2937;"><?php echo esc_js($map_location['name']); ?></h3>' +
+                                    <?php endif; ?>
+                                <?php if (!empty($map_location['address'])): ?>
+                                    '<p style="margin: 0; font-size: 14px; color: #6b7280;"><?php echo esc_js($map_location['address']); ?></p>' +
+                                    <?php endif; ?>
+                                '</div>';
+
+                                const infoWindow = new google.maps.InfoWindow({
+                                    content: infoContent
+                                });
+
+                                marker.addListener('click', function () {
+                                    infoWindow.open(map, marker);
+                                });
+                            <?php endif; ?>
                         }
-                    })();
-                </script>
-            <?php endif; ?>
+
+                        // Load Google Maps API if not already loaded
+                        (function () {
+                            if (typeof google !== 'undefined' && google.maps) {
+                                initHomepageContactMap();
+                            } else if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
+                                const script = document.createElement('script');
+                                script.src = 'https://maps.googleapis.com/maps/api/js?key=<?php echo esc_js($google_maps_api_key); ?>&callback=initHomepageContactMap';
+                                script.async = true;
+                                script.defer = true;
+                                document.head.appendChild(script);
+                            }
+                        })();
+                    </script>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
 </section>

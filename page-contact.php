@@ -29,7 +29,7 @@ while (have_posts()) {
     $map_location = $has_acf ? (get_field('theme_map_location', 'option') ?: []) : [];
 
     $offices = $has_acf ? (get_field('contact_offices') ?: []) : [];
-    $form_shortcode = $has_acf ? get_field('contact_form_shortcode') : '';
+    $form_shortcode = $has_acf ? get_field('theme_contact_form_shortcode', 'option') : '';
 
     $email = $contact_details['email'] ?? '';
     $phone = $contact_details['phone'] ?? '';
@@ -125,47 +125,47 @@ while (have_posts()) {
 
                                 const location = {
                                     lat: <?php echo floatval($map_location['latitude']); ?>,
-                                        lng: <?php echo floatval($map_location['longitude']); ?>
-                                        };
+                                    lng: <?php echo floatval($map_location['longitude']); ?>
+                                };
 
-                            const map = new google.maps.Map(mapElement, {
-                                zoom: 15,
-                                center: location,
-                                mapTypeControl: false,
-                                streetViewControl: true,
-                                fullscreenControl: true,
-                            });
+                                const map = new google.maps.Map(mapElement, {
+                                    zoom: 15,
+                                    center: location,
+                                    mapTypeControl: false,
+                                    streetViewControl: true,
+                                    fullscreenControl: true,
+                                });
 
-                            const marker = new google.maps.Marker({
-                                position: location,
-                                map: map,
-                                title: <?php echo json_encode($map_location['name'] ?? ''); ?>,
+                                const marker = new google.maps.Marker({
+                                    position: location,
+                                    map: map,
+                                    title: <?php echo json_encode($map_location['name'] ?? ''); ?>,
                                     animation: google.maps.Animation.DROP
-                                        });
+                                });
 
-                                        <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
-                                                const infoContent = '<div style="padding: 10px; max-width: 250px;">' +
-                                                    <?php if (!empty($map_location['name'])): ?>
+                                <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
+                                    const infoContent = '<div style="padding: 10px; max-width: 250px;">' +
+                                        <?php if (!empty($map_location['name'])): ?>
                                         '<h3 style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold; color: #1f2937;"><?php echo esc_js($map_location['name']); ?></h3>' +
-                                                    <?php endif; ?>
-                                                <?php if (!empty($map_location['address'])): ?>
+                                        <?php endif; ?>
+                                    <?php if (!empty($map_location['address'])): ?>
                                         '<p style="margin: 0; font-size: 12px; color: #6b7280;"><?php echo esc_js($map_location['address']); ?></p>' +
-                                                    <?php endif; ?>
+                                        <?php endif; ?>
                                     '</div>';
 
-                                const infoWindow = new google.maps.InfoWindow({
-                                    content: infoContent
-                                });
+                                    const infoWindow = new google.maps.InfoWindow({
+                                        content: infoContent
+                                    });
 
-                                marker.addListener('click', function () {
-                                    infoWindow.open(map, marker);
-                                });
+                                    marker.addListener('click', function () {
+                                        infoWindow.open(map, marker);
+                                    });
 
-                                setTimeout(function () {
-                                    infoWindow.open(map, marker);
-                                }, 500);
-                                        <?php endif; ?>
-                                    }
+                                    setTimeout(function () {
+                                        infoWindow.open(map, marker);
+                                    }, 500);
+                                <?php endif; ?>
+                            }
 
                             (function () {
                                 if (typeof google !== 'undefined' && google.maps) {

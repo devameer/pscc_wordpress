@@ -57,6 +57,15 @@ if (function_exists('acf_add_local_field_group')) {
                     ],
                 ],
             ],
+            // Contact Form Shortcode
+            [
+                'key' => 'field_theme_contact_form_shortcode',
+                'label' => 'كود نموذج الاتصال (Shortcode)',
+                'name' => 'theme_contact_form_shortcode',
+                'type' => 'text',
+                'instructions' => 'أدخل shortcode نموذج الاتصال مثل: [contact-form-7 id="123"]',
+                'placeholder' => '[contact-form-7 id="123" title="Contact Form"]',
+            ],
             // Tab - Map Settings
             [
                 'key' => 'field_theme_map_tab',
