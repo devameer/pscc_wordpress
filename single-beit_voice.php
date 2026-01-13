@@ -63,7 +63,7 @@ while (have_posts()) {
                     ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
-                            <?php esc_html_e('More Voices', 'beit'); ?>
+                            <?php esc_html_e('More Media', 'beit'); ?>
                         </h2>
                         <ul class="mt-4 space-y-4 text-sm text-slate-700">
                             <?php

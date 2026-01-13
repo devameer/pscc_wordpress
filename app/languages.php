@@ -109,6 +109,9 @@ function beit_register_polylang_strings(): void
         pll_register_string('photos_count', '%d photos available', 'beit');
         pll_register_string('videos_count', '%d videos available', 'beit');
         pll_register_string('watch_video', 'Watch Video', 'beit');
+        pll_register_string('media_center', 'Media Center', 'beit');
+        pll_register_string('more_media', 'More Media', 'beit');
+        pll_register_string('photos_videos_stories', 'Photos, Videos, and Stories from our work', 'beit');
 
         // Empty state messages (unified)
         pll_register_string('no_items_found', 'No items found', 'beit');

@@ -26,7 +26,7 @@ function beit_front_default_hero(): array
                     'url' => '#',
                     'target' => '_self',
                 ],
-             
+
                 'background_image' => 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop',
                 'video_url' => '#',
             ],
@@ -133,8 +133,8 @@ function beit_front_default_members(): array
 function beit_front_default_voices(): array
 {
     return [
-        'title' => __('Voices & Visions', 'beit'),
-        'subtitle' => __('Real people. Real stories. Real impact.', 'beit'),
+        'title' => __('Media Center', 'beit'),
+        'subtitle' => __('Photos, Videos, and Stories from our work', 'beit'),
     ];
 }
 

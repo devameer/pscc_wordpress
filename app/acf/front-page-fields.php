@@ -113,7 +113,7 @@ acf_add_local_field_group(
             ],
             [
                 'key' => 'field_front_voices',
-                'label' => __('Voices', 'beit'),
+                'label' => __('Media Center', 'beit'),
                 'name' => 'front_voices',
                 'type' => 'group',
                 'layout' => 'block',

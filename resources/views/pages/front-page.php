@@ -133,7 +133,7 @@ if (is_array($members_field)) {
 }
 
 $voices = [
-    'title' => $voices_defaults['title'] ?? __('Voices & Visions', 'beit'),
+    'title' => $voices_defaults['title'] ?? __('Media Center', 'beit'),
     'subtitle' => $voices_defaults['subtitle'] ?? '',
     'items' => [],
 ];
@@ -201,7 +201,8 @@ $contact_section = [
 $contact_field = $has_acf ? get_field('front_contact') : null;
 if (is_array($contact_field)) {
     $contact_section = array_merge($contact_section, array_filter($contact_field, function ($v) {
-        return $v !== '' && $v !== null; }));
+        return $v !== '' && $v !== null;
+    }));
 }
 
 ?>
