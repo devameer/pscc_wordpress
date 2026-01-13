@@ -7,6 +7,13 @@ module.exports = {
     "./resources/views/**/*.php",
     "./resources/assets/js/**/*.js",
   ],
+  safelist: [
+    'form-field',
+    'button-form',
+    'btn-more',
+    'contact-form-wrapper',
+    'form-dark-theme',
+  ],
   theme: {
     container: {
       center: true,

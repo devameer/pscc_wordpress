@@ -44,7 +44,7 @@ $opacity = $overlay_opacity / 100;
 
 ?>
 
-<section class="relative py-16 md:py-20 overflow-hidden" data-aos="fade-up">
+<section class="relative py-10 sm:py-12 md:py-16 lg:py-20 overflow-hidden" data-aos="fade-up">
     <?php if ($background_image_url): ?>
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
@@ -59,25 +59,26 @@ $opacity = $overlay_opacity / 100;
         <div class="absolute inset-0 z-0 bg-gray-50"></div>
     <?php endif; ?>
 
-    <div class="container relative z-20 mx-auto px-4 md:px-6">
+    <div class="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
-        <div class="mb-12 text-center">
+        <div class="mb-8 sm:mb-10 md:mb-12 text-center">
             <h2
-                class="text-3xl font-bold md:text-4xl <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                class="text-2xl sm:text-3xl md:text-4xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                 <?php echo esc_html($section_title); ?>
             </h2>
-            <p class="mt-4 text-lg <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-600'; ?>">
+            <p
+                class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-600'; ?>">
                 <?php echo esc_html($section_subtitle); ?>
             </p>
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-2">
+        <div class="grid gap-6 sm:gap-8 grid-cols-1 lg:grid-cols-2">
             <!-- Contact Form -->
             <?php if ($form_shortcode): ?>
-                <div class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-6 sm:p-8 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>"
+                <div class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-4 sm:p-6 md:p-8 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>"
                     data-aos="fade-right" data-aos-delay="100">
                     <h3
-                        class="mb-6 text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                        class="mb-4 sm:mb-6 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                         <?php echo esc_html(beit_translate('Send Us a Message', 'send_us_a_message')); ?>
                     </h3>
                     <div class="contact-form-wrapper <?php echo $background_image_url ? 'form-dark-theme' : ''; ?>">
@@ -87,27 +88,27 @@ $opacity = $overlay_opacity / 100;
             <?php endif; ?>
 
             <!-- Contact Information & Map -->
-            <div class="space-y-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="space-y-4 sm:space-y-6" data-aos="fade-left" data-aos-delay="200">
                 <?php if ($phone || $email || $address): ?>
                     <div
-                        class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
+                        class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-4 sm:p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
                         <h3
-                            class="mb-4 text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                            class="mb-3 sm:mb-4 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                             <?php echo esc_html(beit_translate('Contact Information', 'contact_information')); ?>
                         </h3>
-                        <div class="space-y-4">
+                        <div class="space-y-3 sm:space-y-4">
                             <?php if ($phone): ?>
-                                <div class="flex items-start gap-4">
+                                <div class="flex items-start gap-3 sm:gap-4">
                                     <span
-                                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                                        <i class="fa fa-phone text-xl"></i>
+                                        class="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                                        <i class="fa fa-phone text-lg sm:text-xl"></i>
                                     </span>
-                                    <div>
+                                    <div class="min-w-0 flex-1">
                                         <h4
-                                            class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                                            class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                             <?php echo esc_html(beit_translate('Phone', 'phone')); ?>
                                         </h4>
-                                        <a class="font-normal transition hover:text-primary <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
+                                        <a class="text-sm sm:text-base font-normal transition hover:text-primary <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
                                             <?php echo esc_html($phone); ?>
                                         </a>
@@ -116,17 +117,17 @@ $opacity = $overlay_opacity / 100;
                             <?php endif; ?>
 
                             <?php if ($email): ?>
-                                <div class="flex items-start gap-4">
+                                <div class="flex items-start gap-3 sm:gap-4">
                                     <span
-                                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                                        <i class="fa fa-envelope text-xl"></i>
+                                        class="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                                        <i class="fa fa-envelope text-lg sm:text-xl"></i>
                                     </span>
-                                    <div>
+                                    <div class="min-w-0 flex-1">
                                         <h4
-                                            class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                                            class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                             <?php echo esc_html(beit_translate('Email', 'email')); ?>
                                         </h4>
-                                        <a class="font-normal transition hover:text-primary break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
+                                        <a class="text-sm sm:text-base font-normal transition hover:text-primary break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
                                             <?php echo esc_html($email); ?>
                                         </a>
@@ -135,18 +136,18 @@ $opacity = $overlay_opacity / 100;
                             <?php endif; ?>
 
                             <?php if ($address): ?>
-                                <div class="flex items-start gap-4">
+                                <div class="flex items-start gap-3 sm:gap-4">
                                     <span
-                                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                                        <i class="fa fa-map-marker text-xl"></i>
+                                        class="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                                        <i class="fa fa-map-marker text-lg sm:text-xl"></i>
                                     </span>
-                                    <div>
+                                    <div class="min-w-0 flex-1">
                                         <h4
-                                            class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                                            class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                             <?php echo esc_html(beit_translate('Address', 'address')); ?>
                                         </h4>
                                         <p
-                                            class="font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">
+                                            class="text-sm sm:text-base font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">
                                             <?php echo esc_html($address); ?>
                                         </p>
                                     </div>
@@ -159,20 +160,21 @@ $opacity = $overlay_opacity / 100;
                 <!-- Map -->
                 <?php if ($google_maps_api_key && !empty($map_location['latitude']) && !empty($map_location['longitude'])): ?>
                     <div class="overflow-hidden rounded-lg shadow-lg">
-                        <div id="homepage-contact-map" style="height: 300px; width: 100%;"></div>
+                        <div id="homepage-contact-map" class="h-48 sm:h-64 md:h-72 lg:h-80 w-full"></div>
                     </div>
 
                     <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
                         <div
-                            class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
+                            class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-4 sm:p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
                             <?php if (!empty($map_location['name'])): ?>
                                 <h3
-                                    class="mb-2 text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
+                                    class="mb-1 sm:mb-2 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                     <?php echo esc_html($map_location['name']); ?>
                                 </h3>
                             <?php endif; ?>
                             <?php if (!empty($map_location['address'])): ?>
-                                <p class="<?php echo $background_image_url ? 'text-gray-200' : 'text-gray-600'; ?>">
+                                <p
+                                    class="text-sm sm:text-base <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-600'; ?>">
                                     <?php echo esc_html($map_location['address']); ?>
                                 </p>
                             <?php endif; ?>
@@ -240,4 +242,5 @@ $opacity = $overlay_opacity / 100;
                 <?php endif; ?>
             </div>
         </div>
+    </div>
 </section>
