@@ -53,7 +53,6 @@ if (function_exists('get_field')) {
 
     // Try language-specific field first, fallback to default
     $topbar_search_label = get_field('topbar_search_label' . $lang_suffix, 'option') ?: get_field('topbar_search_label', 'option') ?: beit_translate('Search', 'search_label');
-    $faq_link = get_field('faq_link' . $lang_suffix, 'option') ?: get_field('faq_link', 'option');
 
     $topbar_socials_raw = get_field('topbar_social_links', 'option');
     $topbar_socials = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
@@ -63,12 +62,7 @@ if (function_exists('get_field')) {
     $topbar_email = null;
     $topbar_phone = null;
     $topbar_search_label = beit_translate('Search', 'search_label');
-    $faq_link = null;
 }
-
-$faq_label = $faq_link['title'] ?? beit_translate('FAQs', 'faqs');
-$faq_url = $faq_link['url'] ?? '#';
-$faq_target = $faq_link['target'] ?? '_self';
 
 ?>
 
@@ -160,13 +154,7 @@ $faq_target = $faq_link['target'] ?? '_self';
                             endforeach;
                         endif;
                         ?>
-                        <?php if ($faq_link && !empty($faq_url) && $faq_url !== '#'): ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-red-400 md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
-                                href="<?php echo esc_url($faq_url); ?>" target="<?php echo esc_attr($faq_target); ?>">
-                                <i class="fa fa-question-circle-o text-[10px] sm:text-xs md:text-sm"></i>
-                                <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($faq_label); ?></span>
-                            </a>
-                        <?php endif; ?>
+
                     </div>
 
                     <div class="hidden lg:flex items-center ">

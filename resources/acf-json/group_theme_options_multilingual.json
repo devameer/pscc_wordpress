@@ -27,14 +27,7 @@
       "instructions": "رابط ونص زر التبرع",
       "return_format": "array"
     },
-    {
-      "key": "field_faq_link",
-      "label": "رابط الأسئلة الشائعة",
-      "name": "faq_link",
-      "type": "link",
-      "instructions": "رابط ونص صفحة الأسئلة الشائعة",
-      "return_format": "array"
-    },
+
     {
       "key": "field_theme_settings_tab_logos",
       "label": "الشعارات",
