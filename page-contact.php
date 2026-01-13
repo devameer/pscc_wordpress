@@ -28,7 +28,7 @@ while (have_posts()) {
     $google_maps_api_key = $has_acf ? get_field('theme_google_maps_api_key', 'option') : '';
     $map_location = $has_acf ? (get_field('theme_map_location', 'option') ?: []) : [];
 
-    $offices = $has_acf ? (get_field('contact_offices') ?: []) : [];
+
     $form_shortcode = $has_acf ? get_field('theme_contact_form_shortcode', 'option') : '';
 
     $email = $contact_details['email'] ?? '';
@@ -153,7 +153,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php esc_html_e('Phone', 'beit'); ?>
+                                        <?php echo esc_html(beit_translate('Phone', 'phone')); ?>
                                     </span>
                                     <a class="block text-gray-800 font-medium hover:text-primary transition"
                                         href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
@@ -171,7 +171,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php esc_html_e('Email', 'beit'); ?>
+                                        <?php echo esc_html(beit_translate('Email', 'email')); ?>
                                     </span>
                                     <a class="block text-gray-800 font-medium hover:text-primary transition break-all"
                                         href="mailto:<?php echo esc_attr($email); ?>">
@@ -189,7 +189,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php esc_html_e('Address', 'beit'); ?>
+                                        <?php echo esc_html(beit_translate('Address', 'address')); ?>
                                     </span>
                                     <p class="text-gray-800 font-medium">
                                         <?php echo esc_html($address); ?>
@@ -198,42 +198,6 @@ while (have_posts()) {
                             </div>
                         <?php endif; ?>
                     </div>
-
-                    <!-- Offices -->
-                    <?php if (!empty($offices)): ?>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <h3 class="text-lg font-bold text-gray-800 mb-4 ltr:text-left rtl:text-right">
-                                <?php echo esc_html(beit_translate('Our Offices', 'our_offices')); ?>
-                            </h3>
-                            <div class="space-y-4">
-                                <?php foreach ($offices as $office):
-                                    $office_name = $office['name'] ?? '';
-                                    $office_address = $office['address'] ?? '';
-                                    $map_link = $office['map_link'] ?? '';
-                                    ?>
-                                    <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0 ltr:text-left rtl:text-right">
-                                        <?php if ($office_name): ?>
-                                            <h4 class="font-bold text-gray-800">
-                                                <?php echo esc_html($office_name); ?>
-                                            </h4>
-                                        <?php endif; ?>
-                                        <?php if ($office_address): ?>
-                                            <p class="mt-1 text-sm text-gray-600">
-                                                <?php echo esc_html($office_address); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if ($map_link): ?>
-                                            <a class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-red-700"
-                                                href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
-                                                <i class="fa fa-external-link text-xs"></i>
-                                                <?php esc_html_e('View on Map', 'beit'); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
 
                 </div>
             </div>

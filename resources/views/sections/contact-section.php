@@ -105,7 +105,7 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Phone', 'beit'); ?>
+                                            <?php echo esc_html(beit_translate('Phone', 'phone')); ?>
                                         </h4>
                                         <a class="font-normal transition hover:text-primary <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
@@ -124,7 +124,7 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Email', 'beit'); ?>
+                                            <?php echo esc_html(beit_translate('Email', 'email')); ?>
                                         </h4>
                                         <a class="font-normal transition hover:text-primary break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
@@ -143,7 +143,7 @@ $opacity = $overlay_opacity / 100;
                                     <div>
                                         <h4
                                             class="mb-1 font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php esc_html_e('Address', 'beit'); ?>
+                                            <?php echo esc_html(beit_translate('Address', 'address')); ?>
                                         </h4>
                                         <p
                                             class="font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">

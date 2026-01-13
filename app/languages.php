@@ -130,6 +130,9 @@ function beit_register_polylang_strings(): void
         pll_register_string('get_in_touch', 'Get In Touch', 'beit');
         pll_register_string('we_would_love_to_hear_from_you', 'We would love to hear from you', 'beit');
         pll_register_string('send_us_a_message', 'Send Us a Message', 'beit');
+        pll_register_string('phone', 'Phone', 'beit');
+        pll_register_string('email', 'Email', 'beit');
+        pll_register_string('address', 'Address', 'beit');
 
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');

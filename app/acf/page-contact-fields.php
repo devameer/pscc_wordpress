@@ -35,36 +35,6 @@ acf_add_local_field_group(
                     ],
                 ],
             ],
-            [
-                'key' => 'field_contact_offices',
-                'label' => __('Office Locations', 'beit'),
-                'name' => 'contact_offices',
-                'type' => 'repeater',
-                'layout' => 'row',
-                'button_label' => __('Add office', 'beit'),
-                'instructions' => __('Additional office locations for "Our Offices" section.', 'beit'),
-                'sub_fields' => [
-                    [
-                        'key' => 'field_contact_office_name',
-                        'label' => __('Office Name', 'beit'),
-                        'name' => 'name',
-                        'type' => 'text',
-                    ],
-                    [
-                        'key' => 'field_contact_office_address',
-                        'label' => __('Address', 'beit'),
-                        'name' => 'address',
-                        'type' => 'textarea',
-                        'rows' => 2,
-                    ],
-                    [
-                        'key' => 'field_contact_office_map',
-                        'label' => __('Map Link', 'beit'),
-                        'name' => 'map_link',
-                        'type' => 'url',
-                    ],
-                ],
-            ],
         ],
         'location' => [
             [
