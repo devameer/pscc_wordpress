@@ -42,7 +42,7 @@ if (!$title) {
 
 // Build background style
 $background_style = '';
-$image_path = get_template_directory_uri() . '/resources/assets/images/page-hero.png';
+$image_path = get_template_directory_uri() . '/resources/assets/images/page-hero.jpg';
 
 if ($background_image) {
     $background_style = 'background-image: url(' . esc_url($background_image) . ');';
