@@ -62,50 +62,8 @@ while (have_posts()) {
                     <div class="mt-6">
                         <?php if ($form_shortcode): ?>
                             <?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                        <?php else: ?>
-                            <form class="space-y-4">
-                                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <input type="text" placeholder="<?php esc_attr_e('Your name', 'beit'); ?>"
-                                        class="form-field" required>
-                                    <input type="email" placeholder="<?php esc_attr_e('Your email', 'beit'); ?>"
-                                        class="form-field" required>
-                                </div>
-
-                                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <input type="text" placeholder="<?php esc_attr_e('Subject', 'beit'); ?>" class="form-field">
-                                    <select class="form-field text-gray-500">
-                                        <option value="">
-                                            <?php esc_html_e('Reason', 'beit'); ?>
-                                        </option>
-                                        <option value="general">
-                                            <?php esc_html_e('General Inquiry', 'beit'); ?>
-                                        </option>
-                                        <option value="support">
-                                            <?php esc_html_e('Support', 'beit'); ?>
-                                        </option>
-                                        <option value="partnership">
-                                            <?php esc_html_e('Partnership', 'beit'); ?>
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <textarea placeholder="<?php esc_attr_e('Your message here...', 'beit'); ?>" rows="6"
-                                    class="form-field"></textarea>
-
-                                <div class="flex flex-wrap items-center gap-4">
-                                    <button type="submit" class="button-form rounded-full">
-                                        <?php esc_html_e('Send', 'beit'); ?>
-                                    </button>
-                                    <span class="text-gray-500">
-                                        <?php esc_html_e('or', 'beit'); ?>
-                                    </span>
-                                    <button type="reset"
-                                        class="font-bold text-red-600 underline hover:text-red-700 rounded-full">
-                                        <?php esc_html_e('Clear', 'beit'); ?>
-                                    </button>
-                                </div>
-                            </form>
-                        <?php endif; ?>
+                        <?php
+                        endif; ?>
                     </div>
                 </section>
 
