@@ -76,7 +76,7 @@ if (!$default_year_id && !empty($years)) {
                 }
                 ?>
                     <button type="button"
-                        class="facts-tab-button  px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-bold transition <?php echo $is_active ? 'bg-primary text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>"
+                        class="facts-tab-button  px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-bold transition rounded-full <?php echo $is_active ? 'bg-primary text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'; ?>"
                         data-year="<?php echo esc_attr($year_id); ?>"
                         data-active="<?php echo $is_active ? 'true' : 'false'; ?>">
                         <?php echo esc_html($year_label); ?>
