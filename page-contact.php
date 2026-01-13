@@ -62,7 +62,7 @@ while (have_posts()) {
                     <div class="mt-6">
                         <?php if ($form_shortcode): ?>
                             <?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                        <?php
+                            <?php
                         endif; ?>
                     </div>
                 </section>

@@ -126,6 +126,10 @@ function beit_register_polylang_strings(): void
         pll_register_string('share_your_thoughts', 'Share Your Thoughts Here', 'beit');
         pll_register_string('our_offices', 'Our Offices', 'beit');
         pll_register_string('warehouses', 'Warehouses', 'beit');
+        pll_register_string('contact_information', 'Contact Information', 'beit');
+        pll_register_string('get_in_touch', 'Get In Touch', 'beit');
+        pll_register_string('we_would_love_to_hear_from_you', 'We would love to hear from you', 'beit');
+        pll_register_string('send_us_a_message', 'Send Us a Message', 'beit');
 
         // Footer strings
         pll_register_string('copyright_text', '© %1$s %2$s. All rights reserved.', 'beit');
