@@ -21,8 +21,8 @@ function beit_acf_register_options_pages(): void
 
     acf_add_options_page(
         [
-            'page_title' => __('Theme Settings', 'beit'),
-            'menu_title' => __('Theme Settings', 'beit'),
+            'page_title' => 'إعدادات القالب',
+            'menu_title' => 'إعدادات القالب',
             'menu_slug' => 'beit-theme-settings',
             'capability' => 'manage_options',
             'redirect' => false,
