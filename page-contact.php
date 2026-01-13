@@ -27,7 +27,7 @@ while (have_posts()) {
     $contact_details = $has_acf ? (get_field('theme_contact_details', 'option') ?: []) : [];
     $google_maps_api_key = $has_acf ? get_field('theme_google_maps_api_key', 'option') : '';
     $map_location = $has_acf ? (get_field('theme_map_location', 'option') ?: []) : [];
-    
+
     $offices = $has_acf ? (get_field('contact_offices') ?: []) : [];
     $form_shortcode = $has_acf ? get_field('contact_form_shortcode') : '';
 
@@ -36,7 +36,7 @@ while (have_posts()) {
     $address = $contact_details['address'] ?? '';
     $hero_custom_title = $hero_data['custom_title'] ?? '';
     $hero_title = $hero_custom_title ?: get_the_title();
-    
+
     get_template_part(
         'resources/views/components/page-hero',
         null,
@@ -52,7 +52,7 @@ while (have_posts()) {
     <main class="bg-gray-50 text-slate-900">
         <div class="container mx-auto px-4 py-12">
             <div class="grid gap-8 lg:grid-cols-2">
-                
+
                 <!-- Right Column - Contact Form (appears first on mobile, right on desktop) -->
                 <section class="bg-white p-6 sm:p-8 rounded-lg shadow-sm order-2 lg:order-1" data-aos="fade-up">
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 ltr:text-left rtl:text-right">
@@ -65,8 +65,10 @@ while (have_posts()) {
                         <?php else: ?>
                             <form class="space-y-4">
                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <input type="text" placeholder="<?php esc_attr_e('Your name', 'beit'); ?>" class="form-field" required>
-                                    <input type="email" placeholder="<?php esc_attr_e('Your email', 'beit'); ?>" class="form-field" required>
+                                    <input type="text" placeholder="<?php esc_attr_e('Your name', 'beit'); ?>"
+                                        class="form-field" required>
+                                    <input type="email" placeholder="<?php esc_attr_e('Your email', 'beit'); ?>"
+                                        class="form-field" required>
                                 </div>
 
                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -79,14 +81,16 @@ while (have_posts()) {
                                     </select>
                                 </div>
 
-                                <textarea placeholder="<?php esc_attr_e('Your message here...', 'beit'); ?>" rows="6" class="form-field"></textarea>
+                                <textarea placeholder="<?php esc_attr_e('Your message here...', 'beit'); ?>" rows="6"
+                                    class="form-field"></textarea>
 
                                 <div class="flex flex-wrap items-center gap-4">
                                     <button type="submit" class="button-form rounded-full">
                                         <?php esc_html_e('Send', 'beit'); ?>
                                     </button>
                                     <span class="text-gray-500"><?php esc_html_e('or', 'beit'); ?></span>
-                                    <button type="reset" class="font-bold text-red-600 underline hover:text-red-700 rounded-full">
+                                    <button type="reset"
+                                        class="font-bold text-red-600 underline hover:text-red-700 rounded-full">
                                         <?php esc_html_e('Clear', 'beit'); ?>
                                     </button>
                                 </div>
@@ -97,7 +101,7 @@ while (have_posts()) {
 
                 <!-- Left Column - Map and Details (appears second on mobile, left on desktop) -->
                 <div class="space-y-6 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="100">
-                    
+
                     <!-- Map -->
                     <?php if ($google_maps_api_key && !empty($map_location['latitude']) && !empty($map_location['longitude'])): ?>
                         <div class="overflow-hidden rounded-lg shadow-sm">
@@ -130,30 +134,30 @@ while (have_posts()) {
                                 });
 
                                 <?php if (!empty($map_location['name']) || !empty($map_location['address'])): ?>
-                                const infoContent = '<div style="padding: 10px; max-width: 250px;">' +
-                                    <?php if (!empty($map_location['name'])): ?>
-                                    '<h3 style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold; color: #1f2937;"><?php echo esc_js($map_location['name']); ?></h3>' +
-                                    <?php endif; ?>
+                                    const infoContent = '<div style="padding: 10px; max-width: 250px;">' +
+                                        <?php if (!empty($map_location['name'])): ?>
+                                        '<h3 style="margin: 0 0 5px 0; font-size: 14px; font-weight: bold; color: #1f2937;"><?php echo esc_js($map_location['name']); ?></h3>' +
+                                        <?php endif; ?>
                                     <?php if (!empty($map_location['address'])): ?>
-                                    '<p style="margin: 0; font-size: 12px; color: #6b7280;"><?php echo esc_js($map_location['address']); ?></p>' +
-                                    <?php endif; ?>
+                                        '<p style="margin: 0; font-size: 12px; color: #6b7280;"><?php echo esc_js($map_location['address']); ?></p>' +
+                                        <?php endif; ?>
                                     '</div>';
 
-                                const infoWindow = new google.maps.InfoWindow({
-                                    content: infoContent
-                                });
+                                    const infoWindow = new google.maps.InfoWindow({
+                                        content: infoContent
+                                    });
 
-                                marker.addListener('click', function() {
-                                    infoWindow.open(map, marker);
-                                });
+                                    marker.addListener('click', function () {
+                                        infoWindow.open(map, marker);
+                                    });
 
-                                setTimeout(function() {
-                                    infoWindow.open(map, marker);
-                                }, 500);
+                                    setTimeout(function () {
+                                        infoWindow.open(map, marker);
+                                    }, 500);
                                 <?php endif; ?>
                             }
 
-                            (function() {
+                            (function () {
                                 if (typeof google !== 'undefined' && google.maps) {
                                     initContactMap();
                                 } else {
@@ -172,16 +176,17 @@ while (have_posts()) {
                         <h3 class="text-lg font-bold text-gray-800 ltr:text-left rtl:text-right">
                             <?php echo esc_html(beit_translate('Contact Information', 'contact_information')); ?>
                         </h3>
-                        
+
                         <?php if ($phone): ?>
                             <div class="flex items-center gap-4">
-                                <span class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
+                                <span
+                                    class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
                                     <i class="fa fa-phone"></i>
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500"><?php esc_html_e('Phone', 'beit'); ?></span>
                                     <a class="block text-gray-800 font-medium hover:text-primary transition"
-                                       href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
+                                        href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
                                         <?php echo esc_html($phone); ?>
                                     </a>
                                 </div>
@@ -190,13 +195,14 @@ while (have_posts()) {
 
                         <?php if ($email): ?>
                             <div class="flex items-center gap-4">
-                                <span class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
+                                <span
+                                    class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
                                     <i class="fa fa-envelope"></i>
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500"><?php esc_html_e('Email', 'beit'); ?></span>
                                     <a class="block text-gray-800 font-medium hover:text-primary transition break-all"
-                                       href="mailto:<?php echo esc_attr($email); ?>">
+                                        href="mailto:<?php echo esc_attr($email); ?>">
                                         <?php echo esc_html($email); ?>
                                     </a>
                                 </div>
@@ -205,7 +211,8 @@ while (have_posts()) {
 
                         <?php if ($address): ?>
                             <div class="flex items-center gap-4">
-                                <span class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
+                                <span
+                                    class="w-10 h-10 flex justify-center items-center text-white bg-primary rounded-full shrink-0">
                                     <i class="fa fa-map-marker"></i>
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
@@ -227,7 +234,7 @@ while (have_posts()) {
                                     $office_name = $office['name'] ?? '';
                                     $office_address = $office['address'] ?? '';
                                     $map_link = $office['map_link'] ?? '';
-                                ?>
+                                    ?>
                                     <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0 ltr:text-left rtl:text-right">
                                         <?php if ($office_name): ?>
                                             <h4 class="font-bold text-gray-800"><?php echo esc_html($office_name); ?></h4>
@@ -237,7 +244,7 @@ while (have_posts()) {
                                         <?php endif; ?>
                                         <?php if ($map_link): ?>
                                             <a class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-red-700"
-                                               href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
+                                                href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
                                                 <i class="fa fa-external-link text-xs"></i>
                                                 <?php esc_html_e('View on Map', 'beit'); ?>
                                             </a>
@@ -247,13 +254,13 @@ while (have_posts()) {
                             </div>
                         </div>
                     <?php endif; ?>
-                    
+
                 </div>
             </div>
         </div>
     </main>
 
-<?php
+    <?php
 }
 
 get_footer();
