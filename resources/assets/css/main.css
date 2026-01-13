@@ -25,6 +25,19 @@
     h6 {
         font-family: '29LT Bukra', system-ui, -apple-system, sans-serif;
     }
+
+    /* Rounded corners for all images */
+    img {
+        @apply rounded-lg;
+    }
+
+    /* Exceptions for specific image types */
+    .logo-header img,
+    .footer-logo img,
+    .site-logo img,
+    img.no-rounded {
+        @apply rounded-none;
+    }
 }
 
 
