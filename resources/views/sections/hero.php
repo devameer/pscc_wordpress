@@ -77,6 +77,20 @@ if (empty($slides)) {
                                     </p>
                                 <?php endif; ?>
 
+                                <?php if (!empty($primary_button['title']) || !empty($secondary_button['title'])): ?>
+                                    <div class="flex flex-wrap items-center gap-4 hero-buttons-animate justify-start ">
+                                        <?php if (!empty($primary_button['title'])): ?>
+                                            <a class="font-normal inline-flex items-center  bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-primary hover:scale-105 hover:shadow-lg rounded-full"
+                                                href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
+                                                target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
+                                                rel="noopener">
+                                                <?php echo esc_html($primary_button['title']); ?>
+                                            </a>
+                                        <?php endif; ?>
+
+                                      
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
