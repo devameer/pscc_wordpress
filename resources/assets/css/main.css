@@ -80,7 +80,7 @@
     }
 
     .btn-more {
-        @apply inline-flex items-center gap-2 rounded-sm bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition;
+        @apply inline-flex items-center gap-2  bg-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition rounded-full;
     }
 }
 
@@ -110,7 +110,8 @@
     transform: scaleY(0);
     transform-origin: right;
     transition: transform 0.3s ease;
-    z-index: -1
+    z-index: -1;
+    border-radius: 100px;
 }
 
 #primary-menu li.menu-item a:hover::after {

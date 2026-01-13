@@ -49,12 +49,7 @@ acf_add_local_field_group(
                 'name'  => 'hero_slide_primary_button',
                 'type'  => 'link',
             ],
-            [
-                'key'   => 'field_hero_slide_secondary_button',
-                'label' => __('Secondary Button', 'beit'),
-                'name'  => 'hero_slide_secondary_button',
-                'type'  => 'link',
-            ],
+          
             [
                 'key'   => 'field_hero_slide_video_url',
                 'label' => __('Video URL', 'beit'),

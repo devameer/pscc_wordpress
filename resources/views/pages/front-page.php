@@ -13,10 +13,9 @@ if (!defined('ABSPATH')) {
 require_once BEIT_THEME_DIR . '/app/front-page-defaults.php';
 
 $hero_defaults = beit_front_default_hero();
-$initiatives_defaults = beit_front_default_initiatives();
 $news_defaults = beit_front_default_news();
 $facts_defaults = beit_front_default_facts();
-$partners_defaults = beit_front_default_partners();
+$members_defaults = beit_front_default_members();
 $voices_defaults = beit_front_default_voices();
 $our_story_defaults = beit_front_default_our_story();
 
@@ -61,10 +60,8 @@ if ($hero_query->have_posts()) {
         $background_image = get_the_post_thumbnail_url($slide_id, 'full') ?: '';
         $video_url = $has_acf ? (string) get_field('hero_slide_video_url', $slide_id) : '';
         $primary_button_field = $has_acf ? get_field('hero_slide_primary_button', $slide_id) : null;
-        $secondary_button_field = $has_acf ? get_field('hero_slide_secondary_button', $slide_id) : null;
 
         $primary_button = is_array($primary_button_field) ? $primary_button_field : [];
-        $secondary_button = is_array($secondary_button_field) ? $secondary_button_field : [];
 
         if ('' === $description) {
             $description = has_excerpt($slide_id) ? get_the_excerpt() : wp_strip_all_tags(get_the_content(null, false, $slide_id));
@@ -77,7 +74,6 @@ if ($hero_query->have_posts()) {
             'background_image' => $background_image,
             'video_url' => $video_url,
             'primary_button' => $primary_button,
-            'secondary_button' => $secondary_button,
         ];
     }
 
@@ -86,15 +82,6 @@ if ($hero_query->have_posts()) {
 
 if (empty($hero_slides)) {
     $hero_slides = $hero_defaults['slides'];
-}
-
-$initiatives = $initiatives_defaults;
-$initiatives_field = $has_acf ? get_field('front_initiatives') : null;
-if (is_array($initiatives_field)) {
-    $initiatives = array_merge($initiatives, array_filter($initiatives_field));
-    if (!empty($initiatives_field['items']) && is_array($initiatives_field['items'])) {
-        $initiatives['items'] = $initiatives_field['items'];
-    }
 }
 
 $news = $news_defaults;
@@ -152,12 +139,12 @@ if (is_array($facts_field)) {
     }
 }
 
-$partners = $partners_defaults;
-$partners_field = $has_acf ? get_field('front_partners') : null;
-if (is_array($partners_field)) {
-    $partners = array_merge($partners, array_filter($partners_field));
-    if (!empty($partners_field['items']) && is_array($partners_field['items'])) {
-        $partners['items'] = $partners_field['items'];
+$members = $members_defaults;
+$members_field = $has_acf ? get_field('front_members') : null;
+if (is_array($members_field)) {
+    $members = array_merge($members, array_filter($members_field));
+    if (!empty($members_field['items']) && is_array($members_field['items'])) {
+        $members['items'] = $members_field['items'];
     }
 }
 
@@ -236,18 +223,6 @@ $display_news = $news_posts;
         ]
     );
 
-    if (!empty($initiatives['items'])) {
-        get_template_part(
-            'resources/views/sections/initiatives',
-            null,
-            [
-                'data' => $initiatives,
-                'hero_prev_icon' => $hero_prev_icon,
-                'hero_next_icon' => $hero_next_icon,
-            ]
-        );
-    }
-
     if (!empty($display_news)) {
         get_template_part(
             'resources/views/sections/news',
@@ -293,12 +268,12 @@ $display_news = $news_posts;
         );
     }
 
-    if (!empty($partners['items'])) {
+    if (!empty($members['items'])) {
         get_template_part(
             'resources/views/sections/partners',
             null,
             [
-                'partners' => $partners,
+                'members' => $members,
                 'hero_prev_icon' => $hero_prev_icon,
                 'hero_next_icon' => $hero_next_icon,
             ]

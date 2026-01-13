@@ -77,41 +77,10 @@
 
         document.querySelectorAll('.hero-slider').forEach((slider) => initializeHeroSlider(slider));
 
-        document.querySelectorAll('.initiatives-slider').forEach((slider) => {
+        document.querySelectorAll('.members-slider').forEach((slider) => {
             const wrapper = slider.parentElement;
-            const nextEl = wrapper ? wrapper.querySelector('.initiatives-button-next') : null;
-            const prevEl = wrapper ? wrapper.querySelector('.initiatives-button-prev') : null;
-
-            initializeCarousel(slider, {
-                loop: true,
-                speed: 600,
-                spaceBetween: 24,
-                slidesPerView: 1,
-                navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
-                breakpoints: {
-                    500: {
-                        slidesPerView: 2,
-                    },
-                    600: {
-                        slidesPerView: 3,
-                    },
-                    1000: {
-                        slidesPerView: 4,
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                    },
-                    1280: {
-                        slidesPerView: 6,
-                    },
-                },
-            });
-        });
-
-        document.querySelectorAll('.partners-slider').forEach((slider) => {
-            const wrapper = slider.parentElement;
-            const nextEl = wrapper ? wrapper.querySelector('.partners-button-next') : null;
-            const prevEl = wrapper ? wrapper.querySelector('.partners-button-prev') : null;
+            const nextEl = wrapper ? wrapper.querySelector('.members-button-next') : null;
+            const prevEl = wrapper ? wrapper.querySelector('.members-button-prev') : null;
 
             initializeCarousel(
                 slider,

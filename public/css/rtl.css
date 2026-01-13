@@ -111,27 +111,16 @@ body.rtl {
 }
 
 /* ==========================================================================
-   Initiatives & Partners Sliders RTL
+   Members Sliders RTL
    ========================================================================== */
 
-/* Initiatives slider navigation */
-.rtl .initiatives-button-prev {
+/* Members slider navigation */
+.rtl .members-button-prev {
     right: 0.5rem;
     left: auto;
 }
 
-.rtl .initiatives-button-next {
-    left: 0.5rem;
-    right: auto;
-}
-
-/* Partners slider navigation */
-.rtl .partners-button-prev {
-    right: 0.5rem;
-    left: auto;
-}
-
-.rtl .partners-button-next {
+.rtl .members-button-next {
     left: 0.5rem;
     right: auto;
 }

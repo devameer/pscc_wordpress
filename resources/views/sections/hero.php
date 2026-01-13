@@ -46,7 +46,6 @@ if (empty($slides)) {
                     )
                     : '';
                 $primary_button = is_array($slide['primary_button'] ?? null) ? $slide['primary_button'] : [];
-                $secondary_button = is_array($slide['secondary_button'] ?? null) ? $slide['secondary_button'] : [];
                 ?>
                 <div class="swiper-slide">
                     <div class="relative flex min-h-[95vh] items-center justify-center overflow-hidden" <?php if ($background_style): ?> style="<?php echo esc_attr($background_style); ?>" <?php endif; ?>>
@@ -78,28 +77,6 @@ if (empty($slides)) {
                                     </p>
                                 <?php endif; ?>
 
-                                <?php if (!empty($primary_button['title']) || !empty($secondary_button['title'])): ?>
-                                    <div class="flex flex-wrap items-center gap-4 hero-buttons-animate justify-start ">
-                                        <?php if (!empty($primary_button['title'])): ?>
-                                            <a class="font-normal inline-flex items-center  bg-primary px-8 py-2  text-lg uppercase tracking-wide text-white transition hover:bg-primary hover:scale-105 hover:shadow-lg"
-                                                href="<?php echo esc_url($primary_button['url'] ?? '#'); ?>"
-                                                target="<?php echo esc_attr($primary_button['target'] ?? '_self'); ?>"
-                                                rel="noopener">
-                                                <?php echo esc_html($primary_button['title']); ?>
-                                            </a>
-                                        <?php endif; ?>
-
-                                        <?php if (!empty($secondary_button['title'])): ?>
-                                            <span class="hero-or-animate"><?php echo esc_html(beit_translate('OR', 'or')); ?></span>
-                                            <a class="font-normal inline-flex items-center gap-2 underline text-xl capitalize tracking-wide text-white transition hover:border-white hover:text-white ltr:hover:translate-x-2 rtl:hover:-translate-x-2"
-                                                href="<?php echo esc_url($secondary_button['url'] ?? '#'); ?>"
-                                                target="<?php echo esc_attr($secondary_button['target'] ?? '_self'); ?>"
-                                                rel="noopener">
-                                                <?php echo esc_html($secondary_button['title']); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
 

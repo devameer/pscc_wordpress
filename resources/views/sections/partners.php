@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Partners carousel section.
+ * Members carousel section.
  *
  * @package beit
  */
@@ -9,7 +9,7 @@
 $args = wp_parse_args(
     $args ?? [],
     [
-        'partners' => [
+        'members' => [
             'title' => '',
             'subtitle' => '',
             'items' => [],
@@ -19,11 +19,11 @@ $args = wp_parse_args(
     ]
 );
 
-$partners = $args['partners'];
+$members = $args['members'];
 $hero_prev_icon = $args['hero_prev_icon'];
 $hero_next_icon = $args['hero_next_icon'];
 
-$items = $partners['items'] ?? [];
+$items = $members['items'] ?? [];
 
 if (empty($items)) {
     return;
@@ -34,20 +34,20 @@ if (empty($items)) {
 <section class="bg-[#F9F9F9] py-20">
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
-            <?php if (!empty($partners['title'])): ?>
-                <h2 class="text-3xl font-normal t md:text-5xl"><?php echo wp_kses_post($partners['title']); ?></h2>
+            <?php if (!empty($members['title'])): ?>
+                <h2 class="text-3xl font-normal t md:text-5xl"><?php echo wp_kses_post($members['title']); ?></h2>
             <?php endif; ?>
-            <?php if (!empty($partners['subtitle'])): ?>
-                <p class="text-base md:text-lg font-normal max-w-sm mx-auto"><?php echo esc_html($partners['subtitle']); ?>
+            <?php if (!empty($members['subtitle'])): ?>
+                <p class="text-base md:text-lg font-normal max-w-sm mx-auto"><?php echo esc_html($members['subtitle']); ?>
                 </p>
             <?php endif; ?>
         </div>
 
         <div class="relative px-20" data-aos="fade-up" data-aos-delay="200">
-            <div class="swiper partners-slider" data-slider="partners">
+            <div class="swiper members-slider" data-slider="members">
                 <div class="swiper-wrapper items-center">
-                    <?php foreach ($items as $partner):
-                        $logo = $partner['logo'] ?? '';
+                    <?php foreach ($items as $member):
+                        $logo = $member['logo'] ?? '';
                         if (!$logo) {
                             continue;
                         }
@@ -58,7 +58,7 @@ if (empty($items)) {
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'object-contain']); ?>
                                 <?php else: ?>
                                     <img class="object-contain" src="<?php echo esc_url((string) $logo); ?>"
-                                        alt="<?php echo esc_attr($partner['name'] ?? ''); ?>" loading="lazy" decoding="async">
+                                        alt="<?php echo esc_attr($member['name'] ?? ''); ?>" loading="lazy" decoding="async">
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -69,13 +69,13 @@ if (empty($items)) {
             <div
                 class="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 z-10">
                 <button
-                    class="partners-button-prev pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-primary text-white hover:bg-primary"
-                    type="button" aria-label="<?php esc_attr_e('Previous partners', 'beit'); ?>">
+                    class="members-button-prev pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-primary text-white hover:bg-primary"
+                    type="button" aria-label="<?php esc_attr_e('Previous members', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_prev_icon); ?>"></i>
                 </button>
                 <button
-                    class="partners-button-next pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-primary text-white hover:bg-primary"
-                    type="button" aria-label="<?php esc_attr_e('Next partners', 'beit'); ?>">
+                    class="members-button-next pointer-events-auto inline-flex h-10 w-10 items-center justify-center bg-primary text-white hover:bg-primary"
+                    type="button" aria-label="<?php esc_attr_e('Next members', 'beit'); ?>">
                     <i class="<?php echo esc_attr($hero_next_icon); ?>"></i>
                 </button>
             </div>

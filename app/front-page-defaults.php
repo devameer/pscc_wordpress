@@ -26,58 +26,9 @@ function beit_front_default_hero(): array
                     'url' => '#',
                     'target' => '_self',
                 ],
-                'secondary_button' => [
-                    'title' => __('or Learn More', 'beit'),
-                    'url' => '#',
-                    'target' => '_self',
-                ],
+             
                 'background_image' => 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop',
                 'video_url' => '#',
-            ],
-        ],
-    ];
-}
-
-function beit_front_default_initiatives(): array
-{
-    return [
-        'title' => __('Our <span class="font-bold">Initiatives</span>', 'beit'),
-        'subtitle' => __('Building healthier futures, one program at a time.', 'beit'),
-        'cta' => [
-            'title' => '',
-            'url' => '#',
-            'target' => '_self',
-        ],
-        'items' => [
-            [
-                'title' => __('Cash Transfer<br>and Voucher', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=300&h=300&fit=crop',
-                'icon' => '',
-            ],
-            [
-                'title' => __('Child<br>Protection', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=300&h=300&fit=crop',
-                'icon' => '',
-            ],
-            [
-                'title' => __('Water<br>Sanitation', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=300&h=300&fit=crop',
-                'icon' => '',
-            ],
-            [
-                'title' => __('Education<br>Support', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&h=300&fit=crop',
-                'icon' => '',
-            ],
-            [
-                'title' => __('Food<br>Security', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1514996937319-344454492b37?w=300&h=300&fit=crop',
-                'icon' => '',
-            ],
-            [
-                'title' => __('Rehabilitation &<br>Reconstruction', 'beit'),
-                'image' => 'https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?w=300&h=300&fit=crop',
-                'icon' => '',
             ],
         ],
     ];
@@ -177,34 +128,34 @@ function beit_front_default_facts(): array
     ];
 }
 
-function beit_front_default_partners(): array
+function beit_front_default_members(): array
 {
     return [
-        'title' => __('Trusted Partners', 'beit'),
-        'subtitle' => __('Collaboration that drives change, building hope through partnerships.', 'beit'),
+        'title' => __('Trusted Members', 'beit'),
+        'subtitle' => __('Collaboration that drives change, building hope through memberships.', 'beit'),
         'items' => [
             [
-                'name' => __('Partner 1', 'beit'),
+                'name' => __('Member 1', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=300&h=200&fit=crop',
             ],
             [
-                'name' => __('Partner 2', 'beit'),
+                'name' => __('Member 2', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&h=200&fit=crop',
             ],
             [
-                'name' => __('Partner 3', 'beit'),
+                'name' => __('Member 3', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1523475472560-d2df97ec485c?w=300&h=200&fit=crop',
             ],
             [
-                'name' => __('Partner 4', 'beit'),
+                'name' => __('Member 4', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=300&h=200&fit=crop',
             ],
             [
-                'name' => __('Partner 5', 'beit'),
+                'name' => __('Member 5', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=300&h=200&fit=crop',
             ],
             [
-                'name' => __('Partner 6', 'beit'),
+                'name' => __('Member 6', 'beit'),
                 'logo' => 'https://images.unsplash.com/photo-1523475472560-d2df97ec485c?w=300&h=200&fit=crop',
             ],
         ],
