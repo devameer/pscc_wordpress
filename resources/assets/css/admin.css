@@ -6,3 +6,11 @@
 #toplevel_page_mlang ul li:nth-child(5) {
     display: none !important;
 }
+
+.stringstranslations #name,
+.stringstranslations .column-name,
+.stringstranslations #context,
+.stringstranslations .column-context,
+.stringstranslations .translations label {
+    display: none;
+}
