@@ -124,11 +124,11 @@ if (empty($items)) {
     <div class="container mx-auto px-4 md:px-6">
         <div class="mb-12 space-y-3 text-center" data-aos="fade-up">
             <?php if (!empty($voices['title'])): ?>
-                <h2 class="text-3xl font-normal text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?>
-                </h2>
+                    <h2 class="text-3xl font-normal text-slate-900 md:text-5xl"><?php echo wp_kses_post($voices['title']); ?>
+                    </h2>
             <?php endif; ?>
             <?php if (!empty($voices['subtitle'])): ?>
-                <p class="text-base text-black md:text-lg font-normal"><?php echo wp_kses_post($voices['subtitle']); ?></p>
+                    <p class="text-base text-black md:text-lg font-normal"><?php echo wp_kses_post($voices['subtitle']); ?></p>
             <?php endif; ?>
         </div>
 
@@ -177,78 +177,78 @@ if (empty($items)) {
                     $lightbox_attrs = 'data-fslightbox="' . esc_attr($gallery_id) . '" ' . $data_type_attr;
                 }
                 ?>
-                <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
-                    data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
-                    <a class="group relative block w-full h-full object-cover" <?php echo $lightbox_attrs; ?>
-                        href="<?php echo esc_url($lightbox_src); ?>"
-                        aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
-                        <?php if ($lightbox_type === 'image'): ?>
-                            <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url ?? $thumb_url); ?>"
-                                alt="<?php echo esc_attr($caption); ?>" style="display:none;">
-                            <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
-                        <?php endif; ?>
-                        <?php if ($is_video): ?>
-                            <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
-                                <div
-                                    class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
-                                </div>
-                                <span class="inline-flex h-20 w-20 items-center justify-center bg-white/50 backdrop-blur-sm text-3xl
+                    <div class="<?php echo esc_attr($wrapper_classes); ?>" data-aos="zoom-in"
+                        data-aos-delay="<?php echo esc_attr($voice_delay); ?>">
+                        <a class="group relative block w-full h-full object-cover" <?php echo $lightbox_attrs; ?>
+                            href="<?php echo esc_url($lightbox_src); ?>"
+                            aria-label="<?php esc_attr_e('Open media', 'beit'); ?>">
+                            <?php if ($lightbox_type === 'image'): ?>
+                                    <img class="pswp-thumbnail" src="<?php echo esc_url($medium_url ?? $thumb_url); ?>"
+                                        alt="<?php echo esc_attr($caption); ?>" style="display:none;">
+                                    <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
+                            <?php endif; ?>
+                            <?php if ($is_video): ?>
+                                    <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
+                                        <div
+                                            class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full rounded-lg">
+                                        </div>
+                                        <span class="inline-flex h-20 w-20 items-center justify-center bg-white/50 backdrop-blur-sm text-3xl
                                 text-white group-hover:bg-primary transition-all duration-300 relative z-10">
-                                    <i class="fa fa-play"></i>
-                                </span>
-                            </span>
+                                            <i class="fa fa-play"></i>
+                                        </span>
+                                    </span>
 
-                        <?php elseif ($lightbox_type === 'image'): ?>
-                            <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
-                                <div
-                                    class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
-                                </div>
+                            <?php elseif ($lightbox_type === 'image'): ?>
+                                    <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
+                                        <div
+                                            class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full rounded-lg">
+                                        </div>
 
-                                <span
-                                    class="inline-flex h-12 w-12 items-center justify-center bg-white/50 backdrop-blur-sm text-xl
+                                        <span
+                                            class="inline-flex h-12 w-12 items-center justify-center bg-white/50 backdrop-blur-sm text-xl
                                 text-white group-hover:bg-primary transition-all duration-300 relative z-10 opacity-0 group-hover:opacity-100">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </span>
-                        <?php endif; ?>
-                        <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
-                            alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
-                    </a>
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </span>
+                            <?php endif; ?>
+                            <img class="<?php echo esc_attr($classes); ?>" src="<?php echo esc_url($thumb_url); ?>"
+                                alt="<?php echo esc_attr($item['title'] ?? ''); ?>" loading="lazy" decoding="async">
+                        </a>
 
+                        <?php
+                        // Add hidden links for gallery images to enable lightbox navigation (PhotoSwipe)
+                        if ($lightbox_type === 'image' && !empty($all_images) && count($all_images) > 1):
+                            // Skip first image (already displayed above)
+                            $gallery_images = array_slice($all_images, 1);
+                            foreach ($gallery_images as $gallery_image_id):
+                                $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
+                                $gallery_thumb_url = wp_get_attachment_image_url($gallery_image_id, 'medium');
+                                $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
+                                $gallery_caption = $item['title'];
+                                if ($gallery_image_caption) {
+                                    $gallery_caption .= ' - ' . $gallery_image_caption;
+                                }
+
+                                // Get dimensions
+                                $gallery_meta = wp_get_attachment_metadata($gallery_image_id);
+                                $gallery_width = $gallery_meta['width'] ?? 1920;
+                                $gallery_height = $gallery_meta['height'] ?? 1080;
+                                ?>
+                                        <a class="hidden" data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
+                                            data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
+                                            data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
+                                            href="<?php echo esc_url($gallery_image_url); ?>">
+                                            <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>"
+                                                alt="<?php echo esc_attr($gallery_caption); ?>" style="display:none;">
+                                            <span class="pswp-caption-content"
+                                                style="display:none;"><?php echo esc_html($gallery_caption); ?></span>
+                                        </a>
+                                <?php endforeach;
+                        endif;
+                        ?>
+                    </div>
                     <?php
-                    // Add hidden links for gallery images to enable lightbox navigation (PhotoSwipe)
-                    if ($lightbox_type === 'image' && !empty($all_images) && count($all_images) > 1):
-                        // Skip first image (already displayed above)
-                        $gallery_images = array_slice($all_images, 1);
-                        foreach ($gallery_images as $gallery_image_id):
-                            $gallery_image_url = wp_get_attachment_image_url($gallery_image_id, 'full');
-                            $gallery_thumb_url = wp_get_attachment_image_url($gallery_image_id, 'medium');
-                            $gallery_image_caption = wp_get_attachment_caption($gallery_image_id);
-                            $gallery_caption = $item['title'];
-                            if ($gallery_image_caption) {
-                                $gallery_caption .= ' - ' . $gallery_image_caption;
-                            }
-
-                            // Get dimensions
-                            $gallery_meta = wp_get_attachment_metadata($gallery_image_id);
-                            $gallery_width = $gallery_meta['width'] ?? 1920;
-                            $gallery_height = $gallery_meta['height'] ?? 1080;
-                            ?>
-                            <a class="hidden" data-pswp-gallery="<?php echo esc_attr($gallery_id); ?>"
-                                data-pswp-width="<?php echo esc_attr($gallery_width); ?>"
-                                data-pswp-height="<?php echo esc_attr($gallery_height); ?>"
-                                href="<?php echo esc_url($gallery_image_url); ?>">
-                                <img class="pswp-thumbnail" src="<?php echo esc_url($gallery_thumb_url); ?>"
-                                    alt="<?php echo esc_attr($gallery_caption); ?>" style="display:none;">
-                                <span class="pswp-caption-content"
-                                    style="display:none;"><?php echo esc_html($gallery_caption); ?></span>
-                            </a>
-                        <?php endforeach;
-                    endif;
-                    ?>
-                </div>
-                <?php
-                $voice_anim_index++;
+                    $voice_anim_index++;
             endforeach; ?>
         </div>
 
