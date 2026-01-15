@@ -28,7 +28,7 @@ while (have_posts()) {
             'background_classes' => 'bg-gradient-to-br from-slate-800 via-amber-800 to-red-900',
         ]
     );
-    ?>
+?>
 
     <main class="bg-white text-slate-900">
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
@@ -40,7 +40,7 @@ while (have_posts()) {
                 <?php endif; ?>
 
                 <div
-                    class="prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700">
+                    class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700">
                     <?php the_content(); ?>
                 </div>
 
@@ -60,7 +60,7 @@ while (have_posts()) {
                 );
 
                 if ($related->have_posts()):
-                    ?>
+                ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
                             <?php esc_html_e('More Media', 'beit'); ?>
@@ -70,7 +70,7 @@ while (have_posts()) {
                             while ($related->have_posts()):
                                 $related->the_post();
                                 $related_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
-                                ?>
+                            ?>
                                 <li>
                                     <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
@@ -85,19 +85,19 @@ while (have_posts()) {
                                         </span>
                                     </a>
                                 </li>
-                                <?php
+                            <?php
                             endwhile;
                             wp_reset_postdata();
                             ?>
                         </ul>
                     </section>
-                    <?php
+                <?php
                 endif;
                 ?>
             </aside>
         </article>
     </main>
-    <?php
+<?php
 }
 
 get_footer();

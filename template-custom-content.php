@@ -43,7 +43,7 @@ while (have_posts()) {
 
     // Get content sections
     $content_sections = $has_acf ? (get_field('content_sections') ?: []) : [];
-    ?>
+?>
 
     <main class="bg-gray-50">
         <?php if (!empty($content_sections)): ?>
@@ -53,7 +53,7 @@ while (have_posts()) {
                 $section_content = $section['content'] ?? '';
                 $section_bg = $section['background_color'] ?? 'bg-white';
                 $delay = ($index * 100);
-                ?>
+            ?>
 
                 <?php if ($section_type === 'text'): ?>
                     <!-- Text Content Section -->
@@ -172,7 +172,7 @@ while (have_posts()) {
                                         $card_title = $card['title'] ?? '';
                                         $card_description = $card['description'] ?? '';
                                         $card_delay = $delay + ($card_index * 100);
-                                        ?>
+                                    ?>
                                         <div class="bg-white  shadow-md p-6 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up"
                                             data-aos-delay="<?php echo esc_attr($card_delay); ?>">
                                             <?php if ($card_icon): ?>
@@ -204,7 +204,7 @@ while (have_posts()) {
             <!-- Fallback: Display standard WordPress content if no sections defined -->
             <section class="py-12 bg-white">
                 <div class="container mx-auto px-4 md:px-6">
-                    <div class="max-w-4xl mx-auto prose prose-lg">
+                    <div class="wp-content max-w-4xl mx-auto prose prose-lg">
                         <?php the_content(); ?>
                     </div>
                 </div>
@@ -212,7 +212,7 @@ while (have_posts()) {
         <?php endif; ?>
     </main>
 
-    <?php
+<?php
 }
 
 get_footer();

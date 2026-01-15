@@ -38,7 +38,7 @@ while (have_posts()) {
             'background_classes' => 'bg-gradient-to-br from-slate-950 via-red-900 to-slate-800',
         ]
     );
-    ?>
+?>
 
     <main class="bg-white text-slate-900">
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
@@ -49,7 +49,7 @@ while (have_posts()) {
                     </figure>
                 <?php endif; ?>
 
-                <div class="prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700"
+                <div class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700"
                     data-aos="fade-up" data-aos-delay="100">
                     <?php the_content(); ?>
                 </div>
@@ -149,9 +149,9 @@ while (have_posts()) {
 
                             foreach ($social_links as $link):
                                 $is_external = !isset($link['external']) || $link['external'] !== false;
-                                ?>
+                            ?>
                                 <a href="<?php echo $link['url']; ?>" <?php if ($is_external): ?> target="_blank"
-                                        rel="noopener noreferrer" <?php endif; ?>
+                                    rel="noopener noreferrer" <?php endif; ?>
                                     class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
                                     aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
                                     <?php if ($link['icon'] === 'x-twitter'): ?>
@@ -199,9 +199,9 @@ while (have_posts()) {
                         const btn = document.getElementById('copyLinkBtn');
 
                         if (navigator.clipboard && navigator.clipboard.writeText) {
-                            navigator.clipboard.writeText(url).then(function () {
+                            navigator.clipboard.writeText(url).then(function() {
                                 showCopySuccess();
-                            }).catch(function () {
+                            }).catch(function() {
                                 fallbackCopy();
                             });
                         } else {
@@ -225,7 +225,7 @@ while (have_posts()) {
                             btn.classList.remove('from-slate-700', 'to-slate-800');
                             btn.classList.add('from-green-600', 'to-green-700');
 
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 copyIcon.style.opacity = '1';
                                 checkIcon.style.opacity = '0';
                                 btn.classList.remove('from-green-600', 'to-green-700');
@@ -258,7 +258,7 @@ while (have_posts()) {
                 );
 
                 if ($latest_articles->have_posts()):
-                    ?>
+                ?>
                     <section class="mt-16 border-t border-slate-200 pt-12" data-aos="fade-up" data-aos-delay="400">
                         <div class="mb-8 flex items-center justify-between">
                             <div>
@@ -283,7 +283,7 @@ while (have_posts()) {
                                 $article_thumb = get_post_thumbnail_id();
                                 $article_cats = get_the_terms(get_the_ID(), 'category');
                                 $article_cat = (!is_wp_error($article_cats) && !empty($article_cats)) ? $article_cats[0]->name : '';
-                                ?>
+                            ?>
                                 <article
                                     class="group flex h-full flex-col overflow-hidden  bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                                     data-aos="fade-up" data-aos-delay="<?php echo 100 + ($latest_articles->current_post * 50); ?>">
@@ -327,13 +327,13 @@ while (have_posts()) {
                                         </a>
                                     </div>
                                 </article>
-                                <?php
+                            <?php
                             endwhile;
                             wp_reset_postdata();
                             ?>
                         </div>
                     </section>
-                    <?php
+                <?php
                 endif;
                 ?>
             </div>
@@ -368,7 +368,7 @@ while (have_posts()) {
                 );
 
                 if ($recent->have_posts()):
-                    ?>
+                ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
                             <?php echo esc_html(beit_translate('Recent News', 'recent_news')); ?>
@@ -377,7 +377,7 @@ while (have_posts()) {
                             <?php
                             while ($recent->have_posts()):
                                 $recent->the_post();
-                                ?>
+                            ?>
                                 <li>
                                     <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
@@ -392,19 +392,19 @@ while (have_posts()) {
                                         </span>
                                     </a>
                                 </li>
-                                <?php
+                            <?php
                             endwhile;
                             wp_reset_postdata();
                             ?>
                         </ul>
                     </section>
-                    <?php
+                <?php
                 endif;
                 ?>
             </aside>
         </article>
     </main>
-    <?php
+<?php
 }
 
 get_footer();

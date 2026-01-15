@@ -47,7 +47,12 @@ function beit_theme_enqueue_assets(): void
         ['beit-fontawesome'],
         2
     );
-
+    wp_enqueue_style(
+        'beit-wp-content',
+        BEIT_THEME_URI . '/resources/assets/css/wp-content-styles.css',
+        ['beit-fonts'],
+        beit_theme_asset_version()
+    );
     wp_enqueue_style(
         'beit-base',
         get_stylesheet_uri(),
