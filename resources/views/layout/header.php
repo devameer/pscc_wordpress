@@ -171,11 +171,11 @@ if (function_exists('get_field')) {
         <header class="navbar-section relative w-full text-white transition-all duration-300 ease-in-out z-50"
             style="background-color: var(--main-color);">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
-                <div class="flex items-center justify-between py-2">
+                <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">
                         <?php if ($site_logo || $site_logo_scroll): ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"
-                                class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
+                                class=" py-2 w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php if ($site_logo): ?>
                                     <?php echo wp_get_attachment_image($site_logo, 'medium', false, [
@@ -192,13 +192,13 @@ if (function_exists('get_field')) {
                             </a>
                         <?php elseif (has_custom_logo()): ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"
-                                class="w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
+                                class=" py-2 w-14 sm:w-16 md:w-20 lg:w-32 relative logo-header block"
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php the_custom_logo(); ?>
                             </a>
                         <?php else: ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"
-                                class="flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-primary text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
+                                class=" py-2 flex h-11 w-11 sm:h-12 sm:w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-primary text-base sm:text-lg md:text-xl lg:text-2xl font-bold"
                                 aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                                 <?php echo esc_html(wp_get_document_title()[0] ?? 'B'); ?>
                             </a>

@@ -53,7 +53,8 @@ if (empty($items)) {
                         }
                         ?>
                         <div class="swiper-slide">
-                            <div class="flex h-52 items-center justify-center border border-gray-200 bg-white p-4 ">
+                            <div
+                                class="rounded-lg flex h-52 items-center justify-center border border-gray-200 bg-white p-4 ">
                                 <?php if (is_numeric($logo)): ?>
                                     <?php echo wp_get_attachment_image((int) $logo, 'medium', false, ['class' => 'object-contain']); ?>
                                 <?php else: ?>
