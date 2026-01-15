@@ -55,3 +55,12 @@ add_filter('language_attributes', function ($output) {
 
     return $output;
 });
+
+add_action('admin_enqueue_scripts', function ($hook) {
+    wp_enqueue_style(
+        'my-admin-css',
+        get_stylesheet_directory_uri() . '/resources/assets/css/admin.css',
+        [],
+        '1.0'
+    );
+});

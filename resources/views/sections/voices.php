@@ -188,7 +188,7 @@ if (empty($items)) {
                             <span class="pswp-caption-content" style="display:none;"><?php echo esc_html($caption); ?></span>
                         <?php endif; ?>
                         <?php if ($is_video): ?>
-                            <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                            <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
                                 <div
                                     class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
                                 </div>
@@ -199,7 +199,7 @@ if (empty($items)) {
                             </span>
 
                         <?php elseif ($lightbox_type === 'image'): ?>
-                            <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                            <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
                                 <div
                                     class="bg-black/40 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
                                 </div>

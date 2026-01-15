@@ -65,9 +65,9 @@ get_template_part(
                             <?php if ($thumbnail_html): ?>
                                 <a href="<?php the_permalink(); ?>" class="block overflow-hidden relative">
                                     <?php echo $thumbnail_html; ?>
-                                    <span class="absolute inset-0 z-10 flex items-center justify-center group">
+                                    <span class="absolute inset-0 z-10 flex items-center justify-center group rounded-lg">
                                         <div
-                                            class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full">
+                                            class="bg-black/30 w-full h-0 transition-all duration-700 absolute top-0 group-hover:h-full rounded-lg">
                                         </div>
                                         <span
                                             class="inline-flex h-20 w-20 items-center justify-center  text-3xl
