@@ -40,7 +40,7 @@ while (have_posts()) {
                 <?php endif; ?>
 
                 <div
-                    class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-red-600 hover:prose-a:text-red-700">
+                    class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-primary hover:prose-a:text-red-700">
                     <?php the_content(); ?>
                 </div>
 
@@ -72,7 +72,7 @@ while (have_posts()) {
                                 $related_title = beit_get_multilingual_title(get_the_ID(), 'beit_voice');
                             ?>
                                 <li>
-                                    <a class="flex gap-3 transition hover:text-red-600" href="<?php the_permalink(); ?>">
+                                    <a class="flex gap-3 transition hover:text-primary" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
                                             <span class="h-14 w-20 overflow-hidden ">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover']); ?>

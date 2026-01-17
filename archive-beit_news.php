@@ -55,7 +55,7 @@ $archive_description = get_the_archive_description();
                             <div class="flex flex-1 flex-col gap-4 py-4">
 
                                 <h2 class="text-lg font-bold text-slate-900">
-                                    <a class="transition hover:text-red-600"
+                                    <a class="transition hover:text-primary"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
 
@@ -86,7 +86,7 @@ $archive_description = get_the_archive_description();
                                 $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                                 $classes .= $is_current
                                     ? ' border border-red-600 bg-primary text-white'
-                                    : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
+                                    : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-primary';
 
                                 $link = preg_replace(
                                     '/class="([^"]*)"/',

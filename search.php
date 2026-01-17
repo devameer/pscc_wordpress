@@ -148,7 +148,7 @@ get_template_part(
                             <div class="flex flex-1 flex-col gap-3 py-6">
 
                                 <h2 class="text-lg font-bold text-slate-900">
-                                    <a class="transition hover:text-red-600"
+                                    <a class="transition hover:text-primary"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                             </div>
@@ -172,14 +172,14 @@ get_template_part(
 
                             <div class="flex flex-1 flex-col gap-3 py-6">
                                 <?php if ($post_type !== 'post' && $post_type !== 'page'): ?>
-                                    <span class="inline-flex items-center gap-2 text-xs font-bold text-red-600">
+                                    <span class="inline-flex items-center gap-2 text-xs font-bold text-primary">
                                         <i class="fa fa-tag"></i>
                                         <?php echo esc_html($post_type_name); ?>
                                     </span>
                                 <?php endif; ?>
 
                                 <h2 class="text-lg font-bold text-slate-900">
-                                    <a class="transition hover:text-red-600"
+                                    <a class="transition hover:text-primary"
                                         href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
 
@@ -214,7 +214,7 @@ get_template_part(
                             $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                             $classes .= $is_current
                                 ? ' border border-red-600 bg-primary text-white'
-                                : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
+                                : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-primary';
 
                             $link = preg_replace(
                                 '/class="([^"]*)"/',
@@ -241,7 +241,7 @@ get_template_part(
 
                 <div class=" bg-slate-50 p-12 shadow-inner">
                     <div
-                        class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600">
+                        class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-primary">
                         <i class="fa fa-magnifying-glass text-3xl"></i>
                     </div>
 
@@ -269,19 +269,19 @@ get_template_part(
                         </h3>
                         <ul class="mx-auto max-w-md space-y-2 text-left text-sm text-slate-600">
                             <li class="flex items-start gap-2">
-                                <i class="fa fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-primary mt-1"></i>
                                 <span><?php esc_html_e('Check your spelling', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-primary mt-1"></i>
                                 <span><?php esc_html_e('Try different keywords', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-primary mt-1"></i>
                                 <span><?php esc_html_e('Use more general terms', 'beit'); ?></span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa fa-check text-red-600 mt-1"></i>
+                                <i class="fa fa-check text-primary mt-1"></i>
                                 <span><?php esc_html_e('Browse our main sections', 'beit'); ?></span>
                             </li>
                         </ul>

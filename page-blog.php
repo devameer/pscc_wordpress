@@ -147,8 +147,8 @@ if (!$posts_query->have_posts()) {
                     <!-- Content -->
                     <div class="flex flex-1 flex-col gap-4 p-6">
                         <h2
-                            class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-red-600 ltr:text-left rtl:text-right">
-                            <a class="transition hover:text-red-600" href="<?php the_permalink(); ?>">
+                            class="text-xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-primary ltr:text-left rtl:text-right">
+                            <a class="transition hover:text-primary" href="<?php the_permalink(); ?>">
                                 <?php the_title(); ?>
                             </a>
                         </h2>
@@ -163,18 +163,18 @@ if (!$posts_query->have_posts()) {
                         <div
                             class="mt-auto flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-500">
                             <span class="inline-flex items-center gap-1">
-                                <i class="fa fa-calendar-alt text-red-600"></i>
+                                <i class="fa fa-calendar-alt text-primary"></i>
                                 <?php echo esc_html(get_the_date()); ?>
                             </span>
                             <span class="text-slate-300">•</span>
                             <span class="inline-flex items-center gap-1">
-                                <i class="fa fa-user text-red-600"></i>
+                                <i class="fa fa-user text-primary"></i>
                                 <?php echo esc_html(get_the_author()); ?>
                             </span>
                             <?php if (get_comments_number() > 0): ?>
                                 <span class="text-slate-300">•</span>
                                 <span class="inline-flex items-center gap-1">
-                                    <i class="fa fa-comments text-red-600"></i>
+                                    <i class="fa fa-comments text-primary"></i>
                                     <?php echo esc_html(get_comments_number()); ?>
                                 </span>
                             <?php endif; ?>
@@ -215,7 +215,7 @@ if (!$posts_query->have_posts()) {
                         $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                         $classes .= $is_current
                             ? ' border border-red-600 bg-primary text-white'
-                            : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-600';
+                            : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-primary';
 
                         $link = preg_replace(
                             '/class="([^"]*)"/',
