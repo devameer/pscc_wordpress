@@ -50,12 +50,7 @@ acf_add_local_field_group(
                 'type'  => 'link',
             ],
           
-            [
-                'key'   => 'field_hero_slide_video_url',
-                'label' => __('Video URL', 'beit'),
-                'name'  => 'hero_slide_video_url',
-                'type'  => 'url',
-            ],
+         
         ],
         'location' => [
             [

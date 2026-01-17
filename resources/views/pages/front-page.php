@@ -57,7 +57,6 @@ if ($hero_query->have_posts()) {
         $title = $has_acf ? (string) get_field('hero_slide_title', $slide_id) : '';
         $description = $has_acf ? (string) get_field('hero_slide_description', $slide_id) : '';
         $background_image = get_the_post_thumbnail_url($slide_id, 'full') ?: '';
-        $video_url = $has_acf ? (string) get_field('hero_slide_video_url', $slide_id) : '';
         $primary_button_field = $has_acf ? get_field('hero_slide_primary_button', $slide_id) : null;
 
         $primary_button = is_array($primary_button_field) ? $primary_button_field : [];
@@ -71,7 +70,6 @@ if ($hero_query->have_posts()) {
             'title' => $title,
             'description' => $description,
             'background_image' => $background_image,
-            'video_url' => $video_url,
             'primary_button' => $primary_button,
         ];
     }
@@ -259,7 +257,7 @@ if (is_array($contact_field)) {
 
     if (!empty($members['items'])) {
         get_template_part(
-            'resources/views/sections/partners',
+            'resources/views/sections/members',
             null,
             [
                 'members' => $members,

@@ -12,7 +12,6 @@ $args = wp_parse_args(
         'members' => [
             'title' => '',
             'subtitle' => '',
-            'items' => [],
         ],
         'hero_prev_icon' => 'fa fa-arrow-left',
         'hero_next_icon' => 'fa fa-arrow-right',
@@ -23,7 +22,27 @@ $members = $args['members'];
 $hero_prev_icon = $args['hero_prev_icon'];
 $hero_next_icon = $args['hero_next_icon'];
 
-$items = $members['items'] ?? [];
+// Fetch members from Post Type
+$items = [];
+$members_query = new WP_Query([
+    'post_type' => 'beit_member',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+]);
+
+if ($members_query->have_posts()) {
+    while ($members_query->have_posts()) {
+        $members_query->the_post();
+        $member_id = get_the_ID();
+        $items[] = [
+            'name' => get_the_title($member_id),
+            'logo' => get_post_thumbnail_id($member_id),
+        ];
+    }
+    wp_reset_postdata();
+}
 
 if (empty($items)) {
     return;

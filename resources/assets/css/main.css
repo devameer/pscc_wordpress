@@ -65,7 +65,7 @@
     }
 
     .hero-slider-nav {
-        @apply absolute top-1/2 hidden -translate-y-1/2 items-center justify-center bg-white/15 p-3 text-white shadow-lg transition hover:bg-white/25 md:flex z-10 w-14 h-14;
+        @apply absolute top-1/2 hidden -translate-y-1/2 items-center justify-center bg-white/15 p-3 text-white shadow-lg transition hover:bg-white/25 md:flex z-10 w-14 h-14 rounded-full;
     }
 
     .hero-slider-nav i {
@@ -73,11 +73,11 @@
     }
 
     .hero-slider-nav.hero-slider-prev {
-        @apply left-0;
+        @apply left-5;
     }
 
     .hero-slider-nav.hero-slider-next {
-        @apply right-0;
+        @apply right-5;
     }
 
     .hero-slider-nav::after {

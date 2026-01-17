@@ -94,23 +94,7 @@ if (empty($slides)) {
                             </div>
                         </div>
 
-                        <?php if (!empty($slide['video_url']) && '#' !== $slide['video_url']): ?>
-                            <a class="absolute <?php echo esc_attr($video_button_position); ?> hidden items-center gap-2 px-4 py-2 text-sm font-bold text-white transition md:flex hero-video-button group"
-                                href="<?php echo esc_url($slide['video_url']); ?>">
-                                <span
-                                    class="flex h-14 w-14 items-center justify-center text-xl bg-white/40 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                                    <i class="fa fa-play group-hover:scale-125 transition-transform duration-300"></i>
-                                </span>
-                                <span
-                                    class="leading-tight text-white text-xl font-normal ltr:border-l rtl:border-r border-white/30 ltr:pl-3 rtl:pr-3 group-hover:border-primary transition-colors duration-300">
-                                    <span
-                                        class="block capitalize tracking-wide text-sm"><?php echo esc_html(beit_translate('See the change', 'see_the_change')); ?></span>
-                                    <span class="block capitalize"><span
-                                            class="font-bold uppercase"><?php echo esc_html(beit_translate('Watch', 'watch')); ?></span>
-                                        <?php echo esc_html(beit_translate('the story', 'the_story')); ?></span>
-                                </span>
-                            </a>
-                        <?php endif; ?>
+               
                     </div>
                 </div>
             <?php endforeach; ?>

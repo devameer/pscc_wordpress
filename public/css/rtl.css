@@ -49,12 +49,12 @@ body.rtl {
 
 /* Hero slider navigation buttons */
 .rtl .hero-slider-prev {
-    right: 0;
+    right: 20px;
     left: auto;
 }
 
 .rtl .hero-slider-next {
-    left: 0;
+    left: 20px;
     right: auto;
 }
 

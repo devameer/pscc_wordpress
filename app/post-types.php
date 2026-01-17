@@ -148,5 +148,37 @@ function beit_register_post_types(): void
     );
 
 
+    // Members Post Type
+    $members_labels = [
+        'name' => __('Members', 'beit'),
+        'singular_name' => __('Member', 'beit'),
+        'menu_name' => __('Members', 'beit'),
+        'name_admin_bar' => __('Member', 'beit'),
+        'add_new' => __('Add New', 'beit'),
+        'add_new_item' => __('Add New Member', 'beit'),
+        'edit_item' => __('Edit Member', 'beit'),
+        'new_item' => __('New Member', 'beit'),
+        'view_item' => __('View Member', 'beit'),
+        'search_items' => __('Search Members', 'beit'),
+        'not_found' => __('No members found', 'beit'),
+        'not_found_in_trash' => __('No members found in Trash', 'beit'),
+        'all_items' => __('All Members', 'beit'),
+    ];
+
+    register_post_type(
+        'beit_member',
+        [
+            'labels' => $members_labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_in_menu' => true,
+            'menu_position' => 27,
+            'menu_icon' => 'dashicons-groups',
+            'has_archive' => false,
+            'rewrite' => ['slug' => 'members'],
+            'supports' => ['title', 'thumbnail', 'page-attributes'],
+            'show_in_rest' => true,
+        ]
+    );
 }
 add_action('init', 'beit_register_post_types');
