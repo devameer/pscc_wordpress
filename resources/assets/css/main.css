@@ -85,7 +85,7 @@
     }
 
     .form-field {
-        @apply w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600;
+        @apply text-right w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600;
     }
 
     .button-form {
