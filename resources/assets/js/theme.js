@@ -166,24 +166,31 @@
 (() => {
     const header = document.querySelector('[data-scroll-header]');
     const topbar = document.querySelector('.topbar-section');
+    const siteContent = document.getElementById('content');
 
     if (!header) {
         return;
     }
 
-    // Set initial topbar height as CSS variable and position header
-    const setTopbarHeight = () => {
-        if (topbar) {
-            const topbarHeight = topbar.offsetHeight;
-            document.documentElement.style.setProperty('--topbar-height', topbarHeight + 'px');
-            if (!header.classList.contains('is-scrolled')) {
-                header.style.top = topbarHeight + 'px';
-            }
-        }
+    // Calculate total header height for placeholder
+    const getHeaderHeight = () => {
+        const topbarHeight = topbar ? topbar.offsetHeight : 0;
+        const headerHeight = header.offsetHeight;
+        return topbarHeight + headerHeight;
     };
 
-    setTopbarHeight();
-    window.addEventListener('resize', setTopbarHeight);
+    // Create placeholder to prevent content jump when header becomes fixed
+    let placeholder = document.getElementById('header-placeholder');
+    if (!placeholder) {
+        placeholder = document.createElement('div');
+        placeholder.id = 'header-placeholder';
+        placeholder.style.display = 'none';
+        if (topbar) {
+            topbar.parentNode.insertBefore(placeholder, topbar);
+        } else {
+            header.parentNode.insertBefore(placeholder, header);
+        }
+    }
 
     const thresholdAttr = parseInt(header.getAttribute('data-scroll-threshold') || '48', 10);
     const threshold = Number.isNaN(thresholdAttr) ? 48 : thresholdAttr;
@@ -201,24 +208,26 @@
         header.classList.toggle('is-scrolled', isScrolled);
 
         if (isScrolled) {
-            // Make topbar and navbar fixed and sticky
+            // Show placeholder to prevent content jump
+            placeholder.style.display = 'block';
+            placeholder.style.height = getHeaderHeight() + 'px';
+
+            // Make topbar fixed
             if (topbar) {
                 topbar.style.position = 'fixed';
                 topbar.style.top = '0';
                 topbar.style.left = '0';
                 topbar.style.right = '0';
                 topbar.style.zIndex = '51';
-                topbar.style.background = 'rgba(17, 19, 21, 0.92)';
             }
 
-            // Adjust navbar position to be below topbar
+            // Make navbar fixed below topbar
             const topbarHeight = topbar ? topbar.offsetHeight : 0;
             header.style.position = 'fixed';
             header.style.top = topbarHeight + 'px';
-            header.style.backgroundColor = 'rgba(17, 19, 21, 0.92)';
-            header.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.25)';
-            header.style.backdropFilter = 'blur(8px)';
-            header.style.webkitBackdropFilter = 'blur(8px)';
+            header.style.left = '0';
+            header.style.right = '0';
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
 
             // Switch logos using opacity
             if (logoDefault && logoScroll) {
@@ -226,6 +235,9 @@
                 logoScroll.style.opacity = '1';
             }
         } else {
+            // Hide placeholder
+            placeholder.style.display = 'none';
+
             // Reset topbar position
             if (topbar) {
                 topbar.style.position = '';
@@ -233,16 +245,14 @@
                 topbar.style.left = '';
                 topbar.style.right = '';
                 topbar.style.zIndex = '';
-                topbar.style.background = '';
             }
 
-            // Reset navbar position to below topbar
-            const topbarHeight = topbar ? topbar.offsetHeight : 0;
-            header.style.top = topbarHeight + 'px';
-            header.style.backgroundColor = '';
+            // Reset navbar position
+            header.style.position = '';
+            header.style.top = '';
+            header.style.left = '';
+            header.style.right = '';
             header.style.boxShadow = '';
-            header.style.backdropFilter = '';
-            header.style.webkitBackdropFilter = '';
 
             // Switch logos back using opacity
             if (logoDefault && logoScroll) {
