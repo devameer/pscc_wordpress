@@ -159,7 +159,7 @@ if (function_exists('get_field')) {
                     </div>
 
                     <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-[var(--second-color)] rounded-full"
+                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-[var(--second-color)] hover:text-[var(--second-color)] rounded-full"
                             href="<?php echo esc_url($search_url); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
@@ -268,7 +268,7 @@ if (function_exists('get_field')) {
                 );
                 ?>
                 <div class="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 block md:hidden">
-                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold text-white transition hover:border-red-500 hover:bg-white/5 rounded-full"
+                    <a class="flex items-center gap-2  border border-white/20 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold text-white transition hover:border-[var(--second-color)] hover:bg-white/5 rounded-full"
                         href="<?php echo esc_url($search_url); ?>">
                         <i class="fa fa-magnifying-glass text-xs"></i>
                         <span><?php echo esc_html($topbar_search_label); ?></span>

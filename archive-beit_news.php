@@ -86,7 +86,7 @@ $archive_description = get_the_archive_description();
                                 $classes = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-bold transition';
                                 $classes .= $is_current
                                     ? ' border border-red-600 bg-primary text-white'
-                                    : ' border border-slate-200 text-slate-600 hover:border-red-500 hover:text-[var(--main-color)]';
+                                    : ' border border-slate-200 text-slate-600 hover:border-[var(--second-color)] hover:text-[var(--main-color)]';
 
                                 $link = preg_replace(
                                     '/class="([^"]*)"/',
