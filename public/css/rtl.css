@@ -14,7 +14,7 @@
    Base RTL Adjustments
    ========================================================================== */
 
-body.rtl {
+[dir="rtl"] body {
     direction: rtl;
     text-align: right;
 }
@@ -23,17 +23,17 @@ body.rtl {
    Typography RTL
    ========================================================================== */
 
-/* .rtl {
+/* [dir="rtl"] {
     font-family: '29LT Bukra', 'Cairo', 'Tajawal', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.rtl body,
-.rtl h1,
-.rtl h2,
-.rtl h3,
-.rtl h4,
-.rtl h5,
-.rtl h6 {
+[dir="rtl"] body,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
     font-family: '29LT Bukra', 'Cairo', 'Tajawal', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
 } */
 
@@ -42,18 +42,18 @@ body.rtl {
    ========================================================================== */
 
 /* Hero content alignment for RTL */
-.rtl .hero-slider .max-w-2xl {
+[dir="rtl"] .hero-slider .max-w-2xl {
     margin-right: 0;
     margin-left: auto;
 }
 
 /* Hero slider navigation buttons */
-.rtl .hero-slider-prev {
+[dir="rtl"] .hero-slider-prev {
     right: 20px;
     left: auto;
 }
 
-.rtl .hero-slider-next {
+[dir="rtl"] .hero-slider-next {
     left: 20px;
     right: auto;
 }
@@ -86,27 +86,27 @@ body.rtl {
 }
 
 /* RTL animations - must be tied to .swiper-slide-active like LTR version */
-.rtl .swiper-slide-active .hero-title-animate {
+[dir="rtl"] .swiper-slide-active .hero-title-animate {
     animation: slideInFromRight 0.8s ease-out forwards;
     animation-delay: 0.2s;
 }
 
-.rtl .swiper-slide-active .hero-description-animate {
+[dir="rtl"] .swiper-slide-active .hero-description-animate {
     animation: slideInFromRight 0.8s ease-out forwards;
     animation-delay: 0.4s;
 }
 
-.rtl .swiper-slide-active .hero-buttons-animate {
+[dir="rtl"] .swiper-slide-active .hero-buttons-animate {
     animation: slideInFromRight 0.8s ease-out forwards;
     animation-delay: 0.6s;
 }
 
 /* Override the initial opacity:0 for active slide in RTL - ensure visibility after animation */
-.rtl .swiper-slide-active .hero-title-animate,
-.rtl .swiper-slide-active .hero-description-animate,
-.rtl .swiper-slide-active .hero-buttons-animate,
-.rtl .swiper-slide-active .hero-or-animate,
-.rtl .swiper-slide-active .hero-video-button {
+[dir="rtl"] .swiper-slide-active .hero-title-animate,
+[dir="rtl"] .swiper-slide-active .hero-description-animate,
+[dir="rtl"] .swiper-slide-active .hero-buttons-animate,
+[dir="rtl"] .swiper-slide-active .hero-or-animate,
+[dir="rtl"] .swiper-slide-active .hero-video-button {
     animation-fill-mode: forwards;
 }
 
@@ -115,12 +115,12 @@ body.rtl {
    ========================================================================== */
 
 /* Members slider navigation */
-.rtl .members-button-prev {
+[dir="rtl"] .members-button-prev {
     right: 0.5rem;
     left: auto;
 }
 
-.rtl .members-button-next {
+[dir="rtl"] .members-button-next {
     left: 0.5rem;
     right: auto;
 }
@@ -130,18 +130,18 @@ body.rtl {
    ========================================================================== */
 
 /* Mobile menu toggle */
-.rtl .lg\\:hidden {
+[dir="rtl"] .lg\\:hidden {
     margin-left: 0;
     margin-right: auto;
 }
 
 /* Menu items alignment */
-.rtl #primary-menu {
+[dir="rtl"] #primary-menu {
     direction: rtl;
 }
 
 /* Dropdown menus */
-.rtl .dropdown-menu {
+[dir="rtl"] .dropdown-menu {
     right: auto;
     left: 0;
 }
@@ -151,7 +151,7 @@ body.rtl {
    ========================================================================== */
 
 /* Tagline positioning */
-.rtl .absolute.bottom-4.right-4 {
+[dir="rtl"] .absolute.bottom-4.right-4 {
     right: auto;
     left: 1rem;
 }
@@ -161,30 +161,30 @@ body.rtl {
    ========================================================================== */
 
 /* Text alignment */
-.rtl .text-left {
+[dir="rtl"] .text-left {
     text-align: right !important;
 }
 
-.rtl .text-right {
+[dir="rtl"] .text-right {
     text-align: left !important;
 }
 
 /* Float adjustments */
-.rtl .float-left {
+[dir="rtl"] .float-left {
     float: right !important;
 }
 
-.rtl .float-right {
+[dir="rtl"] .float-right {
     float: left !important;
 }
 
 /* Margin & Padding adjustments */
-.rtl .ml-auto {
+[dir="rtl"] .ml-auto {
     margin-left: 0 !important;
     margin-right: auto !important;
 }
 
-.rtl .mr-auto {
+[dir="rtl"] .mr-auto {
     margin-right: 0 !important;
     margin-left: auto !important;
 }
@@ -194,35 +194,35 @@ body.rtl {
    ========================================================================== */
 
 /* Image overlay text positioning */
-.rtl .absolute.bottom-0.left-0 {
+[dir="rtl"] .absolute.bottom-0.left-0 {
     left: auto;
     right: 0;
 }
 
 /* Programs layout - swap image and content order for RTL */
-.rtl .md\\:order-1 {
+[dir="rtl"] .md\\:order-1 {
     order: 1;
 }
 
-.rtl .md\\:order-2 {
+[dir="rtl"] .md\\:order-2 {
     order: 2;
 }
 
 /* Ensure proper text alignment in programs */
-.rtl .justify-start {
+[dir="rtl"] .justify-start {
     justify-content: flex-start;
 }
 
-.rtl .sm\\:justify-end {
+[dir="rtl"] .sm\\:justify-end {
     justify-content: flex-end;
 }
 
-.rtl .form-field {
+[dir="rtl"] .form-field {
     direction: rtl;
     text-align: right;
 }
 
-.rtl .flex.flex-wrap.items-center.gap-4>p {
+[dir="rtl"] .flex.flex-wrap.items-center.gap-4>p {
     display: flex;
     align-items: flex-end;
     gap: 20px;
