@@ -46,7 +46,7 @@ if (empty($slides)) {
                     )
                     : '';
                 $primary_button = is_array($slide['primary_button'] ?? null) ? $slide['primary_button'] : [];
-                ?>
+            ?>
                 <div class="swiper-slide">
                     <div class="relative flex min-h-[95vh] items-center justify-center overflow-hidden" <?php if ($background_style): ?> style="<?php echo esc_attr($background_style); ?>" <?php endif; ?>>
                         <div class="absolute inset-0">
@@ -65,7 +65,7 @@ if (empty($slides)) {
                                     <h1 class="space-y-2 text-3xl font-bold leading-tight md:text-5xl hero-title-animate">
                                         <?php if (!empty($slide['title'])): ?>
                                             <span
-                                                class="block font-normal text-white slider-title"><?php echo wp_kses_post($slide['title']); ?></span>
+                                                class="block font-normal text-white slider-title wp-base"><?php echo wp_kses_post($slide['title']); ?></span>
                                         <?php endif; ?>
 
                                     </h1>
@@ -88,13 +88,13 @@ if (empty($slides)) {
                                             </a>
                                         <?php endif; ?>
 
-                                      
+
                                     </div>
                                 <?php endif; ?>
                             </div>
                         </div>
 
-               
+
                     </div>
                 </div>
             <?php endforeach; ?>

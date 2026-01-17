@@ -611,3 +611,8 @@
 .logo-default {
     max-width: fit-content !important;
 }
+
+.wp-base p{
+    line-height: 1.8rem !important;
+    margin-bottom: 1.25rem !important;
+}
