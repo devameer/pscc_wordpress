@@ -43,17 +43,37 @@ function beit_flush_rewrite_rules()
     flush_rewrite_rules();
 }
 
+// Set site to RTL Arabic by default
 add_filter('language_attributes', function ($output) {
     if (is_admin()) {
-        // إزالة أي dir="rtl"
+        // Keep admin LTR
         $output = preg_replace('/dir=("|\')rtl("|\')/i', '', $output);
-        // إضافة dir="ltr"
         if (strpos($output, 'dir=') === false) {
             $output .= ' dir="ltr"';
+        }
+    } else {
+        // Frontend: Always RTL Arabic
+        $output = preg_replace('/dir=("|\')ltr("|\')/i', '', $output);
+        if (strpos($output, 'dir=') === false) {
+            $output .= ' dir="rtl"';
+        }
+        // Add Arabic language attribute
+        if (strpos($output, 'lang=') === false) {
+            $output .= ' lang="ar"';
+        } else {
+            $output = preg_replace('/lang=("|\')[^"\']*("|\')/', 'lang="ar"', $output);
         }
     }
 
     return $output;
+});
+
+// Force RTL body class on frontend
+add_filter('body_class', function ($classes) {
+    if (!is_admin()) {
+        $classes[] = 'rtl';
+    }
+    return $classes;
 });
 
 add_action('admin_enqueue_scripts', function ($hook) {
