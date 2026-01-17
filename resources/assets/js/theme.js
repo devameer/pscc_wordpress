@@ -89,10 +89,8 @@
                     speed: 500,
                     spaceBetween: 30,
                     slidesPerView: 1,
-                    autoplay: {
-                        delay: 3500,
-                        disableOnInteraction: false,
-                    },
+                    autoplay: true, 
+                
                     navigation: nextEl && prevEl ? { nextEl, prevEl } : undefined,
                     breakpoints: {
                         640: {
