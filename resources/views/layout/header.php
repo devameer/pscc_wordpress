@@ -120,7 +120,7 @@ if (function_exists('get_field')) {
 
                     <div class="flex flex-wrap items-center  mr-auto w-full sm:w-auto justify-between sm:justify-start">
                         <?php if ($topbar_email): ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="mailto:<?php echo esc_attr($topbar_email); ?>">
                                 <i class="fa fa-envelope text-[10px] sm:text-xs md:text-sm"></i>
                                 <span
@@ -131,10 +131,11 @@ if (function_exists('get_field')) {
                         <?php if ($topbar_phone):
                             $clean_phone = preg_replace('/\s+/', '', (string) $topbar_phone);
                             ?>
-                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
+                            <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row ju"
                                 href="tel:<?php echo esc_attr($clean_phone); ?>">
                                 <i class="fa fa-phone text-[10px] sm:text-xs md:text-sm"></i>
-                                <span class="text-[9px] sm:text-[10px] md:text-xs" dir="ltr"><?php echo esc_html($topbar_phone); ?></span>
+                                <span class="text-[9px] sm:text-[10px] md:text-xs"
+                                    dir="ltr"><?php echo esc_html($topbar_phone); ?></span>
                             </a>
                         <?php endif; ?>
                         <?php
@@ -144,7 +145,7 @@ if (function_exists('get_field')) {
                             foreach ($languages as $lang):
                                 if (!$lang['current_lang']):
                                     ?>
-                                    <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
+                                    <a class="flex items-center gap-1 sm:gap-1.5 md:gap-2 transition hover:text-[var(--second-color)] md:border-r border-white/20 py-3 px-3 md:px-6 font-normal flex-col md:flex-row"
                                         href="<?php echo esc_url($lang['url']); ?>">
                                         <i class="fa fa-language text-[10px] sm:text-xs md:text-sm"></i>
                                         <span class="text-[9px] sm:text-[10px] md:text-xs"><?php echo esc_html($lang['name']); ?></span>
@@ -158,7 +159,7 @@ if (function_exists('get_field')) {
                     </div>
 
                     <div class="hidden lg:flex items-center ">
-                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:[var(--second-color)] rounded-full"
+                        <a class="inline-flex items-center gap-2 border-l border-r border-white/20  px-3 py-1.5 lg:px-6 lg:py-[0.9rem] text-xs font-normal text-white transition hover:border-red-500 hover:text-[var(--second-color)] rounded-full"
                             href="<?php echo esc_url($search_url); ?>">
                             <i class="fa fa-search text-xs"></i>
                             <span><?php echo esc_html($topbar_search_label); ?></span>
@@ -218,7 +219,7 @@ if (function_exists('get_field')) {
                         </button>
 
                         <!-- <div class="hidden text-right md:block">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="text-lg font-bold tracking-wide text-white transition hover:[var(--second-color)]">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="text-lg font-bold tracking-wide text-white transition hover:text-[var(--second-color)]">
                                 <?php bloginfo('name'); ?>
                             </a>
                             <?php
