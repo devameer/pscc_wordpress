@@ -70,7 +70,7 @@ $section_classes[] = $height;
         <div class="max-w-3xl space-y-4 ltr:text-left rtl:text-right">
 
 
-            <h1 class="text-3xl font-normal leading-tight md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>"
+            <h1 class="text-3xl font-normal !leading-normal md:text-5xl<?php echo $overlay_style === 'contact' ? ' md:text-6xl' : ''; ?>"
                 data-aos="fade-up" data-aos-delay="100">
                 <?php echo wp_kses_post($title); ?>
             </h1>
