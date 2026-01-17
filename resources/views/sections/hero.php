@@ -58,7 +58,7 @@ if (empty($slides)) {
 
                         <div class="relative z-10 container mx-auto px-4 pt-24 md:px-6">
                             <div
-                                class="max-w-2xl space-y-6 text-white ltr:text-left rtl:text-right <?php echo esc_attr($content_alignment); ?>">
+                                class="wp-content max-w-2xl space-y-6 text-white ltr:text-left rtl:text-right <?php echo esc_attr($content_alignment); ?>">
 
                                 <!-- ho -->
                                 <?php if (!empty($slide['title'])): ?>
