@@ -15,8 +15,6 @@ if (!defined('ABSPATH')) {
  */
 function beit_theme_setup(): void
 {
-    load_theme_textdomain('beit', BEIT_THEME_DIR . '/resources/languages');
-
     add_theme_support('automatic-feed-links');
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
