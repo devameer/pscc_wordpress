@@ -27,6 +27,7 @@ textarea#content {
     direction: rtl !important;
     text-align: right !important;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    padding: 15px 20px !important;
 }
 
 /* TinyMCE Visual Editor */

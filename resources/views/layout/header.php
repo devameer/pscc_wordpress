@@ -105,7 +105,7 @@ if (function_exists('get_field')) {
                                         break;
                                 }
                                 ?>
-                                <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-primary rounded"
+                                <a class="flex items-center justify-center p-1 sm:p-1.5 md:p-2 text-white transition hover:bg-primary rounded-full w-9 h-9"
                                     href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                                     <span class="sr-only"><?php echo esc_html(ucwords($network)); ?></span>
                                     <?php if ($network === 'twitter'): ?>
@@ -169,7 +169,7 @@ if (function_exists('get_field')) {
         <?php endif; ?>
 
         <header class="navbar-section relative w-full text-white transition-all duration-300 ease-in-out z-50"
-            style="background-color: var(--main-color);">
+            style="background-color: var(--main-color);" data-scroll-header data-scroll-threshold="48">
             <div class="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 w-full">

@@ -8,6 +8,8 @@ body {
     direction: rtl !important;
     text-align: right !important;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    padding: 15px 20px !important;
+    margin: 0 !important;
 }
 
 p,

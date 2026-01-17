@@ -18,16 +18,12 @@ while (have_posts()) {
     $is_rtl = is_rtl();
     $arrow_icon = $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right';
     $thumbnail = get_post_thumbnail_id();
-    $categories = get_the_terms(get_the_ID(), 'category');
-    $primary_cat = (!is_wp_error($categories) && !empty($categories)) ? $categories[0]->name : '';
 
     $hero_title = get_the_title();
     $hero_description = sprintf(
         /* translators: %1$s: publish date, %2$s: primary category */
         esc_html__('%1$s %2$s', 'beit'),
-        esc_html(get_the_date()),
-        $primary_cat ? '· ' . esc_html($primary_cat) : ''
-    );
+        esc_html(get_the_date())    );
 
     get_template_part(
         'resources/views/components/page-hero',
@@ -63,13 +59,7 @@ while (have_posts()) {
                         <i class="fa fa-calendar"></i>
                         <?php echo esc_html(get_the_date()); ?>
                     </span>
-                    <?php if ($primary_cat): ?>
-                        <span
-                            class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-700">
-                            <i class="fa fa-folder"></i>
-                            <?php echo esc_html($primary_cat); ?>
-                        </span>
-                    <?php endif; ?>
+                  
                 </div>
 
                 <div class="relative overflow-hidden  border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 shadow-lg"
@@ -281,8 +271,6 @@ while (have_posts()) {
                             while ($latest_articles->have_posts()):
                                 $latest_articles->the_post();
                                 $article_thumb = get_post_thumbnail_id();
-                                $article_cats = get_the_terms(get_the_ID(), 'category');
-                                $article_cat = (!is_wp_error($article_cats) && !empty($article_cats)) ? $article_cats[0]->name : '';
                             ?>
                                 <article
                                     class="group flex h-full flex-col overflow-hidden  bg-white shadow-md transition-all duration-300 hover:shadow-xl"
@@ -292,12 +280,6 @@ while (have_posts()) {
                                             <?php echo wp_get_attachment_image($article_thumb, 'large', false, [
                                                 'class' => 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
                                             ]); ?>
-                                            <?php if ($article_cat): ?>
-                                                <span
-                                                    class="absolute top-3 <?php echo $is_rtl ? 'right-3' : 'left-3'; ?> inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-lg">
-                                                    <?php echo esc_html($article_cat); ?>
-                                                </span>
-                                            <?php endif; ?>
                                         </a>
                                     <?php endif; ?>
 
@@ -339,23 +321,6 @@ while (have_posts()) {
             </div>
 
             <aside class="space-y-8" data-aos="fade-left" data-aos-delay="200">
-                <?php if (!empty($categories)): ?>
-                    <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="300">
-                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
-                            <?php echo esc_html(beit_get_text('categories')); ?>
-                        </h2>
-                        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                            <?php foreach ($categories as $cat): ?>
-                                <li>
-                                    <a class="transition hover:text-red-600" href="<?php echo esc_url(get_term_link($cat)); ?>">
-                                        <?php echo esc_html($cat->name); ?>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-
                 <?php
                 $recent = new WP_Query(
                     [
