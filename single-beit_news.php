@@ -21,9 +21,10 @@ while (have_posts()) {
 
     $hero_title = get_the_title();
     $hero_description = sprintf(
-        /* translators: %1$s: publish date, %2$s: primary category */
-        esc_html__('%1$s %2$s', 'beit'),
-        esc_html(get_the_date())    );
+        /* translators: %s: publish date */
+        esc_html__('%s', 'beit'),
+        esc_html(get_the_date())
+    );
 
     get_template_part(
         'resources/views/components/page-hero',
