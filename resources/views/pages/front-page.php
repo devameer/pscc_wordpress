@@ -232,7 +232,7 @@ if (is_array($contact_field)) {
                 ],
                 'items' => $display_news,
                 'is_rtl' => $is_rtl,
-                'empty_message' => beit_translate('No news items found yet. Check back soon for updates.', 'no_news_items_found'),
+                'empty_message' => beit_get_text('no_news'),
             ]
         );
     }

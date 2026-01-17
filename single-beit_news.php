@@ -82,11 +82,11 @@ while (have_posts()) {
                             <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2">
                                 <i class="fa fa-share-alt text-red-600"></i>
                                 <h3 class="text-sm font-bold uppercase tracking-wider text-red-600">
-                                    <?php echo esc_html(beit_translate('Share this article', 'share_this_article')); ?>
+                                    <?php echo esc_html(beit_get_text('share_article')); ?>
                                 </h3>
                             </div>
                             <p class="text-xs text-slate-500">
-                                <?php echo esc_html(beit_translate('Share on your favorite social media', 'share_on_social_media')); ?>
+                                <?php echo esc_html(beit_get_text('share_social')); ?>
                             </p>
                         </div>
 
@@ -169,7 +169,7 @@ while (have_posts()) {
 
                             <button onclick="copyToClipboard()" id="copyLinkBtn"
                                 class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
-                                aria-label="<?php echo esc_attr(beit_translate('Copy link', 'copy_link')); ?>">
+                                aria-label="<?php echo esc_attr(beit_get_text('copy_link')); ?>">
                                 <i class="fa fa-link relative z-10 text-xl" id="copyIcon"></i>
                                 <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300"
                                     id="checkIcon"></i>
@@ -215,7 +215,7 @@ while (have_posts()) {
                                 document.execCommand('copy');
                                 showCopySuccess();
                             } catch (err) {
-                                alert('<?php echo esc_js(beit_translate('Failed to copy link', 'failed_to_copy_link')); ?>');
+                                alert('<?php echo esc_js(beit_get_text('copy_failed')); ?>');
                             }
                         }
 
@@ -238,10 +238,10 @@ while (have_posts()) {
                 <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-bold text-red-600"
                     data-aos="fade-up" data-aos-delay="300">
                     <span>
-                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_translate('Previous', 'previous'))); ?>
+                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_get_text('previous'))); ?>
                     </span>
                     <span>
-                        <?php next_post_link('%link', esc_html(beit_translate('Next', 'next')) . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
+                        <?php next_post_link('%link', esc_html(beit_get_text('next')) . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
                     </span>
                 </nav>
 
@@ -263,15 +263,15 @@ while (have_posts()) {
                         <div class="mb-8 flex items-center justify-between">
                             <div>
                                 <h2 class="text-2xl font-bold text-slate-900">
-                                    <?php echo esc_html(beit_translate('Latest Articles', 'latest_articles')); ?>
+                                    <?php echo esc_html(beit_get_text('latest_articles')); ?>
                                 </h2>
                                 <p class="mt-1 text-sm text-slate-500">
-                                    <?php echo esc_html(beit_translate('Stay updated with our recent news', 'stay_updated_recent_news')); ?>
+                                    <?php echo esc_html(beit_get_text('stay_updated')); ?>
                                 </p>
                             </div>
                             <a href="<?php echo esc_url(get_post_type_archive_link('beit_news')); ?>"
                                 class="inline-flex items-center gap-2 text-sm font-bold text-red-600 transition hover:text-red-700">
-                                <?php echo esc_html(beit_translate('View All', 'view_all')); ?>
+                                <?php echo esc_html(beit_get_text('view_all')); ?>
                                 <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                             </a>
                         </div>
@@ -322,7 +322,7 @@ while (have_posts()) {
 
                                         <a href="<?php the_permalink(); ?>"
                                             class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-red-600 transition hover:gap-3 hover:text-red-700">
-                                            <?php echo esc_html(beit_translate('Read More', 'read_more')); ?>
+                                            <?php echo esc_html(beit_get_text('read_more')); ?>
                                             <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                                         </a>
                                     </div>
@@ -342,7 +342,7 @@ while (have_posts()) {
                 <?php if (!empty($categories)): ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="300">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
-                            <?php echo esc_html(beit_translate('Categories', 'categories')); ?>
+                            <?php echo esc_html(beit_get_text('categories')); ?>
                         </h2>
                         <ul class="mt-4 space-y-2 text-sm text-slate-700">
                             <?php foreach ($categories as $cat): ?>
@@ -371,7 +371,7 @@ while (have_posts()) {
                 ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
-                            <?php echo esc_html(beit_translate('Recent News', 'recent_news')); ?>
+                            <?php echo esc_html(beit_get_text('recent_news')); ?>
                         </h2>
                         <ul class="mt-4 space-y-4 text-sm text-slate-700">
                             <?php
