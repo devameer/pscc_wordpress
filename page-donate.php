@@ -66,7 +66,7 @@ while (have_posts()) {
                                 ?>
                                 <div class="bank-card  border border-slate-200 bg-white p-5 shadow-sm transition">
                                     <?php if ($bank_name): ?>
-                                        <h3 class="text-sm font-bold uppercase tracking-widest text-primary">
+                                        <h3 class="text-sm font-bold uppercase tracking-widest text-[var(--main-color)]">
                                             <?php echo esc_html($bank_name); ?>
                                         </h3>
                                     <?php endif; ?>

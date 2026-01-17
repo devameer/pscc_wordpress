@@ -155,7 +155,7 @@ while (have_posts()) {
                                     <span class="text-sm text-gray-500">
                                         <?php echo esc_html(beit_get_text('phone')); ?>
                                     </span>
-                                    <a class="block text-gray-800 font-medium hover:text-primary transition"
+                                    <a class="block text-gray-800 font-medium hover:text-[var(--main-color)] transition"
                                         href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
                                         <?php echo esc_html($phone); ?>
                                     </a>
@@ -173,7 +173,7 @@ while (have_posts()) {
                                     <span class="text-sm text-gray-500">
                                         <?php echo esc_html(beit_get_text('email')); ?>
                                     </span>
-                                    <a class="block text-gray-800 font-medium hover:text-primary transition break-all"
+                                    <a class="block text-gray-800 font-medium hover:text-[var(--main-color)] transition break-all"
                                         href="mailto:<?php echo esc_attr($email); ?>">
                                         <?php echo esc_html($email); ?>
                                     </a>

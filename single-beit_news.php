@@ -46,7 +46,7 @@ while (have_posts()) {
                     </figure>
                 <?php endif; ?>
 
-                <div class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-primary hover:prose-a:text-red-700"
+                <div class="wp-content prose max-w-none prose-slate prose-headings:font-bold prose-a:text-[var(--main-color)] hover:prose-a:text-red-700"
                     data-aos="fade-up" data-aos-delay="100">
                     <?php the_content(); ?>
                 </div>
@@ -71,8 +71,8 @@ while (have_posts()) {
                     <div class="relative space-y-6">
                         <div class="text-center">
                             <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2">
-                                <i class="fa fa-share-alt text-primary"></i>
-                                <h3 class="text-sm font-bold uppercase tracking-wider text-primary">
+                                <i class="fa fa-share-alt text-[var(--main-color)]"></i>
+                                <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--main-color)]">
                                     <?php echo esc_html(beit_get_text('share_article')); ?>
                                 </h3>
                             </div>
@@ -226,7 +226,7 @@ while (have_posts()) {
                     }
                 </script>
 
-                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-bold text-primary"
+                <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-bold text-[var(--main-color)]"
                     data-aos="fade-up" data-aos-delay="300">
                     <span>
                         <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_get_text('previous'))); ?>
@@ -261,7 +261,7 @@ while (have_posts()) {
                                 </p>
                             </div>
                             <a href="<?php echo esc_url(get_post_type_archive_link('beit_news')); ?>"
-                                class="inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:text-red-700">
+                                class="inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition ">
                                 <?php echo esc_html(beit_get_text('view_all')); ?>
                                 <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                             </a>
@@ -293,7 +293,7 @@ while (have_posts()) {
                                         </div>
 
                                         <h3
-                                            class="mb-3 line-clamp-2 h-14 text-lg font-bold text-slate-900 transition group-hover:text-primary">
+                                            class="mb-3 line-clamp-2 h-14 text-lg font-bold text-slate-900 transition group-hover:text-[var(--main-color)]">
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php the_title(); ?>
                                             </a>
@@ -304,7 +304,7 @@ while (have_posts()) {
                                         </p>
 
                                         <a href="<?php the_permalink(); ?>"
-                                            class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:gap-3 hover:text-red-700">
+                                            class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition hover:gap-3 hover:text-red-700">
                                             <?php echo esc_html(beit_get_text('read_more')); ?>
                                             <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                                         </a>
@@ -345,7 +345,7 @@ while (have_posts()) {
                                 $recent->the_post();
                             ?>
                                 <li>
-                                    <a class="flex gap-3 transition hover:text-primary" href="<?php the_permalink(); ?>">
+                                    <a class="flex gap-3 transition hover:text-[var(--main-color)]" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
                                             <span class="h-14 w-20 overflow-hidden ">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover']); ?>

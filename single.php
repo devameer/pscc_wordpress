@@ -74,7 +74,7 @@ while (have_posts()) {
                             data-aos-delay="50">
                             <div class="flex items-center gap-2 text-sm text-slate-600">
                                 <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
-                                    <i class="fa fa-calendar-alt text-primary"></i>
+                                    <i class="fa fa-calendar-alt text-[var(--main-color)]"></i>
                                 </div>
                                 <div class="ltr:text-left rtl:text-right">
                                     <div class="text-xs font-bold uppercase tracking-wide text-slate-500">
@@ -123,7 +123,7 @@ while (have_posts()) {
                         <!-- Post Content -->
                         <div class="rounded-xl bg-white p-6 shadow-lg md:p-10" data-aos="fade-up" data-aos-delay="100">
                             <div
-                                class="wp-content prose max-w-none prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-primary hover:prose-a:text-red-700 prose-strong:text-slate-900 prose-ul:text-slate-700 prose-img:rounded-xl ltr:text-left rtl:text-right">
+                                class="wp-content prose max-w-none prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-[var(--main-color)] hover:prose-a:text-red-700 prose-strong:text-slate-900 prose-ul:text-slate-700 prose-img:rounded-xl ltr:text-left rtl:text-right">
                                 <?php the_content(); ?>
                             </div>
                             <?php wp_link_pages(['before' => '<div class="mt-8 text-sm text-slate-500">' . esc_html__('Pages:', 'beit'), 'after' => '</div>']); ?>
@@ -136,13 +136,13 @@ while (have_posts()) {
                         ?>
                             <div class="rounded-xl bg-white p-6 shadow-md" data-aos="fade-up" data-aos-delay="150">
                                 <h3 class="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                                    <i class="fa fa-tags text-primary"></i>
+                                    <i class="fa fa-tags text-[var(--main-color)]"></i>
                                     <?php echo esc_html__('Tags', 'beit'); ?>
                                 </h3>
                                 <div class="flex flex-wrap gap-2">
                                     <?php foreach ($tags as $tag): ?>
                                         <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"
-                                            class="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 transition-all hover:bg-red-100 hover:text-primary">
+                                            class="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 transition-all hover:bg-red-100 hover:text-[var(--main-color)]">
                                             <i class="fa fa-hashtag text-xs"></i>
                                             <?php echo esc_html($tag->name); ?>
                                         </a>
@@ -292,14 +292,14 @@ while (have_posts()) {
                         <?php if (!empty($categories)): ?>
                             <div class="rounded-xl bg-white p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                                 <h3 class="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                                    <i class="fa fa-folder text-primary"></i>
+                                    <i class="fa fa-folder text-[var(--main-color)]"></i>
                                     <?php echo esc_html__('Categories', 'beit'); ?>
                                 </h3>
                                 <div class="space-y-2">
                                     <?php foreach ($categories as $cat): ?>
                                         <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                                             class="group flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 transition-all hover:bg-red-50">
-                                            <span class="font-medium text-slate-700 group-hover:text-primary">
+                                            <span class="font-medium text-slate-700 group-hover:text-[var(--main-color)]">
                                                 <?php echo esc_html($cat->name); ?>
                                             </span>
                                             <span class="text-xs text-slate-500">
@@ -323,7 +323,7 @@ while (have_posts()) {
                         ?>
                             <div class="rounded-xl bg-white p-6 shadow-lg" data-aos="fade-up" data-aos-delay="150">
                                 <h3 class="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                                    <i class="fa fa-clock text-primary"></i>
+                                    <i class="fa fa-clock text-[var(--main-color)]"></i>
                                     <?php echo esc_html__('Recent Posts', 'beit'); ?>
                                 </h3>
                                 <div class="space-y-4">
@@ -337,7 +337,7 @@ while (have_posts()) {
                                                 </div>
                                             <?php endif; ?>
                                             <div class="flex-1 ltr:text-left rtl:text-right">
-                                                <h4 class="line-clamp-2 text-sm font-bold text-slate-900 group-hover:text-primary">
+                                                <h4 class="line-clamp-2 text-sm font-bold text-slate-900 group-hover:text-[var(--main-color)]">
                                                     <?php the_title(); ?>
                                                 </h4>
                                                 <p class="mt-1 text-xs text-slate-500">

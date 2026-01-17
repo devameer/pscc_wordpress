@@ -108,7 +108,7 @@ $opacity = $overlay_opacity / 100;
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                             <?php echo esc_html(beit_get_text('phone')); ?>
                                         </h4>
-                                        <a class="text-sm sm:text-base font-normal transition hover:text-primary <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
+                                        <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
                                             <?php echo esc_html($phone); ?>
                                         </a>
@@ -127,7 +127,7 @@ $opacity = $overlay_opacity / 100;
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
                                             <?php echo esc_html(beit_get_text('email')); ?>
                                         </h4>
-                                        <a class="text-sm sm:text-base font-normal transition hover:text-primary break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
+                                        <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
                                             <?php echo esc_html($email); ?>
                                         </a>
