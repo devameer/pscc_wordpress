@@ -1,0 +1,41 @@
+/**
+ * RTL styles for TinyMCE editor content.
+ *
+ * @package beit
+ */
+
+body {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+blockquote,
+div {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+ul,
+ol {
+    direction: rtl !important;
+    padding-right: 2em;
+    padding-left: 0;
+}
+
+table {
+    direction: rtl;
+}
+
+td,
+th {
+    text-align: right;
+}

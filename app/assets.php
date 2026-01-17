@@ -261,3 +261,29 @@ function beit_remove_script_version($src): string
 }
 add_filter('script_loader_src', 'beit_remove_script_version', 15, 1);
 add_filter('style_loader_src', 'beit_remove_script_version', 15, 1);
+
+/**
+ * Configure TinyMCE editor for RTL Arabic.
+ */
+function beit_tinymce_rtl_settings($settings): array
+{
+    $settings['directionality'] = 'rtl';
+    $settings['plugins'] = isset($settings['plugins']) ? $settings['plugins'] . ',directionality' : 'directionality';
+
+    return $settings;
+}
+add_filter('tiny_mce_before_init', 'beit_tinymce_rtl_settings');
+
+/**
+ * Add RTL styles to TinyMCE editor.
+ */
+function beit_tinymce_rtl_styles($mce_css): string
+{
+    if (!empty($mce_css)) {
+        $mce_css .= ',';
+    }
+    $mce_css .= BEIT_THEME_URI . '/resources/assets/css/editor-rtl.css';
+
+    return $mce_css;
+}
+add_filter('mce_css', 'beit_tinymce_rtl_styles');
