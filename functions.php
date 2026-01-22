@@ -81,6 +81,6 @@ add_action('admin_enqueue_scripts', function ($hook) {
         'my-admin-css',
         get_stylesheet_directory_uri() . '/resources/assets/css/admin.css',
         [],
-        '1.0'
+        '2.0'
     );
 });
