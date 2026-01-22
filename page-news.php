@@ -133,10 +133,10 @@ get_template_part(
             <?php else: ?>
                 <div class=" border border-slate-200 bg-white p-12 text-center shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-900">
-                        <?php echo esc_html(beit_get_text('no_news')); ?>
+                        <?php echo esc_html(beit_translate('No news items found')); ?>
                     </h2>
                     <p class="mt-2 text-sm text-slate-600">
-                        <?php echo esc_html(beit_get_text('check_back')); ?>
+                        <?php echo esc_html(beit_translate('Check back soon for the latest updates.')); ?>
                     </p>
                 </div>
             <?php endif; ?>

@@ -79,7 +79,7 @@ $opacity = $overlay_opacity / 100;
                     data-aos="fade-right" data-aos-delay="100">
                     <h3
                         class="mb-4 sm:mb-6 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                        <?php echo esc_html(beit_get_text('send_message')); ?>
+                        <?php echo esc_html(beit_translate('Send Us a Message')); ?>
                     </h3>
                     <div class="contact-form-wrapper <?php echo $background_image_url ? 'form-dark-theme' : ''; ?>">
                         <?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -94,7 +94,7 @@ $opacity = $overlay_opacity / 100;
                         class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-4 sm:p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
                         <h3
                             class="mb-3 sm:mb-4 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                            <?php echo esc_html(beit_get_text('contact_info')); ?>
+                            <?php echo esc_html(beit_translate('Contact Information')); ?>
                         </h3>
                         <div class="space-y-3 sm:space-y-4">
                             <?php if ($phone): ?>
@@ -106,7 +106,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_get_text('phone')); ?>
+                                            <?php echo esc_html(beit_translate('Phone')); ?>
                                         </h4>
                                         <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
@@ -125,7 +125,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_get_text('email')); ?>
+                                            <?php echo esc_html(beit_translate('Email')); ?>
                                         </h4>
                                         <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
@@ -144,7 +144,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_get_text('address')); ?>
+                                            <?php echo esc_html(beit_translate('Address')); ?>
                                         </h4>
                                         <p
                                             class="text-sm sm:text-base font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">

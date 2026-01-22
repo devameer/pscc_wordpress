@@ -113,7 +113,7 @@ function beit_theme_enqueue_assets(): void
 
     // Pass translations to JavaScript
     wp_localize_script('beit-theme', 'beitStrings', [
-        'menu' => beit_get_text('menu'),
+        'menu' => beit_translate('Menu'),
     ]);
 
     // PhotoSwipe CSS
