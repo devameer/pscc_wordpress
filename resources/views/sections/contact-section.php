@@ -20,7 +20,18 @@ $form_shortcode = $has_acf ? get_field('theme_contact_form_shortcode', 'option')
 
 $email = $contact_details['email'] ?? '';
 $phone = $contact_details['phone'] ?? '';
-$address = $contact_details['address'] ?? '';
+
+// Get address based on current language
+$current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'ar';
+$address = '';
+if ($current_lang === 'en' && !empty($contact_details['address_en'])) {
+    $address = $contact_details['address_en'];
+} elseif (!empty($contact_details['address_ar'])) {
+    $address = $contact_details['address_ar'];
+} else {
+    // Fallback to legacy field
+    $address = $contact_details['address'] ?? '';
+}
 
 // Get section settings from args (passed from front-page.php)
 $section_title = $args['title'] ?? __('Get In Touch', 'beit');

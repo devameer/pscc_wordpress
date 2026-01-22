@@ -33,7 +33,18 @@ while (have_posts()) {
 
     $email = $contact_details['email'] ?? '';
     $phone = $contact_details['phone'] ?? '';
-    $address = $contact_details['address'] ?? '';
+
+    // Get address based on current language
+    $current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'ar';
+    $address = '';
+    if ($current_lang === 'en' && !empty($contact_details['address_en'])) {
+        $address = $contact_details['address_en'];
+    } elseif (!empty($contact_details['address_ar'])) {
+        $address = $contact_details['address_ar'];
+    } else {
+        // Fallback to legacy field
+        $address = $contact_details['address'] ?? '';
+    }
     $hero_custom_title = $hero_data['custom_title'] ?? '';
     $hero_title = $hero_custom_title ?: get_the_title();
 

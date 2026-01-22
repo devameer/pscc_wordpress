@@ -51,9 +51,6 @@ if (function_exists('get_field')) {
     $topbar_email = get_field('topbar_email', 'option');
     $topbar_phone = get_field('topbar_phone', 'option');
 
-    // Try language-specific field first, fallback to default
-    $topbar_search_label = get_field('topbar_search_label' . $lang_suffix, 'option') ?: get_field('topbar_search_label', 'option') ?: beit_translate('Search');
-
     $topbar_socials_raw = get_field('topbar_social_links', 'option');
     $topbar_socials = is_array($topbar_socials_raw) ? $topbar_socials_raw : [];
     $site_logo = get_field('site_logo', 'option') ?: 0;
@@ -61,8 +58,13 @@ if (function_exists('get_field')) {
 } else {
     $topbar_email = null;
     $topbar_phone = null;
-    $topbar_search_label = beit_translate('Search');
+    $topbar_socials = [];
+    $site_logo = 0;
+    $site_logo_scroll = 0;
 }
+
+// Search label from Polylang translations
+$topbar_search_label = beit_translate('Search');
 
 ?>
 
