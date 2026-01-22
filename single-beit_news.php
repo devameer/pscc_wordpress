@@ -240,7 +240,7 @@ while (have_posts()) {
                 $latest_articles = new WP_Query(
                     [
                         'post_type' => 'beit_news',
-                        'posts_per_page' => 6,
+                        'posts_per_page' => 3,
                         'post_status' => 'publish',
                         'post__not_in' => [get_the_ID()],
                         'orderby' => 'date',
@@ -304,7 +304,7 @@ while (have_posts()) {
                                         </p>
 
                                         <a href="<?php the_permalink(); ?>"
-                                            class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition hover:gap-3 hover:text-red-700">
+                                            class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition hover:gap-3 hover:[var(--second-color)]">
                                             <?php echo esc_html(beit_get_text('read_more')); ?>
                                             <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                                         </a>

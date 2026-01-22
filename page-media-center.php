@@ -115,7 +115,7 @@ $media_query = new WP_Query([
                                             <i class="fa fa-images"></i> <?php echo esc_html($image_count); ?>
                                         </span>
                                     <?php endif; ?>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
+                                    <img class="h-44 w-full object-cover" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
                                 </a>
 
                                 <?php
@@ -196,7 +196,7 @@ $media_query = new WP_Query([
                                     <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
                                         <img class="h-20 w-20" src="<?php echo esc_url(get_template_directory_uri() . '/resources/assets/images/videoIcon.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'beit'); ?>" loading="lazy" decoding="async">
                                     </span>
-                                    <img class="h-64 w-full object-cover" src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
+                                    <img class="h-44 w-full object-cover" src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async">
                                 </a>
                                 <h3 class="text-base font-medium md:text-lg pt-3"><?php the_title(); ?></h3>
                             </article>

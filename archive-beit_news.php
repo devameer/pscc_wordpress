@@ -43,7 +43,7 @@ $archive_description = get_the_archive_description();
                     while (have_posts()):
                         the_post();
                         $thumbnail_id = get_post_thumbnail_id();
-                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'large', false, ['class' => 'h-56 w-full object-cover']) : '';
+                        $thumbnail_html = $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'medium', false, ['class' => 'h-40 w-full object-cover']) : '';
                         ?>
                         <article class="flex h-full flex-col overflow-hidden    bg-white  transition hover:-translate-y-1">
                             <?php if ($thumbnail_html): ?>

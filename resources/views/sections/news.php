@@ -57,7 +57,7 @@ $empty_message = $args['empty_message'];
                         data-aos-delay="<?php echo esc_attr($news_delay); ?>">
                         <?php if ($item_image): ?>
                             <a href="<?php echo esc_url($item_link); ?>"
-                                class="h-64 md:h-72 lg:h-80 w-full overflow-hidden relative block">
+                                class="h-48 md:h-52 lg:h-56 w-full overflow-hidden relative block">
                                 <?php if (is_numeric($item_image)): ?>
                                     <?php echo wp_get_attachment_image((int) $item_image, 'large', false, ['class' => 'h-full w-full object-cover']); ?>
                                 <?php else: ?>

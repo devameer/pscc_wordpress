@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Site texts and RTL support.
+ * Site texts and RTL support with Polylang integration.
  *
  * @package beit
  */
@@ -11,44 +11,43 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Get default texts.
+ * Get current language code.
  *
- * @return array
+ * @return string Language code (e.g., 'ar', 'en')
  */
-function beit_get_default_texts(): array
+function beit_get_current_language(): string
 {
-    return [
-        'menu' => 'القائمة',
-        'search' => 'بحث',
-        'search_placeholder' => 'ابحث عن الأخبار والبرامج والقصص...',
-        'read_more' => 'اقرأ المزيد',
-        'view_all' => 'عرض الكل',
-        'previous' => 'السابق',
-        'next' => 'التالي',
-        'share_thoughts' => 'شارك أفكارك هنا',
-        'contact_info' => 'معلومات الاتصال',
-        'send_message' => 'أرسل لنا رسالة',
-        'phone' => 'الهاتف',
-        'email' => 'البريد الإلكتروني',
-        'address' => 'العنوان',
-        'latest_articles' => 'أحدث المقالات',
-        'stay_updated' => 'ابق على اطلاع بآخر الأخبار',
-        'categories' => 'التصنيفات',
-        'recent_news' => 'آخر الأخبار',
-        'share_article' => 'شارك هذا المقال',
-        'share_social' => 'شارك على وسائل التواصل الاجتماعي المفضلة لديك',
-        'copy_link' => 'نسخ الرابط',
-        'copy_failed' => 'فشل نسخ الرابط',
-        'no_news' => 'لا توجد أخبار حالياً',
-        'check_back' => 'تابعنا قريباً لآخر التحديثات',
-        'no_media' => 'لا توجد وسائط حالياً',
-        'check_back_media' => 'تابعنا قريباً لمزيد من القصص والوسائط',
-        'copyright' => '© %1$s %2$s. جميع الحقوق محفوظة.',
-    ];
+    if (function_exists('pll_current_language')) {
+        return pll_current_language('slug') ?: 'ar';
+    }
+    return 'ar'; // Default to Arabic
 }
 
 /**
- * Get site text from theme options.
+ * Load language texts from file.
+ *
+ * @param string $lang Language code
+ * @return array
+ */
+function beit_load_language_file(string $lang): array
+{
+    $lang_file = get_template_directory() . '/resources/languages/' . $lang . '.php';
+
+    if (file_exists($lang_file)) {
+        return include $lang_file;
+    }
+
+    // Fallback to Arabic
+    $fallback_file = get_template_directory() . '/resources/languages/ar.php';
+    if (file_exists($fallback_file)) {
+        return include $fallback_file;
+    }
+
+    return [];
+}
+
+/**
+ * Get site text based on current language (Polylang).
  *
  * @param string $key The text key (e.g., 'menu', 'search', 'read_more')
  * @param string $default Default value if not set
@@ -57,22 +56,44 @@ function beit_get_default_texts(): array
 function beit_get_text(string $key, string $default = ''): string
 {
     static $texts = null;
+    static $cached_lang = null;
 
-    $defaults = beit_get_default_texts();
+    // Get current language
+    $current_lang = beit_get_current_language();
 
-    // Return default if called too early or ACF not available
-    if (!function_exists('get_field') || !did_action('init')) {
-        return $defaults[$key] ?? $default;
-    }
-
-    // Cache texts on first call after init
-    if ($texts === null) {
-        $texts = [];
-        foreach ($defaults as $text_key => $text_default) {
-            $field_value = get_field('text_' . $text_key, 'option');
-            $texts[$text_key] = $field_value ?: $text_default;
-        }
+    // Reload texts if language changed
+    if ($cached_lang !== $current_lang) {
+        $texts = beit_load_language_file($current_lang);
+        $cached_lang = $current_lang;
     }
 
     return $texts[$key] ?? $default;
+}
+
+/**
+ * Check if current language is RTL.
+ *
+ * @return bool
+ */
+function beit_is_rtl(): bool
+{
+    $rtl_languages = ['ar', 'he', 'fa', 'ur'];
+    return in_array(beit_get_current_language(), $rtl_languages, true);
+}
+
+/**
+ * Get available languages for language switcher.
+ *
+ * @return array
+ */
+function beit_get_languages(): array
+{
+    if (!function_exists('pll_the_languages')) {
+        return [];
+    }
+
+    return pll_the_languages([
+        'raw' => true,
+        'hide_current' => false,
+    ]);
 }

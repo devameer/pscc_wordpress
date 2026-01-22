@@ -154,10 +154,10 @@ if (empty($items)) {
                 }
 
                 $classes = ' object-cover w-full h-full';
-                $wrapper_classes = 'overflow-hidden aspect-square';
+                $wrapper_classes = 'overflow-hidden aspect-[16/9]';
 
                 if (($item['span'] ?? '') === 'double' && 0 === $index) {
-                    $wrapper_classes .= ' lg:col-span-2 lg:row-span-2';
+                    $wrapper_classes .= ' lg:col-span-2 lg:row-span-2 aspect-[16/9]';
                 }
                 $voice_delay = 100 + ($voice_anim_index * 100);
 
