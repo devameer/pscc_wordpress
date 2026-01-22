@@ -57,7 +57,7 @@ function beit_theme_enqueue_assets(): void
         'beit-base',
         get_stylesheet_uri(),
         ['beit-fonts'],
-        []
+        beit_theme_asset_version()
     );
 
 
