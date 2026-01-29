@@ -79,8 +79,8 @@ add_filter('body_class', function ($classes) {
 add_action('admin_enqueue_scripts', function ($hook) {
     wp_enqueue_style(
         'my-admin-css',
-        get_stylesheet_directory_uri() . '/resources/assets/css/admin.css?v=' . beit_theme_asset_version(),
+        get_stylesheet_directory_uri() . '/resources/assets/css/admin.css',
         [],
-        beit_theme_asset_version()
+        '1.0'
     );
 });

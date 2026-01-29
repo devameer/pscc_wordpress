@@ -213,10 +213,10 @@ $media_query = new WP_Query([
             <div class="bg-slate-50 p-12 text-center shadow-inner" data-aos="fade-up">
                 <i class="fa fa-photo-video mb-4 text-6xl text-slate-300"></i>
                 <h2 class="text-2xl font-bold text-slate-900">
-                    <?php echo esc_html(beit_translate('No media items found')); ?>
+                    <?php echo esc_html(beit_get_text('no_media')); ?>
                 </h2>
                 <p class="mt-2 text-sm text-slate-600">
-                    <?php echo esc_html(beit_translate('Please check back soon for new stories and media highlights.')); ?>
+                    <?php echo esc_html(beit_get_text('check_back_media')); ?>
                 </p>
             </div>
         <?php endif; ?>

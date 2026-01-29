@@ -33,18 +33,7 @@ while (have_posts()) {
 
     $email = $contact_details['email'] ?? '';
     $phone = $contact_details['phone'] ?? '';
-
-    // Get address based on current language
-    $current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'ar';
-    $address = '';
-    if ($current_lang === 'en' && !empty($contact_details['address_en'])) {
-        $address = $contact_details['address_en'];
-    } elseif (!empty($contact_details['address_ar'])) {
-        $address = $contact_details['address_ar'];
-    } else {
-        // Fallback to legacy field
-        $address = $contact_details['address'] ?? '';
-    }
+    $address = $contact_details['address'] ?? '';
     $hero_custom_title = $hero_data['custom_title'] ?? '';
     $hero_title = $hero_custom_title ?: get_the_title();
 
@@ -67,7 +56,7 @@ while (have_posts()) {
                 <!-- Right Column - Contact Form (appears first on mobile, right on desktop) -->
                 <section class="bg-white p-6 sm:p-8 rounded-lg shadow-sm order-2 lg:order-1" data-aos="fade-up">
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 ltr:text-left rtl:text-right">
-                        <?php echo esc_html(beit_translate('Share Your Thoughts Here')); ?>
+                        <?php echo esc_html(beit_get_text('share_thoughts')); ?>
                     </h2>
 
                     <div class="mt-6">
@@ -153,7 +142,7 @@ while (have_posts()) {
                     <!-- Contact Details -->
                     <div class="bg-white p-6 rounded-lg shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-gray-800 ltr:text-left rtl:text-right">
-                            <?php echo esc_html(beit_translate('Contact Information')); ?>
+                            <?php echo esc_html(beit_get_text('contact_info')); ?>
                         </h3>
 
                         <?php if ($phone): ?>
@@ -164,7 +153,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php echo esc_html(beit_translate('Phone')); ?>
+                                        <?php echo esc_html(beit_get_text('phone')); ?>
                                     </span>
                                     <a class="block text-gray-800 font-medium hover:text-[var(--main-color)] transition"
                                         href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
@@ -182,7 +171,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php echo esc_html(beit_translate('Email')); ?>
+                                        <?php echo esc_html(beit_get_text('email')); ?>
                                     </span>
                                     <a class="block text-gray-800 font-medium hover:text-[var(--main-color)] transition break-all"
                                         href="mailto:<?php echo esc_attr($email); ?>">
@@ -200,7 +189,7 @@ while (have_posts()) {
                                 </span>
                                 <div class="ltr:text-left rtl:text-right">
                                     <span class="text-sm text-gray-500">
-                                        <?php echo esc_html(beit_translate('Address')); ?>
+                                        <?php echo esc_html(beit_get_text('address')); ?>
                                     </span>
                                     <p class="text-gray-800 font-medium">
                                         <?php echo esc_html($address); ?>

@@ -20,18 +20,7 @@ $form_shortcode = $has_acf ? get_field('theme_contact_form_shortcode', 'option')
 
 $email = $contact_details['email'] ?? '';
 $phone = $contact_details['phone'] ?? '';
-
-// Get address based on current language
-$current_lang = function_exists('pll_current_language') ? pll_current_language('slug') : 'ar';
-$address = '';
-if ($current_lang === 'en' && !empty($contact_details['address_en'])) {
-    $address = $contact_details['address_en'];
-} elseif (!empty($contact_details['address_ar'])) {
-    $address = $contact_details['address_ar'];
-} else {
-    // Fallback to legacy field
-    $address = $contact_details['address'] ?? '';
-}
+$address = $contact_details['address'] ?? '';
 
 // Get section settings from args (passed from front-page.php)
 $section_title = $args['title'] ?? __('Get In Touch', 'beit');
@@ -90,7 +79,7 @@ $opacity = $overlay_opacity / 100;
                     data-aos="fade-right" data-aos-delay="100">
                     <h3
                         class="mb-4 sm:mb-6 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                        <?php echo esc_html(beit_translate('Send Us a Message')); ?>
+                        <?php echo esc_html(beit_get_text('send_message')); ?>
                     </h3>
                     <div class="contact-form-wrapper <?php echo $background_image_url ? 'form-dark-theme' : ''; ?>">
                         <?php echo do_shortcode($form_shortcode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -105,7 +94,7 @@ $opacity = $overlay_opacity / 100;
                         class="rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm p-4 sm:p-6 shadow-lg <?php echo $background_image_url ? '' : 'bg-white border-gray-200'; ?>">
                         <h3
                             class="mb-3 sm:mb-4 text-lg sm:text-xl font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                            <?php echo esc_html(beit_translate('Contact Information')); ?>
+                            <?php echo esc_html(beit_get_text('contact_info')); ?>
                         </h3>
                         <div class="space-y-3 sm:space-y-4">
                             <?php if ($phone): ?>
@@ -117,7 +106,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_translate('Phone')); ?>
+                                            <?php echo esc_html(beit_get_text('phone')); ?>
                                         </h4>
                                         <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', (string) $phone)); ?>">
@@ -136,7 +125,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_translate('Email')); ?>
+                                            <?php echo esc_html(beit_get_text('email')); ?>
                                         </h4>
                                         <a class="text-sm sm:text-base font-normal transition hover:text-[var(--main-color)] break-all <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>"
                                             href="mailto:<?php echo esc_attr($email); ?>">
@@ -155,7 +144,7 @@ $opacity = $overlay_opacity / 100;
                                     <div class="min-w-0 flex-1">
                                         <h4
                                             class="mb-0.5 sm:mb-1 text-sm sm:text-base font-bold <?php echo $background_image_url ? 'text-white' : 'text-gray-900'; ?>">
-                                            <?php echo esc_html(beit_translate('Address')); ?>
+                                            <?php echo esc_html(beit_get_text('address')); ?>
                                         </h4>
                                         <p
                                             class="text-sm sm:text-base font-normal <?php echo $background_image_url ? 'text-gray-200' : 'text-gray-700'; ?>">

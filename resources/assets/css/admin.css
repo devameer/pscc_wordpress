@@ -1,11 +1,11 @@
 /* Hide Polylang elements */
-/* #wp-admin-bar-languages,
+#wp-admin-bar-languages,
 #ml_box,
 #toplevel_page_mlang ul li:nth-child(2),
 #toplevel_page_mlang ul li:nth-child(4),
 #toplevel_page_mlang ul li:nth-child(5) {
     display: none !important;
-} */
+}
 
 .stringstranslations #name,
 .stringstranslations .column-name,

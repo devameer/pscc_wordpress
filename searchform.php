@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 $search_query = get_search_query();
-$placeholder = beit_translate('Search for news, programs, stories...');
+$placeholder = beit_get_text('search_placeholder');
 $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : '';
 
 ?>
@@ -23,7 +23,7 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
         </label>
 
         <input type="search" id="search-field"
-            class="w-full rounded-full border-2 border-slate-200 bg-white px-6 py-4 pl-14 pr-32 text-slate-900 placeholder-slate-400 transition focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 md:px-8 md:py-5"
+            class="w-full rounded-full border-2 border-slate-200 bg-white px-6 py-4 ltr:pl-14 ltr:pr-32 rtl:pr-14 rtl:pl-32 text-slate-900 placeholder-slate-400 transition focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 md:px-8 md:py-5"
             placeholder="<?php echo esc_attr($placeholder); ?>"
             value="<?php echo $search_query ? esc_attr($search_query) : ''; ?>" name="s" required>
 
@@ -31,7 +31,7 @@ $post_type_filter = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_
             <input type="hidden" name="post_type" value="<?php echo esc_attr($post_type_filter); ?>">
         <?php endif; ?>
 
-        <span class="absolute left-5 text-slate-400">
+        <span class="absolute ltr:left-5 rtl:right-5 text-slate-400">
             <i class="fa fa-magnifying-glass"></i>
         </span>
 

@@ -16,7 +16,7 @@ $args = wp_parse_args(
         'background_classes' => 'bg-slate-950',
         'overlay_gradients' => true,
         'overlay_style' => 'default', // 'default', 'contact', 'donate', 'none'
-        'height' => 'pb-16 pt-40', // py-20, py-24, h-96, etc.
+        'height' => 'pb-16 pt-60', // py-20, py-24, h-96, etc.
     ]
 );
 

@@ -229,3 +229,158 @@
     direction: rtl;
     width: 100%;
 }
+
+/* ==========================================================================
+   Hero Slider Pagination RTL
+   ========================================================================== */
+
+[dir="rtl"] .hero-slider-pagination {
+    left: auto !important;
+    right: 50% !important;
+    transform: translateX(50%);
+}
+
+/* ==========================================================================
+   Dropdown Menu Hover RTL
+   ========================================================================== */
+
+[dir="rtl"] #primary-menu .dropdown-menu .menu-item a:hover {
+    padding-left: 1.25rem;
+    padding-right: 1.75rem;
+}
+
+[dir="rtl"] .menu-other-list li a:hover {
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+}
+
+[dir="rtl"] .menu-other-list {
+    right: auto;
+    left: 0;
+}
+
+/* ==========================================================================
+   Mobile Menu RTL
+   ========================================================================== */
+
+[dir="rtl"] #mobile-menu .dropdown-menu {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] #mobile-menu .dropdown-menu .menu-item a:hover {
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+}
+
+/* ==========================================================================
+   Map Location Item RTL
+   ========================================================================== */
+
+[dir="rtl"] .map-location-item:hover {
+    transform: translateX(-4px);
+}
+
+[dir="rtl"] .map-location-item:active {
+    transform: translateX(-2px);
+}
+
+/* ==========================================================================
+   Header Mobile Toggle RTL
+   ========================================================================== */
+
+[dir="rtl"] button[data-menu-toggle="mobile"] {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* ==========================================================================
+   Logo Scroll Position RTL
+   ========================================================================== */
+
+[dir="rtl"] .logo-scroll {
+    left: auto;
+    right: 0;
+}
+
+/* ==========================================================================
+   Footer RTL Adjustments
+   ========================================================================== */
+
+[dir="rtl"] footer .md\:justify-start {
+    justify-content: flex-end;
+}
+
+[dir="rtl"] footer .md\:justify-end {
+    justify-content: flex-start;
+}
+
+/* ==========================================================================
+   Topbar RTL Adjustments
+   ========================================================================== */
+
+[dir="rtl"] .topbar-section .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* ==========================================================================
+   Primary Menu RTL
+   ========================================================================== */
+
+[dir="rtl"] #primary-menu .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] #primary-menu li.menu-item a::after {
+    transform-origin: left;
+}
+
+/* ==========================================================================
+   Search and Input Fields RTL
+   ========================================================================== */
+
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="search"],
+[dir="rtl"] textarea {
+    text-align: right;
+}
+
+/* ==========================================================================
+   Flex Direction RTL (for items that need reversal)
+   ========================================================================== */
+
+[dir="rtl"] .flex-row-reverse {
+    flex-direction: row;
+}
+
+/* ==========================================================================
+   Border Adjustments RTL
+   ========================================================================== */
+
+[dir="rtl"] .border-l {
+    border-left-width: 0;
+    border-right-width: 1px;
+}
+
+[dir="rtl"] .border-r {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+
+[dir="rtl"] .lg\:border-r {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+
+[dir="rtl"] .lg\:border-l {
+    border-left-width: 0;
+    border-right-width: 1px;
+}
+
+[dir="rtl"] .md\:border-r {
+    border-right-width: 0;
+    border-left-width: 1px;
+}

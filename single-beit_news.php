@@ -35,7 +35,7 @@ while (have_posts()) {
             'background_classes' => 'bg-gradient-to-br from-slate-950 via-red-900 to-slate-800',
         ]
     );
-    ?>
+?>
 
     <main class="bg-white text-slate-900">
         <article class="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:px-6">
@@ -60,7 +60,7 @@ while (have_posts()) {
                         <i class="fa fa-calendar"></i>
                         <?php echo esc_html(get_the_date()); ?>
                     </span>
-
+                  
                 </div>
 
                 <div class="relative overflow-hidden  border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 shadow-lg"
@@ -73,11 +73,11 @@ while (have_posts()) {
                             <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2">
                                 <i class="fa fa-share-alt text-[var(--main-color)]"></i>
                                 <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--main-color)]">
-                                    <?php echo esc_html(beit_translate('Share This Article')); ?>
+                                    <?php echo esc_html(beit_get_text('share_article')); ?>
                                 </h3>
                             </div>
                             <p class="text-xs text-slate-500">
-                                <?php echo esc_html(beit_translate('Spread the word on social media')); ?>
+                                <?php echo esc_html(beit_get_text('share_social')); ?>
                             </p>
                         </div>
 
@@ -140,9 +140,9 @@ while (have_posts()) {
 
                             foreach ($social_links as $link):
                                 $is_external = !isset($link['external']) || $link['external'] !== false;
-                                ?>
+                            ?>
                                 <a href="<?php echo $link['url']; ?>" <?php if ($is_external): ?> target="_blank"
-                                        rel="noopener noreferrer" <?php endif; ?>
+                                    rel="noopener noreferrer" <?php endif; ?>
                                     class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br <?php echo $link['bg']; ?>  shadow-lg <?php echo $link['shadow']; ?> transition-all duration-300 <?php echo $link['hover']; ?> hover:scale-110 hover:shadow-xl"
                                     aria-label="<?php echo esc_attr(sprintf(__('Share on %s', 'beit'), $link['name'])); ?>">
                                     <?php if ($link['icon'] === 'x-twitter'): ?>
@@ -160,7 +160,7 @@ while (have_posts()) {
 
                             <button onclick="copyToClipboard()" id="copyLinkBtn"
                                 class="group relative inline-flex h-14 w-14 transform items-center text-white justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-700/50 transition-all duration-300 hover:from-slate-800 hover:to-slate-900 hover:scale-110 hover:shadow-xl"
-                                aria-label="<?php echo esc_attr(beit_translate('Copy Link')); ?>">
+                                aria-label="<?php echo esc_attr(beit_get_text('copy_link')); ?>">
                                 <i class="fa fa-link relative z-10 text-xl" id="copyIcon"></i>
                                 <i class="fa fa-check absolute z-10 text-xl opacity-0 transition-opacity duration-300"
                                     id="checkIcon"></i>
@@ -190,9 +190,9 @@ while (have_posts()) {
                         const btn = document.getElementById('copyLinkBtn');
 
                         if (navigator.clipboard && navigator.clipboard.writeText) {
-                            navigator.clipboard.writeText(url).then(function () {
+                            navigator.clipboard.writeText(url).then(function() {
                                 showCopySuccess();
-                            }).catch(function () {
+                            }).catch(function() {
                                 fallbackCopy();
                             });
                         } else {
@@ -206,7 +206,7 @@ while (have_posts()) {
                                 document.execCommand('copy');
                                 showCopySuccess();
                             } catch (err) {
-                                alert('<?php echo esc_js(beit_translate('Failed to copy the link')); ?>');
+                                alert('<?php echo esc_js(beit_get_text('copy_failed')); ?>');
                             }
                         }
 
@@ -216,7 +216,7 @@ while (have_posts()) {
                             btn.classList.remove('from-slate-700', 'to-slate-800');
                             btn.classList.add('from-green-600', 'to-green-700');
 
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 copyIcon.style.opacity = '1';
                                 checkIcon.style.opacity = '0';
                                 btn.classList.remove('from-green-600', 'to-green-700');
@@ -229,10 +229,10 @@ while (have_posts()) {
                 <nav class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm font-bold text-[var(--main-color)]"
                     data-aos="fade-up" data-aos-delay="300">
                     <span>
-                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_translate('Previous'))); ?>
+                        <?php previous_post_link('%link', '<i class="fa' . esc_attr($is_rtl ? 'fa-arrow-right' : 'fa-arrow-left') . '"></i> ' . esc_html(beit_get_text('previous'))); ?>
                     </span>
                     <span>
-                        <?php next_post_link('%link', esc_html(beit_translate('Next')) . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
+                        <?php next_post_link('%link', esc_html(beit_get_text('next')) . ' <i class="fa' . esc_attr($is_rtl ? 'fa-arrow-left' : 'fa-arrow-right') . '"></i>'); ?>
                     </span>
                 </nav>
 
@@ -249,20 +249,20 @@ while (have_posts()) {
                 );
 
                 if ($latest_articles->have_posts()):
-                    ?>
+                ?>
                     <section class="mt-16 border-t border-slate-200 pt-12" data-aos="fade-up" data-aos-delay="400">
                         <div class="mb-8 flex items-center justify-between">
                             <div>
                                 <h2 class="text-2xl font-bold text-slate-900">
-                                    <?php echo esc_html(beit_translate('Latest Articles')); ?>
+                                    <?php echo esc_html(beit_get_text('latest_articles')); ?>
                                 </h2>
                                 <p class="mt-1 text-sm text-slate-500">
-                                    <?php echo esc_html(beit_translate('Stay informed with our most recent stories')); ?>
+                                    <?php echo esc_html(beit_get_text('stay_updated')); ?>
                                 </p>
                             </div>
                             <a href="<?php echo esc_url(get_post_type_archive_link('beit_news')); ?>"
                                 class="inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition ">
-                                <?php echo esc_html(beit_translate('View All')); ?>
+                                <?php echo esc_html(beit_get_text('view_all')); ?>
                                 <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                             </a>
                         </div>
@@ -272,7 +272,7 @@ while (have_posts()) {
                             while ($latest_articles->have_posts()):
                                 $latest_articles->the_post();
                                 $article_thumb = get_post_thumbnail_id();
-                                ?>
+                            ?>
                                 <article
                                     class="group flex h-full flex-col overflow-hidden  bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                                     data-aos="fade-up" data-aos-delay="<?php echo 100 + ($latest_articles->current_post * 50); ?>">
@@ -305,18 +305,18 @@ while (have_posts()) {
 
                                         <a href="<?php the_permalink(); ?>"
                                             class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-[var(--main-color)] transition hover:gap-3 hover:[var(--second-color)]">
-                                            <?php echo esc_html(beit_translate('Read More')); ?>
+                                            <?php echo esc_html(beit_get_text('read_more')); ?>
                                             <i class="fa <?php echo $is_rtl ? 'fa-arrow-left' : 'fa-arrow-right'; ?>"></i>
                                         </a>
                                     </div>
                                 </article>
-                                <?php
+                            <?php
                             endwhile;
                             wp_reset_postdata();
                             ?>
                         </div>
                     </section>
-                    <?php
+                <?php
                 endif;
                 ?>
             </div>
@@ -334,19 +334,18 @@ while (have_posts()) {
                 );
 
                 if ($recent->have_posts()):
-                    ?>
+                ?>
                     <section class=" border border-slate-200 bg-white p-6 shadow-sm" data-aos="fade-left" data-aos-delay="400">
                         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">
-                            <?php echo esc_html(beit_translate('Recent News')); ?>
+                            <?php echo esc_html(beit_get_text('recent_news')); ?>
                         </h2>
                         <ul class="mt-4 space-y-4 text-sm text-slate-700">
                             <?php
                             while ($recent->have_posts()):
                                 $recent->the_post();
-                                ?>
+                            ?>
                                 <li>
-                                    <a class="flex gap-3 transition hover:text-[var(--main-color)]"
-                                        href="<?php the_permalink(); ?>">
+                                    <a class="flex gap-3 transition hover:text-[var(--main-color)]" href="<?php the_permalink(); ?>">
                                         <?php if (has_post_thumbnail()): ?>
                                             <span class="h-14 w-20 overflow-hidden ">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'h-full w-full object-cover']); ?>
@@ -359,19 +358,19 @@ while (have_posts()) {
                                         </span>
                                     </a>
                                 </li>
-                                <?php
+                            <?php
                             endwhile;
                             wp_reset_postdata();
                             ?>
                         </ul>
                     </section>
-                    <?php
+                <?php
                 endif;
                 ?>
             </aside>
         </article>
     </main>
-    <?php
+<?php
 }
 
 get_footer();

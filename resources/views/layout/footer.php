@@ -97,7 +97,7 @@
                 <?php
                 printf(
                     /* translators: 1: current year, 2: site name */
-                    esc_html(beit_translate('© %1$s %2$s. All rights reserved.')),
+                    esc_html(beit_get_text('copyright')),
                     esc_html(gmdate('Y')),
                     esc_html(get_bloginfo('name'))
                 );

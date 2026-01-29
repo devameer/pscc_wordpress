@@ -79,12 +79,26 @@ function beit_theme_enqueue_assets(): void
             beit_theme_asset_version()
         );
 
-        // Load RTL stylesheet for Arabic language
+        // Load RTL stylesheet for Arabic language or any RTL language
+        $is_rtl_language = false;
+
+        // Check Polylang if available
         if (function_exists('pll_current_language')) {
             $current_lang = pll_current_language('slug');
-            if ($current_lang === 'ar' || is_rtl()) {
-                $rtl_file = BEIT_THEME_DIR . '/public/css/rtl.css';
+            if ($current_lang === 'ar') {
+                $is_rtl_language = true;
+            }
+        }
 
+        // Also check WordPress is_rtl() function as fallback
+        if (is_rtl()) {
+            $is_rtl_language = true;
+        }
+
+        if ($is_rtl_language) {
+            $rtl_file = BEIT_THEME_DIR . '/public/css/rtl.css';
+
+            if (file_exists($rtl_file)) {
                 wp_enqueue_style(
                     'beit-rtl',
                     BEIT_THEME_URI . '/public/css/rtl.css?v=' . beit_theme_asset_version(),
@@ -113,7 +127,7 @@ function beit_theme_enqueue_assets(): void
 
     // Pass translations to JavaScript
     wp_localize_script('beit-theme', 'beitStrings', [
-        'menu' => beit_translate('Menu'),
+        'menu' => beit_get_text('menu'),
     ]);
 
     // PhotoSwipe CSS
